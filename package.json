@@ -4,15 +4,14 @@
   "description": "",
   "scripts": {
     "build": "webpack",
-    "watch": "concurrently --kill-others \"webpack --watch\" \"ws\""
+    "watch": "concurrently --kill-others \"webpack --watch\" \"ws -p 8080 -d ./dist\""
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/horup/rapid.git"
   },
   "author": "Søren Alsbjerg Hørup",
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "local-web-server": {
     "port": 8080,
     "rewrite": [
