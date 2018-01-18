@@ -2551,27 +2551,42 @@ var G0 = /** @class */ (function (_super) {
     __extends(G0, _super);
     function G0() {
         var _this = _super.call(this) || this;
-        var spaceId = _this.engine.loadImage(__webpack_require__(13));
-        var cloudId = _this.engine.loadImage(__webpack_require__(14));
-        var missileId = _this.engine.loadImage(__webpack_require__(15));
+        _this.playerPos = gl_matrix_1.vec2.create();
+        _this.engine.loadImage(__webpack_require__(21));
+        _this.engine.loadImage(__webpack_require__(22));
+        _this.engine.loadImage(__webpack_require__(23));
+        _this.engine.loadImage(__webpack_require__(24));
         var e = _this.engine;
         e.centerText = "";
-        e.setGrid(spaceId);
+        e.clearGrid(0);
         var placeCloud = function (sx, sy) {
             for (var y = 0; y < 2; y++)
                 for (var x = 0; x < 2; x++)
-                    e.setCell(x + sx, y + sy, cloudId, x, y);
+                    e.setCell(x + sx, y + sy, 1, x, y);
         };
         placeCloud(3, 3);
-        e.setSprite(0, gl_matrix_1.vec2.create(), missileId);
+        placeCloud(8, 4);
+        placeCloud(13, 2);
+        _this.initRound();
         return _this;
     }
+    G0.prototype.initRound = function () {
+        this.playerPos.set([0, 0]);
+        this.engine.setSprite(0, this.playerPos, 3);
+    };
     G0.prototype.tick = function (iterations) {
-        var p = gl_matrix_1.vec2.create();
-        var x = iterations % 64 / 4;
-        var e = this.engine;
-        p[0] = x;
-        e.setSprite(0, p);
+        var y = this.engine.input.mouse.pos[1];
+        if (y < 0)
+            y = 0;
+        else if (y > 16)
+            y = 16;
+        this.playerPos.set([this.engine.input.mouse.pos[0], y]);
+        this.engine.setSprite(0, this.playerPos, 3);
+        /*  let p = vec2.create();
+          let x = iterations % 64 / 4;
+          let e = this.engine;
+          p[0] = x;
+          e.setSprite(0, p);*/
     };
     return G0;
 }(index_1.Prototype));
@@ -2586,9 +2601,7 @@ exports.default = G0;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var gl_matrix_1 = __webpack_require__(1);
-/*
-Sprite.
-*/
+/**Sprite.*/
 var Sprite = /** @class */ (function () {
     function Sprite(id) {
         this.image = -1;
@@ -2607,9 +2620,7 @@ var Sprite = /** @class */ (function () {
     return Sprite;
 }());
 exports.Sprite = Sprite;
-/*
-Cell of a grid.
-*/
+/**Cell of a grid.*/
 var Cell = /** @class */ (function () {
     function Cell() {
         this.image = -1;
@@ -2619,11 +2630,10 @@ var Cell = /** @class */ (function () {
     return Cell;
 }());
 exports.Cell = Cell;
-/*
-Engine takes care of rendering assets provided by a prototype.
-*/
+/**Engine takes care of rendering assets provided by a prototype. */
 var Engine = /** @class */ (function () {
     function Engine(c) {
+        var _this = this;
         this.config = {
             sprites: {
                 max: 255
@@ -2634,12 +2644,27 @@ var Engine = /** @class */ (function () {
                 height: 16
             }
         };
+        this.debug = {
+            draw: {
+                grid: {
+                    bounds: false
+                },
+                sprite: {
+                    bounds: true
+                }
+            }
+        };
         this.sprites = [];
         this.images = [];
         this.backgroundColor = "#000000";
         this.foregroundColor = "#FFFFFF";
         this.centerText = "Engine Initialized...";
-        this.drawGridlines = true;
+        this.input = {
+            mouse: {
+                pos: gl_matrix_1.vec2.create(),
+                button: [false, false, false]
+            }
+        };
         this.context = c;
         var w = this.config.grid.width;
         var h = this.config.grid.height;
@@ -2655,7 +2680,48 @@ var Engine = /** @class */ (function () {
             this.sprites[i] = new Sprite(i);
         }
         c.textAlign = "center";
+        document.onmousemove = function (ev) {
+            if (_this.hasFocus) {
+                var c_1 = _this.context.canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.x - c_1.offsetLeft;
+                var y = ev.y - c_1.offsetTop;
+                x = x / _this.config.grid.cellSize;
+                y = y / _this.config.grid.cellSize;
+                x = clamp(x, 0, _this.config.grid.width);
+                y = clamp(y, 0, _this.config.grid.height);
+                _this.input.mouse.pos.set([x, y]);
+                console.log(JSON.stringify(_this.input));
+            }
+        };
+        document.onmousedown = function (ev) {
+            if (!_this.hasFocus) {
+                c.canvas.requestPointerLock();
+                _this.input.mouse.pos[0] = c.canvas.width / _this.config.grid.cellSize / 2;
+                _this.input.mouse.pos[1] = c.canvas.width / _this.config.grid.cellSize / 2;
+            }
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = true;
+                console.log(JSON.stringify(_this.input));
+            }
+        };
+        document.onmouseup = function (ev) {
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = false;
+                console.log(JSON.stringify(_this.input));
+            }
+        };
     }
+    Object.defineProperty(Engine.prototype, "hasFocus", {
+        get: function () {
+            return true;
+            // return document.pointerLockElement == this.context.canvas;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Engine.prototype.setBackground = function (color) {
         this.backgroundColor = color;
     };
@@ -2677,7 +2743,8 @@ var Engine = /** @class */ (function () {
         if (image != undefined)
             sprite.image = image;
     };
-    Engine.prototype.setGrid = function (image) {
+    /**Clears the grid with the specified image as src */
+    Engine.prototype.clearGrid = function (image) {
         this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
     };
     Engine.prototype.loadImage = function (src) {
@@ -2702,15 +2769,22 @@ var Engine = /** @class */ (function () {
                 }
             }
         }
+        c.strokeStyle = 'gray';
         for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
             var sprite = _a[_i];
             if (sprite.image >= 0 && sprite.image < this.images.length) {
                 var image = this.images[sprite.image];
-                c.drawImage(image, sprite.position[0] * cellSize, sprite.position[1] * cellSize);
+                var x = sprite.position[0] * cellSize - image.width / 2;
+                var y = sprite.position[1] * cellSize - image.height / 2;
+                var sw = image.width / cellSize;
+                var sh = image.height / cellSize;
+                c.drawImage(image, x, y);
+                if (this.debug.draw.sprite.bounds) {
+                    c.strokeRect(x + 0.5, y + 0.5, image.width, image.height);
+                }
             }
         }
-        if (this.drawGridlines) {
-            c.strokeStyle = 'gray';
+        if (this.debug.draw.grid.bounds) {
             for (var y = -1; y < h - 1; y += cellSize) {
                 c.beginPath();
                 c.moveTo(0.5, y + 0.5);
@@ -2736,10 +2810,11 @@ Any prototype instance will hook into the canvas and document.
 */
 var Prototype = /** @class */ (function () {
     function Prototype() {
+        var _this = this;
         this.iterations = 0;
         this.canvas = document.getElementById("canvas");
         this.engine = new Engine(this.canvas.getContext("2d"));
-        this.animate();
+        setTimeout(function () { return _this.animate(); });
     }
     Prototype.prototype.animate = function () {
         var _this = this;
@@ -6797,24 +6872,9 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAM5JREFUOI1j/P///38GCgATJZoHhwEsxCiSlpFF4T998ph4A6RlZBlMjI3g/DNnz6HIMyLHgjM3P8MNQT6CLrq5RoiBx+IiqgvC+YQZcoXEGY5FBuDVvHTZcgYGBgaGLyf0GXgsLkJcEM4nzBDJL8zgysvPEKUqhaIB3ckMDAwMt/gkGP7P+4XqhXA+YYZ5MkoYBqCDM2fPMdxcI8TAwMDAwGNxEeGFlZ/eQsLg0wu8BsAALAwYCSVlbLFAUjQ+ffIYIx0gA4IuIAQGPi8AAAWhSGe9n39lAAAAAElFTkSuQmCC"
-
-/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6854,7 +6914,7 @@ exports = module.exports = __webpack_require__(18)(false);
 
 
 // module
-exports.push([module.i, "canvas\r\n{\r\n    background-color: black;\r\n}", ""]);
+exports.push([module.i, "\r\nbody\r\n{\r\n    margin:32px;\r\n}\r\ncanvas\r\n{\r\n    background-color: black;\r\n}", ""]);
 
 // exports
 
@@ -7407,6 +7467,30 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAjUlEQVQ4T2P4//8/RRirICkYqyApGKsgKRirIDqWkpb5j4yR5VAUYsMgDX5+fnCM1wAnLj4Um3Dhz8f1gMrRDAjjFfq/Xkb1f2lpKV4MMwBmCIrmL5omKM6FORkdg9TBDEFxATYD0DHIAAwXwDBFYYALgzSguwBZHkUxLoxsO1kG4MNYBUnBWAWJx/8ZABolmgjFLL2wAAAAAElFTkSuQmCC"
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAQCAYAAAArij59AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAABVSURBVChTdcpBDcBADAPBw9EWQ/kzKKAC8GkfOUWKvZI/ySxJ67ofufE74P/eMxqAOrKAIuBYRdBRBIUGoI4soAg4VhF0FEGhAagjCygCjpUFbpLWBjQnToaUiHG6AAAAAElFTkSuQmCC"
 
 /***/ })
 /******/ ]);

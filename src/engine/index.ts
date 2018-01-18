@@ -1,7 +1,6 @@
-import {vec2} from 'gl-matrix';
-/*
-Sprite.
-*/
+import {vec2, glMatrix} from 'gl-matrix';
+
+/**Sprite.*/
 export class Sprite
 {
     id:number;
@@ -25,9 +24,7 @@ export class Sprite
     }
 }
 
-/*
-Cell of a grid.
-*/
+/**Cell of a grid.*/
 export class Cell
 {
     image:number = -1;
@@ -36,9 +33,7 @@ export class Cell
 }
 
 
-/*
-Engine takes care of rendering assets provided by a prototype.
-*/
+/**Engine takes care of rendering assets provided by a prototype. */
 export class Engine
 {
     private config = 
@@ -55,6 +50,21 @@ export class Engine
         }
     }
 
+    private debug =
+    {
+        draw:
+        {
+            grid:
+            {
+                bounds:false
+            },
+            sprite:
+            {
+                bounds:true
+            }
+        }
+    }
+
     private sprites:Sprite[] = [];
     private images:HTMLImageElement[] = [];
     private backgroundColor:string = "#000000";
@@ -63,7 +73,15 @@ export class Engine
     private context:CanvasRenderingContext2D;
 
     public centerText:string = "Engine Initialized...";
-    public drawGridlines = true;
+    public input = 
+    {
+        mouse:
+        {
+            pos:vec2.create(),
+            button:[false, false, false]
+        }
+    }
+
 
     constructor(c:CanvasRenderingContext2D)
     {
@@ -87,6 +105,60 @@ export class Engine
         }
 
         c.textAlign = "center";
+
+        document.onmousemove = (ev)=>
+        {
+            if (this.hasFocus)
+            {
+                let c = this.context.canvas;
+                let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
+                
+                let x = ev.x - c.offsetLeft;
+                let y = ev.y - c.offsetTop;
+
+                x = x / this.config.grid.cellSize;
+                y = y / this.config.grid.cellSize;
+
+                x = clamp(x, 0, this.config.grid.width);
+                y = clamp(y, 0, this.config.grid.height);
+
+                this.input.mouse.pos.set([x,y]);
+            
+               console.log(JSON.stringify(this.input));
+            }
+        }
+
+        document.onmousedown = (ev)=>
+        {
+            if (!this.hasFocus)
+            {
+                c.canvas.requestPointerLock();
+                this.input.mouse.pos[0] = c.canvas.width / this.config.grid.cellSize / 2;
+                this.input.mouse.pos[1] = c.canvas.width / this.config.grid.cellSize / 2;
+            }
+            if (this.hasFocus)
+            {
+                if (ev.button < this.input.mouse.button.length)
+                    this.input.mouse.button[ev.button] = true;
+                console.log(JSON.stringify(this.input));
+            }
+        }
+
+        document.onmouseup = (ev)=>
+        {
+            if (this.hasFocus)
+            {
+                if (ev.button < this.input.mouse.button.length)
+                    this.input.mouse.button[ev.button] = false;
+                console.log(JSON.stringify(this.input));
+            }
+        }
+    }
+
+    get hasFocus()
+    {
+        return true;
+       // return document.pointerLockElement == this.context.canvas;
     }
 
     setBackground(color:string)
@@ -115,7 +187,8 @@ export class Engine
             sprite.image = image;
     }
 
-    setGrid(image:number)
+    /**Clears the grid with the specified image as src */
+    clearGrid(image:number)
     {
         this.grid.forEach(h=>h.forEach(cell=>cell.image = image));
     }
@@ -149,18 +222,27 @@ export class Engine
             }
         }
 
+        c.strokeStyle = 'gray';
+        
         for (let sprite of this.sprites)
         {
             if (sprite.image >= 0 && sprite.image < this.images.length)
             {
                 let image = this.images[sprite.image];
-                c.drawImage(image, sprite.position[0] * cellSize, sprite.position[1] * cellSize);
+                let x = sprite.position[0] * cellSize - image.width / 2;
+                let y = sprite.position[1] * cellSize - image.height / 2;
+                let sw = image.width / cellSize;
+                let sh = image.height / cellSize;
+                c.drawImage(image, x, y);
+                if (this.debug.draw.sprite.bounds)
+                {
+                    c.strokeRect(x + 0.5, y + 0.5, image.width, image.height);
+                }
             }
         }
 
-        if (this.drawGridlines)
+        if (this.debug.draw.grid.bounds)
         {
-            c.strokeStyle = 'gray';
             for (let y = -1; y < h - 1; y+= cellSize)
             {
                 c.beginPath();
@@ -195,7 +277,7 @@ export abstract class Prototype
     {
         this.canvas = document.getElementById("canvas") as HTMLCanvasElement;
         this.engine = new Engine(this.canvas.getContext("2d"));
-        this.animate();
+        setTimeout(()=>this.animate());
     }
 
     private animate()
