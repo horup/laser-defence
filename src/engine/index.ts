@@ -222,21 +222,21 @@ export class Engine
             }
         }
 
-        c.strokeStyle = 'gray';
+        c.strokeStyle = 'red';
         
         for (let sprite of this.sprites)
         {
             if (sprite.image >= 0 && sprite.image < this.images.length)
             {
                 let image = this.images[sprite.image];
-                let x = sprite.position[0] * cellSize - image.width / 2;
-                let y = sprite.position[1] * cellSize - image.height / 2;
+                let x = sprite.position[0] * cellSize - Math.floor(image.width / 2);
+                let y = sprite.position[1] * cellSize - Math.floor(image.height / 2);
                 let sw = image.width / cellSize;
                 let sh = image.height / cellSize;
                 c.drawImage(image, x, y);
                 if (this.debug.draw.sprite.bounds)
                 {
-                    c.strokeRect(x + 0.5, y + 0.5, image.width, image.height);
+                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
                 }
             }
         }

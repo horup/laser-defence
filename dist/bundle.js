@@ -2525,7 +2525,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(6);
 __webpack_require__(16);
 document.title = "Rapid";
-var prototype = new index_1.default();
+new index_1.default();
 
 
 /***/ }),
@@ -2547,10 +2547,22 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(7);
 var gl_matrix_1 = __webpack_require__(1);
+var spawnTime = 60;
+var Missile = /** @class */ (function () {
+    function Missile() {
+        this.inUse = false;
+        this.pos = gl_matrix_1.vec2.create();
+    }
+    Missile.prototype.reset = function () {
+        this.inUse = false;
+    };
+    return Missile;
+}());
 var G0 = /** @class */ (function (_super) {
     __extends(G0, _super);
     function G0() {
         var _this = _super.call(this) || this;
+        _this.missiles = [];
         _this.playerPos = gl_matrix_1.vec2.create();
         _this.engine.loadImage(__webpack_require__(21));
         _this.engine.loadImage(__webpack_require__(22));
@@ -2567,26 +2579,44 @@ var G0 = /** @class */ (function (_super) {
         placeCloud(3, 3);
         placeCloud(8, 4);
         placeCloud(13, 2);
+        _this.missiles = new Array(10);
+        for (var i = 0; i < _this.missiles.length; i++) {
+            _this.missiles[i] = new Missile();
+        }
         _this.initRound();
         return _this;
     }
     G0.prototype.initRound = function () {
         this.playerPos.set([0, 0]);
         this.engine.setSprite(0, this.playerPos, 3);
+        this.missiles.forEach(function (m) { return m.reset(); });
     };
     G0.prototype.tick = function (iterations) {
+        var _this = this;
+        this.engine.clearSprites();
+        var spriteIndex = 0;
         var y = this.engine.input.mouse.pos[1];
-        if (y < 0)
-            y = 0;
-        else if (y > 16)
-            y = 16;
-        this.playerPos.set([this.engine.input.mouse.pos[0], y]);
-        this.engine.setSprite(0, this.playerPos, 3);
-        /*  let p = vec2.create();
-          let x = iterations % 64 / 4;
-          let e = this.engine;
-          p[0] = x;
-          e.setSprite(0, p);*/
+        if (y < 1)
+            y = 1;
+        else if (y > 15)
+            y = 15;
+        this.playerPos.set([2, y]);
+        this.engine.setSprite(spriteIndex++, this.playerPos, 3);
+        this.missiles.forEach(function (m) {
+            if (m.inUse) {
+                var speed = 0.1;
+                _this.engine.setSprite(spriteIndex++, m.pos, 2);
+                m.pos[0] -= 0.1;
+            }
+        });
+        if (iterations % spawnTime == 0) {
+            var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
+            if (freeMissiles.length > 0) {
+                var missile = freeMissiles[0];
+                missile.pos.set([16, 1 + Math.random() * 15]);
+                missile.inUse = true;
+            }
+        }
     };
     return G0;
 }(index_1.Prototype));
@@ -2769,18 +2799,18 @@ var Engine = /** @class */ (function () {
                 }
             }
         }
-        c.strokeStyle = 'gray';
+        c.strokeStyle = 'red';
         for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
             var sprite = _a[_i];
             if (sprite.image >= 0 && sprite.image < this.images.length) {
                 var image = this.images[sprite.image];
-                var x = sprite.position[0] * cellSize - image.width / 2;
-                var y = sprite.position[1] * cellSize - image.height / 2;
+                var x = sprite.position[0] * cellSize - Math.floor(image.width / 2);
+                var y = sprite.position[1] * cellSize - Math.floor(image.height / 2);
                 var sw = image.width / cellSize;
                 var sh = image.height / cellSize;
                 c.drawImage(image, x, y);
                 if (this.debug.draw.sprite.bounds) {
-                    c.strokeRect(x + 0.5, y + 0.5, image.width, image.height);
+                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
                 }
             }
         }
