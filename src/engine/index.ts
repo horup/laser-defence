@@ -1,7 +1,28 @@
-
+import {vec2} from 'gl-matrix';
+/*
+Sprite.
+*/
 export class Sprite
 {
+    id:number;
+    image:number = -1;
+    position:vec2 = vec2.create();
+    imgOffset:vec2 = vec2.create();
+    size:vec2 = vec2.create();
 
+    constructor(id:number)
+    {
+        this.id = id;
+        this.clear();
+    }
+
+    clear()
+    {
+        this.position.set([0,0]);
+        this.imgOffset.set([0,0]);
+        this.size.set([1,1]);
+        this.image = -1;
+    }
 }
 
 /*
@@ -22,6 +43,10 @@ export class Engine
 {
     private config = 
     {
+        sprites:
+        {
+            max:255
+        },
         grid:
         {
             cellSize:16,
@@ -30,6 +55,7 @@ export class Engine
         }
     }
 
+    private sprites:Sprite[] = [];
     private images:HTMLImageElement[] = [];
     private backgroundColor:string = "#000000";
     private foregroundColor:string = "#FFFFFF";
@@ -37,6 +63,7 @@ export class Engine
     private context:CanvasRenderingContext2D;
 
     public centerText:string = "Engine Initialized...";
+    public drawGridlines = true;
 
     constructor(c:CanvasRenderingContext2D)
     {
@@ -53,6 +80,12 @@ export class Engine
             }
         }
 
+        this.sprites = new Array(256);
+        for (let i = 0; i < this.sprites.length; i++)
+        {
+            this.sprites[i] = new Sprite(i);
+        }
+
         c.textAlign = "center";
     }
 
@@ -67,6 +100,19 @@ export class Engine
         this.grid[y][x].image = image;
         this.grid[y][x].imgOffsetX = imgOffsetX;
         this.grid[y][x].imgOffsetY = imgOffsetY;
+    }
+
+    clearSprites()
+    {
+        this.sprites.forEach(s=>s.clear);
+    }
+
+    setSprite(i:number, pos:vec2, image:number = undefined)
+    {
+        let sprite = this.sprites[i];
+        sprite.position.set(pos);
+        if (image != undefined) 
+            sprite.image = image;
     }
 
     setGrid(image:number)
@@ -103,9 +149,36 @@ export class Engine
             }
         }
 
+        for (let sprite of this.sprites)
+        {
+            if (sprite.image >= 0 && sprite.image < this.images.length)
+            {
+                let image = this.images[sprite.image];
+                c.drawImage(image, sprite.position[0] * cellSize, sprite.position[1] * cellSize);
+            }
+        }
+
+        if (this.drawGridlines)
+        {
+            c.strokeStyle = 'gray';
+            for (let y = -1; y < h - 1; y+= cellSize)
+            {
+                c.beginPath();
+                c.moveTo(0.5, y+0.5);
+                c.lineTo(w+0.5, y+0.5);
+                c.stroke();
+            }
+            for (let x = -1; x < h - 1; x+= cellSize)
+            {
+                c.beginPath();
+                c.moveTo(x+0.5, 0.5);
+                c.lineTo(x+0.5, h);
+                c.stroke();
+            }
+        }
+
         c.fillStyle = this.foregroundColor;
         c.fillText(this.centerText, w/2, h/2);
-
     }
 }
 
@@ -115,6 +188,7 @@ Any prototype instance will hook into the canvas and document.
 */
 export abstract class Prototype
 {
+    private iterations:number = 0;
     canvas:HTMLCanvasElement;
     engine:Engine;
     constructor()
@@ -127,8 +201,9 @@ export abstract class Prototype
     private animate()
     {
         window.requestAnimationFrame(()=>this.animate());
+        this.tick(this.iterations++)
         this.engine.draw();
     }
 
-    abstract tick();
+    abstract tick(iterations:number);
 }

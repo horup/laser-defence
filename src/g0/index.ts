@@ -1,5 +1,5 @@
 import { Prototype } from "../engine/index";
-
+import { vec2 } from 'gl-matrix';
 export default class G0 extends Prototype
 {
     constructor()
@@ -7,6 +7,7 @@ export default class G0 extends Prototype
         super();
         let spaceId = this.engine.loadImage(require("./space.png"));
         let cloudId = this.engine.loadImage(require("./cloud.png"));
+        let missileId = this.engine.loadImage(require("./missile.png"));
 
         let e = this.engine;
         e.centerText = "";
@@ -21,11 +22,16 @@ export default class G0 extends Prototype
 
         placeCloud(3,3);
 
+        e.setSprite(0, vec2.create(), missileId);
 
     }
 
-    tick()
+    tick(iterations:number)
     {
-        
+        let p = vec2.create();
+        let x = iterations % 64 / 4;
+        let e = this.engine;
+        p[0] = x;
+        e.setSprite(0, p);
     }
 }
