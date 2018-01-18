@@ -67,19 +67,186 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-var canvas = document.getElementById("canvas");
-console.log(canvas);
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __webpack_require__(1);
+__webpack_require__(4);
+document.title = "Rapid";
+var prototype = new index_1.default();
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __webpack_require__(2);
+var G0 = /** @class */ (function (_super) {
+    __extends(G0, _super);
+    function G0() {
+        var _this = _super.call(this) || this;
+        var spaceId = _this.engine.loadImage(__webpack_require__(10));
+        var cloudId = _this.engine.loadImage(__webpack_require__(3));
+        var e = _this.engine;
+        e.centerText = "";
+        e.setGrid(spaceId);
+        var placeCloud = function (sx, sy) {
+            for (var y = 0; y < 2; y++)
+                for (var x = 0; x < 2; x++)
+                    e.setCell(x + sx, y + sy, cloudId, x, y);
+        };
+        placeCloud(3, 3);
+        return _this;
+    }
+    G0.prototype.tick = function () {
+    };
+    return G0;
+}(index_1.Prototype));
+exports.default = G0;
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Sprite = /** @class */ (function () {
+    function Sprite() {
+    }
+    return Sprite;
+}());
+exports.Sprite = Sprite;
+/*
+Cell of a grid.
+*/
+var Cell = /** @class */ (function () {
+    function Cell() {
+        this.image = -1;
+        this.imgOffsetX = 0;
+        this.imgOffsetY = 0;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
+/*
+Engine takes care of rendering assets provided by a prototype.
+*/
+var Engine = /** @class */ (function () {
+    function Engine(c) {
+        this.config = {
+            grid: {
+                cellSize: 16,
+                width: 16,
+                height: 16
+            }
+        };
+        this.images = [];
+        this.backgroundColor = "#000000";
+        this.foregroundColor = "#FFFFFF";
+        this.centerText = "Engine Initialized...";
+        this.context = c;
+        var w = this.config.grid.width;
+        var h = this.config.grid.height;
+        this.grid = new Array(w);
+        for (var i = 0; i < w; i++) {
+            this.grid[i] = new Array(h);
+            for (var j = 0; j < h; j++) {
+                this.grid[i][j] = new Cell();
+            }
+        }
+        c.textAlign = "center";
+    }
+    Engine.prototype.setBackground = function (color) {
+        this.backgroundColor = color;
+    };
+    Engine.prototype.setCell = function (x, y, image, imgOffsetX, imgOffsetY) {
+        if (imgOffsetX === void 0) { imgOffsetX = 0; }
+        if (imgOffsetY === void 0) { imgOffsetY = 0; }
+        var img = this.images[image];
+        this.grid[y][x].image = image;
+        this.grid[y][x].imgOffsetX = imgOffsetX;
+        this.grid[y][x].imgOffsetY = imgOffsetY;
+    };
+    Engine.prototype.setGrid = function (image) {
+        this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
+    };
+    Engine.prototype.loadImage = function (src) {
+        var img = new Image();
+        img.src = src;
+        this.images.push(img);
+        return this.images.length - 1;
+    };
+    Engine.prototype.draw = function () {
+        var w = this.context.canvas.width;
+        var h = this.context.canvas.height;
+        var c = this.context;
+        c.fillStyle = this.backgroundColor;
+        c.fillRect(0, 0, w, h);
+        var cellSize = this.config.grid.cellSize;
+        for (var y = 0; y < this.grid.length; y++) {
+            for (var x = 0; x < this.grid[y].length; x++) {
+                var cell = this.grid[y][x];
+                if (cell.image >= 0 && cell.image < this.images.length) {
+                    var image = this.images[cell.image];
+                    c.drawImage(image, cell.imgOffsetX * cellSize, cell.imgOffsetY * cellSize, cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+        c.fillStyle = this.foregroundColor;
+        c.fillText(this.centerText, w / 2, h / 2);
+    };
+    return Engine;
+}());
+exports.Engine = Engine;
+/*
+Base class for all prototypes.
+Any prototype instance will hook into the canvas and document.
+*/
+var Prototype = /** @class */ (function () {
+    function Prototype() {
+        this.canvas = document.getElementById("canvas");
+        this.engine = new Engine(this.canvas.getContext("2d"));
+        this.animate();
+    }
+    Prototype.prototype.animate = function () {
+        var _this = this;
+        window.requestAnimationFrame(function () { return _this.animate(); });
+        this.engine.draw();
+    };
+    return Prototype;
+}());
+exports.Prototype = Prototype;
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(2);
+var content = __webpack_require__(5);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -87,7 +254,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(4)(content, options);
+var update = __webpack_require__(7)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -104,10 +271,10 @@ if(false) {
 }
 
 /***/ }),
-/* 2 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(3)(false);
+exports = module.exports = __webpack_require__(6)(false);
 // imports
 
 
@@ -118,7 +285,7 @@ exports.push([module.i, "canvas\r\n{\r\n    background-color: black;\r\n}", ""])
 
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /*
@@ -200,7 +367,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -256,7 +423,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(5);
+var	fixUrls = __webpack_require__(8);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -572,7 +739,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports) {
 
 
@@ -665,6 +832,13 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 9 */,
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
 
 /***/ })
 /******/ ]);

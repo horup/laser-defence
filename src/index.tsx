@@ -1,4 +1,5 @@
+import G0 from "./g0/index";
 require("./style.css");
+document.title = "Rapid";
 
-let canvas = document.getElementById("canvas");
-console.log(canvas);
+let prototype = new G0();
