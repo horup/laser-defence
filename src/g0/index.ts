@@ -70,7 +70,7 @@ export default class G0 extends Prototype
             y = 15;
 
         let playerSprite = spriteIndex++;
-        this.playerPos.set([ this.engine.input.mouse.pos[0], y]);
+        this.playerPos.set([ 2, y]);
         this.engine.setSprite(playerSprite, this.playerPos, 3);
 
         this.missiles.forEach(m=>
@@ -86,6 +86,11 @@ export default class G0 extends Prototype
                 {
                     m.reset();
                 }
+
+                if (m.pos[0]  < 0)
+                {
+                    m.reset();
+                }
             }
         });
 
@@ -95,7 +100,7 @@ export default class G0 extends Prototype
             if (freeMissiles.length > 0)
             {
                 let missile = freeMissiles[0];
-                missile.pos.set([16, 1 + Math.random() * 15]);
+                missile.pos.set([16, 1 + Math.random() * 14]);
                 missile.inUse = true;
             }
         }

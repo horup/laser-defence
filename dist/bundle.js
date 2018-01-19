@@ -2601,7 +2601,7 @@ var G0 = /** @class */ (function (_super) {
         else if (y > 15)
             y = 15;
         var playerSprite = spriteIndex++;
-        this.playerPos.set([this.engine.input.mouse.pos[0], y]);
+        this.playerPos.set([2, y]);
         this.engine.setSprite(playerSprite, this.playerPos, 3);
         this.missiles.forEach(function (m) {
             if (m.inUse) {
@@ -2612,13 +2612,16 @@ var G0 = /** @class */ (function (_super) {
                 if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite) {
                     m.reset();
                 }
+                if (m.pos[0] < 0) {
+                    m.reset();
+                }
             }
         });
         if (iterations % spawnTime == 0) {
             var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
             if (freeMissiles.length > 0) {
                 var missile = freeMissiles[0];
-                missile.pos.set([16, 1 + Math.random() * 15]);
+                missile.pos.set([16, 1 + Math.random() * 14]);
                 missile.inUse = true;
             }
         }
@@ -2635,259 +2638,10 @@ exports.default = G0;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(1);
-var SAT = __webpack_require__(25);
-/**Sprite.*/
-var Sprite = /** @class */ (function () {
-    function Sprite(id) {
-        this.image = -1;
-        this.position = gl_matrix_1.vec2.create();
-        this.imgOffset = gl_matrix_1.vec2.create();
-        this.id = id;
-        this.clear();
-    }
-    Sprite.prototype.clear = function () {
-        this.position.set([0, 0]);
-        this.imgOffset.set([0, 0]);
-        this.image = -1;
-    };
-    return Sprite;
-}());
-exports.Sprite = Sprite;
-/**Cell of a grid.*/
-var Cell = /** @class */ (function () {
-    function Cell() {
-        this.image = -1;
-        this.imgOffsetX = 0;
-        this.imgOffsetY = 0;
-    }
-    return Cell;
-}());
-exports.Cell = Cell;
-/**Engine takes care of rendering assets provided by a prototype. */
-var Engine = /** @class */ (function () {
-    function Engine(c) {
-        var _this = this;
-        this.config = {
-            sprites: {
-                max: 255
-            },
-            grid: {
-                cellSize: 16,
-                width: 16,
-                height: 16
-            }
-        };
-        this.debug = {
-            draw: {
-                grid: {
-                    bounds: false
-                },
-                sprite: {
-                    bounds: true
-                }
-            }
-        };
-        this.sprites = [];
-        this.images = [];
-        this.backgroundColor = "#000000";
-        this.foregroundColor = "#FFFFFF";
-        this.centerText = "Engine Initialized...";
-        this.input = {
-            mouse: {
-                pos: gl_matrix_1.vec2.create(),
-                button: [false, false, false]
-            }
-        };
-        this.context = c;
-        var w = this.config.grid.width;
-        var h = this.config.grid.height;
-        this.grid = new Array(w);
-        for (var i = 0; i < w; i++) {
-            this.grid[i] = new Array(h);
-            for (var j = 0; j < h; j++) {
-                this.grid[i][j] = new Cell();
-            }
-        }
-        this.sprites = new Array(256);
-        for (var i = 0; i < this.sprites.length; i++) {
-            this.sprites[i] = new Sprite(i);
-        }
-        c.textAlign = "center";
-        document.onmousemove = function (ev) {
-            if (_this.hasFocus) {
-                var c_1 = _this.context.canvas;
-                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
-                var x = ev.x - c_1.offsetLeft;
-                var y = ev.y - c_1.offsetTop;
-                x = x / _this.config.grid.cellSize;
-                y = y / _this.config.grid.cellSize;
-                x = clamp(x, 0, _this.config.grid.width);
-                y = clamp(y, 0, _this.config.grid.height);
-                _this.input.mouse.pos.set([x, y]);
-                console.log(JSON.stringify(_this.input));
-            }
-        };
-        document.onmousedown = function (ev) {
-            if (!_this.hasFocus) {
-                c.canvas.requestPointerLock();
-                _this.input.mouse.pos[0] = c.canvas.width / _this.config.grid.cellSize / 2;
-                _this.input.mouse.pos[1] = c.canvas.width / _this.config.grid.cellSize / 2;
-            }
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = true;
-                console.log(JSON.stringify(_this.input));
-            }
-        };
-        document.onmouseup = function (ev) {
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = false;
-                console.log(JSON.stringify(_this.input));
-            }
-        };
-    }
-    Object.defineProperty(Engine.prototype, "hasFocus", {
-        get: function () {
-            return true;
-            // return document.pointerLockElement == this.context.canvas;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Engine.prototype.setBackground = function (color) {
-        this.backgroundColor = color;
-    };
-    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
-     * -1 if no intersection.
-      */
-    Engine.prototype.getIntersectingSprite = function (id) {
-        var box1 = new SAT.Box();
-        var box2 = new SAT.Box();
-        var sprite = this.sprites[id];
-        for (var i = 0; i < this.sprites.length; i++) {
-            var candidate = this.sprites[i];
-            if (i != id && candidate.image >= 0) {
-                var cellSize = this.config.grid.cellSize;
-                box1.pos.x = sprite.position[0];
-                box1.pos.y = sprite.position[1];
-                box1.w = this.images[sprite.image].width / cellSize;
-                box1.h = this.images[sprite.image].height / cellSize;
-                box2.pos.x = candidate.position[0];
-                box2.pos.y = candidate.position[1];
-                box2.w = this.images[candidate.image].width / cellSize;
-                box2.h = this.images[candidate.image].height / cellSize;
-                var p1 = box1.toPolygon();
-                var p2 = box2.toPolygon();
-                if (SAT.testPolygonPolygon(p1, p2))
-                    return i;
-            }
-        }
-        return -1;
-    };
-    Engine.prototype.setCell = function (x, y, image, imgOffsetX, imgOffsetY) {
-        if (imgOffsetX === void 0) { imgOffsetX = 0; }
-        if (imgOffsetY === void 0) { imgOffsetY = 0; }
-        var img = this.images[image];
-        this.grid[y][x].image = image;
-        this.grid[y][x].imgOffsetX = imgOffsetX;
-        this.grid[y][x].imgOffsetY = imgOffsetY;
-    };
-    Engine.prototype.clearSprites = function () {
-        this.sprites.forEach(function (s) { return s.clear(); });
-    };
-    Engine.prototype.setSprite = function (i, pos, image) {
-        if (image === void 0) { image = undefined; }
-        var sprite = this.sprites[i];
-        sprite.position.set(pos);
-        if (image != undefined)
-            sprite.image = image;
-    };
-    /**Clears the grid with the specified image as src */
-    Engine.prototype.clearGrid = function (image) {
-        this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
-    };
-    Engine.prototype.loadImage = function (src) {
-        var img = new Image();
-        img.src = src;
-        this.images.push(img);
-        return this.images.length - 1;
-    };
-    Engine.prototype.draw = function () {
-        var w = this.context.canvas.width;
-        var h = this.context.canvas.height;
-        var c = this.context;
-        c.fillStyle = this.backgroundColor;
-        c.fillRect(0, 0, w, h);
-        var cellSize = this.config.grid.cellSize;
-        for (var y = 0; y < this.grid.length; y++) {
-            for (var x = 0; x < this.grid[y].length; x++) {
-                var cell = this.grid[y][x];
-                if (cell.image >= 0 && cell.image < this.images.length) {
-                    var image = this.images[cell.image];
-                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
-                }
-            }
-        }
-        for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
-            var sprite = _a[_i];
-            if (sprite.image >= 0 && sprite.image < this.images.length) {
-                var image = this.images[sprite.image];
-                var x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
-                var y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
-                var sw = image.width / cellSize;
-                var sh = image.height / cellSize;
-                c.drawImage(image, x, y);
-                if (this.debug.draw.sprite.bounds) {
-                    c.strokeStyle = 'green';
-                    if (this.getIntersectingSprite(sprite.id) != -1)
-                        c.strokeStyle = 'red';
-                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
-                }
-            }
-        }
-        if (this.debug.draw.grid.bounds) {
-            for (var y = -1; y < h - 1; y += cellSize) {
-                c.beginPath();
-                c.moveTo(0.5, y + 0.5);
-                c.lineTo(w + 0.5, y + 0.5);
-                c.stroke();
-            }
-            for (var x = -1; x < h - 1; x += cellSize) {
-                c.beginPath();
-                c.moveTo(x + 0.5, 0.5);
-                c.lineTo(x + 0.5, h);
-                c.stroke();
-            }
-        }
-        c.fillStyle = this.foregroundColor;
-        c.fillText(this.centerText, w / 2, h / 2);
-    };
-    return Engine;
-}());
-exports.Engine = Engine;
-/*
-Base class for all prototypes.
-Any prototype instance will hook into the canvas and document.
-*/
-var Prototype = /** @class */ (function () {
-    function Prototype() {
-        var _this = this;
-        this.iterations = 0;
-        this.canvas = document.getElementById("canvas");
-        this.engine = new Engine(this.canvas.getContext("2d"));
-        setTimeout(function () { return _this.animate(); });
-    }
-    Prototype.prototype.animate = function () {
-        var _this = this;
-        window.requestAnimationFrame(function () { return _this.animate(); });
-        this.tick(this.iterations++);
-        this.engine.draw();
-    };
-    return Prototype;
-}());
-exports.Prototype = Prototype;
+var engine_1 = __webpack_require__(26);
+exports.Engine = engine_1.Engine;
+var prototype_1 = __webpack_require__(27);
+exports.Prototype = prototype_1.Prototype;
 
 
 /***/ }),
@@ -8551,6 +8305,276 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// Version 0.6
 
   return SAT;
 }));
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(1);
+var SAT = __webpack_require__(25);
+/**Sprite.*/
+var Sprite = /** @class */ (function () {
+    function Sprite(id) {
+        this.image = -1;
+        this.position = gl_matrix_1.vec2.create();
+        this.imgOffset = gl_matrix_1.vec2.create();
+        this.id = id;
+        this.clear();
+    }
+    Sprite.prototype.clear = function () {
+        this.position.set([0, 0]);
+        this.imgOffset.set([0, 0]);
+        this.image = -1;
+    };
+    return Sprite;
+}());
+exports.Sprite = Sprite;
+/**Cell of a grid.*/
+var Cell = /** @class */ (function () {
+    function Cell() {
+        this.image = -1;
+        this.imgOffsetX = 0;
+        this.imgOffsetY = 0;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
+/**Engine takes care of rendering assets provided by a prototype. */
+var Engine = /** @class */ (function () {
+    function Engine(c) {
+        var _this = this;
+        this.config = {
+            sprites: {
+                max: 255
+            },
+            grid: {
+                cellSize: 16,
+                width: 16,
+                height: 16
+            }
+        };
+        this.debug = {
+            draw: {
+                grid: {
+                    bounds: false
+                },
+                sprite: {
+                    bounds: true
+                }
+            }
+        };
+        this.sprites = [];
+        this.images = [];
+        this.backgroundColor = "#000000";
+        this.foregroundColor = "#FFFFFF";
+        this.centerText = "Engine Initialized...";
+        this.input = {
+            mouse: {
+                pos: gl_matrix_1.vec2.create(),
+                button: [false, false, false]
+            }
+        };
+        this.context = c;
+        var w = this.config.grid.width;
+        var h = this.config.grid.height;
+        this.grid = new Array(w);
+        for (var i = 0; i < w; i++) {
+            this.grid[i] = new Array(h);
+            for (var j = 0; j < h; j++) {
+                this.grid[i][j] = new Cell();
+            }
+        }
+        this.sprites = new Array(256);
+        for (var i = 0; i < this.sprites.length; i++) {
+            this.sprites[i] = new Sprite(i);
+        }
+        c.textAlign = "center";
+        document.onmousemove = function (ev) {
+            if (_this.hasFocus) {
+                var c_1 = _this.context.canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.x - c_1.offsetLeft;
+                var y = ev.y - c_1.offsetTop;
+                x = x / _this.config.grid.cellSize;
+                y = y / _this.config.grid.cellSize;
+                x = clamp(x, 0, _this.config.grid.width);
+                y = clamp(y, 0, _this.config.grid.height);
+                _this.input.mouse.pos.set([x, y]);
+            }
+        };
+        document.onmousedown = function (ev) {
+            if (!_this.hasFocus) {
+                c.canvas.requestPointerLock();
+                _this.input.mouse.pos[0] = c.canvas.width / _this.config.grid.cellSize / 2;
+                _this.input.mouse.pos[1] = c.canvas.width / _this.config.grid.cellSize / 2;
+            }
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = true;
+            }
+        };
+        document.onmouseup = function (ev) {
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = false;
+            }
+        };
+    }
+    Object.defineProperty(Engine.prototype, "hasFocus", {
+        get: function () {
+            return true;
+            // return document.pointerLockElement == this.context.canvas;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Engine.prototype.setBackground = function (color) {
+        this.backgroundColor = color;
+    };
+    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
+     * -1 if no intersection.
+      */
+    Engine.prototype.getIntersectingSprite = function (id) {
+        var box1 = new SAT.Box();
+        var box2 = new SAT.Box();
+        var sprite = this.sprites[id];
+        for (var i = 0; i < this.sprites.length; i++) {
+            var candidate = this.sprites[i];
+            if (i != id && candidate.image >= 0) {
+                var cellSize = this.config.grid.cellSize;
+                box1.pos.x = sprite.position[0];
+                box1.pos.y = sprite.position[1];
+                box1.w = this.images[sprite.image].width / cellSize;
+                box1.h = this.images[sprite.image].height / cellSize;
+                box2.pos.x = candidate.position[0];
+                box2.pos.y = candidate.position[1];
+                box2.w = this.images[candidate.image].width / cellSize;
+                box2.h = this.images[candidate.image].height / cellSize;
+                var p1 = box1.toPolygon();
+                var p2 = box2.toPolygon();
+                if (SAT.testPolygonPolygon(p1, p2))
+                    return i;
+            }
+        }
+        return -1;
+    };
+    Engine.prototype.setCell = function (x, y, image, imgOffsetX, imgOffsetY) {
+        if (imgOffsetX === void 0) { imgOffsetX = 0; }
+        if (imgOffsetY === void 0) { imgOffsetY = 0; }
+        var img = this.images[image];
+        this.grid[y][x].image = image;
+        this.grid[y][x].imgOffsetX = imgOffsetX;
+        this.grid[y][x].imgOffsetY = imgOffsetY;
+    };
+    Engine.prototype.clearSprites = function () {
+        this.sprites.forEach(function (s) { return s.clear(); });
+    };
+    Engine.prototype.setSprite = function (i, pos, image) {
+        if (image === void 0) { image = undefined; }
+        var sprite = this.sprites[i];
+        sprite.position.set(pos);
+        if (image != undefined)
+            sprite.image = image;
+    };
+    /**Clears the grid with the specified image as src */
+    Engine.prototype.clearGrid = function (image) {
+        this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
+    };
+    Engine.prototype.loadImage = function (src) {
+        var img = new Image();
+        img.src = src;
+        this.images.push(img);
+        return this.images.length - 1;
+    };
+    Engine.prototype.draw = function (iterations) {
+        var w = this.context.canvas.width;
+        var h = this.context.canvas.height;
+        var c = this.context;
+        c.fillStyle = this.backgroundColor;
+        c.fillRect(0, 0, w, h);
+        var cellSize = this.config.grid.cellSize;
+        for (var y = 0; y < this.grid.length; y++) {
+            for (var x = 0; x < this.grid[y].length; x++) {
+                var cell = this.grid[y][x];
+                if (cell.image >= 0 && cell.image < this.images.length) {
+                    var image = this.images[cell.image];
+                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+        for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
+            var sprite = _a[_i];
+            if (sprite.image >= 0 && sprite.image < this.images.length) {
+                var image = this.images[sprite.image];
+                var x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
+                var y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
+                var sw = image.width / cellSize;
+                var sh = image.height / cellSize;
+                c.drawImage(image, x, y);
+                if (this.debug.draw.sprite.bounds) {
+                    c.strokeStyle = 'green';
+                    if (this.getIntersectingSprite(sprite.id) != -1)
+                        c.strokeStyle = 'red';
+                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
+                }
+            }
+        }
+        if (this.debug.draw.grid.bounds) {
+            for (var y = -1; y < h - 1; y += cellSize) {
+                c.beginPath();
+                c.moveTo(0.5, y + 0.5);
+                c.lineTo(w + 0.5, y + 0.5);
+                c.stroke();
+            }
+            for (var x = -1; x < h - 1; x += cellSize) {
+                c.beginPath();
+                c.moveTo(x + 0.5, 0.5);
+                c.lineTo(x + 0.5, h);
+                c.stroke();
+            }
+        }
+        c.fillStyle = this.foregroundColor;
+        c.fillText(this.centerText, w / 2, h / 2);
+    };
+    return Engine;
+}());
+exports.Engine = Engine;
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var engine_1 = __webpack_require__(26);
+/*
+Base class for all prototypes.
+Any prototype instance will hook into the canvas and document.
+*/
+var Prototype = /** @class */ (function () {
+    function Prototype() {
+        var _this = this;
+        this.iterations = 0;
+        this.canvas = document.getElementById("canvas");
+        this.engine = new engine_1.Engine(this.canvas.getContext("2d"));
+        setTimeout(function () { return _this.animate(); });
+    }
+    Prototype.prototype.animate = function () {
+        var _this = this;
+        window.requestAnimationFrame(function () { return _this.animate(); });
+        this.tick(this.iterations);
+        this.engine.draw(this.iterations);
+        this.iterations++;
+    };
+    return Prototype;
+}());
+exports.Prototype = Prototype;
 
 
 /***/ })
