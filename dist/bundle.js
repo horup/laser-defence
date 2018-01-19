@@ -2562,6 +2562,8 @@ var G0 = /** @class */ (function (_super) {
     __extends(G0, _super);
     function G0() {
         var _this = _super.call(this) || this;
+        _this.timer = 0;
+        _this.state = 0;
         _this.missiles = [];
         _this.playerPos = gl_matrix_1.vec2.create();
         _this.engine.loadImage(__webpack_require__(21));
@@ -2570,7 +2572,18 @@ var G0 = /** @class */ (function (_super) {
         _this.engine.loadImage(__webpack_require__(24));
         var e = _this.engine;
         e.centerText = "";
+        e.clearGrid(-1);
+        _this.missiles = new Array(10);
+        for (var i = 0; i < _this.missiles.length; i++) {
+            _this.missiles[i] = new Missile();
+        }
+        return _this;
+    }
+    G0.prototype.initRound = function () {
+        var e = this.engine;
+        e.centerText = "";
         e.clearGrid(0);
+        this.timer = 0;
         var placeCloud = function (sx, sy) {
             for (var y = 0; y < 2; y++)
                 for (var x = 0; x < 2; x++)
@@ -2579,51 +2592,84 @@ var G0 = /** @class */ (function (_super) {
         placeCloud(3, 3);
         placeCloud(8, 4);
         placeCloud(13, 2);
-        _this.missiles = new Array(10);
-        for (var i = 0; i < _this.missiles.length; i++) {
-            _this.missiles[i] = new Missile();
-        }
-        _this.initRound();
-        return _this;
-    }
-    G0.prototype.initRound = function () {
-        this.playerPos.set([0, 0]);
+        this.playerPos.set([2, 16 / 2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(function (m) { return m.reset(); });
     };
     G0.prototype.tick = function (iterations) {
         var _this = this;
-        this.engine.clearSprites();
-        var spriteIndex = 0;
-        var y = this.engine.input.mouse.pos[1];
-        if (y < 1)
-            y = 1;
-        else if (y > 15)
-            y = 15;
-        var playerSprite = spriteIndex++;
-        this.playerPos.set([2, y]);
-        this.engine.setSprite(playerSprite, this.playerPos, 3);
-        this.missiles.forEach(function (m) {
-            if (m.inUse) {
-                var missileSprite = spriteIndex++;
-                var speed = 0.1;
-                _this.engine.setSprite(missileSprite, m.pos, 2);
-                m.pos[0] -= 0.1;
-                if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite) {
-                    m.reset();
+        var e = this.engine;
+        switch (this.state) {
+            case 0:
+                {
+                    if (iterations % 40 < 20)
+                        e.centerText = "Touch when ready!!";
+                    else
+                        e.centerText = "";
+                    if (e.input.mouse.button[0]) {
+                        this.state = 1;
+                        e.flash(true);
+                    }
+                    break;
                 }
-                if (m.pos[0] < 0) {
-                    m.reset();
+            case 1:
+                {
+                    this.initRound();
+                    this.state = 2;
                 }
-            }
-        });
-        if (iterations % spawnTime == 0) {
-            var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
-            if (freeMissiles.length > 0) {
-                var missile = freeMissiles[0];
-                missile.pos.set([16, 1 + Math.random() * 14]);
-                missile.inUse = true;
-            }
+            case 2:
+                {
+                    this.engine.clearSprites();
+                    var spriteIndex_1 = 0;
+                    var y = this.engine.input.mouse.pos[1];
+                    if (y < 1)
+                        y = 1;
+                    else if (y > 15)
+                        y = 15;
+                    var playerSprite_1 = spriteIndex_1++;
+                    this.playerPos.set([2, y]);
+                    this.engine.setSprite(playerSprite_1, this.playerPos, 3);
+                    this.missiles.forEach(function (m) {
+                        if (m.inUse) {
+                            var missileSprite = spriteIndex_1++;
+                            var speed = 0.1;
+                            _this.engine.setSprite(missileSprite, m.pos, 2);
+                            m.pos[0] -= 0.1;
+                            if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite_1) {
+                                m.reset();
+                            }
+                            if (m.pos[0] < 0) {
+                                m.reset();
+                                e.flash(true);
+                                _this.state = 3;
+                            }
+                        }
+                    });
+                    if (iterations % spawnTime == 0) {
+                        var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
+                        if (freeMissiles.length > 0) {
+                            var missile = freeMissiles[0];
+                            missile.pos.set([16, 1 + Math.random() * 14]);
+                            missile.inUse = true;
+                        }
+                    }
+                    this.timer++;
+                    var frames_1 = Math.floor(this.timer % 60);
+                    var seconds = Math.floor(this.timer / 60);
+                    e.centerTopText = seconds + ":" + (frames_1 < 10 ? "0" + frames_1 : frames_1);
+                    break;
+                }
+            case 3:
+                {
+                    e.clearGrid(-1);
+                    e.clearSprites();
+                    e.centerText = "BOOM! Try again?";
+                    if (e.input.mouse.button[0]) {
+                        this.state = 1;
+                        e.flash(true);
+                    }
+                    break;
+                }
         }
     };
     return G0;
@@ -8367,11 +8413,18 @@ var Engine = /** @class */ (function () {
                 }
             }
         };
+        this.iterations = 0;
+        this.state = 0;
+        this.flashing = false;
+        this.flashTickStep = 0.1;
+        this.flashTicks = 0;
+        this.flashBlocks = false;
         this.sprites = [];
         this.images = [];
         this.backgroundColor = "#000000";
         this.foregroundColor = "#FFFFFF";
-        this.centerText = "Engine Initialized...";
+        this.centerText = "";
+        this.centerTopText = "";
         this.input = {
             mouse: {
                 pos: gl_matrix_1.vec2.create(),
@@ -8432,6 +8485,12 @@ var Engine = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    Engine.prototype.flash = function (blocking) {
+        this.flashing = true;
+        this.flashBlocks = blocking == true ? true : false;
+        this.flashTickStep = 0.075;
+        this.flashTicks = -1.0;
+    };
     Engine.prototype.setBackground = function (color) {
         this.backgroundColor = color;
     };
@@ -8484,16 +8543,23 @@ var Engine = /** @class */ (function () {
     Engine.prototype.clearGrid = function (image) {
         this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
     };
+    Engine.prototype.clearText = function () {
+        this.centerText = "";
+        this.centerTopText = "";
+    };
     Engine.prototype.loadImage = function (src) {
         var img = new Image();
         img.src = src;
         this.images.push(img);
         return this.images.length - 1;
     };
-    Engine.prototype.draw = function (iterations) {
+    Engine.prototype.animate = function (tick) {
+        if (!this.flashing || !this.flashBlocks)
+            tick(this.iterations);
         var w = this.context.canvas.width;
         var h = this.context.canvas.height;
         var c = this.context;
+        c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);
         var cellSize = this.config.grid.cellSize;
@@ -8538,7 +8604,23 @@ var Engine = /** @class */ (function () {
             }
         }
         c.fillStyle = this.foregroundColor;
+        c.fillText(this.centerTopText, w / 2, this.config.grid.cellSize);
         c.fillText(this.centerText, w / 2, h / 2);
+        if (this.flashing) {
+            var old = this.flashTicks;
+            var alpha = 1.0 - Math.abs(this.flashTicks);
+            c.fillStyle = "black";
+            c.globalAlpha = alpha;
+            c.fillRect(0, 0, c.canvas.width, c.canvas.height);
+            this.flashTicks += this.flashTickStep;
+            if (Math.sign(old) != Math.sign(this.flashTicks)) {
+                tick(this.iterations);
+            }
+            if (this.flashTicks > 1.0) {
+                this.flashing = false;
+            }
+        }
+        this.iterations++;
     };
     return Engine;
 }());
@@ -8560,7 +8642,6 @@ Any prototype instance will hook into the canvas and document.
 var Prototype = /** @class */ (function () {
     function Prototype() {
         var _this = this;
-        this.iterations = 0;
         this.canvas = document.getElementById("canvas");
         this.engine = new engine_1.Engine(this.canvas.getContext("2d"));
         setTimeout(function () { return _this.animate(); });
@@ -8568,9 +8649,7 @@ var Prototype = /** @class */ (function () {
     Prototype.prototype.animate = function () {
         var _this = this;
         window.requestAnimationFrame(function () { return _this.animate(); });
-        this.tick(this.iterations);
-        this.engine.draw(this.iterations);
-        this.iterations++;
+        this.engine.animate(function (iterations) { return _this.tick(iterations); });
     };
     return Prototype;
 }());

@@ -7,7 +7,6 @@ Any prototype instance will hook into the canvas and document.
 */
 export abstract class Prototype
 {
-    private iterations:number = 0;
     canvas:HTMLCanvasElement;
     engine:Engine;
     constructor()
@@ -20,9 +19,7 @@ export abstract class Prototype
     private animate()
     {
         window.requestAnimationFrame(()=>this.animate());
-        this.tick(this.iterations);
-        this.engine.draw(this.iterations);
-        this.iterations++;
+        this.engine.animate((iterations)=>this.tick(iterations));
     }
 
     abstract tick(iterations:number);

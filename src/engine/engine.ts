@@ -63,6 +63,12 @@ export class Engine
         }
     }
 
+    private iterations = 0;
+    private state:number = 0;
+    private flashing = false;
+    private flashTickStep = 0.1;
+    private flashTicks = 0;
+    private flashBlocks = false;
     private sprites:Sprite[] = [];
     private images:HTMLImageElement[] = [];
     private backgroundColor:string = "#000000";
@@ -70,7 +76,8 @@ export class Engine
     private grid:Cell[][];
     private context:CanvasRenderingContext2D;
 
-    public centerText:string = "Engine Initialized...";
+    public centerText:string = "";
+    public centerTopText:string = "";
     public input = 
     {
         mouse:
@@ -155,6 +162,14 @@ export class Engine
        // return document.pointerLockElement == this.context.canvas;
     }
 
+    flash(blocking?:boolean)
+    {
+        this.flashing = true;
+        this.flashBlocks = blocking == true ? true : false;
+        this.flashTickStep = 0.075;
+        this.flashTicks = -1.0;
+    }
+
     setBackground(color:string)
     {
         this.backgroundColor = color;
@@ -222,6 +237,12 @@ export class Engine
         this.grid.forEach(h=>h.forEach(cell=>cell.image = image));
     }
 
+    clearText()
+    {
+        this.centerText = "";
+        this.centerTopText = "";
+    }
+
     loadImage(src:any):number
     {
         let img = new Image();
@@ -230,11 +251,15 @@ export class Engine
         return this.images.length - 1;
     }
 
-    draw(iterations:number)
+    animate(tick:(iterations:number)=>any)
     {
+        if (!this.flashing || !this.flashBlocks)
+            tick(this.iterations);
+
         let w = this.context.canvas.width;
         let h = this.context.canvas.height;
         let c = this.context;
+        c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);
         let cellSize = this.config.grid.cellSize;
@@ -290,6 +315,27 @@ export class Engine
         }
 
         c.fillStyle = this.foregroundColor;
+        c.fillText(this.centerTopText, w/2, this.config.grid.cellSize);
         c.fillText(this.centerText, w/2, h/2);
+
+        if (this.flashing)
+        {
+            let old = this.flashTicks;
+            let alpha = 1.0 - Math.abs(this.flashTicks);
+            c.fillStyle = "black";
+            c.globalAlpha = alpha;
+            c.fillRect(0, 0, c.canvas.width, c.canvas.height);
+            this.flashTicks += this.flashTickStep;
+            if (Math.sign(old) != Math.sign(this.flashTicks))
+            {
+                tick(this.iterations);
+            }
+            if (this.flashTicks > 1.0)
+            {
+                this.flashing = false;
+            }
+        }
+
+        this.iterations++;
     }
 }
