@@ -1,5 +1,5 @@
 import {vec2, glMatrix} from 'gl-matrix';
-
+import * as SAT from 'sat';
 /**Sprite.*/
 export class Sprite
 {
@@ -7,7 +7,6 @@ export class Sprite
     image:number = -1;
     position:vec2 = vec2.create();
     imgOffset:vec2 = vec2.create();
-    size:vec2 = vec2.create();
 
     constructor(id:number)
     {
@@ -19,7 +18,6 @@ export class Sprite
     {
         this.position.set([0,0]);
         this.imgOffset.set([0,0]);
-        this.size.set([1,1]);
         this.image = -1;
     }
 }
@@ -165,6 +163,41 @@ export class Engine
     {
         this.backgroundColor = color;
     }
+
+    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
+     * -1 if no intersection.
+      */
+    getIntersectingSprite(id:number):number
+    {
+        let box1 = new SAT.Box();
+        let box2 = new SAT.Box();
+        let sprite = this.sprites[id];
+        for (let i = 0; i < this.sprites.length; i++)
+        {
+            let candidate = this.sprites[i];
+            if (i != id && candidate.image >= 0)
+            {
+                let cellSize = this.config.grid.cellSize;
+                box1.pos.x = sprite.position[0];
+                box1.pos.y = sprite.position[1];
+                box1.w  = this.images[sprite.image].width / cellSize;
+                box1.h = this.images[sprite.image].height / cellSize;
+               
+                box2.pos.x = candidate.position[0];
+                box2.pos.y = candidate.position[1];
+                box2.w = this.images[candidate.image].width / cellSize;
+                box2.h = this.images[candidate.image].height / cellSize;
+
+                let p1 = box1.toPolygon();
+                let p2 = box2.toPolygon();
+
+                if (SAT.testPolygonPolygon(p1, p2))
+                    return i;
+            }
+        }
+
+        return -1;
+    }
  
     setCell(x:number, y:number, image:number, imgOffsetX = 0, imgOffsetY = 0)
     {
@@ -176,7 +209,7 @@ export class Engine
 
     clearSprites()
     {
-        this.sprites.forEach(s=>s.clear);
+        this.sprites.forEach(s=>s.clear());
     }
 
     setSprite(i:number, pos:vec2, image:number = undefined)
@@ -217,25 +250,26 @@ export class Engine
                 if (cell.image >= 0 && cell.image < this.images.length)
                 {
                     let image = this.images[cell.image];
-                    c.drawImage(image, cell.imgOffsetX * cellSize, cell.imgOffsetY * cellSize, cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
+                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
                 }
             }
         }
 
-        c.strokeStyle = 'red';
-        
         for (let sprite of this.sprites)
         {
             if (sprite.image >= 0 && sprite.image < this.images.length)
             {
                 let image = this.images[sprite.image];
-                let x = sprite.position[0] * cellSize - Math.floor(image.width / 2);
-                let y = sprite.position[1] * cellSize - Math.floor(image.height / 2);
+                let x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
+                let y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
                 let sw = image.width / cellSize;
                 let sh = image.height / cellSize;
                 c.drawImage(image, x, y);
                 if (this.debug.draw.sprite.bounds)
                 {
+                    c.strokeStyle = 'green';
+                    if (this.getIntersectingSprite(sprite.id) != -1)
+                        c.strokeStyle = 'red';
                     c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
                 }
             }

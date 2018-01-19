@@ -69,16 +69,23 @@ export default class G0 extends Prototype
         else if (y > 15) 
             y = 15;
 
-        this.playerPos.set([2, y]);
-        this.engine.setSprite(spriteIndex++, this.playerPos, 3);
+        let playerSprite = spriteIndex++;
+        this.playerPos.set([ this.engine.input.mouse.pos[0], y]);
+        this.engine.setSprite(playerSprite, this.playerPos, 3);
 
         this.missiles.forEach(m=>
         {
             if (m.inUse)
             {
+                let missileSprite = spriteIndex++;
                 let speed = 0.1;
-                this.engine.setSprite(spriteIndex++, m.pos, 2);
+                this.engine.setSprite(missileSprite, m.pos, 2);
                 m.pos[0] -= 0.1;
+
+                if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
+                {
+                    m.reset();
+                }
             }
         });
 
