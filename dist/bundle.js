@@ -8049,11 +8049,6 @@ var Prototype = /** @class */ (function () {
             h = w;
         else
             w = h;
-        console.log(w + "," + h);
-        w = 512;
-        h = 512;
-        //  this.canvas.style.width = w + 'px';
-        //  this.canvas.style.height = h + 'px';
         this.canvas.width = w;
         this.canvas.height = h;
     };
