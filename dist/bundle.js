@@ -188,7 +188,7 @@ var Engine = /** @class */ (function () {
             grid: {
                 cellSize: 16,
                 width: 32,
-                height: 16
+                height: 18
             }
         };
         this.debug = {
@@ -243,9 +243,6 @@ var Engine = /** @class */ (function () {
                 var y = ev.y - c_1.offsetTop;
                 y = y / bounds.height * _this.config.grid.height;
                 x = x / bounds.width * _this.config.grid.height;
-                console.log(y);
-                // x = x / this.config.grid.cellSize;
-                // y = y / this.config.grid.cellSize;
                 x = clamp(x, 0, _this.config.grid.width);
                 y = clamp(y, 0, _this.config.grid.height);
                 _this.input.mouse.pos.set([x, y]);
@@ -2868,12 +2865,11 @@ var G0 = /** @class */ (function (_super) {
         _this.state = 0;
         _this.missiles = [];
         _this.playerPos = gl_matrix_1.vec2.create();
-        _this.engine.loadImage(__webpack_require__(17));
-        _this.engine.loadImage(__webpack_require__(18));
-        _this.engine.loadImage(__webpack_require__(19));
-        _this.engine.loadImage(__webpack_require__(20));
         var e = _this.engine;
-        e.centerText = "";
+        e.loadImage(__webpack_require__(17));
+        e.loadImage(__webpack_require__(18));
+        e.loadImage(__webpack_require__(19));
+        e.loadImage(__webpack_require__(20));
         e.clearGrid(-1);
         _this.missiles = new Array(10);
         for (var i = 0; i < _this.missiles.length; i++) {
@@ -2926,8 +2922,8 @@ var G0 = /** @class */ (function (_super) {
                     var y = this.engine.input.mouse.pos[1];
                     if (y < 1)
                         y = 1;
-                    else if (y > 15)
-                        y = 15;
+                    else if (y > 17)
+                        y = 17;
                     var playerSprite_1 = spriteIndex_1++;
                     this.playerPos.set([2, y]);
                     this.engine.setSprite(playerSprite_1, this.playerPos, 3);
@@ -2936,7 +2932,7 @@ var G0 = /** @class */ (function (_super) {
                             var missileSprite = spriteIndex_1++;
                             var speed = 0.1;
                             _this.engine.setSprite(missileSprite, m.pos, 2);
-                            m.pos[0] -= 0.1;
+                            m.pos[0] -= 0.15;
                             if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite_1) {
                                 m.reset();
                             }
@@ -2951,7 +2947,7 @@ var G0 = /** @class */ (function (_super) {
                         var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
                         if (freeMissiles.length > 0) {
                             var missile = freeMissiles[0];
-                            missile.pos.set([16, 1 + Math.random() * 14]);
+                            missile.pos.set([32, 1 + Math.random() * 16]);
                             missile.inUse = true;
                         }
                     }

@@ -24,13 +24,12 @@ export default class G0 extends Prototype
     constructor()
     {
         super();
-        this.engine.loadImage(require("./imgs/space.png"));
-        this.engine.loadImage(require("./imgs/cloud.png"));
-        this.engine.loadImage(require("./imgs/missile.png"));
-        this.engine.loadImage(require("./imgs/block.png"));
-
         let e = this.engine;
-        e.centerText = "";
+        
+        e.loadImage(require("./imgs/space.png"));
+        e.loadImage(require("./imgs/cloud.png"));
+        e.loadImage(require("./imgs/missile.png"));
+        e.loadImage(require("./imgs/block.png"));
         e.clearGrid(-1);
 
         this.missiles = new Array(10);
@@ -94,8 +93,8 @@ export default class G0 extends Prototype
                 let y = this.engine.input.mouse.pos[1];
                 if (y < 1) 
                     y = 1; 
-                else if (y > 15) 
-                    y = 15;
+                else if (y > 17) 
+                    y = 17;
 
                 let playerSprite = spriteIndex++;
                 this.playerPos.set([ 2, y]);
@@ -108,7 +107,7 @@ export default class G0 extends Prototype
                         let missileSprite = spriteIndex++;
                         let speed = 0.1;
                         this.engine.setSprite(missileSprite, m.pos, 2);
-                        m.pos[0] -= 0.1;
+                        m.pos[0] -= 0.15;
 
                         if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
                         {
@@ -130,7 +129,7 @@ export default class G0 extends Prototype
                     if (freeMissiles.length > 0)
                     {
                         let missile = freeMissiles[0];
-                        missile.pos.set([16, 1 + Math.random() * 14]);
+                        missile.pos.set([32, 1 + Math.random() * 16]);
                         missile.inUse = true;
                     }
                 }

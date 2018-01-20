@@ -31,11 +31,24 @@ export class Cell
     imgOffsetY:number = 0;
 }
 
+export interface EngineConfig
+{
+    readonly sprites:
+    {
+        readonly max:number;
+    }
+    readonly grid:
+    {
+        readonly cellSize:number;
+        readonly width:number;
+        readonly height:number;
+    }
+}
 
 /**Engine takes care of rendering assets provided by a prototype. */
 export class Engine
 {
-    private config = 
+    public readonly config:EngineConfig = 
     {
         sprites:
         {
@@ -45,7 +58,7 @@ export class Engine
         {
             cellSize:16,
             width:32,
-            height:16
+            height:18
         }
     }
 
@@ -124,10 +137,6 @@ export class Engine
                 let y = ev.y - c.offsetTop;
                 y = y / bounds.height * this.config.grid.height;
                 x = x / bounds.width * this.config.grid.height;
-                console.log(y);
-               // x = x / this.config.grid.cellSize;
-               // y = y / this.config.grid.cellSize;
-
                 x = clamp(x, 0, this.config.grid.width);
                 y = clamp(y, 0, this.config.grid.height);
 
