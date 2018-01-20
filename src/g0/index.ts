@@ -57,6 +57,14 @@ export default class G0 extends Prototype
         placeCloud(8,4);
         placeCloud(13,2);
 
+        placeCloud(17,3);
+        
+        placeCloud(20,4);
+
+        placeCloud(25,3);
+
+        placeCloud(29,4);
+
         this.playerPos.set([2, 16/2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(m=>m.reset());
