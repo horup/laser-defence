@@ -6,6 +6,7 @@
 
 html, body
 {
+    background-color: red;
     font-family: Pixeled;
     margin:0px;
     overflow: hidden;
@@ -13,6 +14,7 @@ html, body
 }
 canvas
 {
+    position: absolute;
     cursor:none;
     padding-left: 0;
     padding-right: 0;

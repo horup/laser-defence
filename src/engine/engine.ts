@@ -1,5 +1,6 @@
 import {vec2, glMatrix} from 'gl-matrix';
 import * as SAT from 'sat';
+import { setTimeout } from 'timers';
 
 /**Sprite.*/
 export class Sprite
@@ -227,6 +228,12 @@ export class Engine
             canvas.width = screenWidth;
             canvas.height = screenWidth / targetAspect;
         }
+
+        let w =  Math.floor((screenWidth - canvas.width) / 2);
+        let h = Math.floor((screenHeight - canvas.height) / 2);
+        canvas.style.left = w + "px";
+        canvas.style.top = h + "px";
+
     }
 
 
