@@ -1,5 +1,6 @@
 import {vec2, glMatrix} from 'gl-matrix';
 import * as SAT from 'sat';
+
 /**Sprite.*/
 export class Sprite
 {
@@ -91,6 +92,8 @@ export class Engine
     constructor(c:CanvasRenderingContext2D)
     {
         this.context = c;
+        c.imageSmoothingEnabled = false;
+        c.font = "8px Pixeled";
         let w = this.config.grid.width;
         let h = this.config.grid.height;
         this.grid = new Array(w);
@@ -115,14 +118,17 @@ export class Engine
         {
             if (this.hasFocus)
             {
+                let bounds = this.context.canvas.getBoundingClientRect();
                 let c = this.context.canvas;
                 let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
                 
                 let x = ev.x - c.offsetLeft;
                 let y = ev.y - c.offsetTop;
-
-                x = x / this.config.grid.cellSize;
-                y = y / this.config.grid.cellSize;
+                y = y / bounds.height * this.config.grid.height;
+                x = x / bounds.width * this.config.grid.height;
+                console.log(y);
+               // x = x / this.config.grid.cellSize;
+               // y = y / this.config.grid.cellSize;
 
                 x = clamp(x, 0, this.config.grid.width);
                 y = clamp(y, 0, this.config.grid.height);

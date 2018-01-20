@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -143,19 +143,299 @@ function equals(a, b) {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(2);
+var SAT = __webpack_require__(14);
+/**Sprite.*/
+var Sprite = /** @class */ (function () {
+    function Sprite(id) {
+        this.image = -1;
+        this.position = gl_matrix_1.vec2.create();
+        this.imgOffset = gl_matrix_1.vec2.create();
+        this.id = id;
+        this.clear();
+    }
+    Sprite.prototype.clear = function () {
+        this.position.set([0, 0]);
+        this.imgOffset.set([0, 0]);
+        this.image = -1;
+    };
+    return Sprite;
+}());
+exports.Sprite = Sprite;
+/**Cell of a grid.*/
+var Cell = /** @class */ (function () {
+    function Cell() {
+        this.image = -1;
+        this.imgOffsetX = 0;
+        this.imgOffsetY = 0;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
+/**Engine takes care of rendering assets provided by a prototype. */
+var Engine = /** @class */ (function () {
+    function Engine(c) {
+        var _this = this;
+        this.config = {
+            sprites: {
+                max: 255
+            },
+            grid: {
+                cellSize: 16,
+                width: 16,
+                height: 16
+            }
+        };
+        this.debug = {
+            draw: {
+                grid: {
+                    bounds: false
+                },
+                sprite: {
+                    bounds: true
+                }
+            }
+        };
+        this.iterations = 0;
+        this.state = 0;
+        this.flashing = false;
+        this.flashTickStep = 0.1;
+        this.flashTicks = 0;
+        this.flashBlocks = false;
+        this.sprites = [];
+        this.images = [];
+        this.backgroundColor = "#000000";
+        this.foregroundColor = "#FFFFFF";
+        this.centerText = "";
+        this.centerTopText = "";
+        this.input = {
+            mouse: {
+                pos: gl_matrix_1.vec2.create(),
+                button: [false, false, false]
+            }
+        };
+        this.context = c;
+        c.imageSmoothingEnabled = false;
+        c.font = "8px Pixeled";
+        var w = this.config.grid.width;
+        var h = this.config.grid.height;
+        this.grid = new Array(w);
+        for (var i = 0; i < w; i++) {
+            this.grid[i] = new Array(h);
+            for (var j = 0; j < h; j++) {
+                this.grid[i][j] = new Cell();
+            }
+        }
+        this.sprites = new Array(256);
+        for (var i = 0; i < this.sprites.length; i++) {
+            this.sprites[i] = new Sprite(i);
+        }
+        c.textAlign = "center";
+        document.onmousemove = function (ev) {
+            if (_this.hasFocus) {
+                var bounds = _this.context.canvas.getBoundingClientRect();
+                var c_1 = _this.context.canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.x - c_1.offsetLeft;
+                var y = ev.y - c_1.offsetTop;
+                y = y / bounds.height * _this.config.grid.height;
+                x = x / bounds.width * _this.config.grid.height;
+                console.log(y);
+                // x = x / this.config.grid.cellSize;
+                // y = y / this.config.grid.cellSize;
+                x = clamp(x, 0, _this.config.grid.width);
+                y = clamp(y, 0, _this.config.grid.height);
+                _this.input.mouse.pos.set([x, y]);
+            }
+        };
+        document.onmousedown = function (ev) {
+            if (!_this.hasFocus) {
+                c.canvas.requestPointerLock();
+                _this.input.mouse.pos[0] = c.canvas.width / _this.config.grid.cellSize / 2;
+                _this.input.mouse.pos[1] = c.canvas.width / _this.config.grid.cellSize / 2;
+            }
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = true;
+            }
+        };
+        document.onmouseup = function (ev) {
+            if (_this.hasFocus) {
+                if (ev.button < _this.input.mouse.button.length)
+                    _this.input.mouse.button[ev.button] = false;
+            }
+        };
+    }
+    Object.defineProperty(Engine.prototype, "hasFocus", {
+        get: function () {
+            return true;
+            // return document.pointerLockElement == this.context.canvas;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Engine.prototype.flash = function (blocking) {
+        this.flashing = true;
+        this.flashBlocks = blocking == true ? true : false;
+        this.flashTickStep = 0.075;
+        this.flashTicks = -1.0;
+    };
+    Engine.prototype.setBackground = function (color) {
+        this.backgroundColor = color;
+    };
+    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
+     * -1 if no intersection.
+      */
+    Engine.prototype.getIntersectingSprite = function (id) {
+        var box1 = new SAT.Box();
+        var box2 = new SAT.Box();
+        var sprite = this.sprites[id];
+        for (var i = 0; i < this.sprites.length; i++) {
+            var candidate = this.sprites[i];
+            if (i != id && candidate.image >= 0) {
+                var cellSize = this.config.grid.cellSize;
+                box1.pos.x = sprite.position[0];
+                box1.pos.y = sprite.position[1];
+                box1.w = this.images[sprite.image].width / cellSize;
+                box1.h = this.images[sprite.image].height / cellSize;
+                box2.pos.x = candidate.position[0];
+                box2.pos.y = candidate.position[1];
+                box2.w = this.images[candidate.image].width / cellSize;
+                box2.h = this.images[candidate.image].height / cellSize;
+                var p1 = box1.toPolygon();
+                var p2 = box2.toPolygon();
+                if (SAT.testPolygonPolygon(p1, p2))
+                    return i;
+            }
+        }
+        return -1;
+    };
+    Engine.prototype.setCell = function (x, y, image, imgOffsetX, imgOffsetY) {
+        if (imgOffsetX === void 0) { imgOffsetX = 0; }
+        if (imgOffsetY === void 0) { imgOffsetY = 0; }
+        var img = this.images[image];
+        this.grid[y][x].image = image;
+        this.grid[y][x].imgOffsetX = imgOffsetX;
+        this.grid[y][x].imgOffsetY = imgOffsetY;
+    };
+    Engine.prototype.clearSprites = function () {
+        this.sprites.forEach(function (s) { return s.clear(); });
+    };
+    Engine.prototype.setSprite = function (i, pos, image) {
+        if (image === void 0) { image = undefined; }
+        var sprite = this.sprites[i];
+        sprite.position.set(pos);
+        if (image != undefined)
+            sprite.image = image;
+    };
+    /**Clears the grid with the specified image as src */
+    Engine.prototype.clearGrid = function (image) {
+        this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
+    };
+    Engine.prototype.clearText = function () {
+        this.centerText = "";
+        this.centerTopText = "";
+    };
+    Engine.prototype.loadImage = function (src) {
+        var img = new Image();
+        img.src = src;
+        this.images.push(img);
+        return this.images.length - 1;
+    };
+    Engine.prototype.animate = function (tick) {
+        if (!this.flashing || !this.flashBlocks)
+            tick(this.iterations);
+        var w = this.context.canvas.width;
+        var h = this.context.canvas.height;
+        var c = this.context;
+        c.globalAlpha = 1.0;
+        c.fillStyle = this.backgroundColor;
+        c.fillRect(0, 0, w, h);
+        var cellSize = this.config.grid.cellSize;
+        for (var y = 0; y < this.grid.length; y++) {
+            for (var x = 0; x < this.grid[y].length; x++) {
+                var cell = this.grid[y][x];
+                if (cell.image >= 0 && cell.image < this.images.length) {
+                    var image = this.images[cell.image];
+                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+        for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
+            var sprite = _a[_i];
+            if (sprite.image >= 0 && sprite.image < this.images.length) {
+                var image = this.images[sprite.image];
+                var x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
+                var y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
+                var sw = image.width / cellSize;
+                var sh = image.height / cellSize;
+                c.drawImage(image, x, y);
+                if (this.debug.draw.sprite.bounds) {
+                    c.strokeStyle = 'green';
+                    if (this.getIntersectingSprite(sprite.id) != -1)
+                        c.strokeStyle = 'red';
+                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
+                }
+            }
+        }
+        if (this.debug.draw.grid.bounds) {
+            for (var y = -1; y < h - 1; y += cellSize) {
+                c.beginPath();
+                c.moveTo(0.5, y + 0.5);
+                c.lineTo(w + 0.5, y + 0.5);
+                c.stroke();
+            }
+            for (var x = -1; x < h - 1; x += cellSize) {
+                c.beginPath();
+                c.moveTo(x + 0.5, 0.5);
+                c.lineTo(x + 0.5, h);
+                c.stroke();
+            }
+        }
+        c.fillStyle = this.foregroundColor;
+        c.fillText(this.centerTopText, w / 2, this.config.grid.cellSize);
+        c.fillText(this.centerText, w / 2, h / 2);
+        if (this.flashing) {
+            var old = this.flashTicks;
+            var alpha = 1.0 - Math.abs(this.flashTicks);
+            c.fillStyle = "black";
+            c.globalAlpha = alpha;
+            c.fillRect(0, 0, c.canvas.width, c.canvas.height);
+            this.flashTicks += this.flashTickStep;
+            if (Math.sign(old) != Math.sign(this.flashTicks)) {
+                tick(this.iterations);
+            }
+            if (this.flashTicks > 1.0) {
+                this.flashing = false;
+            }
+        }
+        this.iterations++;
+    };
+    return Engine;
+}());
+exports.Engine = Engine;
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(5);
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "glMatrix", function() { return __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__; });
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2", function() { return __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__; });
 /* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2d", function() { return __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__; });
@@ -206,7 +486,7 @@ THE SOFTWARE. */
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1014,7 +1294,7 @@ const sub = subtract;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1854,7 +2134,7 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2516,20 +2796,20 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(6);
-__webpack_require__(16);
+var index_1 = __webpack_require__(7);
+__webpack_require__(21);
 document.title = "Rapid";
 new index_1.default();
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2545,8 +2825,8 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(7);
-var gl_matrix_1 = __webpack_require__(1);
+var index_1 = __webpack_require__(8);
+var gl_matrix_1 = __webpack_require__(2);
 var spawnTime = 60;
 var Missile = /** @class */ (function () {
     function Missile() {
@@ -2566,10 +2846,10 @@ var G0 = /** @class */ (function (_super) {
         _this.state = 0;
         _this.missiles = [];
         _this.playerPos = gl_matrix_1.vec2.create();
-        _this.engine.loadImage(__webpack_require__(21));
-        _this.engine.loadImage(__webpack_require__(22));
-        _this.engine.loadImage(__webpack_require__(23));
-        _this.engine.loadImage(__webpack_require__(24));
+        _this.engine.loadImage(__webpack_require__(17));
+        _this.engine.loadImage(__webpack_require__(18));
+        _this.engine.loadImage(__webpack_require__(19));
+        _this.engine.loadImage(__webpack_require__(20));
         var e = _this.engine;
         e.centerText = "";
         e.clearGrid(-1);
@@ -2678,20 +2958,20 @@ exports.default = G0;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var engine_1 = __webpack_require__(26);
+var engine_1 = __webpack_require__(1);
 exports.Engine = engine_1.Engine;
-var prototype_1 = __webpack_require__(27);
+var prototype_1 = __webpack_require__(16);
 exports.Prototype = prototype_1.Prototype;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3161,7 +3441,7 @@ const sub = subtract;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3663,7 +3943,7 @@ const sub = subtract;
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5401,7 +5681,7 @@ const sub = subtract;
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5422,9 +5702,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["fromEuler"] = fromEuler;
 /* harmony export (immutable) */ __webpack_exports__["str"] = str;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mat3__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vec3__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vec4__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mat3__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vec3__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vec4__ = __webpack_require__(5);
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -6092,7 +6372,7 @@ const setAxes = (function() {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6735,628 +7015,7 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(17);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {"hmr":true}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(19)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../node_modules/css-loader/index.js!./style.css", function() {
-			var newContent = require("!!../node_modules/css-loader/index.js!./style.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(18)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\r\nbody\r\n{\r\n    margin:32px;\r\n}\r\ncanvas\r\n{\r\n    background-color: black;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(selector) {
-		if (typeof memo[selector] === "undefined") {
-			var styleTarget = fn.call(this, selector);
-			// Special case to return head of iframe instead of iframe itself
-			if (styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[selector] = styleTarget;
-		}
-		return memo[selector]
-	};
-})(function (target) {
-	return document.querySelector(target)
-});
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(20);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-	if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	options.attrs.type = "text/css";
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	options.attrs.type = "text/css";
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-
-/**
- * When source maps are enabled, `style-loader` uses a link element with a data-uri to
- * embed the css on the page. This breaks all relative urls because now they are relative to a
- * bundle instead of the current page.
- *
- * One solution is to only use full urls, but that may be impossible.
- *
- * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
- *
- * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
- *
- */
-
-module.exports = function (css) {
-  // get current location
-  var location = typeof window !== "undefined" && window.location;
-
-  if (!location) {
-    throw new Error("fixUrls requires window.location");
-  }
-
-	// blank or null?
-	if (!css || typeof css !== "string") {
-	  return css;
-  }
-
-  var baseUrl = location.protocol + "//" + location.host;
-  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
-
-	// convert each url(...)
-	/*
-	This regular expression is just a way to recursively match brackets within
-	a string.
-
-	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
-	   (  = Start a capturing group
-	     (?:  = Start a non-capturing group
-	         [^)(]  = Match anything that isn't a parentheses
-	         |  = OR
-	         \(  = Match a start parentheses
-	             (?:  = Start another non-capturing groups
-	                 [^)(]+  = Match anything that isn't a parentheses
-	                 |  = OR
-	                 \(  = Match a start parentheses
-	                     [^)(]*  = Match anything that isn't a parentheses
-	                 \)  = Match a end parentheses
-	             )  = End Group
-              *\) = Match anything and then a close parens
-          )  = Close non-capturing group
-          *  = Match anything
-       )  = Close capturing group
-	 \)  = Match a close parens
-
-	 /gi  = Get all matches, not the first.  Be case insensitive.
-	 */
-	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
-		// strip quotes (if they exist)
-		var unquotedOrigUrl = origUrl
-			.trim()
-			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
-			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
-
-		// already a full url? no change
-		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
-		  return fullMatch;
-		}
-
-		// convert the url to a full url
-		var newUrl;
-
-		if (unquotedOrigUrl.indexOf("//") === 0) {
-		  	//TODO: should we add protocol?
-			newUrl = unquotedOrigUrl;
-		} else if (unquotedOrigUrl.indexOf("/") === 0) {
-			// path should be relative to the base url
-			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
-		} else {
-			// path should be relative to current directory
-			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
-		}
-
-		// send back the fixed url(...)
-		return "url(" + JSON.stringify(newUrl) + ")";
-	});
-
-	// send back the fixed css
-	return fixedCss;
-};
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAjUlEQVQ4T2P4//8/RRirICkYqyApGKsgKRirIDqWkpb5j4yR5VAUYsMgDX5+fnCM1wAnLj4Um3Dhz8f1gMrRDAjjFfq/Xkb1f2lpKV4MMwBmCIrmL5omKM6FORkdg9TBDEFxATYD0DHIAAwXwDBFYYALgzSguwBZHkUxLoxsO1kG4MNYBUnBWAWJx/8ZABolmgjFLL2wAAAAAElFTkSuQmCC"
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAQCAYAAAArij59AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAABVSURBVChTdcpBDcBADAPBw9EWQ/kzKKAC8GkfOUWKvZI/ySxJ67ofufE74P/eMxqAOrKAIuBYRdBRBIUGoI4soAg4VhF0FEGhAagjCygCjpUFbpLWBjQnToaUiHG6AAAAAElFTkSuQmCC"
-
-/***/ }),
-/* 25 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// Version 0.6.0 - Copyright 2012 - 2016 -  Jim Riecken <jimr@jimr.ca>
@@ -8354,287 +8013,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// Version 0.6
 
 
 /***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 15 */
+/***/ (function(module, exports) {
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(1);
-var SAT = __webpack_require__(25);
-/**Sprite.*/
-var Sprite = /** @class */ (function () {
-    function Sprite(id) {
-        this.image = -1;
-        this.position = gl_matrix_1.vec2.create();
-        this.imgOffset = gl_matrix_1.vec2.create();
-        this.id = id;
-        this.clear();
-    }
-    Sprite.prototype.clear = function () {
-        this.position.set([0, 0]);
-        this.imgOffset.set([0, 0]);
-        this.image = -1;
-    };
-    return Sprite;
-}());
-exports.Sprite = Sprite;
-/**Cell of a grid.*/
-var Cell = /** @class */ (function () {
-    function Cell() {
-        this.image = -1;
-        this.imgOffsetX = 0;
-        this.imgOffsetY = 0;
-    }
-    return Cell;
-}());
-exports.Cell = Cell;
-/**Engine takes care of rendering assets provided by a prototype. */
-var Engine = /** @class */ (function () {
-    function Engine(c) {
-        var _this = this;
-        this.config = {
-            sprites: {
-                max: 255
-            },
-            grid: {
-                cellSize: 16,
-                width: 16,
-                height: 16
-            }
-        };
-        this.debug = {
-            draw: {
-                grid: {
-                    bounds: false
-                },
-                sprite: {
-                    bounds: true
-                }
-            }
-        };
-        this.iterations = 0;
-        this.state = 0;
-        this.flashing = false;
-        this.flashTickStep = 0.1;
-        this.flashTicks = 0;
-        this.flashBlocks = false;
-        this.sprites = [];
-        this.images = [];
-        this.backgroundColor = "#000000";
-        this.foregroundColor = "#FFFFFF";
-        this.centerText = "";
-        this.centerTopText = "";
-        this.input = {
-            mouse: {
-                pos: gl_matrix_1.vec2.create(),
-                button: [false, false, false]
-            }
-        };
-        this.context = c;
-        var w = this.config.grid.width;
-        var h = this.config.grid.height;
-        this.grid = new Array(w);
-        for (var i = 0; i < w; i++) {
-            this.grid[i] = new Array(h);
-            for (var j = 0; j < h; j++) {
-                this.grid[i][j] = new Cell();
-            }
-        }
-        this.sprites = new Array(256);
-        for (var i = 0; i < this.sprites.length; i++) {
-            this.sprites[i] = new Sprite(i);
-        }
-        c.textAlign = "center";
-        document.onmousemove = function (ev) {
-            if (_this.hasFocus) {
-                var c_1 = _this.context.canvas;
-                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
-                var x = ev.x - c_1.offsetLeft;
-                var y = ev.y - c_1.offsetTop;
-                x = x / _this.config.grid.cellSize;
-                y = y / _this.config.grid.cellSize;
-                x = clamp(x, 0, _this.config.grid.width);
-                y = clamp(y, 0, _this.config.grid.height);
-                _this.input.mouse.pos.set([x, y]);
-            }
-        };
-        document.onmousedown = function (ev) {
-            if (!_this.hasFocus) {
-                c.canvas.requestPointerLock();
-                _this.input.mouse.pos[0] = c.canvas.width / _this.config.grid.cellSize / 2;
-                _this.input.mouse.pos[1] = c.canvas.width / _this.config.grid.cellSize / 2;
-            }
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = true;
-            }
-        };
-        document.onmouseup = function (ev) {
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = false;
-            }
-        };
-    }
-    Object.defineProperty(Engine.prototype, "hasFocus", {
-        get: function () {
-            return true;
-            // return document.pointerLockElement == this.context.canvas;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Engine.prototype.flash = function (blocking) {
-        this.flashing = true;
-        this.flashBlocks = blocking == true ? true : false;
-        this.flashTickStep = 0.075;
-        this.flashTicks = -1.0;
-    };
-    Engine.prototype.setBackground = function (color) {
-        this.backgroundColor = color;
-    };
-    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
-     * -1 if no intersection.
-      */
-    Engine.prototype.getIntersectingSprite = function (id) {
-        var box1 = new SAT.Box();
-        var box2 = new SAT.Box();
-        var sprite = this.sprites[id];
-        for (var i = 0; i < this.sprites.length; i++) {
-            var candidate = this.sprites[i];
-            if (i != id && candidate.image >= 0) {
-                var cellSize = this.config.grid.cellSize;
-                box1.pos.x = sprite.position[0];
-                box1.pos.y = sprite.position[1];
-                box1.w = this.images[sprite.image].width / cellSize;
-                box1.h = this.images[sprite.image].height / cellSize;
-                box2.pos.x = candidate.position[0];
-                box2.pos.y = candidate.position[1];
-                box2.w = this.images[candidate.image].width / cellSize;
-                box2.h = this.images[candidate.image].height / cellSize;
-                var p1 = box1.toPolygon();
-                var p2 = box2.toPolygon();
-                if (SAT.testPolygonPolygon(p1, p2))
-                    return i;
-            }
-        }
-        return -1;
-    };
-    Engine.prototype.setCell = function (x, y, image, imgOffsetX, imgOffsetY) {
-        if (imgOffsetX === void 0) { imgOffsetX = 0; }
-        if (imgOffsetY === void 0) { imgOffsetY = 0; }
-        var img = this.images[image];
-        this.grid[y][x].image = image;
-        this.grid[y][x].imgOffsetX = imgOffsetX;
-        this.grid[y][x].imgOffsetY = imgOffsetY;
-    };
-    Engine.prototype.clearSprites = function () {
-        this.sprites.forEach(function (s) { return s.clear(); });
-    };
-    Engine.prototype.setSprite = function (i, pos, image) {
-        if (image === void 0) { image = undefined; }
-        var sprite = this.sprites[i];
-        sprite.position.set(pos);
-        if (image != undefined)
-            sprite.image = image;
-    };
-    /**Clears the grid with the specified image as src */
-    Engine.prototype.clearGrid = function (image) {
-        this.grid.forEach(function (h) { return h.forEach(function (cell) { return cell.image = image; }); });
-    };
-    Engine.prototype.clearText = function () {
-        this.centerText = "";
-        this.centerTopText = "";
-    };
-    Engine.prototype.loadImage = function (src) {
-        var img = new Image();
-        img.src = src;
-        this.images.push(img);
-        return this.images.length - 1;
-    };
-    Engine.prototype.animate = function (tick) {
-        if (!this.flashing || !this.flashBlocks)
-            tick(this.iterations);
-        var w = this.context.canvas.width;
-        var h = this.context.canvas.height;
-        var c = this.context;
-        c.globalAlpha = 1.0;
-        c.fillStyle = this.backgroundColor;
-        c.fillRect(0, 0, w, h);
-        var cellSize = this.config.grid.cellSize;
-        for (var y = 0; y < this.grid.length; y++) {
-            for (var x = 0; x < this.grid[y].length; x++) {
-                var cell = this.grid[y][x];
-                if (cell.image >= 0 && cell.image < this.images.length) {
-                    var image = this.images[cell.image];
-                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
-                }
-            }
-        }
-        for (var _i = 0, _a = this.sprites; _i < _a.length; _i++) {
-            var sprite = _a[_i];
-            if (sprite.image >= 0 && sprite.image < this.images.length) {
-                var image = this.images[sprite.image];
-                var x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
-                var y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
-                var sw = image.width / cellSize;
-                var sh = image.height / cellSize;
-                c.drawImage(image, x, y);
-                if (this.debug.draw.sprite.bounds) {
-                    c.strokeStyle = 'green';
-                    if (this.getIntersectingSprite(sprite.id) != -1)
-                        c.strokeStyle = 'red';
-                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
-                }
-            }
-        }
-        if (this.debug.draw.grid.bounds) {
-            for (var y = -1; y < h - 1; y += cellSize) {
-                c.beginPath();
-                c.moveTo(0.5, y + 0.5);
-                c.lineTo(w + 0.5, y + 0.5);
-                c.stroke();
-            }
-            for (var x = -1; x < h - 1; x += cellSize) {
-                c.beginPath();
-                c.moveTo(x + 0.5, 0.5);
-                c.lineTo(x + 0.5, h);
-                c.stroke();
-            }
-        }
-        c.fillStyle = this.foregroundColor;
-        c.fillText(this.centerTopText, w / 2, this.config.grid.cellSize);
-        c.fillText(this.centerText, w / 2, h / 2);
-        if (this.flashing) {
-            var old = this.flashTicks;
-            var alpha = 1.0 - Math.abs(this.flashTicks);
-            c.fillStyle = "black";
-            c.globalAlpha = alpha;
-            c.fillRect(0, 0, c.canvas.width, c.canvas.height);
-            this.flashTicks += this.flashTickStep;
-            if (Math.sign(old) != Math.sign(this.flashTicks)) {
-                tick(this.iterations);
-            }
-            if (this.flashTicks > 1.0) {
-                this.flashing = false;
-            }
-        }
-        this.iterations++;
-    };
-    return Engine;
-}());
-exports.Engine = Engine;
-
+module.exports = "data:font/ttf;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAACDLjygXw889QAAEAAAAAAA1YnCKAAAAADVicIoAAD2ZxzMIzMAAAAIAAIAAQAAAAAAAQAAIzP2ZwAAH/8AAAMzHMwAAQAAAAAAAAAAAAAAAAAAAToMzAAAAAAAAAZmAAAGZgAABmYAAAzMAAATMwAAEzMAAAZmAAAJmQAADMwDMwzMAAAGZgAADMwAAAZmAAAMzAAAEAAAAAZmAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAGZgAADMwAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAQAAAAEAAAABAAAAATMwAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAATMwAAEAAAAAzMAAAMzAAADMwAAAzMAAAQAAAADMwDMxAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAABmYAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAATMwAAEzMAABAAAAAQAAAABmYAABAAAAAGZgAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAAEAAAABAAAAAJmQAACZkAAAzMAAAMzAAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAACZkAAAmZAAAMzAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAABmYAABAAAAAMzAAADMwAABAAAAATMwAAEzMAABZmAAAQAAAAH/8AAB//AAAf/wAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAABAAAAATMwAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAWZgAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAAHMwAABmZAAAWZgAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAQAAAAEzMAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABMzAAATMwAAEAAAABMzAAAWZgAAEzMAABZmAAAQAAAAEAAAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAAQAAAAEzMAABZmAAATMwAAFmYAABAAAAAQAAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAADMwAABAAAAAczAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAFmYAABZmAAAWZgAAFmYAABZmAAAWZgAAH/8AAB//AAATMwAAEzMAABAAAAAQAAAAEzMAABMzAAATMwAAEzMAABMzAAATMwAAGZkAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEzMAABAAAAAJmQAACZkAABMzAAATMwAAEzMAABzMAAAWZgAAFmYAAAABAAABOgAmAAkAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAHgFuAAEAAAAAAAAAGQAAAAEAAAAAAAEABwAZAAEAAAAAAAIABwAgAAEAAAAAAAMAEgAnAAEAAAAAAAQADwA5AAEAAAAAAAUACwBIAAEAAAAAAAYABwBTAAEAAAAAAAcAPABaAAEAAAAAAAgAFgCWAAEAAAAAAAkACgCsAAEAAAAAAAoAjwC2AAEAAAAAAAwAOwFFAAEAAAAAAA0AIQGAAAEAAAAAABMAKQGhAAEAAAAAAQAADAHKAAMAAQQJAAAAMgHWAAMAAQQJAAEADgIIAAMAAQQJAAIADgIWAAMAAQQJAAMAJAIkAAMAAQQJAAQAHgJIAAMAAQQJAAUAFgJmAAMAAQQJAAYADgJ8AAMAAQQJAAcAeAKKAAMAAQQJAAgALAMCAAMAAQQJAAkAFAMuAAMAAQQJAAoBHgNCAAMAAQQJAAwAdgRgAAMAAQQJAA0AQgTWAAMAAQQJABMAUgUYAAMAAQQJAQAAGAVqQ29weXJpZ2h0IE9tZWdhUEM3NzcgMjAxNlBpeGVsZWRSZWd1bGFyRm9udFN0cnVjdCBQaXhlbGVkUGl4ZWxlZCBSZWd1bGFyVmVyc2lvbiAxLjBQaXhlbGVkRm9udFN0cnVjdCBpcyBhIHRyYWRlbWFyayBvZiBGU0kgRm9udFNob3AgSW50ZXJuYXRpb25hbCBHbWJIaHR0cDovL2ZvbnRzdHJ1Y3QuY29tL09tZWdhUEM3NzfSUGl4ZWxlZNMgd2FzIGJ1aWx0IHdpdGggRm9udFN0cnVjdApEZXNpZ25lciBkZXNjcmlwdGlvbjogPHA+VGhpcyBmb250IGlzIGluZmx1ZW5jZWQgYnkgdmFyaW91cyA4LWJpdCByZXRybyBzeXRsZSBmb250cyB3aXRoIGEgcmV0cm8gZmVlbC48L3A+Cmh0dHA6Ly9mb250c3RydWN0LmNvbS9mb250c3RydWN0aW9ucy9zaG93LzEyOTg0MjEvcGl4ZWxlZC01Rm9udFN0cnVjdCBOb24tQ29tbWVyY2lhbCBMaWNlbnNlRml2ZSBiaWcgcXVhY2tpbmcgemVwaHlycyBqb2x0IG15IHdheCBiZWRBd3NCZlYxbVh3PT0AQwBvAHAAeQByAGkAZwBoAHQAIABPAG0AZQBnAGEAUABDADcANwA3ACAAMgAwADEANgBQAGkAeABlAGwAZQBkAFIAZQBnAHUAbABhAHIARgBvAG4AdABTAHQAcgB1AGMAdAAgAFAAaQB4AGUAbABlAGQAUABpAHgAZQBsAGUAZAAgAFIAZQBnAHUAbABhAHIAVgBlAHIAcwBpAG8AbgAgADEALgAwAFAAaQB4AGUAbABlAGQARgBvAG4AdABTAHQAcgB1AGMAdAAgAGkAcwAgAGEAIAB0AHIAYQBkAGUAbQBhAHIAawAgAG8AZgAgAEYAUwBJACAARgBvAG4AdABTAGgAbwBwACAASQBuAHQAZQByAG4AYQB0AGkAbwBuAGEAbAAgAEcAbQBiAEgAaAB0AHQAcAA6AC8ALwBmAG8AbgB0AHMAdAByAHUAYwB0AC4AYwBvAG0ALwBPAG0AZQBnAGEAUABDADcANwA3IBwAUABpAHgAZQBsAGUAZCAdACAAdwBhAHMAIABiAHUAaQBsAHQAIAB3AGkAdABoACAARgBvAG4AdABTAHQAcgB1AGMAdAAKAEQAZQBzAGkAZwBuAGUAcgAgAGQAZQBzAGMAcgBpAHAAdABpAG8AbgA6ACAAPABwAD4AVABoAGkAcwAgAGYAbwBuAHQAIABpAHMAIABpAG4AZgBsAHUAZQBuAGMAZQBkACAAYgB5ACAAdgBhAHIAaQBvAHUAcwAgADgALQBiAGkAdAAgAHIAZQB0AHIAbwAgAHMAeQB0AGwAZQAgAGYAbwBuAHQAcwAgAHcAaQB0AGgAIABhACAAcgBlAHQAcgBvACAAZgBlAGUAbAAuADwALwBwAD4ACgBoAHQAdABwADoALwAvAGYAbwBuAHQAcwB0AHIAdQBjAHQALgBjAG8AbQAvAGYAbwBuAHQAcwB0AHIAdQBjAHQAaQBvAG4AcwAvAHMAaABvAHcALwAxADIAOQA4ADQAMgAxAC8AcABpAHgAZQBsAGUAZAAtADUARgBvAG4AdABTAHQAcgB1AGMAdAAgAE4AbwBuAC0AQwBvAG0AbQBlAHIAYwBpAGEAbAAgAEwAaQBjAGUAbgBzAGUARgBpAHYAZQAgAGIAaQBnACAAcQB1AGEAYwBrAGkAbgBnACAAegBlAHAAaAB5AHIAcwAgAGoAbwBsAHQAIABtAHkAIAB3AGEAeAAgAGIAZQBkAEEAdwBzAEIAZgBWADEAbQBYAHcAPQA9AAIMbgGQAAUABAgACAAAAAAACAAIAAAACAAAzAMzAAAAAAQAAAAAAAAAoAAAj0AAAAgAAAAAAAAAAEZTVFIAQAAg+wIQAAAAAAAjMwmZAAABFQAAAAAQABMzAAAAIAAAAAMAAAAAAAABmQDMAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAQABAAAAMABwALABIAFgAAAQEBAQEBAQEBAQEBAQEBAAEAAQEBAQEIAAAA/XQAAAUXAAD66QAAAowAAP10AAAFFwAA/XX+8f9E/z8AAPqMAAAQAAAAAkUCiwAA/XUC+gKLAAD9dQL2AosAAP11AvoChwAAAAD/Q/9A/vb00RAAAADwAAAAAAACAAAAAAMzEzMAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQZmDM0AAPMzAAIAAAzMCZkTMwADAAcAAAEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAzMBmcAAPmZAAAGZwAA+ZkAAgAAAAAQABAAAAMAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPzNAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAADMwAAAzQAAPzMAAADNAAA/MwAAPzNAAD8zQAABmYDMwAA/M35mgMzAAADMwAAAzMAAAMzAAADNAAA/MwAAAM0AAD8zAAA/M0AAPzNAAD8zQAA/M0AAAMzAAD8zQADAAAAABAAFmYAAwAHABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPzNAAD8zQAAAzMAAPmaAAAGZgAA+ZoAAAZmAAADMwAABmcAAPmZAAAGZwAA+ZkAAAZmAzMAAPzNBmYDNAAA/MzzNAMzAAADMwAAAzMAAAmaAAADMwAA/M0AAPzNAAD8zAAA9mcAAPzNAAAAAQAADMwDMxMzAAMAAAEBAQEAAAAAAzMAAAzMBmcAAPmZAAAAAwAAAAAGZhMzAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAAAAAAMzAAAAAAMzAAD8zQMzDM0AAPMzDM0DMwAA/M0AAAADAzMAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAAAAAAAAMzAAD5mgAAAzMAAAAAAzMAAPzNAzMMzQAA8zMMzQMzAAD8zQAAAAEAAAZmCZkQAAALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAGZgMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAAABAAD8zQMzAzMAAwAAAQEBAQAAAAADMwAA/M0GZgAA+ZoAAAABAAAJmQmZDMwAAwAAAQEBAQAAAAAJmQAACZkDMwAA/M0AAAABAAAAAAMzAzMAAwAAAQEBAQAAAAADMwAAAAADMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAIAAAAADMwTMwADAAcAAAEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAAMzDM0AAPMz/M0TMwAA7M0AAQAAAAADMxMzAAMAAAEBAQEAAAAAAzMAAAAAEzMAAOzNAAAABQAAAAAMzBMzAAUACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAAMzAAAAAAAAAzMAAPM0AAAJmQAAAAAGZgAA/M0AAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAzQDMwAA/M0ABQAAAAAMzBMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAD5mgZmAzMAAPzNAzMDNAAA/MwDNAMzAAD8zQAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQADAAAAAAzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAzMAAD2ZwAABmYAAAAAAzMAAPzNAzMGZgAA+ZoGZgmaAAD8zQAA/MwAAPzNAAAABAAAAAAMzBMzAAMABwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAA+ZoAAAzNAAD8zAAA/M0AAPmaDM0DMwAA/M0ABAAAAAAMzBMzAAMABwALABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzBmcAAAMzAAD2ZgAAAAcAAAAADMwTMwADAAcACwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQAAAAIAAAAADMwTMwADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD2ZwAADMwAAAzMAzQAAPzM8zQDMwAABmYAAAmaAADszQACAAADMwMzDMwAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAADMwMzAAD8zQZmAzMAAPzNAAIAAAAAAzMMzAADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAABmYAAPmaCZkDMwAA/M0AAgAABmYJmRAAAAMABwAAAQEBAQEBAQEAAAAACZkAAPZnAAAJmQAABmYDMwAA/M0GZgM0AAD8zAAGAAAAABAAEzMAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAAMzAAAAAAAAAzMAAPM0AAADMwAACZkAAAM0AADzMwAACZkAAAAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAMACwAAAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAAAzMMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAAAAABMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAATMwAA/M0AAPzMAAD8zQAA9mcABAAAAAAMzBMzAAMACQANABEAAAEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAPzNAAAGZgAA8zQAAAMzAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAAAzMAAPZnAAAMzQAA8zMMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAABMzAAD5mQAABmcAAOzNAAAJmQAA9mcAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAzMEzMAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0AAAzNAAADMwAA8AAABQAAAAAMzBMzAAMABwALABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAAAAAGZgAA+ZoGZgMzAAD8zQZmAzQAAPzM8zQTMwAA+ZkAAPzNAAD2ZxAAAzMAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAADMwAACZkAAAAAEzMAAPAAAAD8zQADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQAEAAAAAAzMEzMAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAAHAAAAABAAEzMAAwAHAAsADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAzMAAAM0AAD5mQAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAPMzAAAJmQAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M38zQzNAADzMwMzCZoAAPZmCZoDMwAA/M0AAAADAAAAAAzMEzMAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAAACZkAAPZnDMwDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD2ZwABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAABmYAAAmaAAD8zQAA/MwAAPM0AAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAADAAAAAAzMEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAAAAAzMAAPzNAzMQAAAA8AAAABAAAADwAAAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMGZgAA+ZoAABAAAADwAAAAEAAAAPAAAAAACQAAAAAQABMzAAMABwALAA8AEwAXABsAHwAjAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAADNAAA8zMAAAMzAAADMwAAAzMAAPmaAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzBmcAAPmZAAAGZwAA+ZkAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAmZAAD2ZwmZAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAJmRMzAAcAAAEBAQEBAQEBAAAAAAmZAAD5mgAABmYAAAAAEzMAAPzNAADzMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAEAAAAACZkTMwAHAAABAQEBAQEBAQAAAAAGZgAA+ZoAAAmZAAAAAAMzAAAMzQAAAzMAAOzNAAAAAwAADMwJmRMzAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAAAAzQAAPzMAzQDMwAA/M0AAAABAAAAAAzMAzMAAwAAAQEBAQAAAAAMzAAAAAADMwAA/M0AAAACAzMMzAmZEzMAAwAHAAABAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAM0AzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAAMzAAADMwMzAAD8zfzNCZkAAAZnAADwAAAAAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQABAAAAAAzMEAAACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAAQAAAA/MwAAPzNAAD8zQAA+ZoAAQAAAAAMzBAAAAsAAAEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAZmAAD8zQAABmYAAAAAEAAAAPzMAAD2ZwAAAzMAAAMzAAD2ZwAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBAAAAAAMzAAAJmQAA/M0AAPmaAAAAABAAAAD5mQAA9mcAAAZmAAD5mgACAAAAAAMzEAAAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAmZAAD2ZwzMAzQAAPzMAAIAAAAACZkQAAAFAAkAAAEBAQEBAQEBAQEAAAAABmYAAAMzAAD8zQAAAzMAAAAAAzMAAAZmAAD2ZwzMAzQAAPzMAAAAAwAAAAAMzBAAAAMABwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAMzAAD8zQZmAzMAAPzN+ZoQAAAA9mYAAPzNAAD8zQAAAAEAAAAAAzMQAAADAAABAQEBAAAAAAMzAAAAABAAAADwAAAAAAMAAAAAEAAQAAADAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPZnAAADMwAAAzMAAPzNAAAJmQAA/M0AAAMzAAADNAAAAAAJmQAA9mcAABAAAAD8zAAA/M0AAPZnAAAJmQAAAzMAAAM0AADwAAAAAAIAAAAADMwQAAAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAAAAEAAAAPzMAAD8zQAA9mcAAAZmAAADMwAABmcAAPAAAAQAAAAADMwQAAADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzCZkAAPZnAAAJmQAA9mcJmQM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQMzAAD8zfZnEAAAAPZmAAD5mgAAAAIAAAAADMwQAAADAAkAAAEBAQEBAQEBAQEJmQAA+ZoAAAZmAAD2ZwAADMwAAAmZAzMAAPzN9mcGZgAACZoAAPAAAAAAAQAAAAAMzBAAAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEAAAAPzMAADzNAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAQAAAAAMzBAAAAkAAAEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAAAAEAAAAPmZAAD8zQAA/M0AAPzNAAMAAAAADMwQAAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzAAAABQAAAAAQABAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMJmgAA9mYAAAmaAAD2ZgAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwZmAAD5mgAADM0AAPMzAAAMzQAA8zMAAAAJAAAAABAAEAAAAwAHAAsADwATABcAGwAfACMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADzMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDNAAA/MwAAAM0AAD8zAAAAAEAAAAADMwQAAALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAACZoAAPmZAAAGZwAA8AAAAAADAAAAAAzMEAAABQAJABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAPmaAAAMzAAA/M0AAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAAAzQAAPzMAAD8zQABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAAEAAAJmQzMEAAAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAACZkDMwAA/M0AAAMzAAD8zQMzAzQAAPzMAAADNAAA/MwAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQACAAD5mgzMEAAABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAABmYAAAMzAAD5mhZmAADzMwAA/M0AAPmaCZkMzQAA8zMABgAAAAAMzBMzAAMABwALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAAAzMAAAAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNBmcDMwAA/M0ABAAAAAAMzBzMAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAD2ZwAABmYAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0GZgMzAAD8zQMzAzMAAPzNAAUAAAAADMwczAALAA8AEwAXABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAAABgAAAAAMzBzMAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA9mcAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAAQAAAAADMwZmQALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0ABgAAAAAMzCMzAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAzMGZwAA+ZkAAAZnAAD5mQZnAzMAAPzNAAEAAAAAFmYTMwAVAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAA+ZoAABMzAAD2ZgAACZoAAPZmAAAJmgAA8zMAAPmaAAAAABAAAAD5mQAABmcAAAMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAZmAAD5mgAGAAD5mgzMEzMAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAzNAADzMwmZAzQAAPzMAzQDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAZmAAAAAAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAMAAAAADMwZmQALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAADzNAAAAzMAAAZmAAADMwAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAABmYczAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAMzAAD8zQAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAAAAwAAAAAGZhzMAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAAAAMzAAAAABMzAADszRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAmZHMwAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAwAAAAAJmRmZAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABMzAADszRZmAzMAAPzNAAADMwAA/M0AAAACAAAAABAAEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQzMAAADNAAA8zMAAPzNAAADMwAACZkAAPmaAAADMwAA/M0AAAZmAAADMwzNAADzM/zNCZkAAAMzAAAGZwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAYAAAAADMwczAAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAATMwAA/M0AAPzMAADzNAAACZkAAAMzAAAGZwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQACAAAAAAzMEzMAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAJmQMzAAD8zfZnEzMAAPzNAAD2ZgAA+ZoABQAAAAAMzBMzAAMACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAA/M0AAAMzAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwMzAAAGZgAA/M0AAPma/M0QAAAA8AAMzAM0AAD8zAM0AzMAAPzNAAAABQAAAAAMzBZmAAMACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAZnAzMAAPzNAAADMwAA/M0ABwAAAAAMzCAAAAMACQANABEAFQAZAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwGZwMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgM0AAD8zAADAAAAABZmEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAAQAAAA+ZkAAPM0AAAJmQAA9mcAABZmAAD2ZgAACZoAAAMzAzMAAPzNBmYDMwAA/M32ZwmZAAADMwAAAzQAAPZmAAD8zQAA/M0AAAAGAAD5mgzMEAAAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAAD5mgAABmYAAPM0AAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAADzNAAABmYAAAAAAAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQADAAAAAAZmGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA/M0AAAMzAAD5mgAAAzMAAAAAEAAAAPAAEzMDMwAA/M0DMwMzAAD8zQAAAAMAAAAABmYZmQADAAcACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAAAADMwAAAAAQAAAA8AATMwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAJmRZmAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAADwABMzAzMAAPzNAAADMwAA/M0AAAACAAAAAAzMFmYAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD8zQAA/M0AAPzNAAADMwAAAzMAAAZmAAADMwMzAAD8zfzNCZkAAAZnAAD8zAAAAzQAAAMzAAADMwAA/M0AAOzNAAYAAAAADMwZmQAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAAQAAAA/MwAAPzNAAD2ZwAABmYAAAMzAAAGZwAA8AATMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQACAAAAAAzMEAAAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAGZgMzAAD8zfmaEAAAAPzMAAD2ZwAA/M0AAgAAAAAMzBmZAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAACZkAAPM0AAAMzAAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAwAAAAAMzBZmAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQAA8zQAAAzMAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAAIAAAAAAzMZmQADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAQAAAAADMwmZAAMAAAEBAQEAAAAAAzMAAAAACZkAAPZnAAAABQAAAAAMzBAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAACZkAAPM0AAADMwAAAAAAAAmZAADzNAAAAzMAAAAAAAAJmQAAAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDMwAA/M0DMwM0AAD8zAAAAAEAAAAACZkTMwALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAAAAmZAAADMwAABmcAAPmZAAD8zQAA9mcAAAABAAAAAAmZEAAACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAAAGZgAAAzMAAAZnAAD5mQAA/M0AAPmaAAAAAwAAAAAMzBMzAAMADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAAAMzAAD8zQMzDM0AAPzMAAADNAAA8zMAAAZmAAD5mgzNAzMAAPzNAAAABQAAAAAQABMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAAADNAAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAAMzAAD8zQAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAADMwAAAzQAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAADNAAA/MwAAAACAAAAABMzEzMAAwANAAABAQEBAQEBAQEBAQEBARAAAAD5mQAA/M0AAPzNAAD8zQAAEzMAAPZmAAAMzAM0AAD8zPM0EAAAAPzMAAAGZwAA9mYAAPZnAAAAAgAAAAAMzBAAAAMACwAAAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAPZnAAAMzAAAAzMDMwAA/M38zQmZAAADMwAAAzQAAPAAAAUAAAAAHMwTMwAFAAkADQAVAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBARAAAAADMwAACZkAAPZnAAADMwAA8zMAAAMzAADzNAAACZkAAPmaAAAGZgAADM0AAPmaAAAMzAAA/M0AAAAACZkAAPmaAAD8zQmZAzMAAPzN+ZoMzQAA8zP8zRMzAAD8zQAA8zMAAPzNDMwDNAAAAzMAAPzNAAD8zAAFAAAAABzMEzMABQAJAA0AFQAdAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEQAAAAAzMAAAmZAAD2ZwAAAzMAAPMzAAADMwAACZoAAPmaAAAMzAAA/M0AAOZnAAAJmQAA+ZoAAAZmAAAAAAZmAAD8zQAA/M0GZgMzAAD8zfzNDM0AAPMzBmYDMwAAAzQAAPzMAAD8zfZnEzMAAPzNAADzMwAA/M0ABQAAAAAczBAAAAMACQANABMAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAADM0AAAMzAAAJmQAA9mcAAAMzAADpmgAACZkAAAMzAAAJmgAA+ZoAAAzMAAD8zQAAAzMDMwAA/M38zQZmAAD8zQAA/M0GZgMzAAD8zfmaCZkAAAZnAADwAAmZAzMAAAM0AAD8zAAA/M0AAAABAAAAABAAEzMADQAAAQEBAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAABmYAAPmaAAAJmgAAAAAJmQAAAzMAAAZnAAD5mQAA/M0AAPmaAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAATMwAA/M0AAPAAAAIAAAAADMwTMwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPMzAAAMzQAA8AAQAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAMAAAAADMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAADMwAA/M0DMwzNAAD8zAAAAzQAAPMzAAAGZgAA+ZoMzQMzAAD8zQAAAAEAAAAAAzMTMwADAAABAQEBAAAAAAMzAAAAABMzAADszQAAAAUAAAAADMwTMwADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAACZkAAPZnAAAJmQAA9mcJmQZnAAD5mQAABmcAAPmZBmcDMwAA/M0AAAADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQADAAAAABAAEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAAQAAAA8zMAAAmZAADzNAAAEAAAAAAAAzMAAPzNCZkDMwAA/M0GZwMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAAQAAAA/MwAAPzNAAD8zQAAAAAQAAAAAzMAAPzNAADwAAAAEAAAAPAAAAAAAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMGZkACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAADMwAA/M0AAAADAAAAABMzEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAM0AAAAAAAAAzMAAPMzAAD5mgAAEAAAAPmZAAAGZwAA+ZkAAAAAAzMAAPzNAzMGZgAA+Zr8zRAAAAADMwAA/M0AAPzMAAD8zQAA9mcAAAADAAAAAAzMHMwABQAJAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAA/M0AAAZmAAAAAAAABmYAAAAAEzMAAPzNAADwABZmAzMAAPzNAzMDMwAA/M0AAwAAAAAMzBMzAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAmZAADzNAAAAzMAAAmZAAD2ZwAAAAAAAAmZAAAAAAMzAAD8zQMzDM0AAPzMAAD8zQAA+ZoMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAAMzAAA9mcAAAmZAAAAAAMzAAAGZgAACZoAAPzNAAD8zAAA8zQAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAmZGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAADMwTMwADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAAEAAAAPAAAAAAAwAAAAAZmRMzAAMABwARAAABAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAABMzAAD5mgAA/MwAAPmaAAD8zQAADM0AAAmZAAAAAAMzAAD8zQMzAzMAAPzN/M0QAAAA8zMAABAAAAD2ZgAA9mcAAgAAAAAWZhMzAAMAEQAAAQEBAQEBAQEBAQEBAQEBAQEBEzMAAPmZAADzNAAAAzMAAAZmAAADMwAACZoAAPMzAAD5mgAAAzMDMwAA/M38zRMzAAD5mQAABmcAAPZmAAD2ZwAACZkAAPZnAAAAAgAAAAATMxMzAAMADwAAAQEBAQEBAQEBAQEBAQEBARAAAAADMwAA8zMAAPmaAAAQAAAA+ZkAAAZnAAD5mQAAAAAJmQAA9mcAABAAAAADMwAA/M0AAPzMAAD8zQAA9mcABwAAAAAMzBzMAAMABwALABMAFwAbAB8AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAA8zQAAAZmAAAAAAAABmYAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwABwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD5mgAABmYAAPM0AAAGZgAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAADM0AAPZmAAAJmgAA7M0AAAABAAD8zRAAEzMACwAAAQEBAQEBAQEBAQEBBmYAAPmaAAADMwAACZkAAAM0AAD5mQAA/M0DMwAAEzMAAPAAAAAQAAAA7M0AAPzNAAAAAgAAAAAMzBMzAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0AAgAAAAAMzBMzAAMADwAAAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA8zQAAAzMAAD2ZwAABmYAAPmaAAAGZgAAAzMGZgAA+Zr8zRMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAwAAAAAMzBMzAAMABwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAZmAAADMwZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEzMAAPzNAADwAAACAAD8zRAAEzMAAwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPzNAAD5mgAAAzMAAAmZAAADNAAA/MwAAPZnAAADMwzNAADzM/maBmYAABAAAADwAAAA+ZoAAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABQAAAAAQABMzAAMABwALABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADwAAAAAzMAAAMzAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAADNAAAAAAGZgAA+ZoAAAZmAAD5mgzMBmcAAPmZ8zQGZgAABmYAAAZnAAD5mQAA+ZoAAPmaDMwGZwAA+ZkAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAMzAAD8zQMzBmYAAPmaBmYDMwAA/M0DMwM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAcADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0ABQAAAAAMzBzMAAcADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAADMwAA/M0AAAAFAAAAAAzMEzMAAwAHAAsAEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAAAzMAAPmaAAADMwAA/M0AAAMzAAD2ZwAAAzMAAAMzAAD8zQAABmYAAAMzAAAAAAZmAAD5mgZmAzMAAPzNBmYDNAAA/MzzNBMzAAD5mQAA/M0AAPZnEAADMwAA/M0AAAACAAAAABAAEzMAAwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD5mgAA/M0AAAzNAAAAAAMzAAD8zQAAEAAAAPMzAAAQAAAA7M0AAwAAAAAQABMzAAMACwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAADMwAA/M0AAAmZAAD8zQAAAzMAAAM0AAAJmQMzAAD8zfZnEzMAAPzNAAD8zAAA8zQAAAzMAAADNAAAAzMAAOzNAAAAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAAAzMEzMABwAAAQEBAQEBAQEAAAAADMwAAPzNAAD5mgAAAAATMwAA7M0AABAAAADwAAAAAAIAAAAADMwTMwADAA0AAAEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAzMAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA9mcAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAABmYAAAmaAAD5mQAABmcAAOzNAAAAAwAAAAAQABMzAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgZmAAD5mgAABmYAAPma+ZoDMwAAAzMAAAZmAAADNAAAAzMAAPzNAAD8zAAA+ZoAAPzNAAD8zQAAAAkAAAAAEAATMwADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAAAQAA/M0QABMzAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABMzAADwAAAAEAAAAPAAAAD5mgAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAATMwAA8AAAABAAAADwAAAAEAAAAOzNAAAAAQAA/M0TMxMzAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABMzAADwAAAAEAAAAPAAAAAQAAAA8AAAAPmaAAAAAgAAAAAQABMzAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zRAAAAADMwAA9mYAAPZnAAMAAAAAEzMTMwADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRMzAAD2ZgAA9mcAABMzAADszQACAAAAAAzMEzMAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEzMAAPZmAAD2ZwAAAAMAAAAADMwTMwADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAADMwAAAzQAAPMzDM0DMwAA/M0AAAAEAAAAABZmEzMAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwzNAADzM/zNEzMAAPmZAAADNAAA8zMAAAZmAAD2ZxAAAzMAAPzNAAMAAAAADMwTMwADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAJmQAA9mcMzAM0AAD8zPM0CZkAAAMzAAADNAAAAzMAAOzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAAEAAAAAAzMEzMAAwAHAA8AFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAD5mgAAAAAAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAACZkAAPzNAAD8zQAA/M0JmQM0AAADMwAA+ZkAAAADAAAAAAzMEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzAzMAAPzNBmYDMwAA/M32ZxAAAAD8zAAA/M0AAPzNAAD8zQAA/M0AAAABAAAAAAzMEAAABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAAQAAAA/MwAAPM0AAIAAPzNEAAQAAADAA8AAAEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPmaAAADMwAACZkAAAM0AAD8zAAA9mcAAAMzCZkAAPZn+ZoGZgAADM0AAPMzAAD5mgAAAzMAAPzNAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQAFAAAAABAAEAAAAwAHAAsAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPAAAAADMwAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAAM0AAAAAAZmAAD5mgAABmYAAPmaDMwDNAAA/MzzNAZmAAAGZgAAAzQAAPzMAAD5mgAA+ZoMzAM0AAD8zAAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwAAAFAAAAAAzMGZkABwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD2ZwAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwABMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAAAAUAAAAADMwQAAADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAAAzMAAPzNAzMDMwAA/M0GZgMzAAD8zfZnEAAAAPmZAAD8zQAA+ZoMzAM0AAD8zAAAAAIAAAAAEAAQAAADAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPmaAAD8zQAADM0AAAAAAzMAAPzNAAAMzAAA9mcAAAzNAADwAAADAAAAABAAEAAAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAZmAzMAAPzN+ZoQAAAA/MwAAPzNAAD2ZwAACZkAAAMzAAADNAAA8AAAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaAAAABAAAAAAMzBAAAAMABwALAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAEAAAAADMwQAAAHAAABAQEBAQEBAQAAAAAMzAAA/M0AAPmaAAAAABAAAADwAAAADMwAAPM0AAAAAgAAAAAMzBAAAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkDMwAA/M32ZxAAAAD2ZgAA+ZoAAAAFAAAAAAzMEAAAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcGZgMzAAD8zQMzAzQAAPzMAAAAAQAAAAAQABAAAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAADMwAAAM0AAD8zAAA8zQAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAAAzMAAAmaAAD5mQAABmcAAPAAAAAAAwAAAAAQABAAAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgMzAAD8zQAAAzMAAPzN+ZoDMwAAAzMAAAMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAPzNAAD8zQAAAAkAAAAAEAAQAAADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwM0AAD8zAAAAzQAAPzMAAAAAQAA/M0QABAAAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABAAAADzMwAADM0AAPMzAAD5mgAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAZmAAAJmgAA+ZkAAAZnAADwAAABAAAAABAAEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAAQAAAA8zMAAAzNAADzMwAADM0AAPAAAAAAAQAA/M0TMxAAAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABAAAADzMwAADM0AAPMzAAAMzQAA8zMAAPmaAAAAAgAAAAAQABAAAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zQzMAAADNAAA+ZkAAPZnAAMAAAAAEzMQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcAABAAAADwAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwMzAAADMwAAAzMAAPZnCZkDNAAA/MwAAAAEAAAAABZmEAAAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwmZAAD2Z/zNEAAAAPmZAAADMwAA9mcAAAMzAAD5mgzMAzQAAPzMAAMAAAAADMwQAAADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAGZgAA+ZoJmQMzAAD8zfZnBmYAAAMzAAADMwAAAzQAAPAAAAQAAAAADMwZmQADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPmaAAAGZgAA8zQAAAZmAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQMzAzMAAPzNAAQAAAAADMwWZgADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPM0AAADMwAABmYAAAMzAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAzMAAPzNAAMAAPmaDMwTMwADAAcAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAAAzMAAPZnAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAD8zQAA+ZoDMwAA/M0DMwmZAAD2ZwMzDMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAAAAwAAAAAMzBmZAAUACQANAAABAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAPzNAAAGZgAAAAAAAAZmAAAAABAAAAD8zAAA8zQTMwMzAAD8zQMzAzMAAPzNAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAJmQAA8zQAAAMzAAAJmQAA9mcAAAAAAAAJmQAAAAADMwAA/M0DMwmZAAD8zQAA/M0AAPzNCZkDNAAA/MwAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAADMwAAPM0EAADMwAA/M0AAAMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcMzQMzAAD8zQADAAAAABmZEAAAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAEzMAAPmaAAD8zAAA+ZoAAPzNAAAMzQAACZkAAAAAAzMAAPzNAzMDMwAA/M38zQzMAAD2ZwAADM0AAPmZAAD2ZwACAAAAABZmEAAAAwARAAABAQEBAQEBAQEBAQEBAQEBAQETMwAA+ZkAAPM0AAADMwAABmYAAAMzAAAJmgAA8zMAAPmaAAADMwMzAAD8zfzNEAAAAPmZAAAGZwAA+ZkAAPZnAAAGZgAA+ZoAAAACAAAAAAzMEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA9mcAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAAAAZmAAD5mgAADMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAcAAAAADMwZmQADAAcACwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAPM0AAAGZgAAAAAAAAZmAAAAAAMzAAD8zQMzAzMAAPzNBmYDMwAA/M32ZxAAAAD5mQAA/M0AAPmaDMwDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAABAAAAAAMzBmZAAcADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEB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AQEAAAAACZkAAAMzAAD2ZwAAAAATMwAAAzMAAPmaAADwAAAAAAEAAAAADMwTMwAHAAABAQEBAQEBAQAAAAAJmQAAAzMAAPZnAAAAABAAAAADMwAA+ZkAAPM0AAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAJmgAA/M0AAPmZAAD8zQAA+ZoAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAGZwAA/MwAAPzNAAD8zQAA+ZoAAQAA/M0QABMzAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAmZAAD2ZwAAEzMAAPmZAAAGZwAA8AAAAPmaAAAAAQAA/M0QABAAAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAZmAAD5mgAAEAAAAPmZAAAGZwAA8zMAAPmaAAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA/M0AAPAAAAAJmQAA9mcAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEAAAAPmZAAAGZwAA/MwAAPM0AAAGZgAA+ZoAAQAAAAAWZhMzABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAAEzMAAPZmAAAJmgAA9mYAAAmaAADzMwAA+ZoAAAAAEAAAAPmZAAAGZwAAAzMAAPzNAAD8zAAA/M0AAPmaAAD8zQAABmYAAPmaAAMAAAAAFmYQAAADAAcAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAABAAAAD5mQAA8zQAAAmZAAD2ZwAAFmYAAPZmAAAJmgAAAzMDMwAA/M0GZgMzAAD8zfZnCZkAAAMzAAADNAAA9mYAAPzNAAD8zQAAAAMAAPmaDMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoDMwAA/M0GZhAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQAAAAQAAPmaDMwQAAADAAcADQARAAABAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwAAAAEAAAAAAzMGZkAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAPmaAAADMwAAAzMGZgAA+ZoJmQM0AAD8zPM0EzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPmaAAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcMzAM0AAD8zAAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAABmYAAAAAAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAIAAD5mgzMHMwAAwAJAA0AEQAVABkAHQAhAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPZnAAAGZgAAAAAAAAZmAAD5mgMzAAD8zQMzAzMAAAMzAAD5mgZmAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAAAAgAAPmaDMwZmQADAAkADQARABUAGQAdACEAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAAAAAD8zQAABmYAAAAAAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAMzBmZAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAMzAAADMwzNAADzM/zNEzMAAPzNAADzMwAA/M0WZgMzAAD8zQAAAAMAAAAADMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAAAAAAADMwAA+ZoAAAmZAAADMwAAAzMDMwAA/M0JmQM0AAD8zPM0CZkAAAZnAADwAAADAAD5mgzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAzMAAPzNCZkMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAAAAwAA+ZoMzBAAAAMABwANAAABAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAPmaAAD8zQAACZkAAAMzAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAMAAPmaDMwTMwADAAcADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoDMwAA/M0JmQzNAADzM/zNEzMAAPzNAADzMwAA/M0AAAADAAD5mgzMEAAAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPmaAzMAAPzNCZkDMwAA/M38zQmZAAAGZwAA8AAAAwAA9mcMzBMzAAUACQARAAABAQEBAQEBAQEBAQEBAQEBAQEGZgAA/M0AAAZmAAAAAAAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD2ZwMzAAADMwAA+ZoMzAzNAADzM/zNEzMAAPzNAADzMwAA/M0AAwAA9mcMzBAAAAUACQAPAAABAQEBAQEBAQEBAQEBAQEBBmYAAPzNAAAGZgAAAAAAAPmaAAD8zQAACZkAAAMzAAD2ZwMzAAADMwAA+ZoMzAMzAAD8zfzNCZkAAAZnAADwAAAAAAUAAPZnDMwTMwADAAcACwAPABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAAAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZDM0AAPMz/M0TMwAA/M0AAPMzAAD8zQAAAAUAAPZnDMwQAAADAAcACwAPABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAUAAPZnDMwTMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAD2ZwAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYTMwAA7M0AAAAGAAD2ZwzMEAAAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAA9mcAAAMzAAD8zQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYJmQAA9mcMzAM0AAD8zAACAAAAABAAGZkABwALAAABAQEBAQEBAQEBAQEGZgAA+ZoAABAAAAD5mQAA/M0AAAMzAAAAABAAAAADMwAA/M0AAPAAFmYDMwAA/M0AAgAAAAAMzBZmAAkADQAAAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAPM0AAADMwAAAAAQAAAA+ZkAAPzNAAD8zQAA/M0TMwMzAAD8zQAAAAIAAPmaEAATMwADAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAPmaAAAQAAAA+ZkAAPmaAzMAAPzNBmYQAAAAAzMAAPzNAADwAAACAAD5mgzMEAAAAwANAAABAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAAJmQAA9mcAAAmZAAD5mgMzAAD8zQZmEAAAAPmZAAD8zQAA/M0AAPzNAAAAAgAA+ZoQABMzAAMACwAAAQEBAQEBAQEBAQEBAzMAAAmZAAD5mgAA+ZoAABAAAAD5mQAA+ZoDMwAA/M0GZhAAAAADMwAA/M0AAPAAAAIAAPmaDMwQAAADAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAmZAAD2ZwAACZkAAPmaAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAAEAAD2ZxAAEzMAAwAHAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD8zQAA+ZoAABAAAAD5mQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAAAzMAAPzNAADwAAAEAAD2ZwzMEAAAAwAHAAsAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAPZnAAAJmQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAABAAAMzAZmEzMABQAAAQEBAQEBAAAAAAMzAAADMwAADMwGZwAA/M0AAPzMAAEAAAzMBmYTMwAFAAABAQEBAQEDMwAA/M0AAAZmAAAMzAM0AAADMwAA+ZkAAgAADMwQABMzAAUACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAADMwGZwAA/M0AAPzMAAAGZwAA/M0AAPzMAAIAAAzMEAATMwAFAAsAAAEBAQEBAQEBAQEBAQMzAAD8zQAABmYAAAZmAAD8zQAABmcAAAzMAzQAAAMzAAD5mQAAAzQAAAMzAAD5mQADAAAAABAAAzMAAwAHAAsAAAEB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"
 
 /***/ }),
-/* 27 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var engine_1 = __webpack_require__(26);
+var engine_1 = __webpack_require__(1);
 /*
 Base class for all prototypes.
 Any prototype instance will hook into the canvas and document.
@@ -8645,7 +8036,20 @@ var Prototype = /** @class */ (function () {
         this.canvas = document.getElementById("canvas");
         this.engine = new engine_1.Engine(this.canvas.getContext("2d"));
         setTimeout(function () { return _this.animate(); });
+        window.onresize = function () { return _this.resize(); };
+        this.resize();
     }
+    Prototype.prototype.resize = function () {
+        var w = window.innerWidth;
+        var h = window.innerHeight;
+        if (w < h)
+            h = w;
+        else
+            w = h;
+        console.log(w + "," + h);
+        this.canvas.style.width = w + 'px';
+        this.canvas.style.height = h + 'px';
+    };
     Prototype.prototype.animate = function () {
         var _this = this;
         window.requestAnimationFrame(function () { return _this.animate(); });
@@ -8654,6 +8058,644 @@ var Prototype = /** @class */ (function () {
     return Prototype;
 }());
 exports.Prototype = Prototype;
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAjUlEQVQ4T2P4//8/RRirICkYqyApGKsgKRirIDqWkpb5j4yR5VAUYsMgDX5+fnCM1wAnLj4Um3Dhz8f1gMrRDAjjFfq/Xkb1f2lpKV4MMwBmCIrmL5omKM6FORkdg9TBDEFxATYD0DHIAAwXwDBFYYALgzSguwBZHkUxLoxsO1kG4MNYBUnBWAWJx/8ZABolmgjFLL2wAAAAAElFTkSuQmCC"
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAQCAYAAAArij59AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOwgAADsIBFShKgAAAABl0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC4yMfEgaZUAAABVSURBVChTdcpBDcBADAPBw9EWQ/kzKKAC8GkfOUWKvZI/ySxJ67ofufE74P/eMxqAOrKAIuBYRdBRBIUGoI4soAg4VhF0FEGhAagjCygCjpUFbpLWBjQnToaUiHG6AAAAAElFTkSuQmCC"
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(22);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {"hmr":true}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(25)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../node_modules/css-loader/index.js!./style.css", function() {
+			var newContent = require("!!../node_modules/css-loader/index.js!./style.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(23);
+exports = module.exports = __webpack_require__(24)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(15)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
+}
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			var styleTarget = fn.call(this, selector);
+			// Special case to return head of iframe instead of iframe itself
+			if (styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[selector] = styleTarget;
+		}
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(26);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
 
 
 /***/ })
