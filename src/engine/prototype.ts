@@ -14,20 +14,7 @@ export abstract class Prototype
         this.canvas = document.getElementById("canvas") as HTMLCanvasElement;
         this.engine = new Engine(this.canvas.getContext("2d"));
         setTimeout(()=>this.animate());
-        window.onresize = ()=>this.resize();
-        this.resize();
-    }
-
-    private resize()
-    {
-        let w = window.innerWidth;
-        let h = window.innerHeight;
-        if (w < h)
-            h = w;
-        else
-            w = h;
-        this.canvas.width = w;
-        this.canvas.height = h;
+       
     }
 
     private animate()

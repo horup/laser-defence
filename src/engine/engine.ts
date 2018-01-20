@@ -44,7 +44,7 @@ export class Engine
         grid:
         {
             cellSize:16,
-            width:16,
+            width:32,
             height:16
         }
     }
@@ -94,13 +94,13 @@ export class Engine
         this.context = c;
         let w = this.config.grid.width;
         let h = this.config.grid.height;
-        this.grid = new Array(w);
-        for (let i = 0; i < w; i++)
+        this.grid = new Array(h);
+        for (let y = 0; y < h; y++)
         {
-            this.grid[i] = new Array(h);
-            for (let j = 0; j < h; j++)
+            this.grid[y] = new Array(w);
+            for (let x= 0; x < w; x++)
             {
-                this.grid[i][j] = new Cell();
+                this.grid[y][x] = new Cell();
             }
         }
 
@@ -158,7 +158,31 @@ export class Engine
                     this.input.mouse.button[ev.button] = false;
             }
         }
+
+        window.onresize = ()=>this.resize();
+        this.resize();
     }
+
+    
+    private resize()
+    {
+        let targetAspect = this.config.grid.width / this.config.grid.height;
+        let screenWidth = window.innerWidth;
+        let screenHeight = window.innerHeight;
+        let screenAspect = screenWidth / screenHeight;
+        let canvas = this.context.canvas;
+        if (screenAspect >= targetAspect)
+        {
+            canvas.height = screenHeight;
+            canvas.width = screenHeight * targetAspect;
+        }
+        else if (screenAspect < targetAspect)
+        {
+            canvas.width = screenWidth;
+            canvas.height = screenWidth / targetAspect;
+        }
+    }
+
 
     get hasFocus()
     {
@@ -258,7 +282,9 @@ export class Engine
     animate(tick:(iterations:number)=>any)
     {
         let c = this.context;
-        let ratio = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        let ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        let ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
+        let ratio = ratioWidth;
         c.setTransform(ratio, 0, 0, ratio, 0,0);
         c.imageSmoothingEnabled = false;
         c.font = "8px Pixeled";
@@ -266,8 +292,8 @@ export class Engine
         if (!this.flashing || !this.flashBlocks)
             tick(this.iterations);
 
-        let w = this.config.grid.cellSize * this.config.grid.width;//this.context.canvas.width;
-        let h = this.config.grid.cellSize * this.config.grid.height;//this.context.canvas.height;
+        let w = this.config.grid.cellSize * this.config.grid.width;
+        let h = this.config.grid.cellSize * this.config.grid.height;
         c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);

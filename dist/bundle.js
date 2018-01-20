@@ -187,7 +187,7 @@ var Engine = /** @class */ (function () {
             },
             grid: {
                 cellSize: 16,
-                width: 16,
+                width: 32,
                 height: 16
             }
         };
@@ -222,11 +222,11 @@ var Engine = /** @class */ (function () {
         this.context = c;
         var w = this.config.grid.width;
         var h = this.config.grid.height;
-        this.grid = new Array(w);
-        for (var i = 0; i < w; i++) {
-            this.grid[i] = new Array(h);
-            for (var j = 0; j < h; j++) {
-                this.grid[i][j] = new Cell();
+        this.grid = new Array(h);
+        for (var y = 0; y < h; y++) {
+            this.grid[y] = new Array(w);
+            for (var x = 0; x < w; x++) {
+                this.grid[y][x] = new Cell();
             }
         }
         this.sprites = new Array(256);
@@ -268,7 +268,24 @@ var Engine = /** @class */ (function () {
                     _this.input.mouse.button[ev.button] = false;
             }
         };
+        window.onresize = function () { return _this.resize(); };
+        this.resize();
     }
+    Engine.prototype.resize = function () {
+        var targetAspect = this.config.grid.width / this.config.grid.height;
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+        var screenAspect = screenWidth / screenHeight;
+        var canvas = this.context.canvas;
+        if (screenAspect >= targetAspect) {
+            canvas.height = screenHeight;
+            canvas.width = screenHeight * targetAspect;
+        }
+        else if (screenAspect < targetAspect) {
+            canvas.width = screenWidth;
+            canvas.height = screenWidth / targetAspect;
+        }
+    };
     Object.defineProperty(Engine.prototype, "hasFocus", {
         get: function () {
             return true;
@@ -347,15 +364,17 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.animate = function (tick) {
         var c = this.context;
-        var ratio = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        var ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        var ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
+        var ratio = ratioWidth;
         c.setTransform(ratio, 0, 0, ratio, 0, 0);
         c.imageSmoothingEnabled = false;
         c.font = "8px Pixeled";
         c.textAlign = "center";
         if (!this.flashing || !this.flashBlocks)
             tick(this.iterations);
-        var w = this.config.grid.cellSize * this.config.grid.width; //this.context.canvas.width;
-        var h = this.config.grid.cellSize * this.config.grid.height; //this.context.canvas.height;
+        var w = this.config.grid.cellSize * this.config.grid.width;
+        var h = this.config.grid.cellSize * this.config.grid.height;
         c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);
@@ -8039,19 +8058,7 @@ var Prototype = /** @class */ (function () {
         this.canvas = document.getElementById("canvas");
         this.engine = new engine_1.Engine(this.canvas.getContext("2d"));
         setTimeout(function () { return _this.animate(); });
-        window.onresize = function () { return _this.resize(); };
-        this.resize();
     }
-    Prototype.prototype.resize = function () {
-        var w = window.innerWidth;
-        var h = window.innerHeight;
-        if (w < h)
-            h = w;
-        else
-            w = h;
-        this.canvas.width = w;
-        this.canvas.height = h;
-    };
     Prototype.prototype.animate = function () {
         var _this = this;
         window.requestAnimationFrame(function () { return _this.animate(); });
