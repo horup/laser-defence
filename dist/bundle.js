@@ -8162,7 +8162,7 @@ exports = module.exports = __webpack_require__(24)(false);
 
 
 // module
-exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(15)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: red;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(15)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: black;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
 
 // exports
 
