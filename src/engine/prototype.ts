@@ -29,8 +29,12 @@ export abstract class Prototype
 
             console.log(w + "," + h);
 
-        this.canvas.style.width = w + 'px';
-        this.canvas.style.height = h + 'px';
+            w = 512;
+            h= 512;
+      //  this.canvas.style.width = w + 'px';
+      //  this.canvas.style.height = h + 'px';
+      this.canvas.width = w;
+      this.canvas.height = h;
     }
 
     private animate()

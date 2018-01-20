@@ -92,8 +92,6 @@ export class Engine
     constructor(c:CanvasRenderingContext2D)
     {
         this.context = c;
-        c.imageSmoothingEnabled = false;
-        c.font = "8px Pixeled";
         let w = this.config.grid.width;
         let h = this.config.grid.height;
         this.grid = new Array(w);
@@ -259,12 +257,17 @@ export class Engine
 
     animate(tick:(iterations:number)=>any)
     {
+        let c = this.context;
+        let ratio = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        c.setTransform(ratio, 0, 0, ratio, 0,0);
+        c.imageSmoothingEnabled = false;
+        c.font = "8px Pixeled";
+        c.textAlign = "center";
         if (!this.flashing || !this.flashBlocks)
             tick(this.iterations);
 
-        let w = this.context.canvas.width;
-        let h = this.context.canvas.height;
-        let c = this.context;
+        let w = this.config.grid.cellSize * this.config.grid.width;//this.context.canvas.width;
+        let h = this.config.grid.cellSize * this.config.grid.height;//this.context.canvas.height;
         c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);

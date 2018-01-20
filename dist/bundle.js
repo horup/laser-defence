@@ -220,8 +220,6 @@ var Engine = /** @class */ (function () {
             }
         };
         this.context = c;
-        c.imageSmoothingEnabled = false;
-        c.font = "8px Pixeled";
         var w = this.config.grid.width;
         var h = this.config.grid.height;
         this.grid = new Array(w);
@@ -348,11 +346,16 @@ var Engine = /** @class */ (function () {
         return this.images.length - 1;
     };
     Engine.prototype.animate = function (tick) {
+        var c = this.context;
+        var ratio = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
+        c.setTransform(ratio, 0, 0, ratio, 0, 0);
+        c.imageSmoothingEnabled = false;
+        c.font = "8px Pixeled";
+        c.textAlign = "center";
         if (!this.flashing || !this.flashBlocks)
             tick(this.iterations);
-        var w = this.context.canvas.width;
-        var h = this.context.canvas.height;
-        var c = this.context;
+        var w = this.config.grid.cellSize * this.config.grid.width; //this.context.canvas.width;
+        var h = this.config.grid.cellSize * this.config.grid.height; //this.context.canvas.height;
         c.globalAlpha = 1.0;
         c.fillStyle = this.backgroundColor;
         c.fillRect(0, 0, w, h);
@@ -8047,8 +8050,12 @@ var Prototype = /** @class */ (function () {
         else
             w = h;
         console.log(w + "," + h);
-        this.canvas.style.width = w + 'px';
-        this.canvas.style.height = h + 'px';
+        w = 512;
+        h = 512;
+        //  this.canvas.style.width = w + 'px';
+        //  this.canvas.style.height = h + 'px';
+        this.canvas.width = w;
+        this.canvas.height = h;
     };
     Prototype.prototype.animate = function () {
         var _this = this;
