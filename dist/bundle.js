@@ -265,6 +265,30 @@ var Engine = /** @class */ (function () {
                     _this.input.mouse.button[ev.button] = false;
             }
         };
+        document.ontouchstart = function (ev) {
+            if (_this.hasFocus) {
+                _this.input.mouse.button[0] = true;
+            }
+        };
+        document.ontouchend = function (ev) {
+            if (_this.hasFocus) {
+                _this.input.mouse.button[0] = false;
+            }
+        };
+        document.ontouchmove = function (ev) {
+            var bounds = _this.context.canvas.getBoundingClientRect();
+            var c = _this.context.canvas;
+            var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+            var x = ev.touches[0].clientX - c.offsetLeft;
+            var y = ev.touches[0].clientY - c.offsetTop;
+            y = y / bounds.height * _this.config.grid.height;
+            x = x / bounds.width * _this.config.grid.height;
+            x = clamp(x, 0, _this.config.grid.width);
+            y = clamp(y, 0, _this.config.grid.height);
+            _this.input.mouse.pos.set([x, y]);
+        };
+        document.ontouchcancel = function (ev) {
+        };
         window.onresize = function () { return _this.resize(); };
         this.resize();
     }

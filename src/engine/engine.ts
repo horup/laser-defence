@@ -168,6 +168,43 @@ export class Engine
             }
         }
 
+        document.ontouchstart = (ev)=>
+        {
+            if (this.hasFocus)
+            {
+                this.input.mouse.button[0] = true;
+            }
+        }
+
+        document.ontouchend = (ev)=>
+        {
+            if (this.hasFocus)
+            {
+                this.input.mouse.button[0] = false;
+            }
+        }
+
+        document.ontouchmove = (ev)=>
+        {
+            let bounds = this.context.canvas.getBoundingClientRect();
+            let c = this.context.canvas;
+            let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
+            
+            let x = ev.touches[0].clientX - c.offsetLeft;
+            let y = ev.touches[0].clientY - c.offsetTop;
+            y = y / bounds.height * this.config.grid.height;
+            x = x / bounds.width * this.config.grid.height;
+            x = clamp(x, 0, this.config.grid.width);
+            y = clamp(y, 0, this.config.grid.height);
+
+            this.input.mouse.pos.set([x,y]);
+        }
+
+        document.ontouchcancel = (ev)=>
+        {
+
+        }
+
         window.onresize = ()=>this.resize();
         this.resize();
     }
