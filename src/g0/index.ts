@@ -73,7 +73,6 @@ export default class G0 extends Prototype
     tick(iterations:number)
     {
         let e = this.engine;
-
         switch(this.state)
         {
             case 0:

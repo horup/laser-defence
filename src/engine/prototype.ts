@@ -12,9 +12,8 @@ export abstract class Prototype
     constructor()
     {
         this.canvas = document.getElementById("canvas") as HTMLCanvasElement;
-        this.engine = new Engine(this.canvas.getContext("2d"));
+        this.engine = new Engine();
         setTimeout(()=>this.animate());
-       
     }
 
     private animate()

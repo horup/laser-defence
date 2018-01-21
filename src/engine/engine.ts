@@ -1,35 +1,39 @@
 import {vec2, glMatrix} from 'gl-matrix';
 import * as SAT from 'sat';
 import { setTimeout } from 'timers';
+import * as PIXI from 'pixi.js';
 
 /**Sprite.*/
 export class Sprite
 {
     id:number;
-    image:number = -1;
+    sprite:PIXI.Sprite;
     position:vec2 = vec2.create();
-    imgOffset:vec2 = vec2.create();
 
-    constructor(id:number)
+    constructor(id:number, sprite:PIXI.Sprite)
     {
         this.id = id;
+        this.sprite = sprite;
         this.clear();
     }
 
     clear()
     {
+        this.sprite.visible = false;
         this.position.set([0,0]);
-        this.imgOffset.set([0,0]);
-        this.image = -1;
     }
 }
 
 /**Cell of a grid.*/
 export class Cell
 {
-    image:number = -1;
     imgOffsetX:number = 0;
     imgOffsetY:number = 0;
+    sprite:PIXI.Sprite = null;
+    constructor(sprite:PIXI.Sprite)
+    {
+        this.sprite = sprite;
+    }
 }
 
 export interface EngineConfig
@@ -82,6 +86,7 @@ export class Engine
         }
     }
 
+    private app: PIXI.Application;
     private animateTime = 0;
     private iterations = 0;
     private state:number = 0;
@@ -90,11 +95,9 @@ export class Engine
     private flashTicks = 0;
     private flashBlocks = false;
     private sprites:Sprite[] = [];
-    private images:HTMLImageElement[] = [];
     private backgroundColor:string = "#000000";
     private foregroundColor:string = "#FFFFFF";
     private grid:Cell[][];
-    private context:CanvasRenderingContext2D;
 
     public centerText:string = "";
     public centerTopText:string = "";
@@ -107,36 +110,86 @@ export class Engine
         }
     }
 
-
-    constructor(c:CanvasRenderingContext2D)
+    private readonly pixi =
     {
-        this.context = c;
+        textures:[] as PIXI.Texture[],
+        texts:
+        {
+            middle:new PIXI.Text(),
+            top:new PIXI.Text(),
+            debug:new PIXI.Text()
+        }
+    }
+
+
+    constructor()
+    {
+        this.app = new PIXI.Application();
+        document.body.appendChild(this.app.view);
+        let canvas = this.app.view;
         let w = this.config.grid.width;
         let h = this.config.grid.height;
         this.grid = new Array(h);
+        let cellSize = this.config.grid.cellSize;
         for (let y = 0; y < h; y++)
         {
             this.grid[y] = new Array(w);
             for (let x= 0; x < w; x++)
             {
-                this.grid[y][x] = new Cell();
+                let sprite = new PIXI.Sprite();
+                sprite.visible = false;
+                sprite.x = x * cellSize;
+                sprite.y = y * cellSize;
+                this.grid[y][x] = new Cell(sprite);
+                this.app.stage.addChild(sprite);
             }
         }
 
         this.sprites = new Array(256);
         for (let i = 0; i < this.sprites.length; i++)
         {
-            this.sprites[i] = new Sprite(i);
+            let sprite = new PIXI.Sprite();
+            this.sprites[i] = new Sprite(i, sprite);
+            this.app.stage.addChild(sprite);
         }
 
-        c.textAlign = "center";
+       
+        let setStyle = (text:PIXI.Text) =>
+        {
+            text.anchor.x = 0.5;
+            text.anchor.y = 0;
+            text.x = w * cellSize / 2;
+        }
+
+        let style = {fontFamily : 'Pixeled', fontSize: '8px', fill : 0xFFFFFF};
+        this.pixi.texts.middle = new PIXI.Text("hello world", style);
+        this.pixi.texts.top = new PIXI.Text("top dollar", style);
+        this.pixi.texts.debug = new PIXI.Text("", style);
+
+        setStyle(this.pixi.texts.top);
+        setStyle(this.pixi.texts.debug);
+        setStyle(this.pixi.texts.middle);
+
+        this.pixi.texts.top.x = w * cellSize / 2;
+        this.pixi.texts.middle.y = h * cellSize / 2;
+        this.pixi.texts.middle.anchor.y = 0.5;
+        this.pixi.texts.debug.x = 0;
+        this.pixi.texts.debug.anchor.x = 0;
+        
+        this.app.stage.addChild(this.pixi.texts.middle);
+        this.app.stage.addChild(this.pixi.texts.top);
+        this.app.stage.addChild(this.pixi.texts.debug);
+
+        // c.textAlign = "center";
+
+        
 
         document.onmousemove = (ev)=>
         {
             if (this.hasFocus)
             {
-                let bounds = this.context.canvas.getBoundingClientRect();
-                let c = this.context.canvas;
+                let bounds = canvas.getBoundingClientRect();
+                let c = canvas;
                 let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
                 
                 let x = ev.x - c.offsetLeft;
@@ -154,9 +207,9 @@ export class Engine
         {
             if (!this.hasFocus)
             {
-                c.canvas.requestPointerLock();
-                this.input.mouse.pos[0] = c.canvas.width / this.config.grid.cellSize / 2;
-                this.input.mouse.pos[1] = c.canvas.width / this.config.grid.cellSize / 2;
+                canvas.requestPointerLock();
+                this.input.mouse.pos[0] = canvas.width / this.config.grid.cellSize / 2;
+                this.input.mouse.pos[1] = canvas.width / this.config.grid.cellSize / 2;
             }
             if (this.hasFocus)
             {
@@ -192,8 +245,8 @@ export class Engine
 
         document.ontouchmove = (ev)=>
         {
-            let bounds = this.context.canvas.getBoundingClientRect();
-            let c = this.context.canvas;
+            let bounds = canvas.getBoundingClientRect();
+            let c = canvas;
             let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
             
             let x = ev.touches[0].clientX - c.offsetLeft;
@@ -222,23 +275,26 @@ export class Engine
         let screenWidth = window.innerWidth;
         let screenHeight = window.innerHeight;
         let screenAspect = screenWidth / screenHeight;
-        let canvas = this.context.canvas;
+        let canvas = this.app.view;
+        let width = 0;
+        let height = 0;
         if (screenAspect >= targetAspect)
         {
-            canvas.height = screenHeight;
-            canvas.width = screenHeight * targetAspect;
+            height = screenHeight;
+            width = screenHeight * targetAspect;
         }
         else if (screenAspect < targetAspect)
         {
-            canvas.width = screenWidth;
-            canvas.height = screenWidth / targetAspect;
+            width = screenWidth;
+            height = screenWidth / targetAspect;
         }
-
+       
+        this.app.renderer.resize(width, height);
         let w =  Math.floor((screenWidth - canvas.width) / 2);
         let h = Math.floor((screenHeight - canvas.height) / 2);
         canvas.style.left = w + "px";
         canvas.style.top = h + "px";
-
+        console.log(w, h);
     }
 
 
@@ -272,18 +328,18 @@ export class Engine
         for (let i = 0; i < this.sprites.length; i++)
         {
             let candidate = this.sprites[i];
-            if (i != id && candidate.image >= 0)
+            if (i != id && candidate.sprite.visible)
             {
                 let cellSize = this.config.grid.cellSize;
                 box1.pos.x = sprite.position[0];
                 box1.pos.y = sprite.position[1];
-                box1.w  = this.images[sprite.image].width / cellSize;
-                box1.h = this.images[sprite.image].height / cellSize;
+                box1.w  = sprite.sprite.width / cellSize;
+                box1.h = sprite.sprite.height / cellSize;
                
                 box2.pos.x = candidate.position[0];
                 box2.pos.y = candidate.position[1];
-                box2.w = this.images[candidate.image].width / cellSize;
-                box2.h = this.images[candidate.image].height / cellSize;
+                box2.w = candidate.sprite.width / cellSize;
+                box2.h = candidate.sprite.height / cellSize;
 
                 let p1 = box1.toPolygon();
                 let p2 = box2.toPolygon();
@@ -296,12 +352,22 @@ export class Engine
         return -1;
     }
  
-    setCell(x:number, y:number, image:number, imgOffsetX = 0, imgOffsetY = 0)
+    setCell(x:number, y:number, image:number, offsetX = 0, offsetY = 0)
     {
-        let img = this.images[image];
-        this.grid[y][x].image = image;
-        this.grid[y][x].imgOffsetX = imgOffsetX;
-        this.grid[y][x].imgOffsetY = imgOffsetY;
+        let cell = this.grid[y][x];
+        if (image >= 0)
+        {
+            let cellSize = this.config.grid.cellSize;
+            this.grid[y][x].sprite.visible = true;
+            let tex = this.pixi.textures[image];
+            let sprite = cell.sprite;
+            sprite.texture = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(offsetX * cellSize, offsetY * cellSize, cellSize, cellSize));
+
+        }
+        else
+        {
+            cell.sprite.visible = false;
+        }
     }
 
     clearSprites()
@@ -313,14 +379,31 @@ export class Engine
     {
         let sprite = this.sprites[i];
         sprite.position.set(pos);
-        if (image != undefined) 
-            sprite.image = image;
+        if (image != undefined)
+        {
+            if (image >= 0)
+            {
+                let tex = this.pixi.textures[image];
+                sprite.sprite.texture = tex;
+                sprite.sprite.visible = true;
+            }
+            else
+            {
+                sprite.clear();
+            }
+        }
     }
 
     /**Clears the grid with the specified image as src */
     clearGrid(image:number)
     {
-        this.grid.forEach(h=>h.forEach(cell=>cell.image = image));
+        for (let y = 0; y < this.grid.length; y++)
+        {
+            for (let x = 0; x < this.grid[y].length; x++)
+            {
+                this.setCell(x, y, image);
+            }
+        }
     }
 
     clearText()
@@ -331,16 +414,69 @@ export class Engine
 
     loadImage(src:any):number
     {
-        let img = new Image();
-        img.src = src;
-        this.images.push(img);
-        return this.images.length - 1;
+        let texture = PIXI.Texture.fromImage(src);
+        this.pixi.textures.push(texture);
+        return this.pixi.textures.length - 1;
     }
 
     animate(tick:(iterations:number)=>any)
     {
         let start = performance.now();
-        let c = this.context;
+        let canvasWidth = this.app.view.width;
+        let canvasHeight = this.app.view.height;
+        let gridWidth = this.config.grid.width;
+        let gridHeight = this.config.grid.height;
+        let cellSize = this.config.grid.cellSize;
+        let w = gridWidth * cellSize;
+        let h = gridHeight * cellSize;
+        let ratioWidth = canvasWidth / w;
+        let ratioHeight = canvasHeight / h;
+        let ratio = ratioWidth;
+        this.app.stage.setTransform(0,0, ratio, ratio);
+
+
+        this.app.stage.alpha = 1.0;
+        if (!this.flashing || !this.flashBlocks)
+            tick(this.iterations);
+
+        this.pixi.texts.top.text = this.centerTopText;
+        this.pixi.texts.middle.text = this.centerText;
+
+        this.iterations++;
+
+        this.sprites.forEach(s=>
+        {
+            if (s.sprite.visible)
+            {
+                s.sprite.x = s.position[0] * cellSize;
+                s.sprite.y = s.position[1] * cellSize;
+            }
+        });
+
+        if (this.flashing)
+        {
+            let old = this.flashTicks;
+            let alpha =  Math.abs(this.flashTicks);
+            this.app.stage.alpha = alpha;
+            this.flashTicks += this.flashTickStep;
+            if (Math.sign(old) != Math.sign(this.flashTicks))
+            {
+                tick(this.iterations);
+            }
+            if (this.flashTicks > 1.0)
+            {
+                this.flashing = false;
+            }
+        }
+
+        let diff = performance.now() - start;
+        if (this.iterations % 10 == 0)
+        {
+            this.animateTime = diff;
+            this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
+        }
+
+       /* let c = this.ca;
         let ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
         let ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
         let ratio = ratioWidth;
@@ -442,6 +578,6 @@ export class Engine
             c.fillStyle = "red";
             c.globalAlpha = 1.0;
             c.fillText(this.animateTime.toFixed(3) + "ms", this.config.grid.cellSize, this.config.grid.cellSize);
-        }
+        }*/
     }
 }
