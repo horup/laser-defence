@@ -73,11 +73,16 @@ export class Engine
             },
             sprite:
             {
-                bounds:true
+                bounds:false
+            },
+            info:
+            {
+                time:true
             }
         }
     }
 
+    private animateTime = 0;
     private iterations = 0;
     private state:number = 0;
     private flashing = false;
@@ -334,6 +339,7 @@ export class Engine
 
     animate(tick:(iterations:number)=>any)
     {
+        let start = performance.now();
         let c = this.context;
         let ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
         let ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
@@ -405,6 +411,7 @@ export class Engine
         c.fillStyle = this.foregroundColor;
         c.fillText(this.centerTopText, w/2, this.config.grid.cellSize);
         c.fillText(this.centerText, w/2, h/2);
+        
 
         if (this.flashing)
         {
@@ -423,7 +430,18 @@ export class Engine
                 this.flashing = false;
             }
         }
-
+        
         this.iterations++;
+        let diff = performance.now() - start;
+        if (this.iterations % 5 == 0)
+            this.animateTime = diff;
+        
+        if (this.debug.draw.info.time)
+        {
+            c.textAlign = "left";
+            c.fillStyle = "red";
+            c.globalAlpha = 1.0;
+            c.fillText(this.animateTime.toFixed(3) + "ms", this.config.grid.cellSize, this.config.grid.cellSize);
+        }
     }
 }
