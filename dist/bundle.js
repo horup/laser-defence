@@ -11516,8 +11516,8 @@ var Engine = /** @class */ (function () {
             },
             grid: {
                 cellSize: 16,
-                width: 32,
-                height: 18
+                width: 16,
+                height: 9
             }
         };
         this.debug = {
@@ -23524,10 +23524,6 @@ var G0 = /** @class */ (function (_super) {
         placeCloud(3, 3);
         placeCloud(8, 4);
         placeCloud(13, 2);
-        placeCloud(17, 3);
-        placeCloud(20, 4);
-        placeCloud(25, 3);
-        placeCloud(29, 4);
         this.playerPos.set([2, 16 / 2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(function (m) { return m.reset(); });
@@ -23560,8 +23556,8 @@ var G0 = /** @class */ (function (_super) {
                     var y = this.engine.input.mouse.pos[1];
                     if (y < 1)
                         y = 1;
-                    else if (y > 17)
-                        y = 17;
+                    else if (y > 7)
+                        y = 7;
                     var playerSprite_1 = spriteIndex_1++;
                     this.playerPos.set([2, y]);
                     this.engine.setSprite(playerSprite_1, this.playerPos, 3);
@@ -23585,7 +23581,7 @@ var G0 = /** @class */ (function (_super) {
                         var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
                         if (freeMissiles.length > 0) {
                             var missile = freeMissiles[0];
-                            missile.pos.set([32, 1 + Math.random() * 16]);
+                            missile.pos.set([16, 1 + Math.random() * 6]);
                             missile.inUse = true;
                         }
                     }
@@ -49870,7 +49866,7 @@ exports = module.exports = __webpack_require__(213)(false);
 
 
 // module
-exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(214)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: red;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(214)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: #101010;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
 
 // exports
 

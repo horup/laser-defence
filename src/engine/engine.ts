@@ -62,8 +62,8 @@ export class Engine
         grid:
         {
             cellSize:16,
-            width:32,
-            height:18
+            width:16,
+            height:9
         }
     }
 

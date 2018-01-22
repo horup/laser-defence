@@ -57,14 +57,6 @@ export default class G0 extends Prototype
         placeCloud(8,4);
         placeCloud(13,2);
 
-        placeCloud(17,3);
-        
-        placeCloud(20,4);
-
-        placeCloud(25,3);
-
-        placeCloud(29,4);
-
         this.playerPos.set([2, 16/2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(m=>m.reset());
@@ -100,8 +92,8 @@ export default class G0 extends Prototype
                 let y = this.engine.input.mouse.pos[1];
                 if (y < 1) 
                     y = 1; 
-                else if (y > 17) 
-                    y = 17;
+                else if (y > 7) 
+                    y = 7;
 
                 let playerSprite = spriteIndex++;
                 this.playerPos.set([ 2, y]);
@@ -136,7 +128,7 @@ export default class G0 extends Prototype
                     if (freeMissiles.length > 0)
                     {
                         let missile = freeMissiles[0];
-                        missile.pos.set([32, 1 + Math.random() * 16]);
+                        missile.pos.set([16, 1 + Math.random() * 6]);
                         missile.inUse = true;
                     }
                 }
