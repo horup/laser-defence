@@ -81,7 +81,7 @@ export class Engine
             },
             info:
             {
-                time:true
+                time:false
             }
         }
     }
@@ -495,7 +495,15 @@ export class Engine
         if (this.iterations % 10 == 0)
         {
             this.animateTime = diff;
-            this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
+            if (this.debug.draw.info.time)
+            {
+                this.pixi.texts.debug.visible = true;
+                this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
+            }
+            else
+            {
+                this.pixi.texts.debug.visible = false;
+            }
         }
     }
 }

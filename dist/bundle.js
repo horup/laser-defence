@@ -11529,7 +11529,7 @@ var Engine = /** @class */ (function () {
                     bounds: false
                 },
                 info: {
-                    time: true
+                    time: false
                 }
             }
         };
@@ -11843,7 +11843,13 @@ var Engine = /** @class */ (function () {
         var diff = performance.now() - start;
         if (this.iterations % 10 == 0) {
             this.animateTime = diff;
-            this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
+            if (this.debug.draw.info.time) {
+                this.pixi.texts.debug.visible = true;
+                this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
+            }
+            else {
+                this.pixi.texts.debug.visible = false;
+            }
         }
     };
     return Engine;
@@ -23485,6 +23491,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(96);
 var gl_matrix_1 = __webpack_require__(38);
+var shufflebag_1 = __webpack_require__(218);
 var Missile = /** @class */ (function () {
     function Missile() {
         this.inUse = false;
@@ -23517,6 +23524,7 @@ var G0 = /** @class */ (function (_super) {
         _this.missiles = [];
         _this.explosions = [];
         _this.playerPos = gl_matrix_1.vec2.create();
+        _this.shuffle = new shufflebag_1.Shufflebag(8);
         var e = _this.engine;
         e.loadImage(__webpack_require__(206));
         e.loadImage(__webpack_require__(207));
@@ -23622,7 +23630,7 @@ var G0 = /** @class */ (function (_super) {
                         var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
                         if (freeMissiles.length > 0) {
                             var missile = freeMissiles[0];
-                            missile.pos.set([16, 1 + Math.random() * 6]);
+                            missile.pos.set([16, 1 + this.shuffle.next()]);
                             missile.inUse = true;
                         }
                     }
@@ -50497,6 +50505,41 @@ module.exports = function (css) {
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDEzNjE5ODNGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDEzNjE5ODRGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowMTM2MTk4MUZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowMTM2MTk4MkZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pkux4D4AAAAPUExURf8AAP//AP//7v//q/////eQ73kAAAAFdFJOU/////8A+7YOUwAAAL5JREFUeNqsk1EOxCAIRAfl/mfegrQOYNLsZvlpow9mQIW+BP4J4BXAiUsAaAXogPgimC4VjIgy935ShFwEHHr2d0FbFw8gxDRZspB5xYJ6F7D8OcZ0aCUgefD84TFDiSu4wIgwndSm6wsBe5+6SEDrokjEQLrJbeFBuE3vgtosEhJzOA/qnuQy2EcdftaooUzk447D0m0hXxhZ80BoFiDq2udwAymHqiMfN9pfuQ96+GVA9Ujgt/f2zeP9CDAAUr0LtE16lkAAAAAASUVORK5CYII="
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Shufflebag = /** @class */ (function () {
+    function Shufflebag(capacity) {
+        this.currentItem = 0;
+        this.currentPosition = 0;
+        this.pos = 0;
+        this.data = new Array(capacity);
+        for (var i = 0; i < this.data.length; i++) {
+            this.data[i] = i;
+        }
+    }
+    Shufflebag.prototype.next = function () {
+        if (this.currentPosition < 1) {
+            this.currentPosition = this.data.length - 1;
+            this.currentItem = this.data[0];
+            return this.currentItem;
+        }
+        this.pos = Math.floor(Math.random() * this.currentPosition);
+        this.currentItem = this.data[this.pos];
+        this.data[this.pos] = this.data[this.currentPosition];
+        this.data[this.currentPosition] = this.currentItem;
+        this.currentPosition--;
+        return this.currentItem;
+    };
+    return Shufflebag;
+}());
+exports.Shufflebag = Shufflebag;
+
 
 /***/ })
 /******/ ]);

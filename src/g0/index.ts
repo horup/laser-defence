@@ -1,5 +1,6 @@
 import { Prototype } from "../engine/index";
 import { vec2 } from 'gl-matrix';
+import { Shufflebag } from "../engine/shufflebag";
 
 
 class Missile
@@ -33,8 +34,9 @@ export default class G0 extends Prototype
     missiles:Missile[] = [];
     explosions:Explosion[] = [];
     playerPos:vec2 = vec2.create();
-    
     explosionImg:number;
+    shuffle = new Shufflebag(8);
+
     constructor()
     {
         super();
@@ -170,7 +172,7 @@ export default class G0 extends Prototype
                     if (freeMissiles.length > 0)
                     {
                         let missile = freeMissiles[0];
-                        missile.pos.set([16, 1 + Math.random() * 6]);
+                        missile.pos.set([16, 1 + this.shuffle.next()]);
                         missile.inUse = true;
                     }
                 }
