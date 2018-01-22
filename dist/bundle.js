@@ -11557,9 +11557,16 @@ var Engine = /** @class */ (function () {
                 middle: new PIXI.Text(),
                 top: new PIXI.Text(),
                 debug: new PIXI.Text()
+            },
+            stages: {
+                grid: new PIXI.Container(),
+                text: new PIXI.Container()
             }
         };
         this.app = new PIXI.Application();
+        this.app.stage.addChild(this.pixi.stages.grid);
+        this.app.stage.addChild(this.pixi.stages.text);
+        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         document.body.appendChild(this.app.view);
         var canvas = this.app.view;
         var w = this.config.grid.width;
@@ -11574,36 +11581,23 @@ var Engine = /** @class */ (function () {
                 sprite.x = x * cellSize;
                 sprite.y = y * cellSize;
                 this.grid[y][x] = new Cell(sprite);
-                this.app.stage.addChild(sprite);
+                this.pixi.stages.grid.addChild(sprite);
             }
         }
         this.sprites = new Array(256);
         for (var i = 0; i < this.sprites.length; i++) {
             var sprite = new PIXI.Sprite();
             this.sprites[i] = new Sprite(i, sprite);
-            this.app.stage.addChild(sprite);
+            this.pixi.stages.grid.addChild(sprite);
         }
-        var setStyle = function (text) {
-            text.anchor.x = 0.5;
-            text.anchor.y = 0;
-            text.x = w * cellSize / 2;
-        };
-        var style = { fontFamily: 'Pixeled', fontSize: '8px', fill: 0xFFFFFF };
+        var style = { fontFamily: 'Pixeled', fontSize: 8, fill: 0xFFFFFF };
         this.pixi.texts.middle = new PIXI.Text("hello world", style);
+        this.pixi.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.texts.top = new PIXI.Text("top dollar", style);
         this.pixi.texts.debug = new PIXI.Text("", style);
-        setStyle(this.pixi.texts.top);
-        setStyle(this.pixi.texts.debug);
-        setStyle(this.pixi.texts.middle);
-        this.pixi.texts.top.x = w * cellSize / 2;
-        this.pixi.texts.middle.y = h * cellSize / 2;
-        this.pixi.texts.middle.anchor.y = 0.5;
-        this.pixi.texts.debug.x = 0;
-        this.pixi.texts.debug.anchor.x = 0;
-        this.app.stage.addChild(this.pixi.texts.middle);
-        this.app.stage.addChild(this.pixi.texts.top);
-        this.app.stage.addChild(this.pixi.texts.debug);
-        // c.textAlign = "center";
+        this.pixi.stages.text.addChild(this.pixi.texts.middle);
+        this.pixi.stages.text.addChild(this.pixi.texts.top);
+        this.pixi.stages.text.addChild(this.pixi.texts.debug);
         document.onmousemove = function (ev) {
             if (_this.hasFocus) {
                 var bounds = canvas.getBoundingClientRect();
@@ -11679,11 +11673,28 @@ var Engine = /** @class */ (function () {
             height = screenWidth / targetAspect;
         }
         this.app.renderer.resize(width, height);
-        var w = Math.floor((screenWidth - canvas.width) / 2);
-        var h = Math.floor((screenHeight - canvas.height) / 2);
-        canvas.style.left = w + "px";
-        canvas.style.top = h + "px";
-        console.log(w, h);
+        var marginW = Math.floor((screenWidth - canvas.width) / 2);
+        var marginH = Math.floor((screenHeight - canvas.height) / 2);
+        canvas.style.left = marginW + "px";
+        canvas.style.top = marginH + "px";
+        var cellSize = this.config.grid.cellSize;
+        var gridHeight = this.config.grid.height * cellSize;
+        var ratio = height / gridHeight;
+        var setStyle = function (text) {
+            text.anchor.x = 0.5;
+            text.anchor.y = 0;
+            text.x = width / 2;
+            var size = Math.floor(cellSize * ratio / 2);
+            size = size > 0 ? size : 1;
+            text.style.fontSize = size;
+        };
+        setStyle(this.pixi.texts.top);
+        setStyle(this.pixi.texts.debug);
+        setStyle(this.pixi.texts.middle);
+        this.pixi.texts.middle.y = height / 2;
+        this.pixi.texts.middle.anchor.y = 0.5;
+        this.pixi.texts.debug.x = cellSize * ratio / 2;
+        this.pixi.texts.debug.anchor.x = 0;
     };
     Object.defineProperty(Engine.prototype, "hasFocus", {
         get: function () {
@@ -11776,6 +11787,7 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.loadImage = function (src) {
         var texture = PIXI.Texture.fromImage(src);
+        //  texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.textures.push(texture);
         return this.pixi.textures.length - 1;
     };
@@ -11791,7 +11803,7 @@ var Engine = /** @class */ (function () {
         var ratioWidth = canvasWidth / w;
         var ratioHeight = canvasHeight / h;
         var ratio = ratioWidth;
-        this.app.stage.setTransform(0, 0, ratio, ratio);
+        this.pixi.stages.grid.setTransform(0, 0, ratio, ratio);
         this.app.stage.alpha = 1.0;
         if (!this.flashing || !this.flashBlocks)
             tick(this.iterations);

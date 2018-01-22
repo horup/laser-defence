@@ -118,6 +118,11 @@ export class Engine
             middle:new PIXI.Text(),
             top:new PIXI.Text(),
             debug:new PIXI.Text()
+        },
+        stages:
+        {
+            grid:new PIXI.Container(),
+            text:new PIXI.Container()
         }
     }
 
@@ -125,6 +130,9 @@ export class Engine
     constructor()
     {
         this.app = new PIXI.Application();
+        this.app.stage.addChild(this.pixi.stages.grid);
+        this.app.stage.addChild(this.pixi.stages.text);
+        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
         document.body.appendChild(this.app.view);
         let canvas = this.app.view;
         let w = this.config.grid.width;
@@ -141,7 +149,7 @@ export class Engine
                 sprite.x = x * cellSize;
                 sprite.y = y * cellSize;
                 this.grid[y][x] = new Cell(sprite);
-                this.app.stage.addChild(sprite);
+                this.pixi.stages.grid.addChild(sprite);
             }
         }
 
@@ -150,39 +158,22 @@ export class Engine
         {
             let sprite = new PIXI.Sprite();
             this.sprites[i] = new Sprite(i, sprite);
-            this.app.stage.addChild(sprite);
+            this.pixi.stages.grid.addChild(sprite);
         }
 
-       
-        let setStyle = (text:PIXI.Text) =>
-        {
-            text.anchor.x = 0.5;
-            text.anchor.y = 0;
-            text.x = w * cellSize / 2;
-        }
+      
 
-        let style = {fontFamily : 'Pixeled', fontSize: '8px', fill : 0xFFFFFF};
+        let style = {fontFamily : 'Pixeled', fontSize: 8, fill : 0xFFFFFF};
         this.pixi.texts.middle = new PIXI.Text("hello world", style);
+        this.pixi.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.texts.top = new PIXI.Text("top dollar", style);
         this.pixi.texts.debug = new PIXI.Text("", style);
 
-        setStyle(this.pixi.texts.top);
-        setStyle(this.pixi.texts.debug);
-        setStyle(this.pixi.texts.middle);
-
-        this.pixi.texts.top.x = w * cellSize / 2;
-        this.pixi.texts.middle.y = h * cellSize / 2;
-        this.pixi.texts.middle.anchor.y = 0.5;
-        this.pixi.texts.debug.x = 0;
-        this.pixi.texts.debug.anchor.x = 0;
+      
         
-        this.app.stage.addChild(this.pixi.texts.middle);
-        this.app.stage.addChild(this.pixi.texts.top);
-        this.app.stage.addChild(this.pixi.texts.debug);
-
-        // c.textAlign = "center";
-
-        
+        this.pixi.stages.text.addChild(this.pixi.texts.middle);
+        this.pixi.stages.text.addChild(this.pixi.texts.top);
+        this.pixi.stages.text.addChild(this.pixi.texts.debug);
 
         document.onmousemove = (ev)=>
         {
@@ -290,11 +281,32 @@ export class Engine
         }
        
         this.app.renderer.resize(width, height);
-        let w =  Math.floor((screenWidth - canvas.width) / 2);
-        let h = Math.floor((screenHeight - canvas.height) / 2);
-        canvas.style.left = w + "px";
-        canvas.style.top = h + "px";
-        console.log(w, h);
+        let marginW =  Math.floor((screenWidth - canvas.width) / 2);
+        let marginH = Math.floor((screenHeight - canvas.height) / 2);
+        canvas.style.left = marginW + "px";
+        canvas.style.top = marginH + "px";
+        let cellSize = this.config.grid.cellSize;
+        let gridHeight = this.config.grid.height * cellSize;
+        let ratio = height / gridHeight;
+
+        let setStyle = (text:PIXI.Text) =>
+        {
+            text.anchor.x = 0.5;
+            text.anchor.y = 0;
+            text.x = width /2;
+            let size = Math.floor(cellSize * ratio / 2);
+            size = size > 0 ? size : 1;
+            text.style.fontSize = size;
+        }
+
+        setStyle(this.pixi.texts.top);
+        setStyle(this.pixi.texts.debug);
+        setStyle(this.pixi.texts.middle);
+
+        this.pixi.texts.middle.y = height / 2;
+        this.pixi.texts.middle.anchor.y = 0.5;
+        this.pixi.texts.debug.x = cellSize * ratio / 2;
+        this.pixi.texts.debug.anchor.x = 0;
     }
 
 
@@ -415,6 +427,7 @@ export class Engine
     loadImage(src:any):number
     {
         let texture = PIXI.Texture.fromImage(src);
+      //  texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.textures.push(texture);
         return this.pixi.textures.length - 1;
     }
@@ -432,7 +445,7 @@ export class Engine
         let ratioWidth = canvasWidth / w;
         let ratioHeight = canvasHeight / h;
         let ratio = ratioWidth;
-        this.app.stage.setTransform(0,0, ratio, ratio);
+        this.pixi.stages.grid.setTransform(0,0, ratio, ratio);
 
 
         this.app.stage.alpha = 1.0;
