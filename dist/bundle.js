@@ -11587,6 +11587,8 @@ var Engine = /** @class */ (function () {
         this.sprites = new Array(256);
         for (var i = 0; i < this.sprites.length; i++) {
             var sprite = new PIXI.Sprite();
+            sprite.anchor.x = 0.5;
+            sprite.anchor.y = 0.5;
             this.sprites[i] = new Sprite(i, sprite);
             this.pixi.stages.grid.addChild(sprite);
         }
@@ -11766,8 +11768,9 @@ var Engine = /** @class */ (function () {
     Engine.prototype.clearSprites = function () {
         this.sprites.forEach(function (s) { return s.clear(); });
     };
-    Engine.prototype.setSprite = function (i, pos, image) {
+    Engine.prototype.setSprite = function (i, pos, image, alpha) {
         if (image === void 0) { image = undefined; }
+        if (alpha === void 0) { alpha = undefined; }
         var sprite = this.sprites[i];
         sprite.position.set(pos);
         if (image != undefined) {
@@ -11775,6 +11778,8 @@ var Engine = /** @class */ (function () {
                 var tex = this.pixi.textures[image];
                 sprite.sprite.texture = tex;
                 sprite.sprite.visible = true;
+                var a = alpha != undefined ? alpha : 1.0;
+                sprite.sprite.alpha = a;
             }
             else {
                 sprite.clear();
@@ -23480,7 +23485,6 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(96);
 var gl_matrix_1 = __webpack_require__(38);
-var spawnTime = 60;
 var Missile = /** @class */ (function () {
     function Missile() {
         this.inUse = false;
@@ -23491,23 +23495,41 @@ var Missile = /** @class */ (function () {
     };
     return Missile;
 }());
+var Explosion = /** @class */ (function () {
+    function Explosion() {
+        this.inUse = false;
+        this.pos = gl_matrix_1.vec2.create();
+        this.alpha = 1.0;
+    }
+    Explosion.prototype.reset = function () {
+        this.alpha = 1.0;
+        this.inUse = false;
+    };
+    return Explosion;
+}());
 var G0 = /** @class */ (function (_super) {
     __extends(G0, _super);
     function G0() {
         var _this = _super.call(this) || this;
+        _this.spawnTime = 60;
         _this.timer = 0;
         _this.state = 0;
         _this.missiles = [];
+        _this.explosions = [];
         _this.playerPos = gl_matrix_1.vec2.create();
         var e = _this.engine;
         e.loadImage(__webpack_require__(206));
         e.loadImage(__webpack_require__(207));
         e.loadImage(__webpack_require__(208));
         e.loadImage(__webpack_require__(209));
+        _this.explosionImg = e.loadImage(__webpack_require__(217));
         e.clearGrid(-1);
-        _this.missiles = new Array(10);
-        for (var i = 0; i < _this.missiles.length; i++) {
+        var max = 100;
+        _this.missiles = new Array(max);
+        _this.explosions = new Array(max);
+        for (var i = 0; i < max; i++) {
             _this.missiles[i] = new Missile();
+            _this.explosions[i] = new Explosion();
         }
         return _this;
     }
@@ -23527,6 +23549,7 @@ var G0 = /** @class */ (function (_super) {
         this.playerPos.set([2, 16 / 2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(function (m) { return m.reset(); });
+        this.spawnTime = 60;
     };
     G0.prototype.tick = function (iterations) {
         var _this = this;
@@ -23556,8 +23579,8 @@ var G0 = /** @class */ (function (_super) {
                     var y = this.engine.input.mouse.pos[1];
                     if (y < 1)
                         y = 1;
-                    else if (y > 7)
-                        y = 7;
+                    else if (y > 8)
+                        y = 8;
                     var playerSprite_1 = spriteIndex_1++;
                     this.playerPos.set([2, y]);
                     this.engine.setSprite(playerSprite_1, this.playerPos, 3);
@@ -23569,6 +23592,15 @@ var G0 = /** @class */ (function (_super) {
                             m.pos[0] -= 0.15;
                             if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite_1) {
                                 m.reset();
+                                for (var _i = 0, _a = _this.explosions; _i < _a.length; _i++) {
+                                    var explosion = _a[_i];
+                                    if (!explosion.inUse) {
+                                        explosion.inUse = true;
+                                        explosion.pos.set(m.pos);
+                                        explosion.alpha = 1.0;
+                                        break;
+                                    }
+                                }
                             }
                             if (m.pos[0] < 0) {
                                 m.reset();
@@ -23577,12 +23609,27 @@ var G0 = /** @class */ (function (_super) {
                             }
                         }
                     });
-                    if (iterations % spawnTime == 0) {
+                    this.explosions.forEach(function (m) {
+                        if (m.inUse) {
+                            _this.engine.setSprite(spriteIndex_1++, m.pos, _this.explosionImg, m.alpha);
+                            m.alpha -= 0.1;
+                            if (m.alpha < 0) {
+                                m.reset();
+                            }
+                        }
+                    });
+                    if (iterations % this.spawnTime == 0) {
                         var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
                         if (freeMissiles.length > 0) {
                             var missile = freeMissiles[0];
                             missile.pos.set([16, 1 + Math.random() * 6]);
                             missile.inUse = true;
+                        }
+                    }
+                    if (iterations % 60 == 0) {
+                        this.spawnTime--;
+                        if (this.spawnTime < 0) {
+                            this.spawnTime = 0;
                         }
                     }
                     this.timer++;
@@ -50444,6 +50491,12 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDEzNjE5ODNGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDEzNjE5ODRGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowMTM2MTk4MUZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowMTM2MTk4MkZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pkux4D4AAAAPUExURf8AAP//AP//7v//q/////eQ73kAAAAFdFJOU/////8A+7YOUwAAAL5JREFUeNqsk1EOxCAIRAfl/mfegrQOYNLsZvlpow9mQIW+BP4J4BXAiUsAaAXogPgimC4VjIgy935ShFwEHHr2d0FbFw8gxDRZspB5xYJ6F7D8OcZ0aCUgefD84TFDiSu4wIgwndSm6wsBe5+6SEDrokjEQLrJbeFBuE3vgtosEhJzOA/qnuQy2EcdftaooUzk447D0m0hXxhZ80BoFiDq2udwAymHqiMfN9pfuQ96+GVA9Ujgt/f2zeP9CDAAUr0LtE16lkAAAAAASUVORK5CYII="
 
 /***/ })
 /******/ ]);

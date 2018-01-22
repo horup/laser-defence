@@ -1,7 +1,6 @@
 import { Prototype } from "../engine/index";
 import { vec2 } from 'gl-matrix';
 
-let spawnTime = 60;
 
 class Missile
 {
@@ -14,13 +13,28 @@ class Missile
     }
 }
 
+class Explosion
+{
+    inUse = false;
+    pos:vec2 = vec2.create();
+    alpha:number = 1.0;
+    reset()
+    {
+        this.alpha = 1.0;
+        this.inUse = false;
+    }
+}
+
 export default class G0 extends Prototype
 {
+    spawnTime = 60;
     timer:number = 0;
     state:number = 0;
     missiles:Missile[] = [];
+    explosions:Explosion[] = [];
     playerPos:vec2 = vec2.create();
     
+    explosionImg:number;
     constructor()
     {
         super();
@@ -30,12 +44,16 @@ export default class G0 extends Prototype
         e.loadImage(require("./imgs/cloud.png"));
         e.loadImage(require("./imgs/missile.png"));
         e.loadImage(require("./imgs/block.png"));
-        e.clearGrid(-1);
+        this.explosionImg = e.loadImage(require("./imgs/explosion.png"));
 
-        this.missiles = new Array(10);
-        for (let i = 0; i < this.missiles.length; i++)
+        e.clearGrid(-1);
+        let max = 100;
+        this.missiles = new Array(max);
+        this.explosions = new Array(max);
+        for (let i = 0; i < max; i++)
         {
             this.missiles[i] = new Missile();
+            this.explosions[i] = new Explosion();
         }
     }
 
@@ -60,6 +78,7 @@ export default class G0 extends Prototype
         this.playerPos.set([2, 16/2]);
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(m=>m.reset());
+        this.spawnTime = 60;
     }
 
     tick(iterations:number)
@@ -92,8 +111,8 @@ export default class G0 extends Prototype
                 let y = this.engine.input.mouse.pos[1];
                 if (y < 1) 
                     y = 1; 
-                else if (y > 7) 
-                    y = 7;
+                else if (y > 8) 
+                    y = 8;
 
                 let playerSprite = spriteIndex++;
                 this.playerPos.set([ 2, y]);
@@ -111,6 +130,16 @@ export default class G0 extends Prototype
                         if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
                         {
                             m.reset();
+                            for (let explosion of this.explosions)
+                            {
+                                if (!explosion.inUse)
+                                {
+                                    explosion.inUse = true;
+                                    explosion.pos.set(m.pos);
+                                    explosion.alpha = 1.0;
+                                    break;
+                                }
+                            }
                         }
 
                         if (m.pos[0]  < 0)
@@ -122,7 +151,20 @@ export default class G0 extends Prototype
                     }
                 });
 
-                if (iterations % spawnTime == 0)
+                this.explosions.forEach(m =>
+                {
+                    if (m.inUse)
+                    {
+                        this.engine.setSprite(spriteIndex++, m.pos, this.explosionImg, m.alpha);
+                        m.alpha -= 0.1;
+                        if (m.alpha < 0)
+                        {
+                            m.reset();
+                        }
+                    }
+                });
+
+                if (iterations % this.spawnTime == 0)
                 {
                     let freeMissiles = this.missiles.filter(m=>!m.inUse);
                     if (freeMissiles.length > 0)
@@ -130,6 +172,15 @@ export default class G0 extends Prototype
                         let missile = freeMissiles[0];
                         missile.pos.set([16, 1 + Math.random() * 6]);
                         missile.inUse = true;
+                    }
+                }
+                
+                if (iterations % 60 == 0)
+                {
+                    this.spawnTime--;
+                    if (this.spawnTime < 0)
+                    {
+                        this.spawnTime = 0;
                     }
                 }
 

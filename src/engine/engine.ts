@@ -157,6 +157,8 @@ export class Engine
         for (let i = 0; i < this.sprites.length; i++)
         {
             let sprite = new PIXI.Sprite();
+            sprite.anchor.x = 0.5;
+            sprite.anchor.y = 0.5;
             this.sprites[i] = new Sprite(i, sprite);
             this.pixi.stages.grid.addChild(sprite);
         }
@@ -394,7 +396,7 @@ export class Engine
         this.sprites.forEach(s=>s.clear());
     }
 
-    setSprite(i:number, pos:vec2, image:number = undefined)
+    setSprite(i:number, pos:vec2, image:number = undefined, alpha:number = undefined)
     {
         let sprite = this.sprites[i];
         sprite.position.set(pos);
@@ -405,6 +407,8 @@ export class Engine
                 let tex = this.pixi.textures[image];
                 sprite.sprite.texture = tex;
                 sprite.sprite.visible = true;
+                let a = alpha != undefined ? alpha : 1.0;
+                sprite.sprite.alpha = a;
             }
             else
             {
