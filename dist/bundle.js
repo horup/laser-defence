@@ -11657,6 +11657,9 @@ var Engine = /** @class */ (function () {
         this.resize();
     }
     Engine.prototype.resize = function () {
+        var cellSize = this.config.grid.cellSize;
+        var gridHeight = this.config.grid.height * cellSize;
+        var gridWidth = this.config.grid.width * cellSize;
         var targetAspect = this.config.grid.width / this.config.grid.height;
         var screenWidth = window.innerWidth;
         var screenHeight = window.innerHeight;
@@ -11664,21 +11667,26 @@ var Engine = /** @class */ (function () {
         var canvas = this.app.view;
         var width = 0;
         var height = 0;
+        var multiplum = gridHeight;
         if (screenAspect >= targetAspect) {
-            height = screenHeight;
-            width = screenHeight * targetAspect;
+            height = Math.floor(screenHeight / multiplum) * multiplum;
+            if (height == 0)
+                height = screenHeight;
+            var factor = height / gridHeight;
+            width = gridWidth * factor;
         }
         else if (screenAspect < targetAspect) {
-            width = screenWidth;
-            height = screenWidth / targetAspect;
+            width = Math.floor(screenWidth / multiplum) * multiplum;
+            if (width == 0)
+                width = screenWidth;
+            var factor = width / gridWidth;
+            height = gridHeight * factor;
         }
         this.app.renderer.resize(width, height);
         var marginW = Math.floor((screenWidth - canvas.width) / 2);
         var marginH = Math.floor((screenHeight - canvas.height) / 2);
         canvas.style.left = marginW + "px";
         canvas.style.top = marginH + "px";
-        var cellSize = this.config.grid.cellSize;
-        var gridHeight = this.config.grid.height * cellSize;
         var ratio = height / gridHeight;
         var setStyle = function (text) {
             text.anchor.x = 0.5;
@@ -11787,7 +11795,6 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.loadImage = function (src) {
         var texture = PIXI.Texture.fromImage(src);
-        //  texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.textures.push(texture);
         return this.pixi.textures.length - 1;
     };
@@ -11833,109 +11840,6 @@ var Engine = /** @class */ (function () {
             this.animateTime = diff;
             this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
         }
-        /* let c = this.ca;
-         let ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
-         let ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
-         let ratio = ratioWidth;
-         c.setTransform(ratio, 0, 0, ratio, 0,0);
-         c.imageSmoothingEnabled = false;
-         c.font = "8px Pixeled";
-         c.textAlign = "center";
-         if (!this.flashing || !this.flashBlocks)
-             tick(this.iterations);
- 
-         let w = this.config.grid.cellSize * this.config.grid.width;
-         let h = this.config.grid.cellSize * this.config.grid.height;
-         c.globalAlpha = 1.0;
-         c.fillStyle = this.backgroundColor;
-         c.fillRect(0, 0, w, h);
-         let cellSize = this.config.grid.cellSize;
-         for (let y = 0; y < this.grid.length; y++)
-         {
-             for (let x = 0; x< this.grid[y].length; x++)
-             {
-                 let cell = this.grid[y][x];
-                 if (cell.image >= 0 && cell.image < this.images.length)
-                 {
-                     let image = this.images[cell.image];
-                     c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
-                 }
-             }
-         }
- 
-         for (let sprite of this.sprites)
-         {
-             if (sprite.image >= 0 && sprite.image < this.images.length)
-             {
-                 let image = this.images[sprite.image];
-                 let x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
-                 let y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
-                 let sw = image.width / cellSize;
-                 let sh = image.height / cellSize;
-                 c.drawImage(image, x, y);
-                 if (this.debug.draw.sprite.bounds)
-                 {
-                     c.strokeStyle = 'green';
-                     if (this.getIntersectingSprite(sprite.id) != -1)
-                         c.strokeStyle = 'red';
-                     c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
-                 }
-             }
-         }
- 
-         if (this.debug.draw.grid.bounds)
-         {
-             for (let y = -1; y < h - 1; y+= cellSize)
-             {
-                 c.beginPath();
-                 c.moveTo(0.5, y+0.5);
-                 c.lineTo(w+0.5, y+0.5);
-                 c.stroke();
-             }
-             for (let x = -1; x < h - 1; x+= cellSize)
-             {
-                 c.beginPath();
-                 c.moveTo(x+0.5, 0.5);
-                 c.lineTo(x+0.5, h);
-                 c.stroke();
-             }
-         }
- 
-         c.fillStyle = this.foregroundColor;
-         c.fillText(this.centerTopText, w/2, this.config.grid.cellSize);
-         c.fillText(this.centerText, w/2, h/2);
-         
- 
-         if (this.flashing)
-         {
-             let old = this.flashTicks;
-             let alpha = 1.0 - Math.abs(this.flashTicks);
-             c.fillStyle = "black";
-             c.globalAlpha = alpha;
-             c.fillRect(0, 0, c.canvas.width, c.canvas.height);
-             this.flashTicks += this.flashTickStep;
-             if (Math.sign(old) != Math.sign(this.flashTicks))
-             {
-                 tick(this.iterations);
-             }
-             if (this.flashTicks > 1.0)
-             {
-                 this.flashing = false;
-             }
-         }
-         
-         this.iterations++;
-         let diff = performance.now() - start;
-         if (this.iterations % 5 == 0)
-             this.animateTime = diff;
-         
-         if (this.debug.draw.info.time)
-         {
-             c.textAlign = "left";
-             c.fillStyle = "red";
-             c.globalAlpha = 1.0;
-             c.fillText(this.animateTime.toFixed(3) + "ms", this.config.grid.cellSize, this.config.grid.cellSize);
-         }*/
     };
     return Engine;
 }());
@@ -49966,7 +49870,7 @@ exports = module.exports = __webpack_require__(213)(false);
 
 
 // module
-exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(214)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: black;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(214)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: red;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    cursor:none;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
 
 // exports
 

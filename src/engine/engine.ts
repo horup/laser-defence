@@ -161,15 +161,11 @@ export class Engine
             this.pixi.stages.grid.addChild(sprite);
         }
 
-      
-
         let style = {fontFamily : 'Pixeled', fontSize: 8, fill : 0xFFFFFF};
         this.pixi.texts.middle = new PIXI.Text("hello world", style);
         this.pixi.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.texts.top = new PIXI.Text("top dollar", style);
         this.pixi.texts.debug = new PIXI.Text("", style);
-
-      
         
         this.pixi.stages.text.addChild(this.pixi.texts.middle);
         this.pixi.stages.text.addChild(this.pixi.texts.top);
@@ -258,10 +254,12 @@ export class Engine
         window.onresize = ()=>this.resize();
         this.resize();
     }
-
     
     private resize()
     {
+        let cellSize = this.config.grid.cellSize;
+        let gridHeight = this.config.grid.height * cellSize;
+        let gridWidth = this.config.grid.width * cellSize;
         let targetAspect = this.config.grid.width / this.config.grid.height;
         let screenWidth = window.innerWidth;
         let screenHeight = window.innerHeight;
@@ -269,24 +267,33 @@ export class Engine
         let canvas = this.app.view;
         let width = 0;
         let height = 0;
+        let multiplum = gridHeight;
+        
         if (screenAspect >= targetAspect)
         {
-            height = screenHeight;
-            width = screenHeight * targetAspect;
+            height = Math.floor(screenHeight / multiplum) * multiplum;
+            if (height == 0)
+                height = screenHeight;
+
+            let factor = height / gridHeight;
+            width = gridWidth * factor;
         }
         else if (screenAspect < targetAspect)
         {
-            width = screenWidth;
-            height = screenWidth / targetAspect;
+            width = Math.floor(screenWidth / multiplum) * multiplum;
+            if (width == 0)
+                width = screenWidth;
+            let factor = width / gridWidth;
+            height = gridHeight * factor;
         }
+
        
         this.app.renderer.resize(width, height);
         let marginW =  Math.floor((screenWidth - canvas.width) / 2);
         let marginH = Math.floor((screenHeight - canvas.height) / 2);
         canvas.style.left = marginW + "px";
         canvas.style.top = marginH + "px";
-        let cellSize = this.config.grid.cellSize;
-        let gridHeight = this.config.grid.height * cellSize;
+     
         let ratio = height / gridHeight;
 
         let setStyle = (text:PIXI.Text) =>
@@ -427,7 +434,6 @@ export class Engine
     loadImage(src:any):number
     {
         let texture = PIXI.Texture.fromImage(src);
-      //  texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         this.pixi.textures.push(texture);
         return this.pixi.textures.length - 1;
     }
@@ -446,7 +452,6 @@ export class Engine
         let ratioHeight = canvasHeight / h;
         let ratio = ratioWidth;
         this.pixi.stages.grid.setTransform(0,0, ratio, ratio);
-
 
         this.app.stage.alpha = 1.0;
         if (!this.flashing || !this.flashBlocks)
@@ -488,109 +493,5 @@ export class Engine
             this.animateTime = diff;
             this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
         }
-
-       /* let c = this.ca;
-        let ratioWidth = this.context.canvas.width / (this.config.grid.cellSize * this.config.grid.width);
-        let ratioHeight = this.context.canvas.height / (this.config.grid.cellSize * this.config.grid.height);
-        let ratio = ratioWidth;
-        c.setTransform(ratio, 0, 0, ratio, 0,0);
-        c.imageSmoothingEnabled = false;
-        c.font = "8px Pixeled";
-        c.textAlign = "center";
-        if (!this.flashing || !this.flashBlocks)
-            tick(this.iterations);
-
-        let w = this.config.grid.cellSize * this.config.grid.width;
-        let h = this.config.grid.cellSize * this.config.grid.height;
-        c.globalAlpha = 1.0;
-        c.fillStyle = this.backgroundColor;
-        c.fillRect(0, 0, w, h);
-        let cellSize = this.config.grid.cellSize;
-        for (let y = 0; y < this.grid.length; y++)
-        {
-            for (let x = 0; x< this.grid[y].length; x++)
-            {
-                let cell = this.grid[y][x];
-                if (cell.image >= 0 && cell.image < this.images.length)
-                {
-                    let image = this.images[cell.image];
-                    c.drawImage(image, Math.floor(cell.imgOffsetX * cellSize), Math.floor(cell.imgOffsetY * cellSize), cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
-                }
-            }
-        }
-
-        for (let sprite of this.sprites)
-        {
-            if (sprite.image >= 0 && sprite.image < this.images.length)
-            {
-                let image = this.images[sprite.image];
-                let x = Math.floor(sprite.position[0] * cellSize - Math.floor(image.width / 2));
-                let y = Math.floor(sprite.position[1] * cellSize - Math.floor(image.height / 2));
-                let sw = image.width / cellSize;
-                let sh = image.height / cellSize;
-                c.drawImage(image, x, y);
-                if (this.debug.draw.sprite.bounds)
-                {
-                    c.strokeStyle = 'green';
-                    if (this.getIntersectingSprite(sprite.id) != -1)
-                        c.strokeStyle = 'red';
-                    c.strokeRect(x + 0.5, y + 0.5, image.width - 1, image.height - 1);
-                }
-            }
-        }
-
-        if (this.debug.draw.grid.bounds)
-        {
-            for (let y = -1; y < h - 1; y+= cellSize)
-            {
-                c.beginPath();
-                c.moveTo(0.5, y+0.5);
-                c.lineTo(w+0.5, y+0.5);
-                c.stroke();
-            }
-            for (let x = -1; x < h - 1; x+= cellSize)
-            {
-                c.beginPath();
-                c.moveTo(x+0.5, 0.5);
-                c.lineTo(x+0.5, h);
-                c.stroke();
-            }
-        }
-
-        c.fillStyle = this.foregroundColor;
-        c.fillText(this.centerTopText, w/2, this.config.grid.cellSize);
-        c.fillText(this.centerText, w/2, h/2);
-        
-
-        if (this.flashing)
-        {
-            let old = this.flashTicks;
-            let alpha = 1.0 - Math.abs(this.flashTicks);
-            c.fillStyle = "black";
-            c.globalAlpha = alpha;
-            c.fillRect(0, 0, c.canvas.width, c.canvas.height);
-            this.flashTicks += this.flashTickStep;
-            if (Math.sign(old) != Math.sign(this.flashTicks))
-            {
-                tick(this.iterations);
-            }
-            if (this.flashTicks > 1.0)
-            {
-                this.flashing = false;
-            }
-        }
-        
-        this.iterations++;
-        let diff = performance.now() - start;
-        if (this.iterations % 5 == 0)
-            this.animateTime = diff;
-        
-        if (this.debug.draw.info.time)
-        {
-            c.textAlign = "left";
-            c.fillStyle = "red";
-            c.globalAlpha = 1.0;
-            c.fillText(this.animateTime.toFixed(3) + "ms", this.config.grid.cellSize, this.config.grid.cellSize);
-        }*/
     }
 }
