@@ -1,7 +1,7 @@
 {
     "name": "Rapid",
     "icons": [{
-      "src": "icon.png",
+      "src": "favicon.png",
       "type": "image/png",
       "sizes": "16x16"
     }],
