@@ -184,7 +184,7 @@ export class Engine
                 let x = ev.x - c.offsetLeft;
                 let y = ev.y - c.offsetTop;
                 y = y / bounds.height * this.config.grid.height;
-                x = x / bounds.width * this.config.grid.height;
+                x = x / bounds.width * this.config.grid.width;
                 x = clamp(x, 0, this.config.grid.width);
                 y = clamp(y, 0, this.config.grid.height);
 
@@ -397,7 +397,8 @@ export class Engine
         this.sprites.forEach(s=>s.clear());
     }
 
-    setSprite(i:number, pos:vec2, image:number = undefined, alpha:number = undefined)
+    defaultAnchor = vec2.clone([0.5,0.5]);
+    setSprite(i:number, pos:vec2, image:number = undefined, alpha:number = undefined, rotation:number = undefined, anchor:vec2 = this.defaultAnchor)
     {
         let sprite = this.sprites[i];
         sprite.position.set(pos);
@@ -406,9 +407,13 @@ export class Engine
             if (image >= 0)
             {
                 let tex = this.pixi.textures[image];
+                sprite.sprite.anchor.x = anchor[0];
+                sprite.sprite.anchor.y = anchor[1];
                 sprite.sprite.texture = tex;
                 sprite.sprite.visible = true;
                 let a = alpha != undefined ? alpha : 1.0;
+                rotation = rotation != undefined ? rotation : 0.0;
+                sprite.sprite.rotation = rotation;
                 sprite.sprite.alpha = a;
             }
             else

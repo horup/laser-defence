@@ -2,7 +2,6 @@ import { Prototype } from "../engine/index";
 import { vec2 } from 'gl-matrix';
 import { Shufflebag } from "../engine/shufflebag";
 
-
 class Missile
 {
     inUse = false;
@@ -26,6 +25,14 @@ class Explosion
     }
 }
 
+class Laser
+{
+    fire = 0;
+    rotation:number = 0;
+    target = vec2.create();
+    pos = vec2.create();
+}
+
 export default class G0 extends Prototype
 {
     spawnTime = 60;
@@ -36,6 +43,14 @@ export default class G0 extends Prototype
     playerPos:vec2 = vec2.create();
     explosionImg:number;
     shuffle = new Shufflebag(8);
+    laser = new Laser();
+    img = 
+    {
+        beam:0,
+        laser:0,
+        grass:0,
+        laserbase:0
+    }
 
     constructor()
     {
@@ -47,6 +62,11 @@ export default class G0 extends Prototype
         e.loadImage(require("./imgs/missile.png"));
         e.loadImage(require("./imgs/block.png"));
         this.explosionImg = e.loadImage(require("./imgs/explosion.png"));
+
+        this.img.beam = e.loadImage(require("./imgs/beam.png"));
+        this.img.laser = e.loadImage(require("./imgs/laser.png"));
+        this.img.grass = e.loadImage(require("./imgs/grass.png"));
+        this.img.laserbase = e.loadImage(require("./imgs/laserbase.png"));
 
         e.clearGrid(-1);
         let max = 100;
@@ -65,6 +85,7 @@ export default class G0 extends Prototype
         e.centerText = "";
         e.clearGrid(0);
         this.timer = 0;
+        this.laser.rotation = 0;
 
         let placeCloud = (sx:number, sy:number)=>
         {
@@ -76,6 +97,11 @@ export default class G0 extends Prototype
         placeCloud(3,3);
         placeCloud(8,4);
         placeCloud(13,2);
+
+        for (let x = 0; x < e.config.grid.width; x++)
+        {
+            e.setCell(x, 8, this.img.grass);
+        }
 
         this.playerPos.set([2, 16/2]);
         this.engine.setSprite(0, this.playerPos, 3);
@@ -111,14 +137,20 @@ export default class G0 extends Prototype
                 this.engine.clearSprites();
                 let spriteIndex = 0;
                 let y = this.engine.input.mouse.pos[1];
+                let x = this.engine.input.mouse.pos[0];
                 if (y < 1) 
                     y = 1; 
                 else if (y > 8) 
                     y = 8;
+               
+                if (x < 1) 
+                    x = 1; 
+                else if (x > e.config.grid.width - 1) 
+                    x = e.config.grid.width - 1;
 
                 let playerSprite = spriteIndex++;
-                this.playerPos.set([ 2, y]);
-                this.engine.setSprite(playerSprite, this.playerPos, 3);
+                this.playerPos.set([ x, y]);
+                this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
 
                 this.missiles.forEach(m=>
                 {
@@ -139,6 +171,8 @@ export default class G0 extends Prototype
                                     explosion.inUse = true;
                                     explosion.pos.set(m.pos);
                                     explosion.alpha = 1.0;
+                                    this.laser.target.set(m.pos);
+                                    this.laser.fire = 3;
                                     break;
                                 }
                             }
@@ -190,6 +224,20 @@ export default class G0 extends Prototype
                 let frames = Math.floor(this.timer % 60);
                 let seconds = Math.floor(this.timer / 60);
                 
+                this.laser.pos.set([1, 8.5]);
+                let v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
+                let v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
+                this.laser.rotation = v;
+
+                e.setSprite(spriteIndex++, this.laser.pos, this.img.laserbase);
+
+                if (this.laser.fire > 0)
+                {
+                    e.setSprite(spriteIndex++, this.laser.pos, this.img.beam, 1.0, v2, vec2.clone([0,0.5]));
+                    this.laser.fire--;
+                }
+                
+                e.setSprite(spriteIndex++, this.laser.pos, this.img.laser, 1.0, this.laser.rotation);
                 e.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
                 break;
             }
