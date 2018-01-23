@@ -11634,6 +11634,16 @@ var Engine = /** @class */ (function () {
         };
         document.ontouchstart = function (ev) {
             if (_this.hasFocus) {
+                var bounds = canvas.getBoundingClientRect();
+                var c = canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.touches[0].clientX - c.offsetLeft;
+                var y = ev.touches[0].clientY - c.offsetTop;
+                y = y / bounds.height * _this.config.grid.height;
+                x = x / bounds.width * _this.config.grid.width;
+                x = clamp(x, 0, _this.config.grid.width);
+                y = clamp(y, 0, _this.config.grid.height);
+                _this.input.mouse.pos.set([x, y]);
                 _this.input.mouse.button[0] = true;
             }
         };

@@ -220,6 +220,17 @@ export class Engine
         {
             if (this.hasFocus)
             {
+                let bounds = canvas.getBoundingClientRect();
+                let c = canvas;
+                let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
+                let x = ev.touches[0].clientX - c.offsetLeft;
+                let y = ev.touches[0].clientY - c.offsetTop;
+                y = y / bounds.height * this.config.grid.height;
+                x = x / bounds.width * this.config.grid.width;
+                x = clamp(x, 0, this.config.grid.width);
+                y = clamp(y, 0, this.config.grid.height);
+
+                this.input.mouse.pos.set([x,y]);
                 this.input.mouse.button[0] = true;
             }
         }
