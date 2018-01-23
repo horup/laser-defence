@@ -11669,7 +11669,8 @@ var Engine = /** @class */ (function () {
         var canvas = this.app.view;
         var width = 0;
         var height = 0;
-        var multiplum = gridHeight;
+        //let multiplum = gridHeight;
+        var multiplum = 1;
         if (screenAspect >= targetAspect) {
             height = Math.floor(screenHeight / multiplum) * multiplum;
             if (height == 0)

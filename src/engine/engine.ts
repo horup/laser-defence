@@ -269,7 +269,8 @@ export class Engine
         let canvas = this.app.view;
         let width = 0;
         let height = 0;
-        let multiplum = gridHeight;
+        //let multiplum = gridHeight;
+        let multiplum = 1;
         
         if (screenAspect >= targetAspect)
         {
