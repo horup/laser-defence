@@ -11495,6 +11495,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var gl_matrix_1 = __webpack_require__(39);
 var SAT = __webpack_require__(102);
 var PIXI = __webpack_require__(103);
+var measurement_1 = __webpack_require__(224);
 /**Sprite.*/
 var Sprite = /** @class */ (function () {
     function Sprite(id, sprite) {
@@ -11537,13 +11538,8 @@ var Engine = /** @class */ (function () {
         };
         this.metric = {
             measurements: {
-                animate: {
-                    min: 0,
-                    max: 0,
-                    current: 0,
-                    avg: 0,
-                    measurements: 0
-                }
+                animate: new measurement_1.Measurement(),
+                fps: new measurement_1.Measurement()
             }
         };
         this.debug = {
@@ -11590,6 +11586,8 @@ var Engine = /** @class */ (function () {
             }
         };
         this.defaultAnchor = gl_matrix_1.vec2.clone([0.5, 0.5]);
+        this.animateStart = performance.now();
+        this.animateCount = 0;
         this.app = new PIXI.Application();
         this.app.stage.addChild(this.pixi.stages.grid);
         this.app.stage.addChild(this.pixi.stages.text);
@@ -11850,6 +11848,7 @@ var Engine = /** @class */ (function () {
         return this.pixi.textures.length - 1;
     };
     Engine.prototype.animate = function (tick) {
+        this.animateCount++;
         var start = performance.now();
         var canvasWidth = this.app.view.width;
         var canvasHeight = this.app.view.height;
@@ -11886,13 +11885,17 @@ var Engine = /** @class */ (function () {
                 this.flashing = false;
             }
         }
+        var now = performance.now();
         var diff = performance.now() - start;
         var am = this.metric.measurements.animate;
-        am.current = diff;
-        am.max = am.max < am.current ? am.current : am.max;
-        am.min = am.current < am.min || am.min == 0 ? am.current : am.min;
-        am.measurements++;
-        am.avg += (am.current - am.avg) / am.measurements;
+        var fps = this.metric.measurements.fps;
+        if (now >= this.animateStart + 1000) {
+            this.animateStart = now;
+            fps.measure(this.animateCount);
+            this.animateCount = 0;
+            console.log(fps.avg);
+        }
+        am.measure(diff);
         if (this.iterations % 10 == 0) {
             this.animateTime = diff;
             if (this.debug.draw.info.time) {
@@ -50700,6 +50703,44 @@ module.exports = function (css) {
 	// send back the fixed css
 	return fixedCss;
 };
+
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Measurement = /** @class */ (function () {
+    function Measurement() {
+        this.min = 0;
+        this.max = 0;
+        this.current = 0;
+        this.avg = 0;
+        this.count = 0;
+        this.past = new Array(5);
+        for (var i = 0; i < this.past.length; i++)
+            this.past[i] = 0;
+    }
+    Measurement.prototype.measure = function (newvalue) {
+        for (var i = this.past.length - 1; i >= 0; i--)
+            this.past[i] = this.past[i - 1];
+        this.past[0] = newvalue;
+        this.count++;
+        this.current = newvalue;
+        this.max = this.max < this.current ? this.current : this.max;
+        this.min = this.current < this.min || this.min == 0 ? this.current : this.min;
+        this.count++;
+        this.avg = 0;
+        var c = this.count < this.past.length ? this.count : this.past.length;
+        for (var i = 0; i < c; i++)
+            this.avg += this.past[i];
+        this.avg /= c;
+    };
+    return Measurement;
+}());
+exports.Measurement = Measurement;
 
 
 /***/ })

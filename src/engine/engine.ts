@@ -2,6 +2,7 @@ import {vec2, glMatrix} from 'gl-matrix';
 import * as SAT from 'sat';
 import { setTimeout } from 'timers';
 import * as PIXI from 'pixi.js';
+import { Measurement } from './measurement';
 
 /**Sprite.*/
 export class Sprite
@@ -71,14 +72,8 @@ export class Engine
     {
         measurements:
         {
-            animate:
-            {
-                min:0,
-                max:0,
-                current:0,
-                avg:0,
-                measurements:0
-            }
+            animate:new Measurement(),
+            fps:new Measurement()
         }
     }
 
@@ -476,8 +471,11 @@ export class Engine
         return this.pixi.textures.length - 1;
     }
 
+    animateStart = performance.now();
+    animateCount = 0;
     animate(tick:(iterations:number)=>any)
     {
+        this.animateCount++;
         let start = performance.now();
         let canvasWidth = this.app.view.width;
         let canvasHeight = this.app.view.height;
@@ -525,13 +523,20 @@ export class Engine
             }
         }
 
+        let now = performance.now();
         let diff = performance.now() - start;
         let am = this.metric.measurements.animate;
-        am.current = diff;
-        am.max = am.max < am.current ? am.current : am.max;
-        am.min = am.current < am.min || am.min == 0 ? am.current : am.min; 
-        am.measurements++;
-        am.avg += (am.current - am.avg) / am.measurements;
+        let fps = this.metric.measurements.fps;
+       
+        if (now >= this.animateStart + 1000)
+        {
+            this.animateStart = now;
+            fps.measure(this.animateCount);
+            this.animateCount = 0;
+            console.log(fps.avg);
+        }
+       
+        am.measure(diff);
         if (this.iterations % 10 == 0)
         {
             this.animateTime = diff;
