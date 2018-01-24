@@ -11696,7 +11696,7 @@ var Engine = /** @class */ (function () {
         var width = 0;
         var height = 0;
         //let multiplum = gridHeight;
-        var multiplum = 1;
+        var multiplum = 16;
         if (screenAspect >= targetAspect) {
             height = Math.floor(screenHeight / multiplum) * multiplum;
             if (height == 0)
@@ -11711,6 +11711,8 @@ var Engine = /** @class */ (function () {
             var factor = width / gridWidth;
             height = gridHeight * factor;
         }
+        width = Math.floor(width);
+        height = Math.floor(height);
         this.app.renderer.resize(width, height);
         var marginW = Math.floor((screenWidth - canvas.width) / 2);
         var marginH = Math.floor((screenHeight - canvas.height) / 2);

@@ -281,7 +281,7 @@ export class Engine
         let width = 0;
         let height = 0;
         //let multiplum = gridHeight;
-        let multiplum = 1;
+        let multiplum = 16;
         
         if (screenAspect >= targetAspect)
         {
@@ -301,6 +301,8 @@ export class Engine
             height = gridHeight * factor;
         }
 
+        width = Math.floor(width);
+        height = Math.floor(height);
        
         this.app.renderer.resize(width, height);
         let marginW =  Math.floor((screenWidth - canvas.width) / 2);
