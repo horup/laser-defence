@@ -152,8 +152,9 @@ export default class G0 extends Prototype
                 else if (y > 8) 
                     y = 8;
                
-                if (x < 1) 
-                    x = 1; 
+                let minx = e.config.grid.width/2;
+                if (x < minx) 
+                    x = minx; 
                 else if (x > e.config.grid.width - 1) 
                     x = e.config.grid.width - 1;
 
@@ -166,9 +167,9 @@ export default class G0 extends Prototype
                     if (m.inUse)
                     {
                         let missileSprite = spriteIndex++;
-                        let speed = 0.1;
+                        let speed = -0.15;
                         this.engine.setSprite(missileSprite, m.pos, 2);
-                        m.pos[0] -= 0.15;
+                        m.pos[0] -= speed;
 
                         if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
                         {
@@ -187,7 +188,7 @@ export default class G0 extends Prototype
                             }
                         }
 
-                        if (m.pos[0]  < 0)
+                        if (m.pos[0] > e.config.grid.width)
                         {
                             Insights.event.send("G0", "Died", "at " + e.centerTopText, this.timer);
                             if (this.maxScore < this.timer)
@@ -221,7 +222,7 @@ export default class G0 extends Prototype
                     if (freeMissiles.length > 0)
                     {
                         let missile = freeMissiles[0];
-                        missile.pos.set([16, 1 + this.shuffle.next()]);
+                        missile.pos.set([0, 1 + this.shuffle.next()]);
                         missile.inUse = true;
                     }
                 }
@@ -245,20 +246,23 @@ export default class G0 extends Prototype
                 let frames = Math.floor(this.timer % 60);
                 let seconds = Math.floor(this.timer / 60);
                 
-                this.laser.pos.set([1, 8.5]);
+                let laserX = e.config.grid.width-2;
+                this.laser.pos.set([laserX, 8.5]);
                 let v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
                 let v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
                 this.laser.rotation = v;
 
                 e.setSprite(spriteIndex++, this.laser.pos, this.img.laserbase);
 
+                let turret = vec2.clone(this.laser.pos);
+                turret[1] -= 1 / 8;
                 if (this.laser.fire > 0)
                 {
-                    e.setSprite(spriteIndex++, this.laser.pos, this.img.beam, 1.0, v2, vec2.clone([0,0.5]));
+                    e.setSprite(spriteIndex++, turret, this.img.beam, 1.0, v2, vec2.clone([0,0.5]));
                     this.laser.fire--;
                 }
                 
-                e.setSprite(spriteIndex++, this.laser.pos, this.img.laser, 1.0, this.laser.rotation);
+                e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
                 e.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
 
                 break;
