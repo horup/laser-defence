@@ -23502,7 +23502,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(96);
 __webpack_require__(217);
 document.title = "Rapid";
-new index_1.default();
+document.addEventListener("DOMContentLoaded", function () {
+    new index_1.default();
+});
 
 
 /***/ }),
