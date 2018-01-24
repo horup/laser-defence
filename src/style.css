@@ -11,11 +11,11 @@ html, body
     margin:0px;
     overflow: hidden;
     display: block;
+    cursor: crosshair;
 }
 canvas
 {
     position: absolute;
-    cursor:pointer;
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
