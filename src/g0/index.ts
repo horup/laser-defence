@@ -238,6 +238,7 @@ export default class G0 extends Prototype
                 else if (iterations % (60 * 5))
                 {
                     Insights.metric.set(1, Math.floor(iterations / 60));
+                    Insights.metric.set(5, e.metric.measurements.fps.avg);
                 }
 
                 this.timer++;

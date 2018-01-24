@@ -528,13 +528,8 @@ export class Engine
         let am = this.metric.measurements.animate;
         let fps = this.metric.measurements.fps;
        
-        if (now >= this.animateStart + 1000)
-        {
-            this.animateStart = now;
-            fps.measure(this.animateCount);
-            this.animateCount = 0;
-            console.log(fps.avg);
-        }
+        let r = now - this.animateStart;
+        fps.measure(1000/r);
        
         am.measure(diff);
         if (this.iterations % 10 == 0)
@@ -550,5 +545,7 @@ export class Engine
                 this.pixi.texts.debug.visible = false;
             }
         }
+
+        this.animateStart = now;
     }
 }

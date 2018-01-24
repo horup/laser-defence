@@ -6,7 +6,7 @@ export class Measurement
     avg = 0;
     count = 0;
 
-    past:number[] = new Array(5);
+    past:number[] = new Array(100);
     constructor()
     {
         for (let i = 0; i < this.past.length; i++)

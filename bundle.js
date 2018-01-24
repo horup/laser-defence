@@ -11889,12 +11889,8 @@ var Engine = /** @class */ (function () {
         var diff = performance.now() - start;
         var am = this.metric.measurements.animate;
         var fps = this.metric.measurements.fps;
-        if (now >= this.animateStart + 1000) {
-            this.animateStart = now;
-            fps.measure(this.animateCount);
-            this.animateCount = 0;
-            console.log(fps.avg);
-        }
+        var r = now - this.animateStart;
+        fps.measure(1000 / r);
         am.measure(diff);
         if (this.iterations % 10 == 0) {
             this.animateTime = diff;
@@ -11906,6 +11902,7 @@ var Engine = /** @class */ (function () {
                 this.pixi.texts.debug.visible = false;
             }
         }
+        this.animateStart = now;
     };
     return Engine;
 }());
@@ -23743,6 +23740,7 @@ var G0 = /** @class */ (function (_super) {
                     }
                     else if (iterations % (60 * 5)) {
                         index_2.Insights.metric.set(1, Math.floor(iterations / 60));
+                        index_2.Insights.metric.set(5, e.metric.measurements.fps.avg);
                     }
                     this.timer++;
                     var frames_1 = Math.floor(this.timer % 60);
@@ -50719,7 +50717,7 @@ var Measurement = /** @class */ (function () {
         this.current = 0;
         this.avg = 0;
         this.count = 0;
-        this.past = new Array(5);
+        this.past = new Array(100);
         for (var i = 0; i < this.past.length; i++)
             this.past[i] = 0;
     }
