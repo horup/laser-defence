@@ -1,4 +1,5 @@
 import { Prototype } from "../engine/index";
+import { Insights } from '../engine/index';
 import { vec2 } from 'gl-matrix';
 import { Shufflebag } from "../engine/shufflebag";
 
@@ -35,6 +36,7 @@ class Laser
 
 export default class G0 extends Prototype
 {
+    maxScore = 0;
     spawnTime = 60;
     timer:number = 0;
     state:number = 0;
@@ -77,6 +79,9 @@ export default class G0 extends Prototype
             this.missiles[i] = new Missile();
             this.explosions[i] = new Explosion();
         }
+
+        Insights.init("UA-74749034-3");
+        Insights.event.send("G0", "Loaded");
     }
 
     initRound()
@@ -107,6 +112,8 @@ export default class G0 extends Prototype
         this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(m=>m.reset());
         this.spawnTime = 60;
+        Insights.event.send("G0", "New Round");
+      
     }
 
     tick(iterations:number)
@@ -180,6 +187,7 @@ export default class G0 extends Prototype
 
                         if (m.pos[0]  < 0)
                         {
+                            Insights.event.send("G0", "Died", "at " + e.centerTopText, this.timer);
                             m.reset();
                             e.flash(true);
                             this.state = 3;
@@ -210,7 +218,13 @@ export default class G0 extends Prototype
                         missile.inUse = true;
                     }
                 }
-                
+
+                if (this.maxScore < this.timer)
+                {
+                    this.maxScore = this.timer;
+                    Insights.metric.set(2, this.maxScore);
+                }
+
                 if (iterations % 60 == 0)
                 {
                     this.spawnTime--;
@@ -218,6 +232,10 @@ export default class G0 extends Prototype
                     {
                         this.spawnTime = 0;
                     }
+                }
+                else if (iterations % (60 * 5))
+                {
+                    Insights.metric.set(1, Math.floor(iterations / 60));
                 }
 
                 this.timer++;
@@ -239,6 +257,7 @@ export default class G0 extends Prototype
                 
                 e.setSprite(spriteIndex++, this.laser.pos, this.img.laser, 1.0, this.laser.rotation);
                 e.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
+
                 break;
             }
             case 3:
