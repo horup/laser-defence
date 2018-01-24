@@ -11535,6 +11535,17 @@ var Engine = /** @class */ (function () {
                 height: 9
             }
         };
+        this.metric = {
+            measurements: {
+                animate: {
+                    min: 0,
+                    max: 0,
+                    current: 0,
+                    avg: 0,
+                    measurements: 0
+                }
+            }
+        };
         this.debug = {
             draw: {
                 grid: {
@@ -11876,6 +11887,12 @@ var Engine = /** @class */ (function () {
             }
         }
         var diff = performance.now() - start;
+        var am = this.metric.measurements.animate;
+        am.current = diff;
+        am.max = am.max < am.current ? am.current : am.max;
+        am.min = am.current < am.min || am.min == 0 ? am.current : am.min;
+        am.measurements++;
+        am.avg += (am.current - am.avg) / am.measurements;
         if (this.iterations % 10 == 0) {
             this.animateTime = diff;
             if (this.debug.draw.info.time) {
@@ -23565,6 +23582,7 @@ var G0 = /** @class */ (function (_super) {
     __extends(G0, _super);
     function G0() {
         var _this = _super.call(this) || this;
+        _this.rounds = 0;
         _this.maxScore = 0;
         _this.spawnTime = 60;
         _this.timer = 0;
@@ -23624,6 +23642,8 @@ var G0 = /** @class */ (function (_super) {
         this.missiles.forEach(function (m) { return m.reset(); });
         this.spawnTime = 60;
         index_2.Insights.event.send("G0", "New Round");
+        index_2.Insights.metric.set(3, this.rounds);
+        this.rounds++;
     };
     G0.prototype.tick = function (iterations) {
         var _this = this;
@@ -23748,6 +23768,9 @@ var G0 = /** @class */ (function (_super) {
                     }
                     break;
                 }
+        }
+        if (iterations % 60 * 10 == 0) {
+            index_2.Insights.metric.set(4, e.metric.measurements.animate.avg);
         }
     };
     return G0;

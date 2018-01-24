@@ -67,6 +67,21 @@ export class Engine
         }
     }
 
+    public readonly metric =
+    {
+        measurements:
+        {
+            animate:
+            {
+                min:0,
+                max:0,
+                current:0,
+                avg:0,
+                measurements:0
+            }
+        }
+    }
+
     private debug =
     {
         draw:
@@ -511,6 +526,12 @@ export class Engine
         }
 
         let diff = performance.now() - start;
+        let am = this.metric.measurements.animate;
+        am.current = diff;
+        am.max = am.max < am.current ? am.current : am.max;
+        am.min = am.current < am.min || am.min == 0 ? am.current : am.min; 
+        am.measurements++;
+        am.avg += (am.current - am.avg) / am.measurements;
         if (this.iterations % 10 == 0)
         {
             this.animateTime = diff;

@@ -36,6 +36,7 @@ class Laser
 
 export default class G0 extends Prototype
 {
+    rounds = 0;
     maxScore = 0;
     spawnTime = 60;
     timer:number = 0;
@@ -113,7 +114,8 @@ export default class G0 extends Prototype
         this.missiles.forEach(m=>m.reset());
         this.spawnTime = 60;
         Insights.event.send("G0", "New Round");
-      
+        Insights.metric.set(3, this.rounds);
+        this.rounds++;
     }
 
     tick(iterations:number)
@@ -272,6 +274,11 @@ export default class G0 extends Prototype
                 }  
                 break;
             }
+        }
+
+        if (iterations % 60 * 10 == 0)
+        {
+            Insights.metric.set(4, e.metric.measurements.animate.avg);
         }
     }
 }
