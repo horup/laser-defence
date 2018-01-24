@@ -188,6 +188,11 @@ export default class G0 extends Prototype
                         if (m.pos[0]  < 0)
                         {
                             Insights.event.send("G0", "Died", "at " + e.centerTopText, this.timer);
+                            if (this.maxScore < this.timer)
+                            {
+                                this.maxScore = this.timer;
+                                Insights.metric.set(2, this.maxScore);
+                            }
                             m.reset();
                             e.flash(true);
                             this.state = 3;
@@ -219,12 +224,7 @@ export default class G0 extends Prototype
                     }
                 }
 
-                if (this.maxScore < this.timer)
-                {
-                    this.maxScore = this.timer;
-                    Insights.metric.set(2, this.maxScore);
-                }
-
+              
                 if (iterations % 60 == 0)
                 {
                     this.spawnTime--;

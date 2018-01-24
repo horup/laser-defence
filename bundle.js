@@ -23683,6 +23683,10 @@ var G0 = /** @class */ (function (_super) {
                             }
                             if (m.pos[0] < 0) {
                                 index_2.Insights.event.send("G0", "Died", "at " + e.centerTopText, _this.timer);
+                                if (_this.maxScore < _this.timer) {
+                                    _this.maxScore = _this.timer;
+                                    index_2.Insights.metric.set(2, _this.maxScore);
+                                }
                                 m.reset();
                                 e.flash(true);
                                 _this.state = 3;
@@ -23705,10 +23709,6 @@ var G0 = /** @class */ (function (_super) {
                             missile.pos.set([16, 1 + this.shuffle.next()]);
                             missile.inUse = true;
                         }
-                    }
-                    if (this.maxScore < this.timer) {
-                        this.maxScore = this.timer;
-                        index_2.Insights.metric.set(2, this.maxScore);
                     }
                     if (iterations % 60 == 0) {
                         this.spawnTime--;
@@ -49943,7 +49943,8 @@ var Events = /** @class */ (function () {
     function Events() {
     }
     Events.prototype.send = function (category, action, label, value) {
-        ga("send", "event", category, action, label, value);
+        if (typeof ga !== 'undefined')
+            ga("send", "event", category, action, label, value);
     };
     return Events;
 }());
@@ -49951,14 +49952,16 @@ var Metrics = /** @class */ (function () {
     function Metrics() {
     }
     Metrics.prototype.set = function (num, value) {
-        ga('set', 'metric' + num, value);
+        if (typeof ga !== 'undefined')
+            ga('set', 'metric' + num, value);
     };
     return Metrics;
 }());
 var Insights;
 (function (Insights) {
     Insights.init = function (id) {
-        ga('create', id, 'auto');
+        if (typeof ga !== 'undefined')
+            ga('create', id, 'auto');
     };
     Insights.event = new Events();
     Insights.metric = new Metrics();
