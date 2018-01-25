@@ -1,7 +1,7 @@
-import { Prototype } from "../engine/index";
-import { Insights } from '../engine/index';
+import { Prototype } from "../framework";
+import { Insights } from "../framework";
 import { vec2 } from 'gl-matrix';
-import { Shufflebag } from "../engine/shufflebag";
+import { Shufflebag } from "../framework";
 
 class Missile
 {

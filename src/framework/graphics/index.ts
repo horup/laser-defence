@@ -2,56 +2,11 @@ import {vec2, glMatrix} from 'gl-matrix';
 import * as SAT from 'sat';
 import { setTimeout } from 'timers';
 import * as PIXI from 'pixi.js';
-import { Measurement } from './measurement';
+import { Measurement } from '../util';
+import { EngineConfig } from './config';
+import { Sprite } from './sprite';
+import { Cell } from './cell';
 
-/**Sprite.*/
-export class Sprite
-{
-    id:number;
-    sprite:PIXI.Sprite;
-    position:vec2 = vec2.create();
-
-    constructor(id:number, sprite:PIXI.Sprite)
-    {
-        this.id = id;
-        this.sprite = sprite;
-        this.clear();
-    }
-
-    clear()
-    {
-        this.sprite.visible = false;
-        this.position.set([0,0]);
-    }
-}
-
-/**Cell of a grid.*/
-export class Cell
-{
-    imgOffsetX:number = 0;
-    imgOffsetY:number = 0;
-    sprite:PIXI.Sprite = null;
-    constructor(sprite:PIXI.Sprite)
-    {
-        this.sprite = sprite;
-    }
-}
-
-export interface EngineConfig
-{
-    readonly sprites:
-    {
-        readonly max:number;
-    }
-    readonly grid:
-    {
-        readonly cellSize:number;
-        readonly width:number;
-        readonly height:number;
-    }
-}
-
-/**Engine takes care of rendering assets provided by a prototype. */
 export class Engine
 {
     public readonly config:EngineConfig = 
