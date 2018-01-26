@@ -1,4 +1,4 @@
-import { Engine } from "../graphics";
+import { Engine } from "../engine";
 
 
 /*
@@ -7,11 +7,9 @@ Any prototype instance will hook into the canvas and document.
 */
 export abstract class Prototype
 {
-    canvas:HTMLCanvasElement;
     engine:Engine;
     constructor()
     {
-        this.canvas = document.getElementById("canvas") as HTMLCanvasElement;
         this.engine = new Engine();
         setTimeout(()=>this.animate());
     }

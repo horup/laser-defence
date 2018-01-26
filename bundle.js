@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 96);
+/******/ 	return __webpack_require__(__webpack_require__.s = 94);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -106,7 +106,7 @@ Object.defineProperty(exports, 'glCore', {
   }
 });
 
-var _Bounds = __webpack_require__(27);
+var _Bounds = __webpack_require__(28);
 
 Object.defineProperty(exports, 'Bounds', {
   enumerable: true,
@@ -115,7 +115,7 @@ Object.defineProperty(exports, 'Bounds', {
   }
 });
 
-var _DisplayObject = __webpack_require__(54);
+var _DisplayObject = __webpack_require__(53);
 
 Object.defineProperty(exports, 'DisplayObject', {
   enumerable: true,
@@ -133,7 +133,7 @@ Object.defineProperty(exports, 'Container', {
   }
 });
 
-var _Transform = __webpack_require__(56);
+var _Transform = __webpack_require__(55);
 
 Object.defineProperty(exports, 'Transform', {
   enumerable: true,
@@ -142,7 +142,7 @@ Object.defineProperty(exports, 'Transform', {
   }
 });
 
-var _TransformStatic = __webpack_require__(55);
+var _TransformStatic = __webpack_require__(54);
 
 Object.defineProperty(exports, 'TransformStatic', {
   enumerable: true,
@@ -151,7 +151,7 @@ Object.defineProperty(exports, 'TransformStatic', {
   }
 });
 
-var _TransformBase = __webpack_require__(29);
+var _TransformBase = __webpack_require__(30);
 
 Object.defineProperty(exports, 'TransformBase', {
   enumerable: true,
@@ -160,7 +160,7 @@ Object.defineProperty(exports, 'TransformBase', {
   }
 });
 
-var _Sprite = __webpack_require__(30);
+var _Sprite = __webpack_require__(31);
 
 Object.defineProperty(exports, 'Sprite', {
   enumerable: true,
@@ -178,7 +178,7 @@ Object.defineProperty(exports, 'CanvasSpriteRenderer', {
   }
 });
 
-var _CanvasTinter = __webpack_require__(34);
+var _CanvasTinter = __webpack_require__(35);
 
 Object.defineProperty(exports, 'CanvasTinter', {
   enumerable: true,
@@ -205,7 +205,7 @@ Object.defineProperty(exports, 'Text', {
   }
 });
 
-var _TextStyle = __webpack_require__(69);
+var _TextStyle = __webpack_require__(68);
 
 Object.defineProperty(exports, 'TextStyle', {
   enumerable: true,
@@ -214,7 +214,7 @@ Object.defineProperty(exports, 'TextStyle', {
   }
 });
 
-var _TextMetrics = __webpack_require__(70);
+var _TextMetrics = __webpack_require__(69);
 
 Object.defineProperty(exports, 'TextMetrics', {
   enumerable: true,
@@ -232,7 +232,7 @@ Object.defineProperty(exports, 'Graphics', {
   }
 });
 
-var _GraphicsData = __webpack_require__(71);
+var _GraphicsData = __webpack_require__(70);
 
 Object.defineProperty(exports, 'GraphicsData', {
   enumerable: true,
@@ -277,7 +277,7 @@ Object.defineProperty(exports, 'Texture', {
   }
 });
 
-var _TextureMatrix = __webpack_require__(67);
+var _TextureMatrix = __webpack_require__(66);
 
 Object.defineProperty(exports, 'TextureMatrix', {
   enumerable: true,
@@ -295,7 +295,7 @@ Object.defineProperty(exports, 'BaseTexture', {
   }
 });
 
-var _RenderTexture = __webpack_require__(33);
+var _RenderTexture = __webpack_require__(34);
 
 Object.defineProperty(exports, 'RenderTexture', {
   enumerable: true,
@@ -304,7 +304,7 @@ Object.defineProperty(exports, 'RenderTexture', {
   }
 });
 
-var _BaseRenderTexture = __webpack_require__(62);
+var _BaseRenderTexture = __webpack_require__(61);
 
 Object.defineProperty(exports, 'BaseRenderTexture', {
   enumerable: true,
@@ -313,7 +313,7 @@ Object.defineProperty(exports, 'BaseRenderTexture', {
   }
 });
 
-var _VideoBaseTexture = __webpack_require__(59);
+var _VideoBaseTexture = __webpack_require__(58);
 
 Object.defineProperty(exports, 'VideoBaseTexture', {
   enumerable: true,
@@ -322,7 +322,7 @@ Object.defineProperty(exports, 'VideoBaseTexture', {
   }
 });
 
-var _TextureUvs = __webpack_require__(60);
+var _TextureUvs = __webpack_require__(59);
 
 Object.defineProperty(exports, 'TextureUvs', {
   enumerable: true,
@@ -331,7 +331,7 @@ Object.defineProperty(exports, 'TextureUvs', {
   }
 });
 
-var _CanvasRenderTarget = __webpack_require__(63);
+var _CanvasRenderTarget = __webpack_require__(62);
 
 Object.defineProperty(exports, 'CanvasRenderTarget', {
   enumerable: true,
@@ -358,7 +358,7 @@ Object.defineProperty(exports, 'WebGLManager', {
   }
 });
 
-var _ObjectRenderer = __webpack_require__(17);
+var _ObjectRenderer = __webpack_require__(19);
 
 Object.defineProperty(exports, 'ObjectRenderer', {
   enumerable: true,
@@ -367,7 +367,7 @@ Object.defineProperty(exports, 'ObjectRenderer', {
   }
 });
 
-var _RenderTarget = __webpack_require__(19);
+var _RenderTarget = __webpack_require__(21);
 
 Object.defineProperty(exports, 'RenderTarget', {
   enumerable: true,
@@ -376,7 +376,7 @@ Object.defineProperty(exports, 'RenderTarget', {
   }
 });
 
-var _Quad = __webpack_require__(68);
+var _Quad = __webpack_require__(67);
 
 Object.defineProperty(exports, 'Quad', {
   enumerable: true,
@@ -385,7 +385,7 @@ Object.defineProperty(exports, 'Quad', {
   }
 });
 
-var _SpriteMaskFilter = __webpack_require__(65);
+var _SpriteMaskFilter = __webpack_require__(64);
 
 Object.defineProperty(exports, 'SpriteMaskFilter', {
   enumerable: true,
@@ -394,7 +394,7 @@ Object.defineProperty(exports, 'SpriteMaskFilter', {
   }
 });
 
-var _Filter = __webpack_require__(66);
+var _Filter = __webpack_require__(65);
 
 Object.defineProperty(exports, 'Filter', {
   enumerable: true,
@@ -403,7 +403,7 @@ Object.defineProperty(exports, 'Filter', {
   }
 });
 
-var _Application = __webpack_require__(73);
+var _Application = __webpack_require__(72);
 
 Object.defineProperty(exports, 'Application', {
   enumerable: true,
@@ -412,7 +412,7 @@ Object.defineProperty(exports, 'Application', {
   }
 });
 
-var _autoDetectRenderer = __webpack_require__(74);
+var _autoDetectRenderer = __webpack_require__(73);
 
 Object.defineProperty(exports, 'autoDetectRenderer', {
   enumerable: true,
@@ -425,7 +425,7 @@ var _utils = __webpack_require__(2);
 
 var utils = _interopRequireWildcard(_utils);
 
-var _ticker = __webpack_require__(32);
+var _ticker = __webpack_require__(33);
 
 var ticker = _interopRequireWildcard(_ticker);
 
@@ -437,7 +437,7 @@ var _CanvasRenderer = __webpack_require__(12);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
-var _WebGLRenderer = __webpack_require__(18);
+var _WebGLRenderer = __webpack_require__(20);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -848,7 +848,7 @@ var _mixin = __webpack_require__(123);
 
 var mixins = _interopRequireWildcard(_mixin);
 
-var _ismobilejs = __webpack_require__(28);
+var _ismobilejs = __webpack_require__(29);
 
 var isMobile = _interopRequireWildcard(_ismobilejs);
 
@@ -1543,7 +1543,7 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _Point = __webpack_require__(23);
+var _Point = __webpack_require__(24);
 
 Object.defineProperty(exports, 'Point', {
   enumerable: true,
@@ -1552,7 +1552,7 @@ Object.defineProperty(exports, 'Point', {
   }
 });
 
-var _ObservablePoint = __webpack_require__(43);
+var _ObservablePoint = __webpack_require__(42);
 
 Object.defineProperty(exports, 'ObservablePoint', {
   enumerable: true,
@@ -1561,7 +1561,7 @@ Object.defineProperty(exports, 'ObservablePoint', {
   }
 });
 
-var _Matrix = __webpack_require__(24);
+var _Matrix = __webpack_require__(25);
 
 Object.defineProperty(exports, 'Matrix', {
   enumerable: true,
@@ -1570,7 +1570,7 @@ Object.defineProperty(exports, 'Matrix', {
   }
 });
 
-var _GroupD = __webpack_require__(44);
+var _GroupD = __webpack_require__(43);
 
 Object.defineProperty(exports, 'GroupD8', {
   enumerable: true,
@@ -1606,7 +1606,7 @@ Object.defineProperty(exports, 'Polygon', {
   }
 });
 
-var _Rectangle = __webpack_require__(25);
+var _Rectangle = __webpack_require__(26);
 
 Object.defineProperty(exports, 'Rectangle', {
   enumerable: true,
@@ -1633,11 +1633,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var gl = {
     createContext:          __webpack_require__(114),
-    setVertexAttribArrays:  __webpack_require__(45),
+    setVertexAttribArrays:  __webpack_require__(44),
     GLBuffer:               __webpack_require__(115),
     GLFramebuffer:          __webpack_require__(116),
     GLShader:               __webpack_require__(117),
-    GLTexture:              __webpack_require__(46),
+    GLTexture:              __webpack_require__(45),
     VertexArrayObject:      __webpack_require__(118),
     shader:                 __webpack_require__(119)
 };
@@ -1982,11 +1982,11 @@ var _BaseTexture = __webpack_require__(10);
 
 var _BaseTexture2 = _interopRequireDefault(_BaseTexture);
 
-var _VideoBaseTexture = __webpack_require__(59);
+var _VideoBaseTexture = __webpack_require__(58);
 
 var _VideoBaseTexture2 = _interopRequireDefault(_VideoBaseTexture);
 
-var _TextureUvs = __webpack_require__(60);
+var _TextureUvs = __webpack_require__(59);
 
 var _TextureUvs2 = _interopRequireDefault(_TextureUvs);
 
@@ -3001,11 +3001,11 @@ var _eventemitter = __webpack_require__(9);
 
 var _eventemitter2 = _interopRequireDefault(_eventemitter);
 
-var _determineCrossOrigin = __webpack_require__(57);
+var _determineCrossOrigin = __webpack_require__(56);
 
 var _determineCrossOrigin2 = _interopRequireDefault(_determineCrossOrigin);
 
-var _bitTwiddle = __webpack_require__(31);
+var _bitTwiddle = __webpack_require__(32);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -3846,7 +3846,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _utils = __webpack_require__(2);
 
-var _DisplayObject2 = __webpack_require__(54);
+var _DisplayObject2 = __webpack_require__(53);
 
 var _DisplayObject3 = _interopRequireDefault(_DisplayObject2);
 
@@ -4465,7 +4465,7 @@ Container.prototype.containerUpdateTransform = Container.prototype.updateTransfo
 
 exports.__esModule = true;
 
-var _SystemRenderer2 = __webpack_require__(61);
+var _SystemRenderer2 = __webpack_require__(60);
 
 var _SystemRenderer3 = _interopRequireDefault(_SystemRenderer2);
 
@@ -4473,7 +4473,7 @@ var _CanvasMaskManager = __webpack_require__(135);
 
 var _CanvasMaskManager2 = _interopRequireDefault(_CanvasMaskManager);
 
-var _CanvasRenderTarget = __webpack_require__(63);
+var _CanvasRenderTarget = __webpack_require__(62);
 
 var _CanvasRenderTarget2 = _interopRequireDefault(_CanvasRenderTarget);
 
@@ -4973,9 +4973,9 @@ exports.default = Shader;
 /* eslint-disable no-undef */
 
 var Loader = __webpack_require__(189).default;
-var Resource = __webpack_require__(36).default;
-var async = __webpack_require__(89);
-var b64 = __webpack_require__(90);
+var Resource = __webpack_require__(37).default;
+var async = __webpack_require__(88);
+var b64 = __webpack_require__(89);
 
 Loader.Resource = Resource;
 Loader.async = async;
@@ -5367,6 +5367,85 @@ Mesh.DRAW_MODES = {
 
 "use strict";
 
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(96));
+__export(__webpack_require__(210));
+__export(__webpack_require__(211));
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(41);
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "glMatrix", function() { return __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2", function() { return __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2d", function() { return __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat3", function() { return __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat4", function() { return __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "quat", function() { return __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec2", function() { return __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec3", function() { return __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec4", function() { return __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__; });
+/**
+ * @fileoverview gl-matrix - High performance matrix and vector operations
+ * @author Brandon Jones
+ * @author Colin MacKenzie IV
+ * @version 2.4.0
+ */
+
+/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE. */
+// END HEADER
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 
 exports.__esModule = true;
 
@@ -5445,7 +5524,7 @@ exports.default = ObjectRenderer;
 //# sourceMappingURL=ObjectRenderer.js.map
 
 /***/ }),
-/* 18 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5453,7 +5532,7 @@ exports.default = ObjectRenderer;
 
 exports.__esModule = true;
 
-var _SystemRenderer2 = __webpack_require__(61);
+var _SystemRenderer2 = __webpack_require__(60);
 
 var _SystemRenderer3 = _interopRequireDefault(_SystemRenderer2);
 
@@ -5469,11 +5548,11 @@ var _FilterManager = __webpack_require__(142);
 
 var _FilterManager2 = _interopRequireDefault(_FilterManager);
 
-var _RenderTarget = __webpack_require__(19);
+var _RenderTarget = __webpack_require__(21);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
-var _ObjectRenderer = __webpack_require__(17);
+var _ObjectRenderer = __webpack_require__(19);
 
 var _ObjectRenderer2 = _interopRequireDefault(_ObjectRenderer);
 
@@ -6267,7 +6346,7 @@ _utils.pluginTarget.mixin(WebGLRenderer);
 //# sourceMappingURL=WebGLRenderer.js.map
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6599,7 +6678,7 @@ exports.default = RenderTarget;
 //# sourceMappingURL=RenderTarget.js.map
 
 /***/ }),
-/* 20 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6874,22 +6953,7 @@ function buildNativeLine(graphicsData, webGLData) {
 //# sourceMappingURL=buildLine.js.map
 
 /***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(38));
-__export(__webpack_require__(209));
-__export(__webpack_require__(95));
-
-
-/***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6916,7 +6980,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7012,7 +7076,7 @@ exports.default = Point;
 //# sourceMappingURL=Point.js.map
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7022,7 +7086,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Point = __webpack_require__(23);
+var _Point = __webpack_require__(24);
 
 var _Point2 = _interopRequireDefault(_Point);
 
@@ -7548,7 +7612,7 @@ exports.default = Matrix;
 //# sourceMappingURL=Matrix.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7816,7 +7880,7 @@ exports.default = Rectangle;
 //# sourceMappingURL=Rectangle.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 
@@ -7868,7 +7932,7 @@ module.exports = mapType;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8216,7 +8280,7 @@ exports.default = Bounds;
 //# sourceMappingURL=Bounds.js.map
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -8362,7 +8426,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8454,7 +8518,7 @@ TransformBase.IDENTITY = new TransformBase();
 //# sourceMappingURL=TransformBase.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9082,7 +9146,7 @@ exports.default = Sprite;
 //# sourceMappingURL=Sprite.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9293,7 +9357,7 @@ exports.nextCombination = function(v) {
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9378,7 +9442,7 @@ exports.Ticker = _Ticker2.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9386,7 +9450,7 @@ exports.Ticker = _Ticker2.default;
 
 exports.__esModule = true;
 
-var _BaseRenderTexture = __webpack_require__(62);
+var _BaseRenderTexture = __webpack_require__(61);
 
 var _BaseRenderTexture2 = _interopRequireDefault(_BaseRenderTexture);
 
@@ -9537,7 +9601,7 @@ exports.default = RenderTexture;
 //# sourceMappingURL=RenderTexture.js.map
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9547,7 +9611,7 @@ exports.__esModule = true;
 
 var _utils = __webpack_require__(2);
 
-var _canUseNewCanvasBlendModes = __webpack_require__(64);
+var _canUseNewCanvasBlendModes = __webpack_require__(63);
 
 var _canUseNewCanvasBlendModes2 = _interopRequireDefault(_canUseNewCanvasBlendModes);
 
@@ -9793,7 +9857,7 @@ exports.default = CanvasTinter;
 //# sourceMappingURL=CanvasTinter.js.map
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9832,7 +9896,7 @@ function createIndicesForQuads(size) {
 //# sourceMappingURL=createIndicesForQuads.js.map
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9842,11 +9906,11 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _parseUri = __webpack_require__(88);
+var _parseUri = __webpack_require__(87);
 
 var _parseUri2 = _interopRequireDefault(_parseUri);
 
-var _miniSignals = __webpack_require__(87);
+var _miniSignals = __webpack_require__(86);
 
 var _miniSignals2 = _interopRequireDefault(_miniSignals);
 
@@ -10993,7 +11057,7 @@ function reqType(xhr) {
 //# sourceMappingURL=Resource.js.map
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11005,7 +11069,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _CountLimiter = __webpack_require__(94);
+var _CountLimiter = __webpack_require__(93);
 
 var _CountLimiter2 = _interopRequireDefault(_CountLimiter);
 
@@ -11486,470 +11550,7 @@ function findTextStyle(item, queue) {
 //# sourceMappingURL=BasePrepare.js.map
 
 /***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(39);
-var SAT = __webpack_require__(103);
-var PIXI = __webpack_require__(104);
-var util_1 = __webpack_require__(95);
-var sprite_1 = __webpack_require__(226);
-var cell_1 = __webpack_require__(227);
-var Engine = /** @class */ (function () {
-    function Engine() {
-        var _this = this;
-        this.config = {
-            sprites: {
-                max: 255
-            },
-            grid: {
-                cellSize: 16,
-                width: 16,
-                height: 9
-            }
-        };
-        this.metric = {
-            measurements: {
-                animate: new util_1.Measurement(),
-                fps: new util_1.Measurement()
-            }
-        };
-        this.debug = {
-            draw: {
-                grid: {
-                    bounds: false
-                },
-                sprite: {
-                    bounds: false
-                },
-                info: {
-                    time: false
-                }
-            }
-        };
-        this.animateTime = 0;
-        this.iterations = 0;
-        this.state = 0;
-        this.flashing = false;
-        this.flashTickStep = 0.1;
-        this.flashTicks = 0;
-        this.flashBlocks = false;
-        this.sprites = [];
-        this.backgroundColor = "#000000";
-        this.foregroundColor = "#FFFFFF";
-        this.centerText = "";
-        this.centerTopText = "";
-        this.input = {
-            mouse: {
-                pos: gl_matrix_1.vec2.create(),
-                button: [false, false, false]
-            }
-        };
-        this.pixi = {
-            textures: [],
-            texts: {
-                middle: new PIXI.Text(),
-                top: new PIXI.Text(),
-                debug: new PIXI.Text()
-            },
-            stages: {
-                grid: new PIXI.Container(),
-                text: new PIXI.Container()
-            }
-        };
-        this.defaultAnchor = gl_matrix_1.vec2.clone([0.5, 0.5]);
-        this.animateStart = performance.now();
-        this.animateCount = 0;
-        this.app = new PIXI.Application();
-        this.app.stage.addChild(this.pixi.stages.grid);
-        this.app.stage.addChild(this.pixi.stages.text);
-        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
-        document.body.appendChild(this.app.view);
-        var canvas = this.app.view;
-        var w = this.config.grid.width;
-        var h = this.config.grid.height;
-        this.grid = new Array(h);
-        var cellSize = this.config.grid.cellSize;
-        for (var y = 0; y < h; y++) {
-            this.grid[y] = new Array(w);
-            for (var x = 0; x < w; x++) {
-                var sprite = new PIXI.Sprite();
-                sprite.visible = false;
-                sprite.x = x * cellSize;
-                sprite.y = y * cellSize;
-                this.grid[y][x] = new cell_1.Cell(sprite);
-                this.pixi.stages.grid.addChild(sprite);
-            }
-        }
-        this.sprites = new Array(256);
-        for (var i = 0; i < this.sprites.length; i++) {
-            var sprite = new PIXI.Sprite();
-            sprite.anchor.x = 0.5;
-            sprite.anchor.y = 0.5;
-            this.sprites[i] = new sprite_1.Sprite(i, sprite);
-            this.pixi.stages.grid.addChild(sprite);
-        }
-        var style = { fontFamily: 'Pixeled', fontSize: 8, fill: 0xFFFFFF };
-        this.pixi.texts.middle = new PIXI.Text("hello world", style);
-        this.pixi.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-        this.pixi.texts.top = new PIXI.Text("top dollar", style);
-        this.pixi.texts.debug = new PIXI.Text("", style);
-        this.pixi.stages.text.addChild(this.pixi.texts.middle);
-        this.pixi.stages.text.addChild(this.pixi.texts.top);
-        this.pixi.stages.text.addChild(this.pixi.texts.debug);
-        document.onmousemove = function (ev) {
-            if (_this.hasFocus) {
-                var bounds = canvas.getBoundingClientRect();
-                var c = canvas;
-                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
-                var x = ev.x - c.offsetLeft;
-                var y = ev.y - c.offsetTop;
-                y = y / bounds.height * _this.config.grid.height;
-                x = x / bounds.width * _this.config.grid.width;
-                x = clamp(x, 0, _this.config.grid.width);
-                y = clamp(y, 0, _this.config.grid.height);
-                _this.input.mouse.pos.set([x, y]);
-            }
-        };
-        document.onmousedown = function (ev) {
-            if (!_this.hasFocus) {
-                canvas.requestPointerLock();
-                _this.input.mouse.pos[0] = canvas.width / _this.config.grid.cellSize / 2;
-                _this.input.mouse.pos[1] = canvas.height / _this.config.grid.cellSize / 2;
-            }
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = true;
-            }
-        };
-        document.onmouseup = function (ev) {
-            if (_this.hasFocus) {
-                if (ev.button < _this.input.mouse.button.length)
-                    _this.input.mouse.button[ev.button] = false;
-            }
-        };
-        document.ontouchstart = function (ev) {
-            if (_this.hasFocus) {
-                var bounds = canvas.getBoundingClientRect();
-                var c = canvas;
-                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
-                var x = ev.touches[0].clientX - c.offsetLeft;
-                var y = ev.touches[0].clientY - c.offsetTop;
-                y = y / bounds.height * _this.config.grid.height;
-                x = x / bounds.width * _this.config.grid.width;
-                x = clamp(x, 0, _this.config.grid.width);
-                y = clamp(y, 0, _this.config.grid.height);
-                _this.input.mouse.pos.set([x, y]);
-                _this.input.mouse.button[0] = true;
-            }
-        };
-        document.ontouchend = function (ev) {
-            if (_this.hasFocus) {
-                _this.input.mouse.button[0] = false;
-            }
-        };
-        document.ontouchmove = function (ev) {
-            var bounds = canvas.getBoundingClientRect();
-            var c = canvas;
-            var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
-            var x = ev.touches[0].clientX - c.offsetLeft;
-            var y = ev.touches[0].clientY - c.offsetTop;
-            y = y / bounds.height * _this.config.grid.height;
-            x = x / bounds.width * _this.config.grid.width;
-            x = clamp(x, 0, _this.config.grid.width);
-            y = clamp(y, 0, _this.config.grid.height);
-            _this.input.mouse.pos.set([x, y]);
-        };
-        document.ontouchcancel = function (ev) {
-        };
-        window.onresize = function () { return _this.resize(); };
-        this.resize();
-    }
-    Engine.prototype.resize = function () {
-        var cellSize = this.config.grid.cellSize;
-        var gridHeight = this.config.grid.height * cellSize;
-        var gridWidth = this.config.grid.width * cellSize;
-        var targetAspect = this.config.grid.width / this.config.grid.height;
-        var screenWidth = window.innerWidth;
-        var screenHeight = window.innerHeight;
-        var screenAspect = screenWidth / screenHeight;
-        var canvas = this.app.view;
-        var width = 0;
-        var height = 0;
-        //let multiplum = gridHeight;
-        var multiplum = 16;
-        if (screenAspect >= targetAspect) {
-            height = Math.floor(screenHeight / multiplum) * multiplum;
-            if (height == 0)
-                height = screenHeight;
-            var factor = height / gridHeight;
-            width = gridWidth * factor;
-        }
-        else if (screenAspect < targetAspect) {
-            width = Math.floor(screenWidth / multiplum) * multiplum;
-            if (width == 0)
-                width = screenWidth;
-            var factor = width / gridWidth;
-            height = gridHeight * factor;
-        }
-        width = Math.floor(width);
-        height = Math.floor(height);
-        this.app.renderer.resize(width, height);
-        var marginW = Math.floor((screenWidth - canvas.width) / 2);
-        var marginH = Math.floor((screenHeight - canvas.height) / 2);
-        canvas.style.left = marginW + "px";
-        canvas.style.top = marginH + "px";
-        var ratio = height / gridHeight;
-        var setStyle = function (text) {
-            text.anchor.x = 0.5;
-            text.anchor.y = 0;
-            text.x = width / 2;
-            var size = Math.floor(cellSize * ratio / 2);
-            size = size > 0 ? size : 1;
-            text.style.fontSize = size;
-        };
-        setStyle(this.pixi.texts.top);
-        setStyle(this.pixi.texts.debug);
-        setStyle(this.pixi.texts.middle);
-        this.pixi.texts.middle.y = height / 2;
-        this.pixi.texts.middle.anchor.y = 0.5;
-        this.pixi.texts.debug.x = cellSize * ratio / 2;
-        this.pixi.texts.debug.anchor.x = 0;
-    };
-    Object.defineProperty(Engine.prototype, "hasFocus", {
-        get: function () {
-            return true;
-            // return document.pointerLockElement == this.context.canvas;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Engine.prototype.flash = function (blocking) {
-        this.flashing = true;
-        this.flashBlocks = blocking == true ? true : false;
-        this.flashTickStep = 0.075;
-        this.flashTicks = -1.0;
-    };
-    Engine.prototype.setBackground = function (color) {
-        this.backgroundColor = color;
-    };
-    /** Returns the ID of the sprite in which the sprite with the given ID intersects.
-     * -1 if no intersection.
-      */
-    Engine.prototype.getIntersectingSprite = function (id) {
-        var box1 = new SAT.Box();
-        var box2 = new SAT.Box();
-        var sprite = this.sprites[id];
-        for (var i = 0; i < this.sprites.length; i++) {
-            var candidate = this.sprites[i];
-            if (i != id && candidate.sprite.visible) {
-                var cellSize = this.config.grid.cellSize;
-                box1.pos.x = sprite.position[0];
-                box1.pos.y = sprite.position[1];
-                box1.w = sprite.sprite.width / cellSize;
-                box1.h = sprite.sprite.height / cellSize;
-                box2.pos.x = candidate.position[0];
-                box2.pos.y = candidate.position[1];
-                box2.w = candidate.sprite.width / cellSize;
-                box2.h = candidate.sprite.height / cellSize;
-                var p1 = box1.toPolygon();
-                var p2 = box2.toPolygon();
-                if (SAT.testPolygonPolygon(p1, p2))
-                    return i;
-            }
-        }
-        return -1;
-    };
-    Engine.prototype.setCell = function (x, y, image, offsetX, offsetY) {
-        if (offsetX === void 0) { offsetX = 0; }
-        if (offsetY === void 0) { offsetY = 0; }
-        var cell = this.grid[y][x];
-        if (image >= 0) {
-            var cellSize = this.config.grid.cellSize;
-            this.grid[y][x].sprite.visible = true;
-            var tex = this.pixi.textures[image];
-            var sprite = cell.sprite;
-            sprite.texture = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(offsetX * cellSize, offsetY * cellSize, cellSize, cellSize));
-        }
-        else {
-            cell.sprite.visible = false;
-        }
-    };
-    Engine.prototype.clearSprites = function () {
-        this.sprites.forEach(function (s) { return s.clear(); });
-    };
-    Engine.prototype.setSprite = function (i, pos, image, alpha, rotation, anchor) {
-        if (image === void 0) { image = undefined; }
-        if (alpha === void 0) { alpha = undefined; }
-        if (rotation === void 0) { rotation = undefined; }
-        if (anchor === void 0) { anchor = this.defaultAnchor; }
-        var sprite = this.sprites[i];
-        sprite.position.set(pos);
-        if (image != undefined) {
-            if (image >= 0) {
-                var tex = this.pixi.textures[image];
-                sprite.sprite.anchor.x = anchor[0];
-                sprite.sprite.anchor.y = anchor[1];
-                sprite.sprite.texture = tex;
-                sprite.sprite.visible = true;
-                var a = alpha != undefined ? alpha : 1.0;
-                rotation = rotation != undefined ? rotation : 0.0;
-                sprite.sprite.rotation = rotation;
-                sprite.sprite.alpha = a;
-            }
-            else {
-                sprite.clear();
-            }
-        }
-    };
-    /**Clears the grid with the specified image as src */
-    Engine.prototype.clearGrid = function (image) {
-        for (var y = 0; y < this.grid.length; y++) {
-            for (var x = 0; x < this.grid[y].length; x++) {
-                this.setCell(x, y, image);
-            }
-        }
-    };
-    Engine.prototype.clearText = function () {
-        this.centerText = "";
-        this.centerTopText = "";
-    };
-    Engine.prototype.loadImage = function (src) {
-        var texture = PIXI.Texture.fromImage(src);
-        this.pixi.textures.push(texture);
-        return this.pixi.textures.length - 1;
-    };
-    Engine.prototype.animate = function (tick) {
-        this.animateCount++;
-        var start = performance.now();
-        var canvasWidth = this.app.view.width;
-        var canvasHeight = this.app.view.height;
-        var gridWidth = this.config.grid.width;
-        var gridHeight = this.config.grid.height;
-        var cellSize = this.config.grid.cellSize;
-        var w = gridWidth * cellSize;
-        var h = gridHeight * cellSize;
-        var ratioWidth = canvasWidth / w;
-        var ratioHeight = canvasHeight / h;
-        var ratio = ratioWidth;
-        this.pixi.stages.grid.setTransform(0, 0, ratio, ratio);
-        this.app.stage.alpha = 1.0;
-        if (!this.flashing || !this.flashBlocks)
-            tick(this.iterations);
-        this.pixi.texts.top.text = this.centerTopText;
-        this.pixi.texts.middle.text = this.centerText;
-        this.iterations++;
-        this.sprites.forEach(function (s) {
-            if (s.sprite.visible) {
-                s.sprite.x = s.position[0] * cellSize;
-                s.sprite.y = s.position[1] * cellSize;
-            }
-        });
-        if (this.flashing) {
-            var old = this.flashTicks;
-            var alpha = Math.abs(this.flashTicks);
-            this.app.stage.alpha = alpha;
-            this.flashTicks += this.flashTickStep;
-            if (Math.sign(old) != Math.sign(this.flashTicks)) {
-                tick(this.iterations);
-            }
-            if (this.flashTicks > 1.0) {
-                this.flashing = false;
-            }
-        }
-        var now = performance.now();
-        var diff = performance.now() - start;
-        var am = this.metric.measurements.animate;
-        var fps = this.metric.measurements.fps;
-        var r = now - this.animateStart;
-        fps.measure(1000 / r);
-        am.measure(diff);
-        if (this.iterations % 10 == 0) {
-            this.animateTime = diff;
-            if (this.debug.draw.info.time) {
-                this.pixi.texts.debug.visible = true;
-                this.pixi.texts.debug.text = this.animateTime.toFixed(3) + "ms";
-            }
-            else {
-                this.pixi.texts.debug.visible = false;
-            }
-        }
-        this.animateStart = now;
-    };
-    return Engine;
-}());
-exports.Engine = Engine;
-
-
-/***/ }),
 /* 39 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(42);
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "glMatrix", function() { return __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2", function() { return __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2d", function() { return __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat3", function() { return __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat4", function() { return __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "quat", function() { return __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec2", function() { return __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec3", function() { return __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec4", function() { return __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__; });
-/**
- * @fileoverview gl-matrix - High performance matrix and vector operations
- * @author Brandon Jones
- * @author Colin MacKenzie IV
- * @version 2.4.0
- */
-
-/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-// END HEADER
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12757,7 +12358,7 @@ const sub = subtract;
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13597,7 +13198,7 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14259,7 +13860,7 @@ const forEach = (function() {
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14381,7 +13982,7 @@ exports.default = ObservablePoint;
 //# sourceMappingURL=ObservablePoint.js.map
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14389,7 +13990,7 @@ exports.default = ObservablePoint;
 
 exports.__esModule = true;
 
-var _Matrix = __webpack_require__(24);
+var _Matrix = __webpack_require__(25);
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -14579,7 +14180,7 @@ exports.default = GroupD8;
 //# sourceMappingURL=GroupD8.js.map
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // var GL_MAP = {};
@@ -14640,7 +14241,7 @@ module.exports = setVertexAttribArrays;
 
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports) {
 
 
@@ -14979,7 +14580,7 @@ module.exports = Texture;
 
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports) {
 
 
@@ -15065,12 +14666,12 @@ module.exports = compileProgram;
 
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var mapType = __webpack_require__(26);
-var mapSize = __webpack_require__(49);
+var mapType = __webpack_require__(27);
+var mapSize = __webpack_require__(48);
 
 /**
  * Extracts the attributes
@@ -15112,7 +14713,7 @@ module.exports = extractAttributes;
 
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports) {
 
 /**
@@ -15154,11 +14755,11 @@ module.exports = mapSize;
 
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapType = __webpack_require__(26);
-var defaultValue = __webpack_require__(51);
+var mapType = __webpack_require__(27);
+var defaultValue = __webpack_require__(50);
 
 /**
  * Extracts the uniforms
@@ -15195,7 +14796,7 @@ module.exports = extractUniforms;
 
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports) {
 
 /**
@@ -15279,7 +14880,7 @@ module.exports = defaultValue;
 
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports) {
 
 /**
@@ -15303,7 +14904,7 @@ module.exports = setPrecision;
 
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports) {
 
 /**
@@ -15430,7 +15031,7 @@ module.exports = generateUniformAccessObject;
 
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15450,15 +15051,15 @@ var _settings = __webpack_require__(3);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _TransformStatic = __webpack_require__(55);
+var _TransformStatic = __webpack_require__(54);
 
 var _TransformStatic2 = _interopRequireDefault(_TransformStatic);
 
-var _Transform = __webpack_require__(56);
+var _Transform = __webpack_require__(55);
 
 var _Transform2 = _interopRequireDefault(_Transform);
 
-var _Bounds = __webpack_require__(27);
+var _Bounds = __webpack_require__(28);
 
 var _Bounds2 = _interopRequireDefault(_Bounds);
 
@@ -16129,7 +15730,7 @@ DisplayObject.prototype.displayObjectUpdateTransform = DisplayObject.prototype.u
 //# sourceMappingURL=DisplayObject.js.map
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16141,7 +15742,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _math = __webpack_require__(4);
 
-var _TransformBase2 = __webpack_require__(29);
+var _TransformBase2 = __webpack_require__(30);
 
 var _TransformBase3 = _interopRequireDefault(_TransformBase2);
 
@@ -16344,7 +15945,7 @@ exports.default = TransformStatic;
 //# sourceMappingURL=TransformStatic.js.map
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16356,7 +15957,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _math = __webpack_require__(4);
 
-var _TransformBase2 = __webpack_require__(29);
+var _TransformBase2 = __webpack_require__(30);
 
 var _TransformBase3 = _interopRequireDefault(_TransformBase2);
 
@@ -16530,7 +16131,7 @@ exports.default = Transform;
 //# sourceMappingURL=Transform.js.map
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16539,7 +16140,7 @@ exports.default = Transform;
 exports.__esModule = true;
 exports.default = determineCrossOrigin;
 
-var _url2 = __webpack_require__(58);
+var _url2 = __webpack_require__(57);
 
 var _url3 = _interopRequireDefault(_url2);
 
@@ -16591,7 +16192,7 @@ function determineCrossOrigin(url) {
 //# sourceMappingURL=determineCrossOrigin.js.map
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17330,7 +16931,7 @@ Url.prototype.parseHost = function() {
 
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17346,11 +16947,11 @@ var _BaseTexture3 = _interopRequireDefault(_BaseTexture2);
 
 var _utils = __webpack_require__(2);
 
-var _ticker = __webpack_require__(32);
+var _ticker = __webpack_require__(33);
 
 var _const = __webpack_require__(1);
 
-var _determineCrossOrigin = __webpack_require__(57);
+var _determineCrossOrigin = __webpack_require__(56);
 
 var _determineCrossOrigin2 = _interopRequireDefault(_determineCrossOrigin);
 
@@ -17677,7 +17278,7 @@ function createSource(path, type) {
 //# sourceMappingURL=VideoBaseTexture.js.map
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17685,7 +17286,7 @@ function createSource(path, type) {
 
 exports.__esModule = true;
 
-var _GroupD = __webpack_require__(44);
+var _GroupD = __webpack_require__(43);
 
 var _GroupD2 = _interopRequireDefault(_GroupD);
 
@@ -17787,7 +17388,7 @@ exports.default = TextureUvs;
 //# sourceMappingURL=TextureUvs.js.map
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17811,7 +17412,7 @@ var _Container = __webpack_require__(11);
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _RenderTexture = __webpack_require__(33);
+var _RenderTexture = __webpack_require__(34);
 
 var _RenderTexture2 = _interopRequireDefault(_RenderTexture);
 
@@ -18157,7 +17758,7 @@ exports.default = SystemRenderer;
 //# sourceMappingURL=SystemRenderer.js.map
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18324,7 +17925,7 @@ exports.default = BaseRenderTexture;
 //# sourceMappingURL=BaseRenderTexture.js.map
 
 /***/ }),
-/* 63 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18453,7 +18054,7 @@ exports.default = CanvasRenderTarget;
 //# sourceMappingURL=CanvasRenderTarget.js.map
 
 /***/ }),
-/* 64 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18519,7 +18120,7 @@ function canUseNewCanvasBlendModes() {
 //# sourceMappingURL=canUseNewCanvasBlendModes.js.map
 
 /***/ }),
-/* 65 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18527,7 +18128,7 @@ function canUseNewCanvasBlendModes() {
 
 exports.__esModule = true;
 
-var _Filter2 = __webpack_require__(66);
+var _Filter2 = __webpack_require__(65);
 
 var _Filter3 = _interopRequireDefault(_Filter2);
 
@@ -18535,7 +18136,7 @@ var _math = __webpack_require__(4);
 
 var _path = __webpack_require__(6);
 
-var _TextureMatrix = __webpack_require__(67);
+var _TextureMatrix = __webpack_require__(66);
 
 var _TextureMatrix2 = _interopRequireDefault(_TextureMatrix);
 
@@ -18612,7 +18213,7 @@ exports.default = SpriteMaskFilter;
 //# sourceMappingURL=SpriteMaskFilter.js.map
 
 /***/ }),
-/* 66 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18813,7 +18414,7 @@ exports.default = Filter;
 //# sourceMappingURL=Filter.js.map
 
 /***/ }),
-/* 67 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18823,7 +18424,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Matrix = __webpack_require__(24);
+var _Matrix = __webpack_require__(25);
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -18982,7 +18583,7 @@ exports.default = TextureMatrix;
 //# sourceMappingURL=TextureMatrix.js.map
 
 /***/ }),
-/* 68 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18994,7 +18595,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _createIndicesForQuads = __webpack_require__(35);
+var _createIndicesForQuads = __webpack_require__(36);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -19168,7 +18769,7 @@ exports.default = Quad;
 //# sourceMappingURL=Quad.js.map
 
 /***/ }),
-/* 69 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19975,7 +19576,7 @@ function deepCopyProperties(target, source, propertyObj) {
 //# sourceMappingURL=TextStyle.js.map
 
 /***/ }),
-/* 70 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20283,7 +19884,7 @@ TextMetrics._fonts = {};
 //# sourceMappingURL=TextMetrics.js.map
 
 /***/ }),
-/* 71 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20424,7 +20025,7 @@ exports.default = GraphicsData;
 //# sourceMappingURL=GraphicsData.js.map
 
 /***/ }),
-/* 72 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21081,7 +20682,7 @@ earcut.flatten = function (data) {
 
 
 /***/ }),
-/* 73 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21091,13 +20692,13 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _autoDetectRenderer = __webpack_require__(74);
+var _autoDetectRenderer = __webpack_require__(73);
 
 var _Container = __webpack_require__(11);
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _ticker = __webpack_require__(32);
+var _ticker = __webpack_require__(33);
 
 var _settings = __webpack_require__(3);
 
@@ -21309,7 +20910,7 @@ exports.default = Application;
 //# sourceMappingURL=Application.js.map
 
 /***/ }),
-/* 74 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21326,7 +20927,7 @@ var _CanvasRenderer = __webpack_require__(12);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
-var _WebGLRenderer = __webpack_require__(18);
+var _WebGLRenderer = __webpack_require__(20);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -21383,7 +20984,7 @@ function autoDetectRenderer(options, arg1, arg2, arg3) {
 //# sourceMappingURL=autoDetectRenderer.js.map
 
 /***/ }),
-/* 75 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21446,7 +21047,7 @@ exports.default = {
 //# sourceMappingURL=accessibleTarget.js.map
 
 /***/ }),
-/* 76 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21503,7 +21104,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 77 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21517,15 +21118,15 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _generateBlurVertSource = __webpack_require__(78);
+var _generateBlurVertSource = __webpack_require__(77);
 
 var _generateBlurVertSource2 = _interopRequireDefault(_generateBlurVertSource);
 
-var _generateBlurFragSource = __webpack_require__(79);
+var _generateBlurFragSource = __webpack_require__(78);
 
 var _generateBlurFragSource2 = _interopRequireDefault(_generateBlurFragSource);
 
-var _getMaxBlurKernelSize = __webpack_require__(80);
+var _getMaxBlurKernelSize = __webpack_require__(79);
 
 var _getMaxBlurKernelSize2 = _interopRequireDefault(_getMaxBlurKernelSize);
 
@@ -21674,7 +21275,7 @@ exports.default = BlurXFilter;
 //# sourceMappingURL=BlurXFilter.js.map
 
 /***/ }),
-/* 78 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21723,7 +21324,7 @@ function generateVertBlurSource(kernelSize, x) {
 //# sourceMappingURL=generateBlurVertSource.js.map
 
 /***/ }),
-/* 79 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21775,7 +21376,7 @@ function generateFragBlurSource(kernelSize) {
 //# sourceMappingURL=generateBlurFragSource.js.map
 
 /***/ }),
-/* 80 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21796,7 +21397,7 @@ function getMaxKernelSize(gl) {
 //# sourceMappingURL=getMaxBlurKernelSize.js.map
 
 /***/ }),
-/* 81 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21810,15 +21411,15 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _generateBlurVertSource = __webpack_require__(78);
+var _generateBlurVertSource = __webpack_require__(77);
 
 var _generateBlurVertSource2 = _interopRequireDefault(_generateBlurVertSource);
 
-var _generateBlurFragSource = __webpack_require__(79);
+var _generateBlurFragSource = __webpack_require__(78);
 
 var _generateBlurFragSource2 = _interopRequireDefault(_generateBlurFragSource);
 
-var _getMaxBlurKernelSize = __webpack_require__(80);
+var _getMaxBlurKernelSize = __webpack_require__(79);
 
 var _getMaxBlurKernelSize2 = _interopRequireDefault(_getMaxBlurKernelSize);
 
@@ -21966,7 +21567,7 @@ exports.default = BlurYFilter;
 //# sourceMappingURL=BlurYFilter.js.map
 
 /***/ }),
-/* 82 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22195,7 +21796,7 @@ exports.default = InteractionData;
 //# sourceMappingURL=InteractionData.js.map
 
 /***/ }),
-/* 83 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22285,7 +21886,7 @@ exports.default = InteractionEvent;
 //# sourceMappingURL=InteractionEvent.js.map
 
 /***/ }),
-/* 84 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22466,7 +22067,7 @@ InteractionTrackingData.FLAGS = Object.freeze({
 //# sourceMappingURL=InteractionTrackingData.js.map
 
 /***/ }),
-/* 85 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22588,7 +22189,7 @@ exports.default = {
 //# sourceMappingURL=interactiveTarget.js.map
 
 /***/ }),
-/* 86 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22667,7 +22268,7 @@ var _core = __webpack_require__(0);
 
 var _resourceLoader = __webpack_require__(15);
 
-var _extras = __webpack_require__(76);
+var _extras = __webpack_require__(75);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -22685,7 +22286,7 @@ function parse(resource, texture) {
 //# sourceMappingURL=bitmapFontParser.js.map
 
 /***/ }),
-/* 87 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22857,7 +22458,7 @@ module.exports = exports['default'];
 
 
 /***/ }),
-/* 88 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22894,7 +22495,7 @@ module.exports = function parseURI (str, opts) {
 
 
 /***/ }),
-/* 89 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23108,7 +22709,7 @@ function queue(worker, concurrency) {
 //# sourceMappingURL=async.js.map
 
 /***/ }),
-/* 90 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23181,7 +22782,7 @@ function encodeBinary(input) {
 //# sourceMappingURL=b64.js.map
 
 /***/ }),
-/* 91 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23231,7 +22832,7 @@ exports.getResourcePath = getResourcePath;
 
 var _resourceLoader = __webpack_require__(15);
 
-var _url = __webpack_require__(58);
+var _url = __webpack_require__(57);
 
 var _url2 = _interopRequireDefault(_url);
 
@@ -23250,7 +22851,7 @@ function getResourcePath(resource, baseUrl) {
 //# sourceMappingURL=spritesheetParser.js.map
 
 /***/ }),
-/* 92 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23278,7 +22879,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //# sourceMappingURL=textureParser.js.map
 
 /***/ }),
-/* 93 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23424,7 +23025,7 @@ exports.default = Plane;
 //# sourceMappingURL=Plane.js.map
 
 /***/ }),
-/* 94 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23487,29 +23088,14 @@ exports.default = CountLimiter;
 //# sourceMappingURL=CountLimiter.js.map
 
 /***/ }),
-/* 95 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var measurement_1 = __webpack_require__(206);
-exports.Measurement = measurement_1.Measurement;
-var shufflebag_1 = __webpack_require__(207);
-exports.Shufflebag = shufflebag_1.Shufflebag;
-var insights_1 = __webpack_require__(208);
-exports.Insights = insights_1.Insights;
-
-
-/***/ }),
-/* 96 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(97);
-__webpack_require__(219);
+var index_1 = __webpack_require__(95);
+__webpack_require__(224);
 document.title = "Rapid";
 document.addEventListener("DOMContentLoaded", function () {
     new index_1.default();
@@ -23517,7 +23103,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 /***/ }),
-/* 97 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23533,10 +23119,10 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var framework_1 = __webpack_require__(21);
-var framework_2 = __webpack_require__(21);
-var gl_matrix_1 = __webpack_require__(39);
-var framework_3 = __webpack_require__(21);
+var framework_1 = __webpack_require__(17);
+var framework_2 = __webpack_require__(17);
+var gl_matrix_1 = __webpack_require__(18);
+var framework_3 = __webpack_require__(17);
 var Missile = /** @class */ (function () {
     function Missile() {
         this.inUse = false;
@@ -23589,15 +23175,15 @@ var G0 = /** @class */ (function (_super) {
             laserbase: 0
         };
         var e = _this.engine;
-        e.loadImage(__webpack_require__(210));
-        e.loadImage(__webpack_require__(211));
-        e.loadImage(__webpack_require__(212));
-        e.loadImage(__webpack_require__(213));
-        _this.explosionImg = e.loadImage(__webpack_require__(214));
-        _this.img.beam = e.loadImage(__webpack_require__(215));
-        _this.img.laser = e.loadImage(__webpack_require__(216));
-        _this.img.grass = e.loadImage(__webpack_require__(217));
-        _this.img.laserbase = e.loadImage(__webpack_require__(218));
+        e.loadImage(__webpack_require__(215));
+        e.loadImage(__webpack_require__(216));
+        e.loadImage(__webpack_require__(217));
+        e.loadImage(__webpack_require__(218));
+        _this.explosionImg = e.loadImage(__webpack_require__(219));
+        _this.img.beam = e.loadImage(__webpack_require__(220));
+        _this.img.laser = e.loadImage(__webpack_require__(221));
+        _this.img.grass = e.loadImage(__webpack_require__(222));
+        _this.img.laserbase = e.loadImage(__webpack_require__(223));
         e.clearGrid(-1);
         var max = 100;
         _this.missiles = new Array(max);
@@ -23612,7 +23198,7 @@ var G0 = /** @class */ (function (_super) {
     }
     G0.prototype.initRound = function () {
         var e = this.engine;
-        e.centerText = "";
+        e.state.centerText = "";
         e.clearGrid(0);
         this.timer = 0;
         this.laser.rotation = 0;
@@ -23642,9 +23228,9 @@ var G0 = /** @class */ (function (_super) {
             case 0:
                 {
                     if (iterations % 40 < 20)
-                        e.centerText = "Touch when ready!!";
+                        e.state.centerText = "Touch when ready!!";
                     else
-                        e.centerText = "";
+                        e.state.centerText = "";
                     if (e.input.mouse.button[0]) {
                         this.state = 1;
                         e.flash(true);
@@ -23695,7 +23281,7 @@ var G0 = /** @class */ (function (_super) {
                                 }
                             }
                             if (m.pos[0] > e.config.grid.width) {
-                                framework_2.Insights.event.send("G0", "Died", "at " + e.centerTopText, _this.timer);
+                                framework_2.Insights.event.send("G0", "Died", "at " + e.state.centerTopText, _this.timer);
                                 if (_this.maxScore < _this.timer) {
                                     _this.maxScore = _this.timer;
                                     framework_2.Insights.metric.set(2, _this.maxScore);
@@ -23731,7 +23317,7 @@ var G0 = /** @class */ (function (_super) {
                     }
                     else if (iterations % (60 * 5)) {
                         framework_2.Insights.metric.set(1, Math.floor(iterations / 60));
-                        framework_2.Insights.metric.set(5, e.metric.measurements.fps.avg);
+                        framework_2.Insights.metric.set(5, e.state.fps.avg);
                     }
                     this.timer++;
                     var frames_1 = Math.floor(this.timer % 60);
@@ -23749,14 +23335,14 @@ var G0 = /** @class */ (function (_super) {
                         this.laser.fire--;
                     }
                     e.setSprite(spriteIndex_1++, turret, this.img.laser, 1.0, this.laser.rotation);
-                    e.centerTopText = seconds + ":" + (frames_1 < 10 ? "0" + frames_1 : frames_1);
+                    e.state.centerTopText = seconds + ":" + (frames_1 < 10 ? "0" + frames_1 : frames_1);
                     break;
                 }
             case 3:
                 {
                     e.clearGrid(-1);
                     e.clearSprites();
-                    e.centerText = "BOOM! Try again?";
+                    e.state.centerText = "BOOM! Try again?";
                     if (e.input.mouse.button[0]) {
                         this.state = 1;
                         e.flash(true);
@@ -23765,12 +23351,219 @@ var G0 = /** @class */ (function (_super) {
                 }
         }
         if (iterations % 60 * 10 == 0) {
-            framework_2.Insights.metric.set(4, e.metric.measurements.animate.avg);
+            framework_2.Insights.metric.set(4, e.state.animate.avg);
         }
     };
     return G0;
 }(framework_1.Prototype));
 exports.default = G0;
+
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var config_1 = __webpack_require__(97);
+var pixi_1 = __webpack_require__(103);
+var input_1 = __webpack_require__(208);
+var state_1 = __webpack_require__(209);
+var SAT = __webpack_require__(231);
+var Engine = /** @class */ (function () {
+    function Engine(config) {
+        if (config === void 0) { config = new config_1.Config(); }
+        this.config = config;
+        this.pixi = new pixi_1.Pixi(this.config);
+        this.input = new input_1.Input(this.config, this.pixi.app.view);
+        this.state = new state_1.State();
+    }
+    Engine.prototype.flash = function (blocking) {
+        var s = this.state;
+        s.flashing = true;
+        s.flashBlocks = blocking == true ? true : false;
+        s.flashTickStep = 0.075;
+        s.flashTicks = -1.0;
+    };
+    Engine.prototype.setBackground = function (color) {
+        this.state.background = color;
+    };
+    Engine.prototype.getIntersectingSprite = function (id) {
+        var box1 = new SAT.Box();
+        var box2 = new SAT.Box();
+        var sprite = this.pixi.sprites[id];
+        for (var i = 0; i < this.pixi.sprites.length; i++) {
+            var candidate = this.pixi.sprites[i];
+            if (i != id && candidate.sprite.visible) {
+                var cellSize = this.config.grid.cellSize;
+                box1.pos.x = sprite.position[0];
+                box1.pos.y = sprite.position[1];
+                box1.w = sprite.sprite.width / cellSize;
+                box1.h = sprite.sprite.height / cellSize;
+                box2.pos.x = candidate.position[0];
+                box2.pos.y = candidate.position[1];
+                box2.w = candidate.sprite.width / cellSize;
+                box2.h = candidate.sprite.height / cellSize;
+                var p1 = box1.toPolygon();
+                var p2 = box2.toPolygon();
+                if (SAT.testPolygonPolygon(p1, p2))
+                    return i;
+            }
+        }
+        return -1;
+    };
+    Engine.prototype.setCell = function (x, y, image, offsetX, offsetY) {
+        if (offsetX === void 0) { offsetX = 0; }
+        if (offsetY === void 0) { offsetY = 0; }
+        var cell = this.pixi.grid[y][x];
+        if (image >= 0) {
+            var cellSize = this.config.grid.cellSize;
+            this.pixi.grid[y][x].sprite.visible = true;
+            var tex = this.pixi.textures[image];
+            var sprite = cell.sprite;
+            sprite.texture = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(offsetX * cellSize, offsetY * cellSize, cellSize, cellSize));
+        }
+        else {
+            cell.sprite.visible = false;
+        }
+    };
+    Engine.prototype.clearSprites = function () {
+        this.pixi.sprites.forEach(function (s) { return s.clear(); });
+    };
+    Engine.prototype.setSprite = function (i, pos, image, alpha, rotation, anchor) {
+        if (image === void 0) { image = undefined; }
+        if (alpha === void 0) { alpha = undefined; }
+        if (rotation === void 0) { rotation = undefined; }
+        if (anchor === void 0) { anchor = this.config.sprite.anchor; }
+        var sprite = this.pixi.sprites[i];
+        sprite.position.set(pos);
+        if (image != undefined) {
+            if (image >= 0) {
+                var tex = this.pixi.textures[image];
+                sprite.sprite.anchor.x = anchor[0];
+                sprite.sprite.anchor.y = anchor[1];
+                sprite.sprite.texture = tex;
+                sprite.sprite.visible = true;
+                var a = alpha != undefined ? alpha : 1.0;
+                rotation = rotation != undefined ? rotation : 0.0;
+                sprite.sprite.rotation = rotation;
+                sprite.sprite.alpha = a;
+            }
+            else {
+                sprite.clear();
+            }
+        }
+    };
+    /**Clears the grid with the specified image as src */
+    Engine.prototype.clearGrid = function (image) {
+        for (var y = 0; y < this.pixi.grid.length; y++) {
+            for (var x = 0; x < this.pixi.grid[y].length; x++) {
+                this.setCell(x, y, image);
+            }
+        }
+    };
+    Engine.prototype.clearText = function () {
+        this.state.centerText = "";
+        this.state.centerTopText = "";
+    };
+    Engine.prototype.loadImage = function (src) {
+        var texture = PIXI.Texture.fromImage(src);
+        this.pixi.textures.push(texture);
+        return this.pixi.textures.length - 1;
+    };
+    Engine.prototype.animate = function (tick) {
+        var s = this.state;
+        s.animateCount++;
+        var start = performance.now();
+        var canvasWidth = this.pixi.app.view.width;
+        var canvasHeight = this.pixi.app.view.height;
+        var gridWidth = this.config.grid.width;
+        var gridHeight = this.config.grid.height;
+        var cellSize = this.config.grid.cellSize;
+        var w = gridWidth * cellSize;
+        var h = gridHeight * cellSize;
+        var ratioWidth = canvasWidth / w;
+        var ratioHeight = canvasHeight / h;
+        var ratio = ratioWidth;
+        this.pixi.stages.grid.setTransform(0, 0, ratio, ratio);
+        this.pixi.app.stage.alpha = 1.0;
+        if (!s.flashing || !s.flashBlocks)
+            tick(s.animateCount);
+        this.pixi.texts.top.text = this.state.centerTopText;
+        this.pixi.texts.middle.text = this.state.centerText;
+        this.pixi.sprites.forEach(function (s) {
+            if (s.sprite.visible) {
+                s.sprite.x = s.position[0] * cellSize;
+                s.sprite.y = s.position[1] * cellSize;
+            }
+        });
+        if (s.flashing) {
+            var old = s.flashTicks;
+            var alpha = Math.abs(s.flashTicks);
+            this.pixi.app.stage.alpha = alpha;
+            s.flashTicks += s.flashTickStep;
+            if (Math.sign(old) != Math.sign(s.flashTicks)) {
+                tick(s.animateCount);
+            }
+            if (s.flashTicks > 1.0) {
+                s.flashing = false;
+            }
+        }
+        var now = performance.now();
+        var diff = performance.now() - start;
+        var am = s.animate;
+        var fps = s.fps;
+        var r = now - s.animateStart;
+        fps.measure(1000 / r);
+        am.measure(diff);
+        s.animateStart = now;
+    };
+    return Engine;
+}());
+exports.Engine = Engine;
+
+
+/***/ }),
+/* 97 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(18);
+var Sprite = /** @class */ (function () {
+    function Sprite() {
+        this.max = 255;
+        this.anchor = gl_matrix_1.vec2.clone([0.5, 0.5]);
+    }
+    return Sprite;
+}());
+exports.Sprite = Sprite;
+var Grid = /** @class */ (function () {
+    function Grid() {
+        this.cellSize = 16;
+        this.width = 16;
+        this.height = 9;
+    }
+    return Grid;
+}());
+exports.Grid = Grid;
+var Flash = /** @class */ (function () {
+    function Flash() {
+    }
+    return Flash;
+}());
+exports.Flash = Flash;
+var Config = /** @class */ (function () {
+    function Config() {
+        this.sprite = new Sprite();
+        this.grid = new Grid();
+        this.flash = new Flash();
+    }
+    return Config;
+}());
+exports.Config = Config;
 
 
 /***/ }),
@@ -26505,9 +26298,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (immutable) */ __webpack_exports__["fromEuler"] = fromEuler;
 /* harmony export (immutable) */ __webpack_exports__["str"] = str;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mat3__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vec3__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vec4__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mat3__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__vec3__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__vec4__ = __webpack_require__(41);
 /* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27821,998 +27614,130 @@ const forEach = (function() {
 /* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// Version 0.6.0 - Copyright 2012 - 2016 -  Jim Riecken <jimr@jimr.ca>
-//
-// Released under the MIT License - https://github.com/jriecken/sat-js
-//
-// A simple library for determining intersections of circles and
-// polygons using the Separating Axis Theorem.
-/** @preserve SAT.js - Version 0.6.0 - Copyright 2012 - 2016 - Jim Riecken <jimr@jimr.ca> - released under the MIT License. https://github.com/jriecken/sat-js */
+"use strict";
 
-/*global define: false, module: false*/
-/*jshint shadow:true, sub:true, forin:true, noarg:true, noempty:true, 
-  eqeqeq:true, bitwise:true, strict:true, undef:true, 
-  curly:true, browser:true */
-
-// Create a UMD wrapper for SAT. Works in:
-//
-//  - Plain browser via global SAT variable
-//  - AMD loader (like require.js)
-//  - Node.js
-//
-// The quoted properties all over the place are used so that the Closure Compiler
-// does not mangle the exposed API in advanced mode.
-/**
- * @param {*} root - The global scope
- * @param {Function} factory - Factory that creates SAT module
- */
-(function (root, factory) {
-  "use strict";
-  if (true) {
-    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else if (typeof exports === 'object') {
-    module['exports'] = factory();
-  } else {
-    root['SAT'] = factory();
-  }
-}(this, function () {
-  "use strict";
-
-  var SAT = {};
-
-  //
-  // ## Vector
-  //
-  // Represents a vector in two dimensions with `x` and `y` properties.
-
-
-  // Create a new Vector, optionally passing in the `x` and `y` coordinates. If
-  // a coordinate is not specified, it will be set to `0`
-  /** 
-   * @param {?number=} x The x position.
-   * @param {?number=} y The y position.
-   * @constructor
-   */
-  function Vector(x, y) {
-    this['x'] = x || 0;
-    this['y'] = y || 0;
-  }
-  SAT['Vector'] = Vector;
-  // Alias `Vector` as `V`
-  SAT['V'] = Vector;
-
-
-  // Copy the values of another Vector into this one.
-  /**
-   * @param {Vector} other The other Vector.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['copy'] = Vector.prototype.copy = function(other) {
-    this['x'] = other['x'];
-    this['y'] = other['y'];
-    return this;
-  };
-
-  // Create a new vector with the same coordinates as this on.
-  /**
-   * @return {Vector} The new cloned vector
-   */
-  Vector.prototype['clone'] = Vector.prototype.clone = function() {
-    return new Vector(this['x'], this['y']);
-  };
-
-  // Change this vector to be perpendicular to what it was before. (Effectively
-  // roatates it 90 degrees in a clockwise direction)
-  /**
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['perp'] = Vector.prototype.perp = function() {
-    var x = this['x'];
-    this['x'] = this['y'];
-    this['y'] = -x;
-    return this;
-  };
-
-  // Rotate this vector (counter-clockwise) by the specified angle (in radians).
-  /**
-   * @param {number} angle The angle to rotate (in radians)
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['rotate'] = Vector.prototype.rotate = function (angle) {
-    var x = this['x'];
-    var y = this['y'];
-    this['x'] = x * Math.cos(angle) - y * Math.sin(angle);
-    this['y'] = x * Math.sin(angle) + y * Math.cos(angle);
-    return this;
-  };
-
-  // Reverse this vector.
-  /**
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['reverse'] = Vector.prototype.reverse = function() {
-    this['x'] = -this['x'];
-    this['y'] = -this['y'];
-    return this;
-  };
-  
-
-  // Normalize this vector.  (make it have length of `1`)
-  /**
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['normalize'] = Vector.prototype.normalize = function() {
-    var d = this.len();
-    if(d > 0) {
-      this['x'] = this['x'] / d;
-      this['y'] = this['y'] / d;
+Object.defineProperty(exports, "__esModule", { value: true });
+var PIXI = __webpack_require__(104);
+var cell_1 = __webpack_require__(206);
+var sprite_1 = __webpack_require__(207);
+var Texts = /** @class */ (function () {
+    function Texts() {
+        this.middle = new PIXI.Text();
+        this.top = new PIXI.Text();
+        this.debug = new PIXI.Text();
     }
-    return this;
-  };
-  
-  // Add another vector to this one.
-  /**
-   * @param {Vector} other The other Vector.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['add'] = Vector.prototype.add = function(other) {
-    this['x'] += other['x'];
-    this['y'] += other['y'];
-    return this;
-  };
-  
-  // Subtract another vector from this one.
-  /**
-   * @param {Vector} other The other Vector.
-   * @return {Vector} This for chaiing.
-   */
-  Vector.prototype['sub'] = Vector.prototype.sub = function(other) {
-    this['x'] -= other['x'];
-    this['y'] -= other['y'];
-    return this;
-  };
-  
-  // Scale this vector. An independant scaling factor can be provided
-  // for each axis, or a single scaling factor that will scale both `x` and `y`.
-  /**
-   * @param {number} x The scaling factor in the x direction.
-   * @param {?number=} y The scaling factor in the y direction.  If this
-   *   is not specified, the x scaling factor will be used.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['scale'] = Vector.prototype.scale = function(x,y) {
-    this['x'] *= x;
-    this['y'] *= y || x;
-    return this; 
-  };
-  
-  // Project this vector on to another vector.
-  /**
-   * @param {Vector} other The vector to project onto.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['project'] = Vector.prototype.project = function(other) {
-    var amt = this.dot(other) / other.len2();
-    this['x'] = amt * other['x'];
-    this['y'] = amt * other['y'];
-    return this;
-  };
-  
-  // Project this vector onto a vector of unit length. This is slightly more efficient
-  // than `project` when dealing with unit vectors.
-  /**
-   * @param {Vector} other The unit vector to project onto.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['projectN'] = Vector.prototype.projectN = function(other) {
-    var amt = this.dot(other);
-    this['x'] = amt * other['x'];
-    this['y'] = amt * other['y'];
-    return this;
-  };
-  
-  // Reflect this vector on an arbitrary axis.
-  /**
-   * @param {Vector} axis The vector representing the axis.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['reflect'] = Vector.prototype.reflect = function(axis) {
-    var x = this['x'];
-    var y = this['y'];
-    this.project(axis).scale(2);
-    this['x'] -= x;
-    this['y'] -= y;
-    return this;
-  };
-  
-  // Reflect this vector on an arbitrary axis (represented by a unit vector). This is
-  // slightly more efficient than `reflect` when dealing with an axis that is a unit vector.
-  /**
-   * @param {Vector} axis The unit vector representing the axis.
-   * @return {Vector} This for chaining.
-   */
-  Vector.prototype['reflectN'] = Vector.prototype.reflectN = function(axis) {
-    var x = this['x'];
-    var y = this['y'];
-    this.projectN(axis).scale(2);
-    this['x'] -= x;
-    this['y'] -= y;
-    return this;
-  };
-  
-  // Get the dot product of this vector and another.
-  /**
-   * @param {Vector}  other The vector to dot this one against.
-   * @return {number} The dot product.
-   */
-  Vector.prototype['dot'] = Vector.prototype.dot = function(other) {
-    return this['x'] * other['x'] + this['y'] * other['y'];
-  };
-  
-  // Get the squared length of this vector.
-  /**
-   * @return {number} The length^2 of this vector.
-   */
-  Vector.prototype['len2'] = Vector.prototype.len2 = function() {
-    return this.dot(this);
-  };
-  
-  // Get the length of this vector.
-  /**
-   * @return {number} The length of this vector.
-   */
-  Vector.prototype['len'] = Vector.prototype.len = function() {
-    return Math.sqrt(this.len2());
-  };
-  
-  // ## Circle
-  //
-  // Represents a circle with a position and a radius.
-
-  // Create a new circle, optionally passing in a position and/or radius. If no position
-  // is given, the circle will be at `(0,0)`. If no radius is provided, the circle will
-  // have a radius of `0`.
-  /**
-   * @param {Vector=} pos A vector representing the position of the center of the circle
-   * @param {?number=} r The radius of the circle
-   * @constructor
-   */
-  function Circle(pos, r) {
-    this['pos'] = pos || new Vector();
-    this['r'] = r || 0;
-  }
-  SAT['Circle'] = Circle;
-  
-  // Compute the axis-aligned bounding box (AABB) of this Circle.
-  //
-  // Note: Returns a _new_ `Polygon` each time you call this.
-  /**
-   * @return {Polygon} The AABB
-   */
-  Circle.prototype['getAABB'] = Circle.prototype.getAABB = function() {
-    var r = this['r'];
-    var corner = this["pos"].clone().sub(new Vector(r, r));
-    return new Box(corner, r*2, r*2).toPolygon();
-  };
-
-  // ## Polygon
-  //
-  // Represents a *convex* polygon with any number of points (specified in counter-clockwise order)
-  //
-  // Note: Do _not_ manually change the `points`, `angle`, or `offset` properties. Use the
-  // provided setters. Otherwise the calculated properties will not be updated correctly.
-  //
-  // `pos` can be changed directly.
-
-  // Create a new polygon, passing in a position vector, and an array of points (represented
-  // by vectors relative to the position vector). If no position is passed in, the position
-  // of the polygon will be `(0,0)`.
-  /**
-   * @param {Vector=} pos A vector representing the origin of the polygon. (all other
-   *   points are relative to this one)
-   * @param {Array.<Vector>=} points An array of vectors representing the points in the polygon,
-   *   in counter-clockwise order.
-   * @constructor
-   */
-  function Polygon(pos, points) {
-    this['pos'] = pos || new Vector();
-    this['angle'] = 0;
-    this['offset'] = new Vector();
-    this.setPoints(points || []);
-  }
-  SAT['Polygon'] = Polygon;
-  
-  // Set the points of the polygon.
-  //
-  // Note: The points are counter-clockwise *with respect to the coordinate system*.
-  // If you directly draw the points on a screen that has the origin at the top-left corner
-  // it will _appear_ visually that the points are being specified clockwise. This is just
-  // because of the inversion of the Y-axis when being displayed.
-  /**
-   * @param {Array.<Vector>=} points An array of vectors representing the points in the polygon,
-   *   in counter-clockwise order.
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype['setPoints'] = Polygon.prototype.setPoints = function(points) {
-    // Only re-allocate if this is a new polygon or the number of points has changed.
-    var lengthChanged = !this['points'] || this['points'].length !== points.length;
-    if (lengthChanged) {
-      var i;
-      var calcPoints = this['calcPoints'] = [];
-      var edges = this['edges'] = [];
-      var normals = this['normals'] = [];
-      // Allocate the vector arrays for the calculated properties
-      for (i = 0; i < points.length; i++) {
-        calcPoints.push(new Vector());
-        edges.push(new Vector());
-        normals.push(new Vector());
-      }
+    return Texts;
+}());
+var Stages = /** @class */ (function () {
+    function Stages() {
+        this.grid = new PIXI.Container();
+        this.text = new PIXI.Container();
     }
-    this['points'] = points;
-    this._recalc();
-    return this;
-  };
-
-  // Set the current rotation angle of the polygon.
-  /**
-   * @param {number} angle The current rotation angle (in radians).
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype['setAngle'] = Polygon.prototype.setAngle = function(angle) {
-    this['angle'] = angle;
-    this._recalc();
-    return this;
-  };
-
-  // Set the current offset to apply to the `points` before applying the `angle` rotation.
-  /**
-   * @param {Vector} offset The new offset vector.
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype['setOffset'] = Polygon.prototype.setOffset = function(offset) {
-    this['offset'] = offset;
-    this._recalc();
-    return this;
-  };
-
-  // Rotates this polygon counter-clockwise around the origin of *its local coordinate system* (i.e. `pos`).
-  //
-  // Note: This changes the **original** points (so any `angle` will be applied on top of this rotation).
-  /**
-   * @param {number} angle The angle to rotate (in radians)
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype['rotate'] = Polygon.prototype.rotate = function(angle) {
-    var points = this['points'];
-    var len = points.length;
-    for (var i = 0; i < len; i++) {
-      points[i].rotate(angle);
-    }
-    this._recalc();
-    return this;
-  };
-
-  // Translates the points of this polygon by a specified amount relative to the origin of *its own coordinate
-  // system* (i.e. `pos`).
-  //
-  // This is most useful to change the "center point" of a polygon. If you just want to move the whole polygon, change
-  // the coordinates of `pos`.
-  //
-  // Note: This changes the **original** points (so any `offset` will be applied on top of this translation)
-  /**
-   * @param {number} x The horizontal amount to translate.
-   * @param {number} y The vertical amount to translate.
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype['translate'] = Polygon.prototype.translate = function (x, y) {
-    var points = this['points'];
-    var len = points.length;
-    for (var i = 0; i < len; i++) {
-      points[i].x += x;
-      points[i].y += y;
-    }
-    this._recalc();
-    return this;
-  };
-
-
-  // Computes the calculated collision polygon. Applies the `angle` and `offset` to the original points then recalculates the
-  // edges and normals of the collision polygon.
-  /**
-   * @return {Polygon} This for chaining.
-   */
-  Polygon.prototype._recalc = function() {
-    // Calculated points - this is what is used for underlying collisions and takes into account
-    // the angle/offset set on the polygon.
-    var calcPoints = this['calcPoints'];
-    // The edges here are the direction of the `n`th edge of the polygon, relative to
-    // the `n`th point. If you want to draw a given edge from the edge value, you must
-    // first translate to the position of the starting point.
-    var edges = this['edges'];
-    // The normals here are the direction of the normal for the `n`th edge of the polygon, relative
-    // to the position of the `n`th point. If you want to draw an edge normal, you must first
-    // translate to the position of the starting point.
-    var normals = this['normals'];
-    // Copy the original points array and apply the offset/angle
-    var points = this['points'];
-    var offset = this['offset'];
-    var angle = this['angle'];
-    var len = points.length;
-    var i;
-    for (i = 0; i < len; i++) {
-      var calcPoint = calcPoints[i].copy(points[i]);
-      calcPoint.x += offset.x;
-      calcPoint.y += offset.y;
-      if (angle !== 0) {
-        calcPoint.rotate(angle);
-      }
-    }
-    // Calculate the edges/normals
-    for (i = 0; i < len; i++) {
-      var p1 = calcPoints[i];
-      var p2 = i < len - 1 ? calcPoints[i + 1] : calcPoints[0];
-      var e = edges[i].copy(p2).sub(p1);
-      normals[i].copy(e).perp().normalize();
-    }
-    return this;
-  };
-  
-  
-  // Compute the axis-aligned bounding box. Any current state
-  // (translations/rotations) will be applied before constructing the AABB.
-  //
-  // Note: Returns a _new_ `Polygon` each time you call this.
-  /**
-   * @return {Polygon} The AABB
-   */
-  Polygon.prototype["getAABB"] = Polygon.prototype.getAABB = function() {
-    var points = this["calcPoints"];
-    var len = points.length;
-    var xMin = points[0]["x"];
-    var yMin = points[0]["y"];
-    var xMax = points[0]["x"];
-    var yMax = points[0]["y"];
-    for (var i = 1; i < len; i++) {
-      var point = points[i];
-      if (point["x"] < xMin) {
-        xMin = point["x"];
-      }
-      else if (point["x"] > xMax) {
-        xMax = point["x"];
-      }
-      if (point["y"] < yMin) {
-        yMin = point["y"];
-      }
-      else if (point["y"] > yMax) {
-        yMax = point["y"];
-      }
-    }
-    return new Box(this["pos"].clone().add(new Vector(xMin, yMin)), xMax - xMin, yMax - yMin).toPolygon();
-  };
-  
-
-  // ## Box
-  //
-  // Represents an axis-aligned box, with a width and height.
-
-
-  // Create a new box, with the specified position, width, and height. If no position
-  // is given, the position will be `(0,0)`. If no width or height are given, they will
-  // be set to `0`.
-  /**
-   * @param {Vector=} pos A vector representing the bottom-left of the box (i.e. the smallest x and smallest y value).
-   * @param {?number=} w The width of the box.
-   * @param {?number=} h The height of the box.
-   * @constructor
-   */
-  function Box(pos, w, h) {
-    this['pos'] = pos || new Vector();
-    this['w'] = w || 0;
-    this['h'] = h || 0;
-  }
-  SAT['Box'] = Box;
-
-  // Returns a polygon whose edges are the same as this box.
-  /**
-   * @return {Polygon} A new Polygon that represents this box.
-   */
-  Box.prototype['toPolygon'] = Box.prototype.toPolygon = function() {
-    var pos = this['pos'];
-    var w = this['w'];
-    var h = this['h'];
-    return new Polygon(new Vector(pos['x'], pos['y']), [
-     new Vector(), new Vector(w, 0), 
-     new Vector(w,h), new Vector(0,h)
-    ]);
-  };
-  
-  // ## Response
-  //
-  // An object representing the result of an intersection. Contains:
-  //  - The two objects participating in the intersection
-  //  - The vector representing the minimum change necessary to extract the first object
-  //    from the second one (as well as a unit vector in that direction and the magnitude
-  //    of the overlap)
-  //  - Whether the first object is entirely inside the second, and vice versa.
-  /**
-   * @constructor
-   */  
-  function Response() {
-    this['a'] = null;
-    this['b'] = null;
-    this['overlapN'] = new Vector();
-    this['overlapV'] = new Vector();
-    this.clear();
-  }
-  SAT['Response'] = Response;
-
-  // Set some values of the response back to their defaults.  Call this between tests if
-  // you are going to reuse a single Response object for multiple intersection tests (recommented
-  // as it will avoid allcating extra memory)
-  /**
-   * @return {Response} This for chaining
-   */
-  Response.prototype['clear'] = Response.prototype.clear = function() {
-    this['aInB'] = true;
-    this['bInA'] = true;
-    this['overlap'] = Number.MAX_VALUE;
-    return this;
-  };
-
-  // ## Object Pools
-
-  // A pool of `Vector` objects that are used in calculations to avoid
-  // allocating memory.
-  /**
-   * @type {Array.<Vector>}
-   */
-  var T_VECTORS = [];
-  for (var i = 0; i < 10; i++) { T_VECTORS.push(new Vector()); }
-  
-  // A pool of arrays of numbers used in calculations to avoid allocating
-  // memory.
-  /**
-   * @type {Array.<Array.<number>>}
-   */
-  var T_ARRAYS = [];
-  for (var i = 0; i < 5; i++) { T_ARRAYS.push([]); }
-
-  // Temporary response used for polygon hit detection.
-  /**
-   * @type {Response}
-   */
-  var T_RESPONSE = new Response();
-
-  // Tiny "point" polygon used for polygon hit detection.
-  /**
-   * @type {Polygon}
-   */
-  var TEST_POINT = new Box(new Vector(), 0.000001, 0.000001).toPolygon();
-
-  // ## Helper Functions
-
-  // Flattens the specified array of points onto a unit vector axis,
-  // resulting in a one dimensional range of the minimum and
-  // maximum value on that axis.
-  /**
-   * @param {Array.<Vector>} points The points to flatten.
-   * @param {Vector} normal The unit vector axis to flatten on.
-   * @param {Array.<number>} result An array.  After calling this function,
-   *   result[0] will be the minimum value,
-   *   result[1] will be the maximum value.
-   */
-  function flattenPointsOn(points, normal, result) {
-    var min = Number.MAX_VALUE;
-    var max = -Number.MAX_VALUE;
-    var len = points.length;
-    for (var i = 0; i < len; i++ ) {
-      // The magnitude of the projection of the point onto the normal
-      var dot = points[i].dot(normal);
-      if (dot < min) { min = dot; }
-      if (dot > max) { max = dot; }
-    }
-    result[0] = min; result[1] = max;
-  }
-  
-  // Check whether two convex polygons are separated by the specified
-  // axis (must be a unit vector).
-  /**
-   * @param {Vector} aPos The position of the first polygon.
-   * @param {Vector} bPos The position of the second polygon.
-   * @param {Array.<Vector>} aPoints The points in the first polygon.
-   * @param {Array.<Vector>} bPoints The points in the second polygon.
-   * @param {Vector} axis The axis (unit sized) to test against.  The points of both polygons
-   *   will be projected onto this axis.
-   * @param {Response=} response A Response object (optional) which will be populated
-   *   if the axis is not a separating axis.
-   * @return {boolean} true if it is a separating axis, false otherwise.  If false,
-   *   and a response is passed in, information about how much overlap and
-   *   the direction of the overlap will be populated.
-   */
-  function isSeparatingAxis(aPos, bPos, aPoints, bPoints, axis, response) {
-    var rangeA = T_ARRAYS.pop();
-    var rangeB = T_ARRAYS.pop();
-    // The magnitude of the offset between the two polygons
-    var offsetV = T_VECTORS.pop().copy(bPos).sub(aPos);
-    var projectedOffset = offsetV.dot(axis);
-    // Project the polygons onto the axis.
-    flattenPointsOn(aPoints, axis, rangeA);
-    flattenPointsOn(bPoints, axis, rangeB);
-    // Move B's range to its position relative to A.
-    rangeB[0] += projectedOffset;
-    rangeB[1] += projectedOffset;
-    // Check if there is a gap. If there is, this is a separating axis and we can stop
-    if (rangeA[0] > rangeB[1] || rangeB[0] > rangeA[1]) {
-      T_VECTORS.push(offsetV); 
-      T_ARRAYS.push(rangeA); 
-      T_ARRAYS.push(rangeB);
-      return true;
-    }
-    // This is not a separating axis. If we're calculating a response, calculate the overlap.
-    if (response) {
-      var overlap = 0;
-      // A starts further left than B
-      if (rangeA[0] < rangeB[0]) {
-        response['aInB'] = false;
-        // A ends before B does. We have to pull A out of B
-        if (rangeA[1] < rangeB[1]) { 
-          overlap = rangeA[1] - rangeB[0];
-          response['bInA'] = false;
-        // B is fully inside A.  Pick the shortest way out.
-        } else {
-          var option1 = rangeA[1] - rangeB[0];
-          var option2 = rangeB[1] - rangeA[0];
-          overlap = option1 < option2 ? option1 : -option2;
+    return Stages;
+}());
+var Pixi = /** @class */ (function () {
+    function Pixi(config) {
+        var _this = this;
+        this.app = null;
+        this.textures = new Array();
+        this.texts = new Texts();
+        this.stages = new Stages();
+        this.grid = new Array();
+        this.config = config;
+        this.app = new PIXI.Application();
+        this.app.stage.addChild(this.stages.grid);
+        this.app.stage.addChild(this.stages.text);
+        PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;
+        document.body.appendChild(this.app.view);
+        var canvas = this.app.view;
+        var w = config.grid.width;
+        var h = config.grid.height;
+        this.grid = new Array(h);
+        var cellSize = config.grid.cellSize;
+        for (var y = 0; y < h; y++) {
+            this.grid[y] = new Array(w);
+            for (var x = 0; x < w; x++) {
+                var sprite = new PIXI.Sprite();
+                sprite.visible = false;
+                sprite.x = x * cellSize;
+                sprite.y = y * cellSize;
+                this.grid[y][x] = new cell_1.Cell(sprite);
+                this.stages.grid.addChild(sprite);
+            }
         }
-      // B starts further left than A
-      } else {
-        response['bInA'] = false;
-        // B ends before A ends. We have to push A out of B
-        if (rangeA[1] > rangeB[1]) { 
-          overlap = rangeA[0] - rangeB[1];
-          response['aInB'] = false;
-        // A is fully inside B.  Pick the shortest way out.
-        } else {
-          var option1 = rangeA[1] - rangeB[0];
-          var option2 = rangeB[1] - rangeA[0];
-          overlap = option1 < option2 ? option1 : -option2;
+        this.sprites = new Array(config.sprite.max);
+        for (var i = 0; i < this.sprites.length; i++) {
+            var sprite = new PIXI.Sprite();
+            sprite.anchor.x = 0.5;
+            sprite.anchor.y = 0.5;
+            this.sprites[i] = new sprite_1.Sprite(i, sprite);
+            this.stages.grid.addChild(sprite);
         }
-      }
-      // If this is the smallest amount of overlap we've seen so far, set it as the minimum overlap.
-      var absOverlap = Math.abs(overlap);
-      if (absOverlap < response['overlap']) {
-        response['overlap'] = absOverlap;
-        response['overlapN'].copy(axis);
-        if (overlap < 0) {
-          response['overlapN'].reverse();
+        var style = { fontFamily: 'Pixeled', fontSize: 8, fill: 0xFFFFFF };
+        this.texts.middle = new PIXI.Text("hello world", style);
+        this.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
+        this.texts.top = new PIXI.Text("top dollar", style);
+        this.texts.debug = new PIXI.Text("", style);
+        this.stages.text.addChild(this.texts.middle);
+        this.stages.text.addChild(this.texts.top);
+        this.stages.text.addChild(this.texts.debug);
+        window.onresize = function () { return _this.resize(); };
+        this.resize();
+    }
+    Pixi.prototype.resize = function () {
+        var cellSize = this.config.grid.cellSize;
+        var gridHeight = this.config.grid.height * cellSize;
+        var gridWidth = this.config.grid.width * cellSize;
+        var targetAspect = this.config.grid.width / this.config.grid.height;
+        var screenWidth = window.innerWidth;
+        var screenHeight = window.innerHeight;
+        var screenAspect = screenWidth / screenHeight;
+        var canvas = this.app.view;
+        var width = 0;
+        var height = 0;
+        //let multiplum = gridHeight;
+        var multiplum = 16;
+        if (screenAspect >= targetAspect) {
+            height = Math.floor(screenHeight / multiplum) * multiplum;
+            if (height == 0)
+                height = screenHeight;
+            var factor = height / gridHeight;
+            width = gridWidth * factor;
         }
-      }      
-    }
-    T_VECTORS.push(offsetV); 
-    T_ARRAYS.push(rangeA); 
-    T_ARRAYS.push(rangeB);
-    return false;
-  }
-  SAT['isSeparatingAxis'] = isSeparatingAxis;
-  
-  // Calculates which Voronoi region a point is on a line segment.
-  // It is assumed that both the line and the point are relative to `(0,0)`
-  //
-  //            |       (0)      |
-  //     (-1)  [S]--------------[E]  (1)
-  //            |       (0)      |
-  /**
-   * @param {Vector} line The line segment.
-   * @param {Vector} point The point.
-   * @return  {number} LEFT_VORONOI_REGION (-1) if it is the left region,
-   *          MIDDLE_VORONOI_REGION (0) if it is the middle region,
-   *          RIGHT_VORONOI_REGION (1) if it is the right region.
-   */
-  function voronoiRegion(line, point) {
-    var len2 = line.len2();
-    var dp = point.dot(line);
-    // If the point is beyond the start of the line, it is in the
-    // left voronoi region.
-    if (dp < 0) { return LEFT_VORONOI_REGION; }
-    // If the point is beyond the end of the line, it is in the
-    // right voronoi region.
-    else if (dp > len2) { return RIGHT_VORONOI_REGION; }
-    // Otherwise, it's in the middle one.
-    else { return MIDDLE_VORONOI_REGION; }
-  }
-  // Constants for Voronoi regions
-  /**
-   * @const
-   */
-  var LEFT_VORONOI_REGION = -1;
-  /**
-   * @const
-   */
-  var MIDDLE_VORONOI_REGION = 0;
-  /**
-   * @const
-   */
-  var RIGHT_VORONOI_REGION = 1;
-  
-  // ## Collision Tests
-
-  // Check if a point is inside a circle.
-  /**
-   * @param {Vector} p The point to test.
-   * @param {Circle} c The circle to test.
-   * @return {boolean} true if the point is inside the circle, false if it is not.
-   */
-  function pointInCircle(p, c) {
-    var differenceV = T_VECTORS.pop().copy(p).sub(c['pos']);
-    var radiusSq = c['r'] * c['r'];
-    var distanceSq = differenceV.len2();
-    T_VECTORS.push(differenceV);
-    // If the distance between is smaller than the radius then the point is inside the circle.
-    return distanceSq <= radiusSq;
-  }
-  SAT['pointInCircle'] = pointInCircle;
-
-  // Check if a point is inside a convex polygon.
-  /**
-   * @param {Vector} p The point to test.
-   * @param {Polygon} poly The polygon to test.
-   * @return {boolean} true if the point is inside the polygon, false if it is not.
-   */
-  function pointInPolygon(p, poly) {
-    TEST_POINT['pos'].copy(p);
-    T_RESPONSE.clear();
-    var result = testPolygonPolygon(TEST_POINT, poly, T_RESPONSE);
-    if (result) {
-      result = T_RESPONSE['aInB'];
-    }
-    return result;
-  }
-  SAT['pointInPolygon'] = pointInPolygon;
-
-  // Check if two circles collide.
-  /**
-   * @param {Circle} a The first circle.
-   * @param {Circle} b The second circle.
-   * @param {Response=} response Response object (optional) that will be populated if
-   *   the circles intersect.
-   * @return {boolean} true if the circles intersect, false if they don't. 
-   */
-  function testCircleCircle(a, b, response) {
-    // Check if the distance between the centers of the two
-    // circles is greater than their combined radius.
-    var differenceV = T_VECTORS.pop().copy(b['pos']).sub(a['pos']);
-    var totalRadius = a['r'] + b['r'];
-    var totalRadiusSq = totalRadius * totalRadius;
-    var distanceSq = differenceV.len2();
-    // If the distance is bigger than the combined radius, they don't intersect.
-    if (distanceSq > totalRadiusSq) {
-      T_VECTORS.push(differenceV);
-      return false;
-    }
-    // They intersect.  If we're calculating a response, calculate the overlap.
-    if (response) { 
-      var dist = Math.sqrt(distanceSq);
-      response['a'] = a;
-      response['b'] = b;
-      response['overlap'] = totalRadius - dist;
-      response['overlapN'].copy(differenceV.normalize());
-      response['overlapV'].copy(differenceV).scale(response['overlap']);
-      response['aInB']= a['r'] <= b['r'] && dist <= b['r'] - a['r'];
-      response['bInA'] = b['r'] <= a['r'] && dist <= a['r'] - b['r'];
-    }
-    T_VECTORS.push(differenceV);
-    return true;
-  }
-  SAT['testCircleCircle'] = testCircleCircle;
-  
-  // Check if a polygon and a circle collide.
-  /**
-   * @param {Polygon} polygon The polygon.
-   * @param {Circle} circle The circle.
-   * @param {Response=} response Response object (optional) that will be populated if
-   *   they interset.
-   * @return {boolean} true if they intersect, false if they don't.
-   */
-  function testPolygonCircle(polygon, circle, response) {
-    // Get the position of the circle relative to the polygon.
-    var circlePos = T_VECTORS.pop().copy(circle['pos']).sub(polygon['pos']);
-    var radius = circle['r'];
-    var radius2 = radius * radius;
-    var points = polygon['calcPoints'];
-    var len = points.length;
-    var edge = T_VECTORS.pop();
-    var point = T_VECTORS.pop();
-    
-    // For each edge in the polygon:
-    for (var i = 0; i < len; i++) {
-      var next = i === len - 1 ? 0 : i + 1;
-      var prev = i === 0 ? len - 1 : i - 1;
-      var overlap = 0;
-      var overlapN = null;
-      
-      // Get the edge.
-      edge.copy(polygon['edges'][i]);
-      // Calculate the center of the circle relative to the starting point of the edge.
-      point.copy(circlePos).sub(points[i]);
-      
-      // If the distance between the center of the circle and the point
-      // is bigger than the radius, the polygon is definitely not fully in
-      // the circle.
-      if (response && point.len2() > radius2) {
-        response['aInB'] = false;
-      }
-      
-      // Calculate which Voronoi region the center of the circle is in.
-      var region = voronoiRegion(edge, point);
-      // If it's the left region:
-      if (region === LEFT_VORONOI_REGION) {
-        // We need to make sure we're in the RIGHT_VORONOI_REGION of the previous edge.
-        edge.copy(polygon['edges'][prev]);
-        // Calculate the center of the circle relative the starting point of the previous edge
-        var point2 = T_VECTORS.pop().copy(circlePos).sub(points[prev]);
-        region = voronoiRegion(edge, point2);
-        if (region === RIGHT_VORONOI_REGION) {
-          // It's in the region we want.  Check if the circle intersects the point.
-          var dist = point.len();
-          if (dist > radius) {
-            // No intersection
-            T_VECTORS.push(circlePos); 
-            T_VECTORS.push(edge);
-            T_VECTORS.push(point); 
-            T_VECTORS.push(point2);
-            return false;
-          } else if (response) {
-            // It intersects, calculate the overlap.
-            response['bInA'] = false;
-            overlapN = point.normalize();
-            overlap = radius - dist;
-          }
+        else if (screenAspect < targetAspect) {
+            width = Math.floor(screenWidth / multiplum) * multiplum;
+            if (width == 0)
+                width = screenWidth;
+            var factor = width / gridWidth;
+            height = gridHeight * factor;
         }
-        T_VECTORS.push(point2);
-      // If it's the right region:
-      } else if (region === RIGHT_VORONOI_REGION) {
-        // We need to make sure we're in the left region on the next edge
-        edge.copy(polygon['edges'][next]);
-        // Calculate the center of the circle relative to the starting point of the next edge.
-        point.copy(circlePos).sub(points[next]);
-        region = voronoiRegion(edge, point);
-        if (region === LEFT_VORONOI_REGION) {
-          // It's in the region we want.  Check if the circle intersects the point.
-          var dist = point.len();
-          if (dist > radius) {
-            // No intersection
-            T_VECTORS.push(circlePos); 
-            T_VECTORS.push(edge); 
-            T_VECTORS.push(point);
-            return false;              
-          } else if (response) {
-            // It intersects, calculate the overlap.
-            response['bInA'] = false;
-            overlapN = point.normalize();
-            overlap = radius - dist;
-          }
-        }
-      // Otherwise, it's the middle region:
-      } else {
-        // Need to check if the circle is intersecting the edge,
-        // Change the edge into its "edge normal".
-        var normal = edge.perp().normalize();
-        // Find the perpendicular distance between the center of the 
-        // circle and the edge.
-        var dist = point.dot(normal);
-        var distAbs = Math.abs(dist);
-        // If the circle is on the outside of the edge, there is no intersection.
-        if (dist > 0 && distAbs > radius) {
-          // No intersection
-          T_VECTORS.push(circlePos); 
-          T_VECTORS.push(normal); 
-          T_VECTORS.push(point);
-          return false;
-        } else if (response) {
-          // It intersects, calculate the overlap.
-          overlapN = normal;
-          overlap = radius - dist;
-          // If the center of the circle is on the outside of the edge, or part of the
-          // circle is on the outside, the circle is not fully inside the polygon.
-          if (dist >= 0 || overlap < 2 * radius) {
-            response['bInA'] = false;
-          }
-        }
-      }
-      
-      // If this is the smallest overlap we've seen, keep it. 
-      // (overlapN may be null if the circle was in the wrong Voronoi region).
-      if (overlapN && response && Math.abs(overlap) < Math.abs(response['overlap'])) {
-        response['overlap'] = overlap;
-        response['overlapN'].copy(overlapN);
-      }
-    }
-    
-    // Calculate the final overlap vector - based on the smallest overlap.
-    if (response) {
-      response['a'] = polygon;
-      response['b'] = circle;
-      response['overlapV'].copy(response['overlapN']).scale(response['overlap']);
-    }
-    T_VECTORS.push(circlePos); 
-    T_VECTORS.push(edge); 
-    T_VECTORS.push(point);
-    return true;
-  }
-  SAT['testPolygonCircle'] = testPolygonCircle;
-  
-  // Check if a circle and a polygon collide.
-  //
-  // **NOTE:** This is slightly less efficient than polygonCircle as it just
-  // runs polygonCircle and reverses everything at the end.
-  /**
-   * @param {Circle} circle The circle.
-   * @param {Polygon} polygon The polygon.
-   * @param {Response=} response Response object (optional) that will be populated if
-   *   they interset.
-   * @return {boolean} true if they intersect, false if they don't.
-   */
-  function testCirclePolygon(circle, polygon, response) {
-    // Test the polygon against the circle.
-    var result = testPolygonCircle(polygon, circle, response);
-    if (result && response) {
-      // Swap A and B in the response.
-      var a = response['a'];
-      var aInB = response['aInB'];
-      response['overlapN'].reverse();
-      response['overlapV'].reverse();
-      response['a'] = response['b'];
-      response['b'] = a;
-      response['aInB'] = response['bInA'];
-      response['bInA'] = aInB;
-    }
-    return result;
-  }
-  SAT['testCirclePolygon'] = testCirclePolygon;
-  
-  // Checks whether polygons collide.
-  /**
-   * @param {Polygon} a The first polygon.
-   * @param {Polygon} b The second polygon.
-   * @param {Response=} response Response object (optional) that will be populated if
-   *   they interset.
-   * @return {boolean} true if they intersect, false if they don't.
-   */
-  function testPolygonPolygon(a, b, response) {
-    var aPoints = a['calcPoints'];
-    var aLen = aPoints.length;
-    var bPoints = b['calcPoints'];
-    var bLen = bPoints.length;
-    // If any of the edge normals of A is a separating axis, no intersection.
-    for (var i = 0; i < aLen; i++) {
-      if (isSeparatingAxis(a['pos'], b['pos'], aPoints, bPoints, a['normals'][i], response)) {
-        return false;
-      }
-    }
-    // If any of the edge normals of B is a separating axis, no intersection.
-    for (var i = 0;i < bLen; i++) {
-      if (isSeparatingAxis(a['pos'], b['pos'], aPoints, bPoints, b['normals'][i], response)) {
-        return false;
-      }
-    }
-    // Since none of the edge normals of A or B are a separating axis, there is an intersection
-    // and we've already calculated the smallest overlap (in isSeparatingAxis).  Calculate the
-    // final overlap vector.
-    if (response) {
-      response['a'] = a;
-      response['b'] = b;
-      response['overlapV'].copy(response['overlapN']).scale(response['overlap']);
-    }
-    return true;
-  }
-  SAT['testPolygonPolygon'] = testPolygonPolygon;
-
-  return SAT;
-}));
+        width = Math.floor(width);
+        height = Math.floor(height);
+        this.app.renderer.resize(width, height);
+        var marginW = Math.floor((screenWidth - canvas.width) / 2);
+        var marginH = Math.floor((screenHeight - canvas.height) / 2);
+        canvas.style.left = marginW + "px";
+        canvas.style.top = marginH + "px";
+        var ratio = height / gridHeight;
+        var setStyle = function (text) {
+            text.anchor.x = 0.5;
+            text.anchor.y = 0;
+            text.x = width / 2;
+            var size = Math.floor(cellSize * ratio / 2);
+            size = size > 0 ? size : 1;
+            text.style.fontSize = size;
+        };
+        setStyle(this.texts.top);
+        setStyle(this.texts.debug);
+        setStyle(this.texts.middle);
+        this.texts.middle.y = height / 2;
+        this.texts.middle.anchor.y = 0.5;
+        this.texts.debug.x = cellSize * ratio / 2;
+        this.texts.debug.anchor.x = 0;
+    };
+    return Pixi;
+}());
+exports.Pixi = Pixi;
 
 
 /***/ }),
@@ -28861,7 +27786,7 @@ var _extract = __webpack_require__(169);
 
 var extract = _interopRequireWildcard(_extract);
 
-var _extras = __webpack_require__(76);
+var _extras = __webpack_require__(75);
 
 var extras = _interopRequireWildcard(_extras);
 
@@ -28931,7 +27856,7 @@ if (typeof _deprecation2.default === 'function') {
 // Always export PixiJS globally.
 global.PIXI = exports; // eslint-disable-line
 //# sourceMappingURL=index.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
 
 /***/ }),
 /* 105 */
@@ -29159,7 +28084,7 @@ if (!global.cancelAnimationFrame) {
     };
 }
 //# sourceMappingURL=requestAnimationFrame.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
 
 /***/ }),
 /* 109 */
@@ -29193,7 +28118,7 @@ if (!Math.sign) {
 
 exports.__esModule = true;
 
-var _Rectangle = __webpack_require__(25);
+var _Rectangle = __webpack_require__(26);
 
 var _Rectangle2 = _interopRequireDefault(_Rectangle);
 
@@ -29312,7 +28237,7 @@ exports.default = Circle;
 
 exports.__esModule = true;
 
-var _Rectangle = __webpack_require__(25);
+var _Rectangle = __webpack_require__(26);
 
 var _Rectangle2 = _interopRequireDefault(_Rectangle);
 
@@ -29439,7 +28364,7 @@ exports.default = Ellipse;
 
 exports.__esModule = true;
 
-var _Point = __webpack_require__(23);
+var _Point = __webpack_require__(24);
 
 var _Point2 = _interopRequireDefault(_Point);
 
@@ -29866,7 +28791,7 @@ module.exports = Buffer;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var Texture = __webpack_require__(46);
+var Texture = __webpack_require__(45);
 
 /**
  * Helper class to create a webGL Framebuffer
@@ -30098,11 +29023,11 @@ module.exports = Framebuffer;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var compileProgram = __webpack_require__(47),
-	extractAttributes = __webpack_require__(48),
-	extractUniforms = __webpack_require__(50),
-	setPrecision = __webpack_require__(52),
-	generateUniformAccessObject = __webpack_require__(53);
+var compileProgram = __webpack_require__(46),
+	extractAttributes = __webpack_require__(47),
+	extractUniforms = __webpack_require__(49),
+	setPrecision = __webpack_require__(51),
+	generateUniformAccessObject = __webpack_require__(52);
 
 /**
  * Helper class to create a webGL Shader
@@ -30199,7 +29124,7 @@ module.exports = Shader;
 
 
 // state object//
-var setVertexAttribArrays = __webpack_require__( 45 );
+var setVertexAttribArrays = __webpack_require__( 44 );
 
 /**
  * Helper class to work with WebGL VertexArrayObjects (vaos)
@@ -30470,14 +29395,14 @@ VertexArrayObject.prototype.getSize = function()
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    compileProgram: __webpack_require__(47),
-    defaultValue: __webpack_require__(51),
-    extractAttributes: __webpack_require__(48),
-    extractUniforms: __webpack_require__(50),
-    generateUniformAccessObject: __webpack_require__(53),
-    setPrecision: __webpack_require__(52),
-    mapSize: __webpack_require__(49),
-    mapType: __webpack_require__(26)
+    compileProgram: __webpack_require__(46),
+    defaultValue: __webpack_require__(50),
+    extractAttributes: __webpack_require__(47),
+    extractUniforms: __webpack_require__(49),
+    generateUniformAccessObject: __webpack_require__(52),
+    setPrecision: __webpack_require__(51),
+    mapSize: __webpack_require__(48),
+    mapType: __webpack_require__(27)
 };
 
 /***/ }),
@@ -30490,7 +29415,7 @@ module.exports = {
 exports.__esModule = true;
 exports.default = maxRecommendedTextures;
 
-var _ismobilejs = __webpack_require__(28);
+var _ismobilejs = __webpack_require__(29);
 
 var _ismobilejs2 = _interopRequireDefault(_ismobilejs);
 
@@ -31284,7 +30209,7 @@ function mapPremultipliedBlendModes() {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module), __webpack_require__(22)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module), __webpack_require__(23)))
 
 /***/ }),
 /* 127 */
@@ -32205,7 +31130,7 @@ var _const = __webpack_require__(1);
 
 var _math = __webpack_require__(4);
 
-var _CanvasTinter = __webpack_require__(34);
+var _CanvasTinter = __webpack_require__(35);
 
 var _CanvasTinter2 = _interopRequireDefault(_CanvasTinter);
 
@@ -32532,7 +31457,7 @@ exports.default = mapCanvasBlendModesToPixi;
 
 var _const = __webpack_require__(1);
 
-var _canUseNewCanvasBlendModes = __webpack_require__(64);
+var _canUseNewCanvasBlendModes = __webpack_require__(63);
 
 var _canUseNewCanvasBlendModes2 = _interopRequireDefault(_canUseNewCanvasBlendModes);
 
@@ -32606,15 +31531,15 @@ function mapCanvasBlendModesToPixi() {
 
 exports.__esModule = true;
 
-var _ObjectRenderer2 = __webpack_require__(17);
+var _ObjectRenderer2 = __webpack_require__(19);
 
 var _ObjectRenderer3 = _interopRequireDefault(_ObjectRenderer2);
 
-var _WebGLRenderer = __webpack_require__(18);
+var _WebGLRenderer = __webpack_require__(20);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
-var _createIndicesForQuads = __webpack_require__(35);
+var _createIndicesForQuads = __webpack_require__(36);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -32640,7 +31565,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _bitTwiddle = __webpack_require__(31);
+var _bitTwiddle = __webpack_require__(32);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -33166,7 +32091,7 @@ var _WebGLManager2 = __webpack_require__(13);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
-var _SpriteMaskFilter = __webpack_require__(65);
+var _SpriteMaskFilter = __webpack_require__(64);
 
 var _SpriteMaskFilter2 = _interopRequireDefault(_SpriteMaskFilter);
 
@@ -33796,11 +32721,11 @@ var _WebGLManager2 = __webpack_require__(13);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
-var _RenderTarget = __webpack_require__(19);
+var _RenderTarget = __webpack_require__(21);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
-var _Quad = __webpack_require__(68);
+var _Quad = __webpack_require__(67);
 
 var _Quad2 = _interopRequireDefault(_Quad);
 
@@ -33814,7 +32739,7 @@ var _filterTransforms = __webpack_require__(143);
 
 var filterTransforms = _interopRequireWildcard(_filterTransforms);
 
-var _bitTwiddle = __webpack_require__(31);
+var _bitTwiddle = __webpack_require__(32);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -34460,7 +33385,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _const = __webpack_require__(1);
 
-var _RenderTarget = __webpack_require__(19);
+var _RenderTarget = __webpack_require__(21);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
@@ -35447,7 +34372,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Sprite2 = __webpack_require__(30);
+var _Sprite2 = __webpack_require__(31);
 
 var _Sprite3 = _interopRequireDefault(_Sprite2);
 
@@ -35465,11 +34390,11 @@ var _settings = __webpack_require__(3);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _TextStyle = __webpack_require__(69);
+var _TextStyle = __webpack_require__(68);
 
 var _TextStyle2 = _interopRequireDefault(_TextStyle);
 
-var _TextMetrics = __webpack_require__(70);
+var _TextMetrics = __webpack_require__(69);
 
 var _TextMetrics2 = _interopRequireDefault(_TextMetrics);
 
@@ -36190,7 +35115,7 @@ var _Container2 = __webpack_require__(11);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
-var _RenderTexture = __webpack_require__(33);
+var _RenderTexture = __webpack_require__(34);
 
 var _RenderTexture2 = _interopRequireDefault(_RenderTexture);
 
@@ -36198,11 +35123,11 @@ var _Texture = __webpack_require__(8);
 
 var _Texture2 = _interopRequireDefault(_Texture);
 
-var _GraphicsData = __webpack_require__(71);
+var _GraphicsData = __webpack_require__(70);
 
 var _GraphicsData2 = _interopRequireDefault(_GraphicsData);
 
-var _Sprite = __webpack_require__(30);
+var _Sprite = __webpack_require__(31);
 
 var _Sprite2 = _interopRequireDefault(_Sprite);
 
@@ -36212,7 +35137,7 @@ var _utils = __webpack_require__(2);
 
 var _const = __webpack_require__(1);
 
-var _Bounds = __webpack_require__(27);
+var _Bounds = __webpack_require__(28);
 
 var _Bounds2 = _interopRequireDefault(_Bounds);
 
@@ -37455,11 +36380,11 @@ var _utils = __webpack_require__(2);
 
 var _const = __webpack_require__(1);
 
-var _ObjectRenderer2 = __webpack_require__(17);
+var _ObjectRenderer2 = __webpack_require__(19);
 
 var _ObjectRenderer3 = _interopRequireDefault(_ObjectRenderer2);
 
-var _WebGLRenderer = __webpack_require__(18);
+var _WebGLRenderer = __webpack_require__(20);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -37920,13 +36845,13 @@ exports.default = PrimitiveShader;
 exports.__esModule = true;
 exports.default = buildPoly;
 
-var _buildLine = __webpack_require__(20);
+var _buildLine = __webpack_require__(22);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
 var _utils = __webpack_require__(2);
 
-var _earcut = __webpack_require__(72);
+var _earcut = __webpack_require__(71);
 
 var _earcut2 = _interopRequireDefault(_earcut);
 
@@ -38011,7 +36936,7 @@ function buildPoly(graphicsData, webGLData, webGLDataNativeLines) {
 exports.__esModule = true;
 exports.default = buildRectangle;
 
-var _buildLine = __webpack_require__(20);
+var _buildLine = __webpack_require__(22);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -38092,11 +37017,11 @@ function buildRectangle(graphicsData, webGLData, webGLDataNativeLines) {
 exports.__esModule = true;
 exports.default = buildRoundedRectangle;
 
-var _earcut = __webpack_require__(72);
+var _earcut = __webpack_require__(71);
 
 var _earcut2 = _interopRequireDefault(_earcut);
 
-var _buildLine = __webpack_require__(20);
+var _buildLine = __webpack_require__(22);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -38253,7 +37178,7 @@ function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
 exports.__esModule = true;
 exports.default = buildCircle;
 
-var _buildLine = __webpack_require__(20);
+var _buildLine = __webpack_require__(22);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -40043,7 +38968,7 @@ function deprecation(core) {
 
 exports.__esModule = true;
 
-var _accessibleTarget = __webpack_require__(75);
+var _accessibleTarget = __webpack_require__(74);
 
 Object.defineProperty(exports, 'accessibleTarget', {
   enumerable: true,
@@ -40077,11 +39002,11 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _ismobilejs = __webpack_require__(28);
+var _ismobilejs = __webpack_require__(29);
 
 var _ismobilejs2 = _interopRequireDefault(_ismobilejs);
 
-var _accessibleTarget = __webpack_require__(75);
+var _accessibleTarget = __webpack_require__(74);
 
 var _accessibleTarget2 = _interopRequireDefault(_accessibleTarget);
 
@@ -41447,7 +40372,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _CanvasTinter = __webpack_require__(34);
+var _CanvasTinter = __webpack_require__(35);
 
 var _CanvasTinter2 = _interopRequireDefault(_CanvasTinter);
 
@@ -42065,7 +40990,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _ObservablePoint = __webpack_require__(43);
+var _ObservablePoint = __webpack_require__(42);
 
 var _ObservablePoint2 = _interopRequireDefault(_ObservablePoint);
 
@@ -43179,7 +42104,7 @@ Object.defineProperty(exports, 'BlurFilter', {
   }
 });
 
-var _BlurXFilter = __webpack_require__(77);
+var _BlurXFilter = __webpack_require__(76);
 
 Object.defineProperty(exports, 'BlurXFilter', {
   enumerable: true,
@@ -43188,7 +42113,7 @@ Object.defineProperty(exports, 'BlurXFilter', {
   }
 });
 
-var _BlurYFilter = __webpack_require__(81);
+var _BlurYFilter = __webpack_require__(80);
 
 Object.defineProperty(exports, 'BlurYFilter', {
   enumerable: true,
@@ -43507,11 +42432,11 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _BlurXFilter = __webpack_require__(77);
+var _BlurXFilter = __webpack_require__(76);
 
 var _BlurXFilter2 = _interopRequireDefault(_BlurXFilter);
 
-var _BlurYFilter = __webpack_require__(81);
+var _BlurYFilter = __webpack_require__(80);
 
 var _BlurYFilter2 = _interopRequireDefault(_BlurYFilter);
 
@@ -44325,7 +43250,7 @@ exports.default = AlphaFilter;
 
 exports.__esModule = true;
 
-var _InteractionData = __webpack_require__(82);
+var _InteractionData = __webpack_require__(81);
 
 Object.defineProperty(exports, 'InteractionData', {
   enumerable: true,
@@ -44343,7 +43268,7 @@ Object.defineProperty(exports, 'InteractionManager', {
   }
 });
 
-var _interactiveTarget = __webpack_require__(85);
+var _interactiveTarget = __webpack_require__(84);
 
 Object.defineProperty(exports, 'interactiveTarget', {
   enumerable: true,
@@ -44352,7 +43277,7 @@ Object.defineProperty(exports, 'interactiveTarget', {
   }
 });
 
-var _InteractionTrackingData = __webpack_require__(84);
+var _InteractionTrackingData = __webpack_require__(83);
 
 Object.defineProperty(exports, 'InteractionTrackingData', {
   enumerable: true,
@@ -44361,7 +43286,7 @@ Object.defineProperty(exports, 'InteractionTrackingData', {
   }
 });
 
-var _InteractionEvent = __webpack_require__(83);
+var _InteractionEvent = __webpack_require__(82);
 
 Object.defineProperty(exports, 'InteractionEvent', {
   enumerable: true,
@@ -44388,15 +43313,15 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _InteractionData = __webpack_require__(82);
+var _InteractionData = __webpack_require__(81);
 
 var _InteractionData2 = _interopRequireDefault(_InteractionData);
 
-var _InteractionEvent = __webpack_require__(83);
+var _InteractionEvent = __webpack_require__(82);
 
 var _InteractionEvent2 = _interopRequireDefault(_InteractionEvent);
 
-var _InteractionTrackingData = __webpack_require__(84);
+var _InteractionTrackingData = __webpack_require__(83);
 
 var _InteractionTrackingData2 = _interopRequireDefault(_InteractionTrackingData);
 
@@ -44404,7 +43329,7 @@ var _eventemitter = __webpack_require__(9);
 
 var _eventemitter2 = _interopRequireDefault(_eventemitter);
 
-var _interactiveTarget = __webpack_require__(85);
+var _interactiveTarget = __webpack_require__(84);
 
 var _interactiveTarget2 = _interopRequireDefault(_interactiveTarget);
 
@@ -46159,7 +45084,7 @@ core.CanvasRenderer.registerPlugin('interaction', InteractionManager);
 exports.__esModule = true;
 exports.shared = exports.Resource = exports.textureParser = exports.getResourcePath = exports.spritesheetParser = exports.parseBitmapFontData = exports.bitmapFontParser = exports.Loader = undefined;
 
-var _bitmapFontParser = __webpack_require__(86);
+var _bitmapFontParser = __webpack_require__(85);
 
 Object.defineProperty(exports, 'bitmapFontParser', {
     enumerable: true,
@@ -46174,7 +45099,7 @@ Object.defineProperty(exports, 'parseBitmapFontData', {
     }
 });
 
-var _spritesheetParser = __webpack_require__(91);
+var _spritesheetParser = __webpack_require__(90);
 
 Object.defineProperty(exports, 'spritesheetParser', {
     enumerable: true,
@@ -46189,7 +45114,7 @@ Object.defineProperty(exports, 'getResourcePath', {
     }
 });
 
-var _textureParser = __webpack_require__(92);
+var _textureParser = __webpack_require__(91);
 
 Object.defineProperty(exports, 'textureParser', {
     enumerable: true,
@@ -46207,7 +45132,7 @@ Object.defineProperty(exports, 'Resource', {
     }
 });
 
-var _Application = __webpack_require__(73);
+var _Application = __webpack_require__(72);
 
 var _Application2 = _interopRequireDefault(_Application);
 
@@ -46295,19 +45220,19 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _miniSignals = __webpack_require__(87);
+var _miniSignals = __webpack_require__(86);
 
 var _miniSignals2 = _interopRequireDefault(_miniSignals);
 
-var _parseUri = __webpack_require__(88);
+var _parseUri = __webpack_require__(87);
 
 var _parseUri2 = _interopRequireDefault(_parseUri);
 
-var _async = __webpack_require__(89);
+var _async = __webpack_require__(88);
 
 var async = _interopRequireWildcard(_async);
 
-var _Resource = __webpack_require__(36);
+var _Resource = __webpack_require__(37);
 
 var _Resource2 = _interopRequireDefault(_Resource);
 
@@ -46959,15 +45884,15 @@ var _eventemitter = __webpack_require__(9);
 
 var _eventemitter2 = _interopRequireDefault(_eventemitter);
 
-var _textureParser = __webpack_require__(92);
+var _textureParser = __webpack_require__(91);
 
 var _textureParser2 = _interopRequireDefault(_textureParser);
 
-var _spritesheetParser = __webpack_require__(91);
+var _spritesheetParser = __webpack_require__(90);
 
 var _spritesheetParser2 = _interopRequireDefault(_spritesheetParser);
 
-var _bitmapFontParser = __webpack_require__(86);
+var _bitmapFontParser = __webpack_require__(85);
 
 var _bitmapFontParser2 = _interopRequireDefault(_bitmapFontParser);
 
@@ -47129,11 +46054,11 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.blobMiddlewareFactory = blobMiddlewareFactory;
 
-var _Resource = __webpack_require__(36);
+var _Resource = __webpack_require__(37);
 
 var _Resource2 = _interopRequireDefault(_Resource);
 
-var _b = __webpack_require__(90);
+var _b = __webpack_require__(89);
 
 var _b2 = _interopRequireDefault(_b);
 
@@ -47245,7 +46170,7 @@ Object.defineProperty(exports, 'CanvasMeshRenderer', {
   }
 });
 
-var _Plane = __webpack_require__(93);
+var _Plane = __webpack_require__(92);
 
 Object.defineProperty(exports, 'Plane', {
   enumerable: true,
@@ -47733,7 +46658,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Plane2 = __webpack_require__(93);
+var _Plane2 = __webpack_require__(92);
 
 var _Plane3 = _interopRequireDefault(_Plane2);
 
@@ -49312,7 +48237,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _createIndicesForQuads = __webpack_require__(35);
+var _createIndicesForQuads = __webpack_require__(36);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -49578,7 +48503,7 @@ Object.defineProperty(exports, 'canvas', {
   }
 });
 
-var _BasePrepare = __webpack_require__(37);
+var _BasePrepare = __webpack_require__(38);
 
 Object.defineProperty(exports, 'BasePrepare', {
   enumerable: true,
@@ -49587,7 +48512,7 @@ Object.defineProperty(exports, 'BasePrepare', {
   }
 });
 
-var _CountLimiter = __webpack_require__(94);
+var _CountLimiter = __webpack_require__(93);
 
 Object.defineProperty(exports, 'CountLimiter', {
   enumerable: true,
@@ -49621,7 +48546,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _BasePrepare2 = __webpack_require__(37);
+var _BasePrepare2 = __webpack_require__(38);
 
 var _BasePrepare3 = _interopRequireDefault(_BasePrepare2);
 
@@ -49748,7 +48673,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _BasePrepare2 = __webpack_require__(37);
+var _BasePrepare2 = __webpack_require__(38);
 
 var _BasePrepare3 = _interopRequireDefault(_BasePrepare2);
 
@@ -49930,6 +48855,202 @@ exports.default = TimeLimiter;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var Cell = /** @class */ (function () {
+    function Cell(sprite) {
+        this.imgOffsetX = 0;
+        this.imgOffsetY = 0;
+        this.sprite = null;
+        this.sprite = sprite;
+    }
+    return Cell;
+}());
+exports.Cell = Cell;
+
+
+/***/ }),
+/* 207 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(18);
+var Sprite = /** @class */ (function () {
+    function Sprite(id, sprite) {
+        this.position = gl_matrix_1.vec2.create();
+        this.id = id;
+        this.sprite = sprite;
+        this.clear();
+    }
+    Sprite.prototype.clear = function () {
+        this.sprite.visible = false;
+        this.position.set([0, 0]);
+    };
+    return Sprite;
+}());
+exports.Sprite = Sprite;
+
+
+/***/ }),
+/* 208 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(18);
+var Input = /** @class */ (function () {
+    function Input(config, canvas) {
+        var _this = this;
+        this.hasFocus = true;
+        this.mouse = {
+            pos: gl_matrix_1.vec2.create(),
+            button: [false, false, false]
+        };
+        document.onmousemove = function (ev) {
+            if (_this.hasFocus) {
+                var bounds = canvas.getBoundingClientRect();
+                var c = canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.x - c.offsetLeft;
+                var y = ev.y - c.offsetTop;
+                y = y / bounds.height * config.grid.height;
+                x = x / bounds.width * config.grid.width;
+                x = clamp(x, 0, config.grid.width);
+                y = clamp(y, 0, config.grid.height);
+                _this.mouse.pos.set([x, y]);
+            }
+        };
+        document.onmousedown = function (ev) {
+            if (_this.hasFocus) {
+                if (ev.button < _this.mouse.button.length)
+                    _this.mouse.button[ev.button] = true;
+            }
+        };
+        document.onmouseup = function (ev) {
+            if (_this.hasFocus) {
+                if (ev.button < _this.mouse.button.length)
+                    _this.mouse.button[ev.button] = false;
+            }
+        };
+        document.ontouchstart = function (ev) {
+            if (_this.hasFocus) {
+                var bounds = canvas.getBoundingClientRect();
+                var c = canvas;
+                var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+                var x = ev.touches[0].clientX - c.offsetLeft;
+                var y = ev.touches[0].clientY - c.offsetTop;
+                y = y / bounds.height * config.grid.height;
+                x = x / bounds.width * config.grid.width;
+                x = clamp(x, 0, config.grid.width);
+                y = clamp(y, 0, config.grid.height);
+                _this.mouse.pos.set([x, y]);
+                _this.mouse.button[0] = true;
+            }
+        };
+        document.ontouchend = function (ev) {
+            if (_this.hasFocus) {
+                _this.mouse.button[0] = false;
+            }
+        };
+        document.ontouchmove = function (ev) {
+            var bounds = canvas.getBoundingClientRect();
+            var c = canvas;
+            var clamp = function (v, min, max) { return v < min ? min : (v > max) ? max : v; };
+            var x = ev.touches[0].clientX - c.offsetLeft;
+            var y = ev.touches[0].clientY - c.offsetTop;
+            y = y / bounds.height * config.grid.height;
+            x = x / bounds.width * config.grid.width;
+            x = clamp(x, 0, config.grid.width);
+            y = clamp(y, 0, config.grid.height);
+            _this.mouse.pos.set([x, y]);
+        };
+        document.ontouchcancel = function (ev) {
+        };
+    }
+    return Input;
+}());
+exports.Input = Input;
+
+
+/***/ }),
+/* 209 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var index_1 = __webpack_require__(17);
+var State = /** @class */ (function () {
+    function State() {
+        this.flashing = false;
+        this.flashBlocks = false;
+        this.flashTickStep = 0.075;
+        this.flashTicks = -1.0;
+        this.centerText = "";
+        this.centerTopText = "";
+        this.animateStart = 0;
+        this.animateCount = 0;
+        this.animate = new index_1.Measurement();
+        this.fps = new index_1.Measurement();
+        this.debug = false;
+        this.background = "#000000";
+    }
+    return State;
+}());
+exports.State = State;
+
+
+/***/ }),
+/* 210 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var engine_1 = __webpack_require__(96);
+/*
+Base class for all prototypes.
+Any prototype instance will hook into the canvas and document.
+*/
+var Prototype = /** @class */ (function () {
+    function Prototype() {
+        var _this = this;
+        this.engine = new engine_1.Engine();
+        setTimeout(function () { return _this.animate(); });
+    }
+    Prototype.prototype.animate = function () {
+        var _this = this;
+        window.requestAnimationFrame(function () { return _this.animate(); });
+        this.engine.animate(function (iterations) { return _this.tick(iterations); });
+    };
+    return Prototype;
+}());
+exports.Prototype = Prototype;
+
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var measurement_1 = __webpack_require__(212);
+exports.Measurement = measurement_1.Measurement;
+var shufflebag_1 = __webpack_require__(213);
+exports.Shufflebag = shufflebag_1.Shufflebag;
+var insights_1 = __webpack_require__(214);
+exports.Insights = insights_1.Insights;
+
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var Measurement = /** @class */ (function () {
     function Measurement() {
         this.min = 0;
@@ -49962,7 +49083,7 @@ exports.Measurement = Measurement;
 
 
 /***/ }),
-/* 207 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49997,7 +49118,7 @@ exports.Shufflebag = Shufflebag;
 
 
 /***/ }),
-/* 208 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50033,96 +49154,67 @@ var Insights;
 
 
 /***/ }),
-/* 209 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var graphics_1 = __webpack_require__(38);
-/*
-Base class for all prototypes.
-Any prototype instance will hook into the canvas and document.
-*/
-var Prototype = /** @class */ (function () {
-    function Prototype() {
-        var _this = this;
-        this.canvas = document.getElementById("canvas");
-        this.engine = new graphics_1.Engine();
-        setTimeout(function () { return _this.animate(); });
-    }
-    Prototype.prototype.animate = function () {
-        var _this = this;
-        window.requestAnimationFrame(function () { return _this.animate(); });
-        this.engine.animate(function (iterations) { return _this.tick(iterations); });
-    };
-    return Prototype;
-}());
-exports.Prototype = Prototype;
-
-
-/***/ }),
-/* 210 */
+/* 215 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAN0lEQVRYR+3OIQEAIBAEwYP+QciFpARv6PCCWbN2xtrnprH53hYAAAAAAAAAAAAAAAAAwO+ApACssQOzapcBIgAAAABJRU5ErkJggg=="
 
 /***/ }),
-/* 211 */
+/* 216 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAMRJREFUWIXtlTESwiAQRddMxsJLUFCSg3sgU1Jg6QFSpNFKBmFZlkSzFvvLZOA//t+B0/X+eIKgBklzBVAABfgLgLF3wbQuxbfb+XIMwLQu4Kwpf/iwGYJdQdUcAJw1aDIcsRKgzFOIdxI5DJVOFWDriVBYoiIUIN9k9oENgCWVppOrmAHsBM6aJsTsA1lTbU4+AFqDVoNomVMQEYAzaL/QIGkeAbii6unZI61B/C1QgHgR9Vw2XwfY85zulXgFCqAACvACYOxLhVuaxSEAAAAASUVORK5CYII="
 
 /***/ }),
-/* 212 */
+/* 217 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFostqi2uGVJsuRaplnutrxuhVo5WaVYVVpds0atna0l1rutu6cRp7lOk06rntZnw7Dxtsm2qbcZsOXYBtuutm22fWFnYhdnt8Wuw+6TvZN9un2N/T0HDYfZDqsdWh1+c7RyFDpWOt6azpzuP33F9JbpL2dYzxDP2DPjthPLKcRpnVOb00dnF2e5c4PziIuJS4LLLpc+Lpsbxt3IveRKdPVxXeF60vWdm7Obwu2o26/uNu5p7ofcn8w0nymeWTNz0MPIQ+BR5dE/C5+VMGvfrH5PQ0+BZ7XnIy9jL5FXrdewt6V3qvdh7xc+9j5yn+M+4zw33jLeWV/MN8C3yLfLT8Nvnl+F30N/I/9k/3r/0QCngCUBZwOJgUGBWwL7+Hp8Ib+OPzrbZfay2e1BjKC5QRVBj4KtguXBrSFoyOyQrSH355jOkc5pDoVQfujW0Adh5mGLw34MJ4WHhVeGP45wiFga0TGXNXfR3ENz30T6RJZE3ptnMU85ry1KNSo+qi5qPNo3ujS6P8YuZlnM1VidWElsSxw5LiquNm5svt/87fOH4p3iC+N7F5gvyF1weaHOwvSFpxapLhIsOpZATIhOOJTwQRAqqBaMJfITdyWOCnnCHcJnIi/RNtGI2ENcKh5O8kgqTXqS7JG8NXkkxTOlLOW5hCepkLxMDUzdmzqeFpp2IG0yPTq9MYOSkZBxQqohTZO2Z+pn5mZ2y6xlhbL+xW6Lty8elQfJa7OQrAVZLQq2QqboVFoo1yoHsmdlV2a/zYnKOZarnivN7cyzytuQN5zvn//tEsIS4ZK2pYZLVy0dWOa9rGo5sjxxedsK4xUFK4ZWBqw8uIq2Km3VT6vtV5eufr0mek1rgV7ByoLBtQFr6wtVCuWFfevc1+1dT1gvWd+1YfqGnRs+FYmKrhTbF5cVf9go3HjlG4dvyr+Z3JS0qavEuWTPZtJm6ebeLZ5bDpaql+aXDm4N2dq0Dd9WtO319kXbL5fNKNu7g7ZDuaO/PLi8ZafJzs07P1SkVPRU+lQ27tLdtWHX+G7R7ht7vPY07NXbW7z3/T7JvttVAVVN1WbVZftJ+7P3P66Jqun4lvttXa1ObXHtxwPSA/0HIw6217nU1R3SPVRSj9Yr60cOxx++/p3vdy0NNg1VjZzG4iNwRHnk6fcJ3/ceDTradox7rOEH0x92HWcdL2pCmvKaRptTmvtbYlu6T8w+0dbq3nr8R9sfD5w0PFl5SvNUyWna6YLTk2fyz4ydlZ19fi753GDborZ752PO32oPb++6EHTh0kX/i+c7vDvOXPK4dPKy2+UTV7hXmq86X23qdOo8/pPTT8e7nLuarrlca7nuer21e2b36RueN87d9L158Rb/1tWeOT3dvfN6b/fF9/XfFt1+cif9zsu72Xcn7q28T7xf9EDtQdlD3YfVP1v+3Njv3H9qwHeg89HcR/cGhYPP/pH1jw9DBY+Zj8uGDYbrnjg+OTniP3L96fynQ89kzyaeF/6i/suuFxYvfvjV69fO0ZjRoZfyl5O/bXyl/erA6xmv28bCxh6+yXgzMV70VvvtwXfcdx3vo98PT+R8IH8o/2j5sfVT0Kf7kxmTk/8EA5jz/GMzLdsAAAAgY0hSTQAAeiUAAICDAAD5/wAAgOkAAHUwAADqYAAAOpgAABdvkl/FRgAAAG5JREFUeNpi+P//PwMlmGFwGSAlLfMfGZNlgJ+fHxwTYwic8fm43n90F2DDTlx8/zEM+Hxc7z/MAGQXYMNfNE3+h/EKwQ2Ba/6iaYLVRmwGrJdRhRuC4YLS0lK8GFkz9cKAKrFAlXQwDPICORgwADshmgiNZzK1AAAAAElFTkSuQmCC"
 
 /***/ }),
-/* 213 */
+/* 218 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REZBMEUzMDUwMDdFMTFFODg4NkRFQ0VEREQyMDI1NkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZBMEUzMDYwMDdFMTFFODg4NkRFQ0VEREQyMDI1NkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpERkEwRTMwMzAwN0UxMUU4ODg2REVDRURERDIwMjU2RCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpERkEwRTMwNDAwN0UxMUU4ODg2REVDRURERDIwMjU2RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pi6PXNQAAAAJUExURf/eNQAAAP///yNeLUIAAAADdFJOU///ANfKDUEAAAA3SURBVHjaYmAAAyYgYGBAsBEAJMDIyAjhgBhgAYQ8DgE0M5jQADkC2BxG0B0YTkc3A837AAEGANewAZXSPrzKAAAAAElFTkSuQmCC"
 
 /***/ }),
-/* 214 */
+/* 219 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MDEzNjE5ODNGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MDEzNjE5ODRGRkFBMTFFNzlCMkU5RkQ1MjBBOTc0NTMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowMTM2MTk4MUZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowMTM2MTk4MkZGQUExMUU3OUIyRTlGRDUyMEE5NzQ1MyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pkux4D4AAAAPUExURf8AAP//AP//7v//q/////eQ73kAAAAFdFJOU/////8A+7YOUwAAAL5JREFUeNqsk1EOxCAIRAfl/mfegrQOYNLsZvlpow9mQIW+BP4J4BXAiUsAaAXogPgimC4VjIgy935ShFwEHHr2d0FbFw8gxDRZspB5xYJ6F7D8OcZ0aCUgefD84TFDiSu4wIgwndSm6wsBe5+6SEDrokjEQLrJbeFBuE3vgtosEhJzOA/qnuQy2EcdftaooUzk447D0m0hXxhZ80BoFiDq2udwAymHqiMfN9pfuQ96+GVA9Ujgt/f2zeP9CDAAUr0LtE16lkAAAAAASUVORK5CYII="
 
 /***/ }),
-/* 215 */
+/* 220 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 216 */
+/* 221 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 217 */
+/* 222 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAACtJREFUOI1jXPHo1X8GCgATJZpHDRg1YPAYwGjuL0RRXmBRt+SnyAUDHwYALKgFmti9uTkAAAAASUVORK5CYII="
 
 /***/ }),
-/* 218 */
+/* 223 */
 /***/ (function(module, exports) {
 
 module.exports = "data:image/png;base64,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"
 
 /***/ }),
-/* 219 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(220);
+var content = __webpack_require__(225);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -50130,7 +49222,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(224)(content, options);
+var update = __webpack_require__(229)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -50147,22 +49239,22 @@ if(false) {
 }
 
 /***/ }),
-/* 220 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(221);
-exports = module.exports = __webpack_require__(222)(false);
+var escape = __webpack_require__(226);
+exports = module.exports = __webpack_require__(227)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(223)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: #101010;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n    cursor: crosshair;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(228)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: #101010;\r\n    font-family: Pixeled;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n    cursor: crosshair;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 221 */
+/* 226 */
 /***/ (function(module, exports) {
 
 module.exports = function escape(url) {
@@ -50181,7 +49273,7 @@ module.exports = function escape(url) {
 
 
 /***/ }),
-/* 222 */
+/* 227 */
 /***/ (function(module, exports) {
 
 /*
@@ -50263,13 +49355,13 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 223 */
+/* 228 */
 /***/ (function(module, exports) {
 
 module.exports = "data:font/ttf;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAACDLjygXw889QAAEAAAAAAA1YnCKAAAAADVicIoAAD2ZxzMIzMAAAAIAAIAAQAAAAAAAQAAIzP2ZwAAH/8AAAMzHMwAAQAAAAAAAAAAAAAAAAAAAToMzAAAAAAAAAZmAAAGZgAABmYAAAzMAAATMwAAEzMAAAZmAAAJmQAADMwDMwzMAAAGZgAADMwAAAZmAAAMzAAAEAAAAAZmAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAGZgAADMwAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAQAAAAEAAAABAAAAATMwAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAATMwAAEAAAAAzMAAAMzAAADMwAAAzMAAAQAAAADMwDMxAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAABmYAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAATMwAAEzMAABAAAAAQAAAABmYAABAAAAAGZgAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAAEAAAABAAAAAJmQAACZkAAAzMAAAMzAAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAACZkAAAmZAAAMzAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAABmYAABAAAAAMzAAADMwAABAAAAATMwAAEzMAABZmAAAQAAAAH/8AAB//AAAf/wAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAABAAAAATMwAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAWZgAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAAHMwAABmZAAAWZgAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAQAAAAEzMAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABMzAAATMwAAEAAAABMzAAAWZgAAEzMAABZmAAAQAAAAEAAAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAAQAAAAEzMAABZmAAATMwAAFmYAABAAAAAQAAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAADMwAABAAAAAczAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAFmYAABZmAAAWZgAAFmYAABZmAAAWZgAAH/8AAB//AAATMwAAEzMAABAAAAAQAAAAEzMAABMzAAATMwAAEzMAABMzAAATMwAAGZkAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEzMAABAAAAAJmQAACZkAABMzAAATMwAAEzMAABzMAAAWZgAAFmYAAAABAAABOgAmAAkAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAHgFuAAEAAAAAAAAAGQAAAAEAAAAAAAEABwAZAAEAAAAAAAIABwAgAAEAAAAAAAMAEgAnAAEAAAAAAAQADwA5AAEAAAAAAAUACwBIAAEAAAAAAAYABwBTAAEAAAAAAAcAPABaAAEAAAAAAAgAFgCWAAEAAAAAAAkACgCsAAEAAAAAAAoAjwC2AAEAAAAAAAwAOwFFAAEAAAAAAA0AIQGAAAEAAAAAABMAKQGhAAEAAAAAAQAADAHKAAMAAQQJAAAAMgHWAAMAAQQJAAEADgIIAAMAAQQJAAIADgIWAAMAAQQJAAMAJAIkAAMAAQQJAAQAHgJIAAMAAQQJAAUAFgJmAAMAAQQJAAYADgJ8AAMAAQQJAAcAeAKKAAMAAQQJAAgALAMCAAMAAQQJAAkAFAMuAAMAAQQJAAoBHgNCAAMAAQQJAAwAdgRgAAMAAQQJAA0AQgTWAAMAAQQJABMAUgUYAAMAAQQJAQAAGAVqQ29weXJpZ2h0IE9tZWdhUEM3NzcgMjAxNlBpeGVsZWRSZWd1bGFyRm9udFN0cnVjdCBQaXhlbGVkUGl4ZWxlZCBSZWd1bGFyVmVyc2lvbiAxLjBQaXhlbGVkRm9udFN0cnVjdCBpcyBhIHRyYWRlbWFyayBvZiBGU0kgRm9udFNob3AgSW50ZXJuYXRpb25hbCBHbWJIaHR0cDovL2ZvbnRzdHJ1Y3QuY29tL09tZWdhUEM3NzfSUGl4ZWxlZNMgd2FzIGJ1aWx0IHdpdGggRm9udFN0cnVjdApEZXNpZ25lciBkZXNjcmlwdGlvbjogPHA+VGhpcyBmb250IGlzIGluZmx1ZW5jZWQgYnkgdmFyaW91cyA4LWJpdCByZXRybyBzeXRsZSBmb250cyB3aXRoIGEgcmV0cm8gZmVlbC48L3A+Cmh0dHA6Ly9mb250c3RydWN0LmNvbS9mb250c3RydWN0aW9ucy9zaG93LzEyOTg0MjEvcGl4ZWxlZC01Rm9udFN0cnVjdCBOb24tQ29tbWVyY2lhbCBMaWNlbnNlRml2ZSBiaWcgcXVhY2tpbmcgemVwaHlycyBqb2x0IG15IHdheCBiZWRBd3NCZlYxbVh3PT0AQwBvAHAAeQByAGkAZwBoAHQAIABPAG0AZQBnAGEAUABDADcANwA3ACAAMgAwADEANgBQAGkAeABlAGwAZQBkAFIAZQBnAHUAbABhAHIARgBvAG4AdABTAHQAcgB1AGMAdAAgAFAAaQB4AGUAbABlAGQAUABpAHgAZQBsAGUAZAAgAFIAZQBnAHUAbABhAHIAVgBlAHIAcwBpAG8AbgAgADEALgAwAFAAaQB4AGUAbABlAGQARgBvAG4AdABTAHQAcgB1AGMAdAAgAGkAcwAgAGEAIAB0AHIAYQBkAGUAbQBhAHIAawAgAG8AZgAgAEYAUwBJACAARgBvAG4AdABTAGgAbwBwACAASQBuAHQAZQByAG4AYQB0AGkAbwBuAGEAbAAgAEcAbQBiAEgAaAB0AHQAcAA6AC8ALwBmAG8AbgB0AHMAdAByAHUAYwB0AC4AYwBvAG0ALwBPAG0AZQBnAGEAUABDADcANwA3IBwAUABpAHgAZQBsAGUAZCAdACAAdwBhAHMAIABiAHUAaQBsAHQAIAB3AGkAdABoACAARgBvAG4AdABTAHQAcgB1AGMAdAAKAEQAZQBzAGkAZwBuAGUAcgAgAGQAZQBzAGMAcgBpAHAAdABpAG8AbgA6ACAAPABwAD4AVABoAGkAcwAgAGYAbwBuAHQAIABpAHMAIABpAG4AZgBsAHUAZQBuAGMAZQBkACAAYgB5ACAAdgBhAHIAaQBvAHUAcwAgADgALQBiAGkAdAAgAHIAZQB0AHIAbwAgAHMAeQB0AGwAZQAgAGYAbwBuAHQAcwAgAHcAaQB0AGgAIABhACAAcgBlAHQAcgBvACAAZgBlAGUAbAAuADwALwBwAD4ACgBoAHQAdABwADoALwAvAGYAbwBuAHQAcwB0AHIAdQBjAHQALgBjAG8AbQAvAGYAbwBuAHQAcwB0AHIAdQBjAHQAaQBvAG4AcwAvAHMAaABvAHcALwAxADIAOQA4ADQAMgAxAC8AcABpAHgAZQBsAGUAZAAtADUARgBvAG4AdABTAHQAcgB1AGMAdAAgAE4AbwBuAC0AQwBvAG0AbQBlAHIAYwBpAGEAbAAgAEwAaQBjAGUAbgBzAGUARgBpAHYAZQAgAGIAaQBnACAAcQB1AGEAYwBrAGkAbgBnACAAegBlAHAAaAB5AHIAcwAgAGoAbwBsAHQAIABtAHkAIAB3AGEAeAAgAGIAZQBkAEEAdwBzAEIAZgBWADEAbQBYAHcAPQA9AAIMbgGQAAUABAgACAAAAAAACAAIAAAACAAAzAMzAAAAAAQAAAAAAAAAoAAAj0AAAAgAAAAAAAAAAEZTVFIAQAAg+wIQAAAAAAAjMwmZAAABFQAAAAAQABMzAAAAIAAAAAMAAAAAAAABmQDMAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAQABAAAAMABwALABIAFgAAAQEBAQEBAQEBAQEBAQEBAAEAAQEBAQEIAAAA/XQAAAUXAAD66QAAAowAAP10AAAFFwAA/XX+8f9E/z8AAPqMAAAQAAAAAkUCiwAA/XUC+gKLAAD9dQL2AosAAP11AvoChwAAAAD/Q/9A/vb00RAAAADwAAAAAAACAAAAAAMzEzMAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQZmDM0AAPMzAAIAAAzMCZkTMwADAAcAAAEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAzMBmcAAPmZAAAGZwAA+ZkAAgAAAAAQABAAAAMAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPzNAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAADMwAAAzQAAPzMAAADNAAA/MwAAPzNAAD8zQAABmYDMwAA/M35mgMzAAADMwAAAzMAAAMzAAADNAAA/MwAAAM0AAD8zAAA/M0AAPzNAAD8zQAA/M0AAAMzAAD8zQADAAAAABAAFmYAAwAHABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPzNAAD8zQAAAzMAAPmaAAAGZgAA+ZoAAAZmAAADMwAABmcAAPmZAAAGZwAA+ZkAAAZmAzMAAPzNBmYDNAAA/MzzNAMzAAADMwAAAzMAAAmaAAADMwAA/M0AAPzNAAD8zAAA9mcAAPzNAAAAAQAADMwDMxMzAAMAAAEBAQEAAAAAAzMAAAzMBmcAAPmZAAAAAwAAAAAGZhMzAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAAAAAAMzAAAAAAMzAAD8zQMzDM0AAPMzDM0DMwAA/M0AAAADAzMAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAAAAAAAAMzAAD5mgAAAzMAAAAAAzMAAPzNAzMMzQAA8zMMzQMzAAD8zQAAAAEAAAZmCZkQAAALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAGZgMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAAABAAD8zQMzAzMAAwAAAQEBAQAAAAADMwAA/M0GZgAA+ZoAAAABAAAJmQmZDMwAAwAAAQEBAQAAAAAJmQAACZkDMwAA/M0AAAABAAAAAAMzAzMAAwAAAQEBAQAAAAADMwAAAAADMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAIAAAAADMwTMwADAAcAAAEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAAMzDM0AAPMz/M0TMwAA7M0AAQAAAAADMxMzAAMAAAEBAQEAAAAAAzMAAAAAEzMAAOzNAAAABQAAAAAMzBMzAAUACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAAMzAAAAAAAAAzMAAPM0AAAJmQAAAAAGZgAA/M0AAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAzQDMwAA/M0ABQAAAAAMzBMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAD5mgZmAzMAAPzNAzMDNAAA/MwDNAMzAAD8zQAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQADAAAAAAzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAzMAAD2ZwAABmYAAAAAAzMAAPzNAzMGZgAA+ZoGZgmaAAD8zQAA/MwAAPzNAAAABAAAAAAMzBMzAAMABwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAA+ZoAAAzNAAD8zAAA/M0AAPmaDM0DMwAA/M0ABAAAAAAMzBMzAAMABwALABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzBmcAAAMzAAD2ZgAAAAcAAAAADMwTMwADAAcACwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQAAAAIAAAAADMwTMwADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD2ZwAADMwAAAzMAzQAAPzM8zQDMwAABmYAAAmaAADszQACAAADMwMzDMwAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAADMwMzAAD8zQZmAzMAAPzNAAIAAAAAAzMMzAADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAABmYAAPmaCZkDMwAA/M0AAgAABmYJmRAAAAMABwAAAQEBAQEBAQEAAAAACZkAAPZnAAAJmQAABmYDMwAA/M0GZgM0AAD8zAAGAAAAABAAEzMAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAAMzAAAAAAAAAzMAAPM0AAADMwAACZkAAAM0AADzMwAACZkAAAAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAMACwAAAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAAAzMMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAAAAABMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAATMwAA/M0AAPzMAAD8zQAA9mcABAAAAAAMzBMzAAMACQANABEAAAEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAPzNAAAGZgAA8zQAAAMzAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAAAzMAAPZnAAAMzQAA8zMMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAABMzAAD5mQAABmcAAOzNAAAJmQAA9mcAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAzMEzMAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0AAAzNAAADMwAA8AAABQAAAAAMzBMzAAMABwALABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAAAAAGZgAA+ZoGZgMzAAD8zQZmAzQAAPzM8zQTMwAA+ZkAAPzNAAD2ZxAAAzMAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAADMwAACZkAAAAAEzMAAPAAAAD8zQADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQAEAAAAAAzMEzMAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAAHAAAAABAAEzMAAwAHAAsADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAzMAAAM0AAD5mQAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAPMzAAAJmQAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M38zQzNAADzMwMzCZoAAPZmCZoDMwAA/M0AAAADAAAAAAzMEzMAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAAACZkAAPZnDMwDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD2ZwABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAABmYAAAmaAAD8zQAA/MwAAPM0AAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAADAAAAAAzMEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAAAAAzMAAPzNAzMQAAAA8AAAABAAAADwAAAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMGZgAA+ZoAABAAAADwAAAAEAAAAPAAAAAACQAAAAAQABMzAAMABwALAA8AEwAXABsAHwAjAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAADNAAA8zMAAAMzAAADMwAAAzMAAPmaAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzBmcAAPmZAAAGZwAA+ZkAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAmZAAD2ZwmZAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAJmRMzAAcAAAEBAQEBAQEBAAAAAAmZAAD5mgAABmYAAAAAEzMAAPzNAADzMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAEAAAAACZkTMwAHAAABAQEBAQEBAQAAAAAGZgAA+ZoAAAmZAAAAAAMzAAAMzQAAAzMAAOzNAAAAAwAADMwJmRMzAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAAAAzQAAPzMAzQDMwAA/M0AAAABAAAAAAzMAzMAAwAAAQEBAQAAAAAMzAAAAAADMwAA/M0AAAACAzMMzAmZEzMAAwAHAAABAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAM0AzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAAMzAAADMwMzAAD8zfzNCZkAAAZnAADwAAAAAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQABAAAAAAzMEAAACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAAQAAAA/MwAAPzNAAD8zQAA+ZoAAQAAAAAMzBAAAAsAAAEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAZmAAD8zQAABmYAAAAAEAAAAPzMAAD2ZwAAAzMAAAMzAAD2ZwAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBAAAAAAMzAAAJmQAA/M0AAPmaAAAAABAAAAD5mQAA9mcAAAZmAAD5mgACAAAAAAMzEAAAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAmZAAD2ZwzMAzQAAPzMAAIAAAAACZkQAAAFAAkAAAEBAQEBAQEBAQEAAAAABmYAAAMzAAD8zQAAAzMAAAAAAzMAAAZmAAD2ZwzMAzQAAPzMAAAAAwAAAAAMzBAAAAMABwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAMzAAD8zQZmAzMAAPzN+ZoQAAAA9mYAAPzNAAD8zQAAAAEAAAAAAzMQAAADAAABAQEBAAAAAAMzAAAAABAAAADwAAAAAAMAAAAAEAAQAAADAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPZnAAADMwAAAzMAAPzNAAAJmQAA/M0AAAMzAAADNAAAAAAJmQAA9mcAABAAAAD8zAAA/M0AAPZnAAAJmQAAAzMAAAM0AADwAAAAAAIAAAAADMwQAAAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAAAAEAAAAPzMAAD8zQAA9mcAAAZmAAADMwAABmcAAPAAAAQAAAAADMwQAAADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzCZkAAPZnAAAJmQAA9mcJmQM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQMzAAD8zfZnEAAAAPZmAAD5mgAAAAIAAAAADMwQAAADAAkAAAEBAQEBAQEBAQEJmQAA+ZoAAAZmAAD2ZwAADMwAAAmZAzMAAPzN9mcGZgAACZoAAPAAAAAAAQAAAAAMzBAAAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEAAAAPzMAADzNAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAQAAAAAMzBAAAAkAAAEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAAAAEAAAAPmZAAD8zQAA/M0AAPzNAAMAAAAADMwQAAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzAAAABQAAAAAQABAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMJmgAA9mYAAAmaAAD2ZgAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwZmAAD5mgAADM0AAPMzAAAMzQAA8zMAAAAJAAAAABAAEAAAAwAHAAsADwATABcAGwAfACMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADzMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDNAAA/MwAAAM0AAD8zAAAAAEAAAAADMwQAAALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAACZoAAPmZAAAGZwAA8AAAAAADAAAAAAzMEAAABQAJABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAPmaAAAMzAAA/M0AAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAAAzQAAPzMAAD8zQABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAAEAAAJmQzMEAAAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAACZkDMwAA/M0AAAMzAAD8zQMzAzQAAPzMAAADNAAA/MwAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQACAAD5mgzMEAAABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAABmYAAAMzAAD5mhZmAADzMwAA/M0AAPmaCZkMzQAA8zMABgAAAAAMzBMzAAMABwALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAAAzMAAAAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNBmcDMwAA/M0ABAAAAAAMzBzMAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAD2ZwAABmYAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0GZgMzAAD8zQMzAzMAAPzNAAUAAAAADMwczAALAA8AEwAXABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAAABgAAAAAMzBzMAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA9mcAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAAQAAAAADMwZmQALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0ABgAAAAAMzCMzAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAzMGZwAA+ZkAAAZnAAD5mQZnAzMAAPzNAAEAAAAAFmYTMwAVAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAA+ZoAABMzAAD2ZgAACZoAAPZmAAAJmgAA8zMAAPmaAAAAABAAAAD5mQAABmcAAAMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAZmAAD5mgAGAAD5mgzMEzMAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAzNAADzMwmZAzQAAPzMAzQDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAZmAAAAAAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAMAAAAADMwZmQALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAADzNAAAAzMAAAZmAAADMwAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAABmYczAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAMzAAD8zQAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAAAAwAAAAAGZhzMAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAAAAMzAAAAABMzAADszRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAmZHMwAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAwAAAAAJmRmZAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABMzAADszRZmAzMAAPzNAAADMwAA/M0AAAACAAAAABAAEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQzMAAADNAAA8zMAAPzNAAADMwAACZkAAPmaAAADMwAA/M0AAAZmAAADMwzNAADzM/zNCZkAAAMzAAAGZwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAYAAAAADMwczAAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAATMwAA/M0AAPzMAADzNAAACZkAAAMzAAAGZwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQACAAAAAAzMEzMAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAJmQMzAAD8zfZnEzMAAPzNAAD2ZgAA+ZoABQAAAAAMzBMzAAMACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAA/M0AAAMzAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwMzAAAGZgAA/M0AAPma/M0QAAAA8AAMzAM0AAD8zAM0AzMAAPzNAAAABQAAAAAMzBZmAAMACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAZnAzMAAPzNAAADMwAA/M0ABwAAAAAMzCAAAAMACQANABEAFQAZAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwGZwMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgM0AAD8zAADAAAAABZmEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAAQAAAA+ZkAAPM0AAAJmQAA9mcAABZmAAD2ZgAACZoAAAMzAzMAAPzNBmYDMwAA/M32ZwmZAAADMwAAAzQAAPZmAAD8zQAA/M0AAAAGAAD5mgzMEAAAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAAD5mgAABmYAAPM0AAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAADzNAAABmYAAAAAAAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQADAAAAAAZmGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA/M0AAAMzAAD5mgAAAzMAAAAAEAAAAPAAEzMDMwAA/M0DMwMzAAD8zQAAAAMAAAAABmYZmQADAAcACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAAAADMwAAAAAQAAAA8AATMwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAJmRZmAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAADwABMzAzMAAPzNAAADMwAA/M0AAAACAAAAAAzMFmYAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD8zQAA/M0AAPzNAAADMwAAAzMAAAZmAAADMwMzAAD8zfzNCZkAAAZnAAD8zAAAAzQAAAMzAAADMwAA/M0AAOzNAAYAAAAADMwZmQAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAAQAAAA/MwAAPzNAAD2ZwAABmYAAAMzAAAGZwAA8AATMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQACAAAAAAzMEAAAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAGZgMzAAD8zfmaEAAAAPzMAAD2ZwAA/M0AAgAAAAAMzBmZAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAACZkAAPM0AAAMzAAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAwAAAAAMzBZmAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQAA8zQAAAzMAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAAIAAAAAAzMZmQADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAQAAAAADMwmZAAMAAAEBAQEAAAAAAzMAAAAACZkAAPZnAAAABQAAAAAMzBAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAACZkAAPM0AAADMwAAAAAAAAmZAADzNAAAAzMAAAAAAAAJmQAAAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDMwAA/M0DMwM0AAD8zAAAAAEAAAAACZkTMwALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAAAAmZAAADMwAABmcAAPmZAAD8zQAA9mcAAAABAAAAAAmZEAAACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAAAGZgAAAzMAAAZnAAD5mQAA/M0AAPmaAAAAAwAAAAAMzBMzAAMADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAAAMzAAD8zQMzDM0AAPzMAAADNAAA8zMAAAZmAAD5mgzNAzMAAPzNAAAABQAAAAAQABMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAAADNAAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAAMzAAD8zQAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAADMwAAAzQAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAADNAAA/MwAAAACAAAAABMzEzMAAwANAAABAQEBAQEBAQEBAQEBARAAAAD5mQAA/M0AAPzNAAD8zQAAEzMAAPZmAAAMzAM0AAD8zPM0EAAAAPzMAAAGZwAA9mYAAPZnAAAAAgAAAAAMzBAAAAMACwAAAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAPZnAAAMzAAAAzMDMwAA/M38zQmZAAADMwAAAzQAAPAAAAUAAAAAHMwTMwAFAAkADQAVAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBARAAAAADMwAACZkAAPZnAAADMwAA8zMAAAMzAADzNAAACZkAAPmaAAAGZgAADM0AAPmaAAAMzAAA/M0AAAAACZkAAPmaAAD8zQmZAzMAAPzN+ZoMzQAA8zP8zRMzAAD8zQAA8zMAAPzNDMwDNAAAAzMAAPzNAAD8zAAFAAAAABzMEzMABQAJAA0AFQAdAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEQAAAAAzMAAAmZAAD2ZwAAAzMAAPMzAAADMwAACZoAAPmaAAAMzAAA/M0AAOZnAAAJmQAA+ZoAAAZmAAAAAAZmAAD8zQAA/M0GZgMzAAD8zfzNDM0AAPMzBmYDMwAAAzQAAPzMAAD8zfZnEzMAAPzNAADzMwAA/M0ABQAAAAAczBAAAAMACQANABMAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAADM0AAAMzAAAJmQAA9mcAAAMzAADpmgAACZkAAAMzAAAJmgAA+ZoAAAzMAAD8zQAAAzMDMwAA/M38zQZmAAD8zQAA/M0GZgMzAAD8zfmaCZkAAAZnAADwAAmZAzMAAAM0AAD8zAAA/M0AAAABAAAAABAAEzMADQAAAQEBAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAABmYAAPmaAAAJmgAAAAAJmQAAAzMAAAZnAAD5mQAA/M0AAPmaAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAATMwAA/M0AAPAAAAIAAAAADMwTMwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPMzAAAMzQAA8AAQAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAMAAAAADMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAADMwAA/M0DMwzNAAD8zAAAAzQAAPMzAAAGZgAA+ZoMzQMzAAD8zQAAAAEAAAAAAzMTMwADAAABAQEBAAAAAAMzAAAAABMzAADszQAAAAUAAAAADMwTMwADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAACZkAAPZnAAAJmQAA9mcJmQZnAAD5mQAABmcAAPmZBmcDMwAA/M0AAAADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQADAAAAABAAEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAAQAAAA8zMAAAmZAADzNAAAEAAAAAAAAzMAAPzNCZkDMwAA/M0GZwMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAAQAAAA/MwAAPzNAAD8zQAAAAAQAAAAAzMAAPzNAADwAAAAEAAAAPAAAAAAAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMGZkACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAADMwAA/M0AAAADAAAAABMzEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAM0AAAAAAAAAzMAAPMzAAD5mgAAEAAAAPmZAAAGZwAA+ZkAAAAAAzMAAPzNAzMGZgAA+Zr8zRAAAAADMwAA/M0AAPzMAAD8zQAA9mcAAAADAAAAAAzMHMwABQAJAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAA/M0AAAZmAAAAAAAABmYAAAAAEzMAAPzNAADwABZmAzMAAPzNAzMDMwAA/M0AAwAAAAAMzBMzAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAmZAADzNAAAAzMAAAmZAAD2ZwAAAAAAAAmZAAAAAAMzAAD8zQMzDM0AAPzMAAD8zQAA+ZoMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAAMzAAA9mcAAAmZAAAAAAMzAAAGZgAACZoAAPzNAAD8zAAA8zQAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAmZGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAADMwTMwADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAAEAAAAPAAAAAAAwAAAAAZmRMzAAMABwARAAABAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAABMzAAD5mgAA/MwAAPmaAAD8zQAADM0AAAmZAAAAAAMzAAD8zQMzAzMAAPzN/M0QAAAA8zMAABAAAAD2ZgAA9mcAAgAAAAAWZhMzAAMAEQAAAQEBAQEBAQEBAQEBAQEBAQEBEzMAAPmZAADzNAAAAzMAAAZmAAADMwAACZoAAPMzAAD5mgAAAzMDMwAA/M38zRMzAAD5mQAABmcAAPZmAAD2ZwAACZkAAPZnAAAAAgAAAAATMxMzAAMADwAAAQEBAQEBAQEBAQEBAQEBARAAAAADMwAA8zMAAPmaAAAQAAAA+ZkAAAZnAAD5mQAAAAAJmQAA9mcAABAAAAADMwAA/M0AAPzMAAD8zQAA9mcABwAAAAAMzBzMAAMABwALABMAFwAbAB8AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAA8zQAAAZmAAAAAAAABmYAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwABwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD5mgAABmYAAPM0AAAGZgAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAADM0AAPZmAAAJmgAA7M0AAAABAAD8zRAAEzMACwAAAQEBAQEBAQEBAQEBBmYAAPmaAAADMwAACZkAAAM0AAD5mQAA/M0DMwAAEzMAAPAAAAAQAAAA7M0AAPzNAAAAAgAAAAAMzBMzAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0AAgAAAAAMzBMzAAMADwAAAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA8zQAAAzMAAD2ZwAABmYAAPmaAAAGZgAAAzMGZgAA+Zr8zRMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAwAAAAAMzBMzAAMABwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAZmAAADMwZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEzMAAPzNAADwAAACAAD8zRAAEzMAAwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPzNAAD5mgAAAzMAAAmZAAADNAAA/MwAAPZnAAADMwzNAADzM/maBmYAABAAAADwAAAA+ZoAAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABQAAAAAQABMzAAMABwALABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADwAAAAAzMAAAMzAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAADNAAAAAAGZgAA+ZoAAAZmAAD5mgzMBmcAAPmZ8zQGZgAABmYAAAZnAAD5mQAA+ZoAAPmaDMwGZwAA+ZkAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAMzAAD8zQMzBmYAAPmaBmYDMwAA/M0DMwM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAcADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0ABQAAAAAMzBzMAAcADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAADMwAA/M0AAAAFAAAAAAzMEzMAAwAHAAsAEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAAAzMAAPmaAAADMwAA/M0AAAMzAAD2ZwAAAzMAAAMzAAD8zQAABmYAAAMzAAAAAAZmAAD5mgZmAzMAAPzNBmYDNAAA/MzzNBMzAAD5mQAA/M0AAPZnEAADMwAA/M0AAAACAAAAABAAEzMAAwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD5mgAA/M0AAAzNAAAAAAMzAAD8zQAAEAAAAPMzAAAQAAAA7M0AAwAAAAAQABMzAAMACwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAADMwAA/M0AAAmZAAD8zQAAAzMAAAM0AAAJmQMzAAD8zfZnEzMAAPzNAAD8zAAA8zQAAAzMAAADNAAAAzMAAOzNAAAAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAAAzMEzMABwAAAQEBAQEBAQEAAAAADMwAAPzNAAD5mgAAAAATMwAA7M0AABAAAADwAAAAAAIAAAAADMwTMwADAA0AAAEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAzMAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA9mcAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAABmYAAAmaAAD5mQAABmcAAOzNAAAAAwAAAAAQABMzAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgZmAAD5mgAABmYAAPma+ZoDMwAAAzMAAAZmAAADNAAAAzMAAPzNAAD8zAAA+ZoAAPzNAAD8zQAAAAkAAAAAEAATMwADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAAAQAA/M0QABMzAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABMzAADwAAAAEAAAAPAAAAD5mgAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAATMwAA8AAAABAAAADwAAAAEAAAAOzNAAAAAQAA/M0TMxMzAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABMzAADwAAAAEAAAAPAAAAAQAAAA8AAAAPmaAAAAAgAAAAAQABMzAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zRAAAAADMwAA9mYAAPZnAAMAAAAAEzMTMwADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRMzAAD2ZgAA9mcAABMzAADszQACAAAAAAzMEzMAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEzMAAPZmAAD2ZwAAAAMAAAAADMwTMwADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAADMwAAAzQAAPMzDM0DMwAA/M0AAAAEAAAAABZmEzMAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwzNAADzM/zNEzMAAPmZAAADNAAA8zMAAAZmAAD2ZxAAAzMAAPzNAAMAAAAADMwTMwADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAJmQAA9mcMzAM0AAD8zPM0CZkAAAMzAAADNAAAAzMAAOzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAAEAAAAAAzMEzMAAwAHAA8AFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAD5mgAAAAAAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAACZkAAPzNAAD8zQAA/M0JmQM0AAADMwAA+ZkAAAADAAAAAAzMEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzAzMAAPzNBmYDMwAA/M32ZxAAAAD8zAAA/M0AAPzNAAD8zQAA/M0AAAABAAAAAAzMEAAABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAAQAAAA/MwAAPM0AAIAAPzNEAAQAAADAA8AAAEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPmaAAADMwAACZkAAAM0AAD8zAAA9mcAAAMzCZkAAPZn+ZoGZgAADM0AAPMzAAD5mgAAAzMAAPzNAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQAFAAAAABAAEAAAAwAHAAsAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPAAAAADMwAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAAM0AAAAAAZmAAD5mgAABmYAAPmaDMwDNAAA/MzzNAZmAAAGZgAAAzQAAPzMAAD5mgAA+ZoMzAM0AAD8zAAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwAAAFAAAAAAzMGZkABwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD2ZwAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwABMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAAAAUAAAAADMwQAAADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAAAzMAAPzNAzMDMwAA/M0GZgMzAAD8zfZnEAAAAPmZAAD8zQAA+ZoMzAM0AAD8zAAAAAIAAAAAEAAQAAADAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPmaAAD8zQAADM0AAAAAAzMAAPzNAAAMzAAA9mcAAAzNAADwAAADAAAAABAAEAAAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAZmAzMAAPzN+ZoQAAAA/MwAAPzNAAD2ZwAACZkAAAMzAAADNAAA8AAAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaAAAABAAAAAAMzBAAAAMABwALAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAEAAAAADMwQAAAHAAABAQEBAQEBAQAAAAAMzAAA/M0AAPmaAAAAABAAAADwAAAADMwAAPM0AAAAAgAAAAAMzBAAAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkDMwAA/M32ZxAAAAD2ZgAA+ZoAAAAFAAAAAAzMEAAAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcGZgMzAAD8zQMzAzQAAPzMAAAAAQAAAAAQABAAAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAADMwAAAM0AAD8zAAA8zQAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAAAzMAAAmaAAD5mQAABmcAAPAAAAAAAwAAAAAQABAAAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgMzAAD8zQAAAzMAAPzN+ZoDMwAAAzMAAAMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAPzNAAD8zQAAAAkAAAAAEAAQAAADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwM0AAD8zAAAAzQAAPzMAAAAAQAA/M0QABAAAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABAAAADzMwAADM0AAPMzAAD5mgAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAZmAAAJmgAA+ZkAAAZnAADwAAABAAAAABAAEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAAQAAAA8zMAAAzNAADzMwAADM0AAPAAAAAAAQAA/M0TMxAAAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABAAAADzMwAADM0AAPMzAAAMzQAA8zMAAPmaAAAAAgAAAAAQABAAAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zQzMAAADNAAA+ZkAAPZnAAMAAAAAEzMQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcAABAAAADwAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwMzAAADMwAAAzMAAPZnCZkDNAAA/MwAAAAEAAAAABZmEAAAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwmZAAD2Z/zNEAAAAPmZAAADMwAA9mcAAAMzAAD5mgzMAzQAAPzMAAMAAAAADMwQAAADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAGZgAA+ZoJmQMzAAD8zfZnBmYAAAMzAAADMwAAAzQAAPAAAAQAAAAADMwZmQADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPmaAAAGZgAA8zQAAAZmAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQMzAzMAAPzNAAQAAAAADMwWZgADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPM0AAADMwAABmYAAAMzAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAzMAAPzNAAMAAPmaDMwTMwADAAcAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAAAzMAAPZnAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAD8zQAA+ZoDMwAA/M0DMwmZAAD2ZwMzDMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAAAAwAAAAAMzBmZAAUACQANAAABAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAPzNAAAGZgAAAAAAAAZmAAAAABAAAAD8zAAA8zQTMwMzAAD8zQMzAzMAAPzNAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAJmQAA8zQAAAMzAAAJmQAA9mcAAAAAAAAJmQAAAAADMwAA/M0DMwmZAAD8zQAA/M0AAPzNCZkDNAAA/MwAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAADMwAAPM0EAADMwAA/M0AAAMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcMzQMzAAD8zQADAAAAABmZEAAAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAEzMAAPmaAAD8zAAA+ZoAAPzNAAAMzQAACZkAAAAAAzMAAPzNAzMDMwAA/M38zQzMAAD2ZwAADM0AAPmZAAD2ZwACAAAAABZmEAAAAwARAAABAQEBAQEBAQEBAQEBAQEBAQETMwAA+ZkAAPM0AAADMwAABmYAAAMzAAAJmgAA8zMAAPmaAAADMwMzAAD8zfzNEAAAAPmZAAAGZwAA+ZkAAPZnAAAGZgAA+ZoAAAACAAAAAAzMEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA9mcAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAAAAZmAAD5mgAADMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAcAAAAADMwZmQADAAcACwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAPM0AAAGZgAAAAAAAAZmAAAAAAMzAAD8zQMzAzMAAPzNBmYDMwAA/M32ZxAAAAD5mQAA/M0AAPmaDMwDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAABAAAAAAMzBmZAAcADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAA+ZoAAAZmAADzNAAABmYAAAAAEAAAAPmZAAD8zQAA+ZoAAAmZAAADMwAAAzQAAPAAEzMDMwAA/M0DMwMzAAD8zQAEAAAAAAzMGZkACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAAAzMAAAmaAAD5mQAABmcAAPAAEzMDMwAA/M0DMwMzAAD8zQAAAzMAAPzNAAEAAPzNDMwQAAALAAABAQEBAQEBAQEBAQEGZgAA+ZoAAAMzAAAGZgAAAzMAAPzNAAD8zQMzAAAQAAAA8zMAAAzNAADwAAAA/M0AAAACAAAAABMzFmYAAwARAAABAQEBAQEBAQEBAQEBAQEBAQEQAAAA+ZkAAPzNAAD5mgAABmYAAAMzAAAGZwAA+ZkAAAmaAAADMwZmAAD5mvzNEAAAAAMzAAADMwAA/M0AAPzNAAD8zAAA8zQAAAACAAAAABMzFmYAAwARAAABAQEBAQEBAQEBAQEBAQEBAQEQAAAA+ZkAAPzNAAD5mgAABmYAAAMzAAAGZwAA+ZkAAAmaAAADMwMzAAD8zfzNDMwAAAM0AAAGZgAA+ZoAAPzMAAD8zQAA9mcAAAAFAAAAABMzFmYAAwAHAAsADwAVAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAABmcAAPzNAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMxAAAADwAAAAEAAAAPzNAADzMwAFAAAAABMzEzMAAwAHAAsADwAVAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAABmcAAPzNAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwzNAADzMwAADM0AAPzNAAD2ZgAJAAAAABMzIAAAAwAHAAsADwAVABkAHQAhACUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAABmcAAPzNAADzMwAAAzMAAAZmAAADNAAA8AAAAAMzAAAGZgAAAzMAAAAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzEAAAAPAAAAAQAAAA/M0AAPMzEzMDMwAA/M0AAAMzAAD8zQMzAzQAAPzMAAADNAAA/MwACQAAAAATMxzMAAMABwALAA8AFQAZAB0AIQAlAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAZnAAD8zQAA8zMAAAMzAAAGZgAAAzQAAPAAAAADMwAABmYAAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwzNAADzMwAADM0AAPzNAAD2ZhAAAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAAUAAAAAHMwTMwADAAcACwAXABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAADNAAACZkAAPZnAAADMwAABmYAAAMzAADmZwAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzM/zNAzMAAAMzAAAJmgAA+ZkAAAZnAADwABAAAzMAAPzNAAAABQAAAAAczBAAAAMABwALAA8AGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAABmcAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwmZAAD2ZwAACZkAAPZnCZkDNAAA/MzzNAMzAAADMwAACZoAAPmZAAAGZwAA8AAAAAACAAAAABAAFmYAAwARAAABAQEBAQEBAQEBAQEBAQEBAQEMzAAA+ZoAAPzNAAD8zQAAAzMAAAMzAAADMwAA/M0AAAmaAAADMwZmAAD5mvzNEAAAAAMzAAADMwAA/M0AAPzNAAD8zAAA8zQAAAACAAAAABAAFmYAAwARAAABAQEBAQEBAQEBAQEBAQEBAQEMzAAA+ZoAAPzNAAD8zQAAAzMAAAMzAAADMwAA/M0AAAmaAAADMwMzAAD8zfzNEAAAAAMzAAADMwAA/M0AAPzNAAD5mQAA9mcAAAABAAAAAAzMFmYABwAAAQEBAQEBAQEAAAAACZkAAAMzAAD2ZwAAAAATMwAAAzMAAPmaAADwAAAAAAEAAAAADMwTMwAHAAABAQEBAQEBAQAAAAAJmQAAAzMAAPZnAAAAABAAAAADMwAA+ZkAAPM0AAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAJmgAA/M0AAPmZAAD8zQAA+ZoAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAGZwAA/MwAAPzNAAD8zQAA+ZoAAQAA/M0QABMzAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAmZAAD2ZwAAEzMAAPmZAAAGZwAA8AAAAPmaAAAAAQAA/M0QABAAAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAZmAAD5mgAAEAAAAPmZAAAGZwAA8zMAAPmaAAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA/M0AAPAAAAAJmQAA9mcAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEAAAAPmZAAAGZwAA/MwAAPM0AAAGZgAA+ZoAAQAAAAAWZhMzABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAAEzMAAPZmAAAJmgAA9mYAAAmaAADzMwAA+ZoAAAAAEAAAAPmZAAAGZwAAAzMAAPzNAAD8zAAA/M0AAPmaAAD8zQAABmYAAPmaAAMAAAAAFmYQAAADAAcAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAABAAAAD5mQAA8zQAAAmZAAD2ZwAAFmYAAPZmAAAJmgAAAzMDMwAA/M0GZgMzAAD8zfZnCZkAAAMzAAADNAAA9mYAAPzNAAD8zQAAAAMAAPmaDMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoDMwAA/M0GZhAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQAAAAQAAPmaDMwQAAADAAcADQARAAABAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwAAAAEAAAAAAzMGZkAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAPmaAAADMwAAAzMGZgAA+ZoJmQM0AAD8zPM0EzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPmaAAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcMzAM0AAD8zAAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAABmYAAAAAAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAIAAD5mgzMHMwAAwAJAA0AEQAVABkAHQAhAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPZnAAAGZgAAAAAAAAZmAAD5mgMzAAD8zQMzAzMAAAMzAAD5mgZmAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAAAAgAAPmaDMwZmQADAAkADQARABUAGQAdACEAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAAAAAD8zQAABmYAAAAAAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAMzBmZAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAMzAAADMwzNAADzM/zNEzMAAPzNAADzMwAA/M0WZgMzAAD8zQAAAAMAAAAADMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAAAAAAADMwAA+ZoAAAmZAAADMwAAAzMDMwAA/M0JmQM0AAD8zPM0CZkAAAZnAADwAAADAAD5mgzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAzMAAPzNCZkMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAAAAwAA+ZoMzBAAAAMABwANAAABAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAPmaAAD8zQAACZkAAAMzAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAMAAPmaDMwTMwADAAcADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoDMwAA/M0JmQzNAADzM/zNEzMAAPzNAADzMwAA/M0AAAADAAD5mgzMEAAAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPmaAzMAAPzNCZkDMwAA/M38zQmZAAAGZwAA8AAAAwAA9mcMzBMzAAUACQARAAABAQEBAQEBAQEBAQEBAQEBAQEGZgAA/M0AAAZmAAAAAAAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD2ZwMzAAADMwAA+ZoMzAzNAADzM/zNEzMAAPzNAADzMwAA/M0AAwAA9mcMzBAAAAUACQAPAAABAQEBAQEBAQEBAQEBAQEBBmYAAPzNAAAGZgAAAAAAAPmaAAD8zQAACZkAAAMzAAD2ZwMzAAADMwAA+ZoMzAMzAAD8zfzNCZkAAAZnAADwAAAAAAUAAPZnDMwTMwADAAcACwAPABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAAAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZDM0AAPMz/M0TMwAA/M0AAPMzAAD8zQAAAAUAAPZnDMwQAAADAAcACwAPABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAUAAPZnDMwTMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAD2ZwAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYTMwAA7M0AAAAGAAD2ZwzMEAAAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAA9mcAAAMzAAD8zQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYJmQAA9mcMzAM0AAD8zAACAAAAABAAGZkABwALAAABAQEBAQEBAQEBAQEGZgAA+ZoAABAAAAD5mQAA/M0AAAMzAAAAABAAAAADMwAA/M0AAPAAFmYDMwAA/M0AAgAAAAAMzBZmAAkADQAAAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAPM0AAADMwAAAAAQAAAA+ZkAAPzNAAD8zQAA/M0TMwMzAAD8zQAAAAIAAPmaEAATMwADAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAPmaAAAQAAAA+ZkAAPmaAzMAAPzNBmYQAAAAAzMAAPzNAADwAAACAAD5mgzMEAAAAwANAAABAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAAJmQAA9mcAAAmZAAD5mgMzAAD8zQZmEAAAAPmZAAD8zQAA/M0AAPzNAAAAAgAA+ZoQABMzAAMACwAAAQEBAQEBAQEBAQEBAzMAAAmZAAD5mgAA+ZoAABAAAAD5mQAA+ZoDMwAA/M0GZhAAAAADMwAA/M0AAPAAAAIAAPmaDMwQAAADAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAmZAAD2ZwAACZkAAPmaAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAAEAAD2ZxAAEzMAAwAHAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD8zQAA+ZoAABAAAAD5mQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAAAzMAAPzNAADwAAAEAAD2ZwzMEAAAAwAHAAsAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAPZnAAAJmQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAABAAAMzAZmEzMABQAAAQEBAQEBAAAAAAMzAAADMwAADMwGZwAA/M0AAPzMAAEAAAzMBmYTMwAFAAABAQEBAQEDMwAA/M0AAAZmAAAMzAM0AAADMwAA+ZkAAgAADMwQABMzAAUACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAADMwGZwAA/M0AAPzMAAAGZwAA/M0AAPzMAAIAAAzMEAATMwAFAAsAAAEBAQEBAQEBAQEBAQMzAAD8zQAABmYAAAZmAAD8zQAABmcAAAzMAzQAAAMzAAD5mQAAAzQAAAMzAAD5mQADAAAAABAAAzMAAwAHAAsAAAEB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"
 
 /***/ }),
-/* 224 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -50325,7 +49417,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(225);
+var	fixUrls = __webpack_require__(230);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -50641,7 +49733,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 225 */
+/* 230 */
 /***/ (function(module, exports) {
 
 
@@ -50736,46 +49828,1001 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 226 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;// Version 0.6.0 - Copyright 2012 - 2016 -  Jim Riecken <jimr@jimr.ca>
+//
+// Released under the MIT License - https://github.com/jriecken/sat-js
+//
+// A simple library for determining intersections of circles and
+// polygons using the Separating Axis Theorem.
+/** @preserve SAT.js - Version 0.6.0 - Copyright 2012 - 2016 - Jim Riecken <jimr@jimr.ca> - released under the MIT License. https://github.com/jriecken/sat-js */
 
-Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(39);
-var Sprite = /** @class */ (function () {
-    function Sprite(id, sprite) {
-        this.position = gl_matrix_1.vec2.create();
-        this.id = id;
-        this.sprite = sprite;
-        this.clear();
+/*global define: false, module: false*/
+/*jshint shadow:true, sub:true, forin:true, noarg:true, noempty:true, 
+  eqeqeq:true, bitwise:true, strict:true, undef:true, 
+  curly:true, browser:true */
+
+// Create a UMD wrapper for SAT. Works in:
+//
+//  - Plain browser via global SAT variable
+//  - AMD loader (like require.js)
+//  - Node.js
+//
+// The quoted properties all over the place are used so that the Closure Compiler
+// does not mangle the exposed API in advanced mode.
+/**
+ * @param {*} root - The global scope
+ * @param {Function} factory - Factory that creates SAT module
+ */
+(function (root, factory) {
+  "use strict";
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else if (typeof exports === 'object') {
+    module['exports'] = factory();
+  } else {
+    root['SAT'] = factory();
+  }
+}(this, function () {
+  "use strict";
+
+  var SAT = {};
+
+  //
+  // ## Vector
+  //
+  // Represents a vector in two dimensions with `x` and `y` properties.
+
+
+  // Create a new Vector, optionally passing in the `x` and `y` coordinates. If
+  // a coordinate is not specified, it will be set to `0`
+  /** 
+   * @param {?number=} x The x position.
+   * @param {?number=} y The y position.
+   * @constructor
+   */
+  function Vector(x, y) {
+    this['x'] = x || 0;
+    this['y'] = y || 0;
+  }
+  SAT['Vector'] = Vector;
+  // Alias `Vector` as `V`
+  SAT['V'] = Vector;
+
+
+  // Copy the values of another Vector into this one.
+  /**
+   * @param {Vector} other The other Vector.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['copy'] = Vector.prototype.copy = function(other) {
+    this['x'] = other['x'];
+    this['y'] = other['y'];
+    return this;
+  };
+
+  // Create a new vector with the same coordinates as this on.
+  /**
+   * @return {Vector} The new cloned vector
+   */
+  Vector.prototype['clone'] = Vector.prototype.clone = function() {
+    return new Vector(this['x'], this['y']);
+  };
+
+  // Change this vector to be perpendicular to what it was before. (Effectively
+  // roatates it 90 degrees in a clockwise direction)
+  /**
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['perp'] = Vector.prototype.perp = function() {
+    var x = this['x'];
+    this['x'] = this['y'];
+    this['y'] = -x;
+    return this;
+  };
+
+  // Rotate this vector (counter-clockwise) by the specified angle (in radians).
+  /**
+   * @param {number} angle The angle to rotate (in radians)
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['rotate'] = Vector.prototype.rotate = function (angle) {
+    var x = this['x'];
+    var y = this['y'];
+    this['x'] = x * Math.cos(angle) - y * Math.sin(angle);
+    this['y'] = x * Math.sin(angle) + y * Math.cos(angle);
+    return this;
+  };
+
+  // Reverse this vector.
+  /**
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['reverse'] = Vector.prototype.reverse = function() {
+    this['x'] = -this['x'];
+    this['y'] = -this['y'];
+    return this;
+  };
+  
+
+  // Normalize this vector.  (make it have length of `1`)
+  /**
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['normalize'] = Vector.prototype.normalize = function() {
+    var d = this.len();
+    if(d > 0) {
+      this['x'] = this['x'] / d;
+      this['y'] = this['y'] / d;
     }
-    Sprite.prototype.clear = function () {
-        this.sprite.visible = false;
-        this.position.set([0, 0]);
-    };
-    return Sprite;
-}());
-exports.Sprite = Sprite;
+    return this;
+  };
+  
+  // Add another vector to this one.
+  /**
+   * @param {Vector} other The other Vector.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['add'] = Vector.prototype.add = function(other) {
+    this['x'] += other['x'];
+    this['y'] += other['y'];
+    return this;
+  };
+  
+  // Subtract another vector from this one.
+  /**
+   * @param {Vector} other The other Vector.
+   * @return {Vector} This for chaiing.
+   */
+  Vector.prototype['sub'] = Vector.prototype.sub = function(other) {
+    this['x'] -= other['x'];
+    this['y'] -= other['y'];
+    return this;
+  };
+  
+  // Scale this vector. An independant scaling factor can be provided
+  // for each axis, or a single scaling factor that will scale both `x` and `y`.
+  /**
+   * @param {number} x The scaling factor in the x direction.
+   * @param {?number=} y The scaling factor in the y direction.  If this
+   *   is not specified, the x scaling factor will be used.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['scale'] = Vector.prototype.scale = function(x,y) {
+    this['x'] *= x;
+    this['y'] *= y || x;
+    return this; 
+  };
+  
+  // Project this vector on to another vector.
+  /**
+   * @param {Vector} other The vector to project onto.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['project'] = Vector.prototype.project = function(other) {
+    var amt = this.dot(other) / other.len2();
+    this['x'] = amt * other['x'];
+    this['y'] = amt * other['y'];
+    return this;
+  };
+  
+  // Project this vector onto a vector of unit length. This is slightly more efficient
+  // than `project` when dealing with unit vectors.
+  /**
+   * @param {Vector} other The unit vector to project onto.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['projectN'] = Vector.prototype.projectN = function(other) {
+    var amt = this.dot(other);
+    this['x'] = amt * other['x'];
+    this['y'] = amt * other['y'];
+    return this;
+  };
+  
+  // Reflect this vector on an arbitrary axis.
+  /**
+   * @param {Vector} axis The vector representing the axis.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['reflect'] = Vector.prototype.reflect = function(axis) {
+    var x = this['x'];
+    var y = this['y'];
+    this.project(axis).scale(2);
+    this['x'] -= x;
+    this['y'] -= y;
+    return this;
+  };
+  
+  // Reflect this vector on an arbitrary axis (represented by a unit vector). This is
+  // slightly more efficient than `reflect` when dealing with an axis that is a unit vector.
+  /**
+   * @param {Vector} axis The unit vector representing the axis.
+   * @return {Vector} This for chaining.
+   */
+  Vector.prototype['reflectN'] = Vector.prototype.reflectN = function(axis) {
+    var x = this['x'];
+    var y = this['y'];
+    this.projectN(axis).scale(2);
+    this['x'] -= x;
+    this['y'] -= y;
+    return this;
+  };
+  
+  // Get the dot product of this vector and another.
+  /**
+   * @param {Vector}  other The vector to dot this one against.
+   * @return {number} The dot product.
+   */
+  Vector.prototype['dot'] = Vector.prototype.dot = function(other) {
+    return this['x'] * other['x'] + this['y'] * other['y'];
+  };
+  
+  // Get the squared length of this vector.
+  /**
+   * @return {number} The length^2 of this vector.
+   */
+  Vector.prototype['len2'] = Vector.prototype.len2 = function() {
+    return this.dot(this);
+  };
+  
+  // Get the length of this vector.
+  /**
+   * @return {number} The length of this vector.
+   */
+  Vector.prototype['len'] = Vector.prototype.len = function() {
+    return Math.sqrt(this.len2());
+  };
+  
+  // ## Circle
+  //
+  // Represents a circle with a position and a radius.
 
+  // Create a new circle, optionally passing in a position and/or radius. If no position
+  // is given, the circle will be at `(0,0)`. If no radius is provided, the circle will
+  // have a radius of `0`.
+  /**
+   * @param {Vector=} pos A vector representing the position of the center of the circle
+   * @param {?number=} r The radius of the circle
+   * @constructor
+   */
+  function Circle(pos, r) {
+    this['pos'] = pos || new Vector();
+    this['r'] = r || 0;
+  }
+  SAT['Circle'] = Circle;
+  
+  // Compute the axis-aligned bounding box (AABB) of this Circle.
+  //
+  // Note: Returns a _new_ `Polygon` each time you call this.
+  /**
+   * @return {Polygon} The AABB
+   */
+  Circle.prototype['getAABB'] = Circle.prototype.getAABB = function() {
+    var r = this['r'];
+    var corner = this["pos"].clone().sub(new Vector(r, r));
+    return new Box(corner, r*2, r*2).toPolygon();
+  };
 
-/***/ }),
-/* 227 */
-/***/ (function(module, exports, __webpack_require__) {
+  // ## Polygon
+  //
+  // Represents a *convex* polygon with any number of points (specified in counter-clockwise order)
+  //
+  // Note: Do _not_ manually change the `points`, `angle`, or `offset` properties. Use the
+  // provided setters. Otherwise the calculated properties will not be updated correctly.
+  //
+  // `pos` can be changed directly.
 
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Cell = /** @class */ (function () {
-    function Cell(sprite) {
-        this.imgOffsetX = 0;
-        this.imgOffsetY = 0;
-        this.sprite = null;
-        this.sprite = sprite;
+  // Create a new polygon, passing in a position vector, and an array of points (represented
+  // by vectors relative to the position vector). If no position is passed in, the position
+  // of the polygon will be `(0,0)`.
+  /**
+   * @param {Vector=} pos A vector representing the origin of the polygon. (all other
+   *   points are relative to this one)
+   * @param {Array.<Vector>=} points An array of vectors representing the points in the polygon,
+   *   in counter-clockwise order.
+   * @constructor
+   */
+  function Polygon(pos, points) {
+    this['pos'] = pos || new Vector();
+    this['angle'] = 0;
+    this['offset'] = new Vector();
+    this.setPoints(points || []);
+  }
+  SAT['Polygon'] = Polygon;
+  
+  // Set the points of the polygon.
+  //
+  // Note: The points are counter-clockwise *with respect to the coordinate system*.
+  // If you directly draw the points on a screen that has the origin at the top-left corner
+  // it will _appear_ visually that the points are being specified clockwise. This is just
+  // because of the inversion of the Y-axis when being displayed.
+  /**
+   * @param {Array.<Vector>=} points An array of vectors representing the points in the polygon,
+   *   in counter-clockwise order.
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype['setPoints'] = Polygon.prototype.setPoints = function(points) {
+    // Only re-allocate if this is a new polygon or the number of points has changed.
+    var lengthChanged = !this['points'] || this['points'].length !== points.length;
+    if (lengthChanged) {
+      var i;
+      var calcPoints = this['calcPoints'] = [];
+      var edges = this['edges'] = [];
+      var normals = this['normals'] = [];
+      // Allocate the vector arrays for the calculated properties
+      for (i = 0; i < points.length; i++) {
+        calcPoints.push(new Vector());
+        edges.push(new Vector());
+        normals.push(new Vector());
+      }
     }
-    return Cell;
-}());
-exports.Cell = Cell;
+    this['points'] = points;
+    this._recalc();
+    return this;
+  };
+
+  // Set the current rotation angle of the polygon.
+  /**
+   * @param {number} angle The current rotation angle (in radians).
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype['setAngle'] = Polygon.prototype.setAngle = function(angle) {
+    this['angle'] = angle;
+    this._recalc();
+    return this;
+  };
+
+  // Set the current offset to apply to the `points` before applying the `angle` rotation.
+  /**
+   * @param {Vector} offset The new offset vector.
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype['setOffset'] = Polygon.prototype.setOffset = function(offset) {
+    this['offset'] = offset;
+    this._recalc();
+    return this;
+  };
+
+  // Rotates this polygon counter-clockwise around the origin of *its local coordinate system* (i.e. `pos`).
+  //
+  // Note: This changes the **original** points (so any `angle` will be applied on top of this rotation).
+  /**
+   * @param {number} angle The angle to rotate (in radians)
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype['rotate'] = Polygon.prototype.rotate = function(angle) {
+    var points = this['points'];
+    var len = points.length;
+    for (var i = 0; i < len; i++) {
+      points[i].rotate(angle);
+    }
+    this._recalc();
+    return this;
+  };
+
+  // Translates the points of this polygon by a specified amount relative to the origin of *its own coordinate
+  // system* (i.e. `pos`).
+  //
+  // This is most useful to change the "center point" of a polygon. If you just want to move the whole polygon, change
+  // the coordinates of `pos`.
+  //
+  // Note: This changes the **original** points (so any `offset` will be applied on top of this translation)
+  /**
+   * @param {number} x The horizontal amount to translate.
+   * @param {number} y The vertical amount to translate.
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype['translate'] = Polygon.prototype.translate = function (x, y) {
+    var points = this['points'];
+    var len = points.length;
+    for (var i = 0; i < len; i++) {
+      points[i].x += x;
+      points[i].y += y;
+    }
+    this._recalc();
+    return this;
+  };
+
+
+  // Computes the calculated collision polygon. Applies the `angle` and `offset` to the original points then recalculates the
+  // edges and normals of the collision polygon.
+  /**
+   * @return {Polygon} This for chaining.
+   */
+  Polygon.prototype._recalc = function() {
+    // Calculated points - this is what is used for underlying collisions and takes into account
+    // the angle/offset set on the polygon.
+    var calcPoints = this['calcPoints'];
+    // The edges here are the direction of the `n`th edge of the polygon, relative to
+    // the `n`th point. If you want to draw a given edge from the edge value, you must
+    // first translate to the position of the starting point.
+    var edges = this['edges'];
+    // The normals here are the direction of the normal for the `n`th edge of the polygon, relative
+    // to the position of the `n`th point. If you want to draw an edge normal, you must first
+    // translate to the position of the starting point.
+    var normals = this['normals'];
+    // Copy the original points array and apply the offset/angle
+    var points = this['points'];
+    var offset = this['offset'];
+    var angle = this['angle'];
+    var len = points.length;
+    var i;
+    for (i = 0; i < len; i++) {
+      var calcPoint = calcPoints[i].copy(points[i]);
+      calcPoint.x += offset.x;
+      calcPoint.y += offset.y;
+      if (angle !== 0) {
+        calcPoint.rotate(angle);
+      }
+    }
+    // Calculate the edges/normals
+    for (i = 0; i < len; i++) {
+      var p1 = calcPoints[i];
+      var p2 = i < len - 1 ? calcPoints[i + 1] : calcPoints[0];
+      var e = edges[i].copy(p2).sub(p1);
+      normals[i].copy(e).perp().normalize();
+    }
+    return this;
+  };
+  
+  
+  // Compute the axis-aligned bounding box. Any current state
+  // (translations/rotations) will be applied before constructing the AABB.
+  //
+  // Note: Returns a _new_ `Polygon` each time you call this.
+  /**
+   * @return {Polygon} The AABB
+   */
+  Polygon.prototype["getAABB"] = Polygon.prototype.getAABB = function() {
+    var points = this["calcPoints"];
+    var len = points.length;
+    var xMin = points[0]["x"];
+    var yMin = points[0]["y"];
+    var xMax = points[0]["x"];
+    var yMax = points[0]["y"];
+    for (var i = 1; i < len; i++) {
+      var point = points[i];
+      if (point["x"] < xMin) {
+        xMin = point["x"];
+      }
+      else if (point["x"] > xMax) {
+        xMax = point["x"];
+      }
+      if (point["y"] < yMin) {
+        yMin = point["y"];
+      }
+      else if (point["y"] > yMax) {
+        yMax = point["y"];
+      }
+    }
+    return new Box(this["pos"].clone().add(new Vector(xMin, yMin)), xMax - xMin, yMax - yMin).toPolygon();
+  };
+  
+
+  // ## Box
+  //
+  // Represents an axis-aligned box, with a width and height.
+
+
+  // Create a new box, with the specified position, width, and height. If no position
+  // is given, the position will be `(0,0)`. If no width or height are given, they will
+  // be set to `0`.
+  /**
+   * @param {Vector=} pos A vector representing the bottom-left of the box (i.e. the smallest x and smallest y value).
+   * @param {?number=} w The width of the box.
+   * @param {?number=} h The height of the box.
+   * @constructor
+   */
+  function Box(pos, w, h) {
+    this['pos'] = pos || new Vector();
+    this['w'] = w || 0;
+    this['h'] = h || 0;
+  }
+  SAT['Box'] = Box;
+
+  // Returns a polygon whose edges are the same as this box.
+  /**
+   * @return {Polygon} A new Polygon that represents this box.
+   */
+  Box.prototype['toPolygon'] = Box.prototype.toPolygon = function() {
+    var pos = this['pos'];
+    var w = this['w'];
+    var h = this['h'];
+    return new Polygon(new Vector(pos['x'], pos['y']), [
+     new Vector(), new Vector(w, 0), 
+     new Vector(w,h), new Vector(0,h)
+    ]);
+  };
+  
+  // ## Response
+  //
+  // An object representing the result of an intersection. Contains:
+  //  - The two objects participating in the intersection
+  //  - The vector representing the minimum change necessary to extract the first object
+  //    from the second one (as well as a unit vector in that direction and the magnitude
+  //    of the overlap)
+  //  - Whether the first object is entirely inside the second, and vice versa.
+  /**
+   * @constructor
+   */  
+  function Response() {
+    this['a'] = null;
+    this['b'] = null;
+    this['overlapN'] = new Vector();
+    this['overlapV'] = new Vector();
+    this.clear();
+  }
+  SAT['Response'] = Response;
+
+  // Set some values of the response back to their defaults.  Call this between tests if
+  // you are going to reuse a single Response object for multiple intersection tests (recommented
+  // as it will avoid allcating extra memory)
+  /**
+   * @return {Response} This for chaining
+   */
+  Response.prototype['clear'] = Response.prototype.clear = function() {
+    this['aInB'] = true;
+    this['bInA'] = true;
+    this['overlap'] = Number.MAX_VALUE;
+    return this;
+  };
+
+  // ## Object Pools
+
+  // A pool of `Vector` objects that are used in calculations to avoid
+  // allocating memory.
+  /**
+   * @type {Array.<Vector>}
+   */
+  var T_VECTORS = [];
+  for (var i = 0; i < 10; i++) { T_VECTORS.push(new Vector()); }
+  
+  // A pool of arrays of numbers used in calculations to avoid allocating
+  // memory.
+  /**
+   * @type {Array.<Array.<number>>}
+   */
+  var T_ARRAYS = [];
+  for (var i = 0; i < 5; i++) { T_ARRAYS.push([]); }
+
+  // Temporary response used for polygon hit detection.
+  /**
+   * @type {Response}
+   */
+  var T_RESPONSE = new Response();
+
+  // Tiny "point" polygon used for polygon hit detection.
+  /**
+   * @type {Polygon}
+   */
+  var TEST_POINT = new Box(new Vector(), 0.000001, 0.000001).toPolygon();
+
+  // ## Helper Functions
+
+  // Flattens the specified array of points onto a unit vector axis,
+  // resulting in a one dimensional range of the minimum and
+  // maximum value on that axis.
+  /**
+   * @param {Array.<Vector>} points The points to flatten.
+   * @param {Vector} normal The unit vector axis to flatten on.
+   * @param {Array.<number>} result An array.  After calling this function,
+   *   result[0] will be the minimum value,
+   *   result[1] will be the maximum value.
+   */
+  function flattenPointsOn(points, normal, result) {
+    var min = Number.MAX_VALUE;
+    var max = -Number.MAX_VALUE;
+    var len = points.length;
+    for (var i = 0; i < len; i++ ) {
+      // The magnitude of the projection of the point onto the normal
+      var dot = points[i].dot(normal);
+      if (dot < min) { min = dot; }
+      if (dot > max) { max = dot; }
+    }
+    result[0] = min; result[1] = max;
+  }
+  
+  // Check whether two convex polygons are separated by the specified
+  // axis (must be a unit vector).
+  /**
+   * @param {Vector} aPos The position of the first polygon.
+   * @param {Vector} bPos The position of the second polygon.
+   * @param {Array.<Vector>} aPoints The points in the first polygon.
+   * @param {Array.<Vector>} bPoints The points in the second polygon.
+   * @param {Vector} axis The axis (unit sized) to test against.  The points of both polygons
+   *   will be projected onto this axis.
+   * @param {Response=} response A Response object (optional) which will be populated
+   *   if the axis is not a separating axis.
+   * @return {boolean} true if it is a separating axis, false otherwise.  If false,
+   *   and a response is passed in, information about how much overlap and
+   *   the direction of the overlap will be populated.
+   */
+  function isSeparatingAxis(aPos, bPos, aPoints, bPoints, axis, response) {
+    var rangeA = T_ARRAYS.pop();
+    var rangeB = T_ARRAYS.pop();
+    // The magnitude of the offset between the two polygons
+    var offsetV = T_VECTORS.pop().copy(bPos).sub(aPos);
+    var projectedOffset = offsetV.dot(axis);
+    // Project the polygons onto the axis.
+    flattenPointsOn(aPoints, axis, rangeA);
+    flattenPointsOn(bPoints, axis, rangeB);
+    // Move B's range to its position relative to A.
+    rangeB[0] += projectedOffset;
+    rangeB[1] += projectedOffset;
+    // Check if there is a gap. If there is, this is a separating axis and we can stop
+    if (rangeA[0] > rangeB[1] || rangeB[0] > rangeA[1]) {
+      T_VECTORS.push(offsetV); 
+      T_ARRAYS.push(rangeA); 
+      T_ARRAYS.push(rangeB);
+      return true;
+    }
+    // This is not a separating axis. If we're calculating a response, calculate the overlap.
+    if (response) {
+      var overlap = 0;
+      // A starts further left than B
+      if (rangeA[0] < rangeB[0]) {
+        response['aInB'] = false;
+        // A ends before B does. We have to pull A out of B
+        if (rangeA[1] < rangeB[1]) { 
+          overlap = rangeA[1] - rangeB[0];
+          response['bInA'] = false;
+        // B is fully inside A.  Pick the shortest way out.
+        } else {
+          var option1 = rangeA[1] - rangeB[0];
+          var option2 = rangeB[1] - rangeA[0];
+          overlap = option1 < option2 ? option1 : -option2;
+        }
+      // B starts further left than A
+      } else {
+        response['bInA'] = false;
+        // B ends before A ends. We have to push A out of B
+        if (rangeA[1] > rangeB[1]) { 
+          overlap = rangeA[0] - rangeB[1];
+          response['aInB'] = false;
+        // A is fully inside B.  Pick the shortest way out.
+        } else {
+          var option1 = rangeA[1] - rangeB[0];
+          var option2 = rangeB[1] - rangeA[0];
+          overlap = option1 < option2 ? option1 : -option2;
+        }
+      }
+      // If this is the smallest amount of overlap we've seen so far, set it as the minimum overlap.
+      var absOverlap = Math.abs(overlap);
+      if (absOverlap < response['overlap']) {
+        response['overlap'] = absOverlap;
+        response['overlapN'].copy(axis);
+        if (overlap < 0) {
+          response['overlapN'].reverse();
+        }
+      }      
+    }
+    T_VECTORS.push(offsetV); 
+    T_ARRAYS.push(rangeA); 
+    T_ARRAYS.push(rangeB);
+    return false;
+  }
+  SAT['isSeparatingAxis'] = isSeparatingAxis;
+  
+  // Calculates which Voronoi region a point is on a line segment.
+  // It is assumed that both the line and the point are relative to `(0,0)`
+  //
+  //            |       (0)      |
+  //     (-1)  [S]--------------[E]  (1)
+  //            |       (0)      |
+  /**
+   * @param {Vector} line The line segment.
+   * @param {Vector} point The point.
+   * @return  {number} LEFT_VORONOI_REGION (-1) if it is the left region,
+   *          MIDDLE_VORONOI_REGION (0) if it is the middle region,
+   *          RIGHT_VORONOI_REGION (1) if it is the right region.
+   */
+  function voronoiRegion(line, point) {
+    var len2 = line.len2();
+    var dp = point.dot(line);
+    // If the point is beyond the start of the line, it is in the
+    // left voronoi region.
+    if (dp < 0) { return LEFT_VORONOI_REGION; }
+    // If the point is beyond the end of the line, it is in the
+    // right voronoi region.
+    else if (dp > len2) { return RIGHT_VORONOI_REGION; }
+    // Otherwise, it's in the middle one.
+    else { return MIDDLE_VORONOI_REGION; }
+  }
+  // Constants for Voronoi regions
+  /**
+   * @const
+   */
+  var LEFT_VORONOI_REGION = -1;
+  /**
+   * @const
+   */
+  var MIDDLE_VORONOI_REGION = 0;
+  /**
+   * @const
+   */
+  var RIGHT_VORONOI_REGION = 1;
+  
+  // ## Collision Tests
+
+  // Check if a point is inside a circle.
+  /**
+   * @param {Vector} p The point to test.
+   * @param {Circle} c The circle to test.
+   * @return {boolean} true if the point is inside the circle, false if it is not.
+   */
+  function pointInCircle(p, c) {
+    var differenceV = T_VECTORS.pop().copy(p).sub(c['pos']);
+    var radiusSq = c['r'] * c['r'];
+    var distanceSq = differenceV.len2();
+    T_VECTORS.push(differenceV);
+    // If the distance between is smaller than the radius then the point is inside the circle.
+    return distanceSq <= radiusSq;
+  }
+  SAT['pointInCircle'] = pointInCircle;
+
+  // Check if a point is inside a convex polygon.
+  /**
+   * @param {Vector} p The point to test.
+   * @param {Polygon} poly The polygon to test.
+   * @return {boolean} true if the point is inside the polygon, false if it is not.
+   */
+  function pointInPolygon(p, poly) {
+    TEST_POINT['pos'].copy(p);
+    T_RESPONSE.clear();
+    var result = testPolygonPolygon(TEST_POINT, poly, T_RESPONSE);
+    if (result) {
+      result = T_RESPONSE['aInB'];
+    }
+    return result;
+  }
+  SAT['pointInPolygon'] = pointInPolygon;
+
+  // Check if two circles collide.
+  /**
+   * @param {Circle} a The first circle.
+   * @param {Circle} b The second circle.
+   * @param {Response=} response Response object (optional) that will be populated if
+   *   the circles intersect.
+   * @return {boolean} true if the circles intersect, false if they don't. 
+   */
+  function testCircleCircle(a, b, response) {
+    // Check if the distance between the centers of the two
+    // circles is greater than their combined radius.
+    var differenceV = T_VECTORS.pop().copy(b['pos']).sub(a['pos']);
+    var totalRadius = a['r'] + b['r'];
+    var totalRadiusSq = totalRadius * totalRadius;
+    var distanceSq = differenceV.len2();
+    // If the distance is bigger than the combined radius, they don't intersect.
+    if (distanceSq > totalRadiusSq) {
+      T_VECTORS.push(differenceV);
+      return false;
+    }
+    // They intersect.  If we're calculating a response, calculate the overlap.
+    if (response) { 
+      var dist = Math.sqrt(distanceSq);
+      response['a'] = a;
+      response['b'] = b;
+      response['overlap'] = totalRadius - dist;
+      response['overlapN'].copy(differenceV.normalize());
+      response['overlapV'].copy(differenceV).scale(response['overlap']);
+      response['aInB']= a['r'] <= b['r'] && dist <= b['r'] - a['r'];
+      response['bInA'] = b['r'] <= a['r'] && dist <= a['r'] - b['r'];
+    }
+    T_VECTORS.push(differenceV);
+    return true;
+  }
+  SAT['testCircleCircle'] = testCircleCircle;
+  
+  // Check if a polygon and a circle collide.
+  /**
+   * @param {Polygon} polygon The polygon.
+   * @param {Circle} circle The circle.
+   * @param {Response=} response Response object (optional) that will be populated if
+   *   they interset.
+   * @return {boolean} true if they intersect, false if they don't.
+   */
+  function testPolygonCircle(polygon, circle, response) {
+    // Get the position of the circle relative to the polygon.
+    var circlePos = T_VECTORS.pop().copy(circle['pos']).sub(polygon['pos']);
+    var radius = circle['r'];
+    var radius2 = radius * radius;
+    var points = polygon['calcPoints'];
+    var len = points.length;
+    var edge = T_VECTORS.pop();
+    var point = T_VECTORS.pop();
+    
+    // For each edge in the polygon:
+    for (var i = 0; i < len; i++) {
+      var next = i === len - 1 ? 0 : i + 1;
+      var prev = i === 0 ? len - 1 : i - 1;
+      var overlap = 0;
+      var overlapN = null;
+      
+      // Get the edge.
+      edge.copy(polygon['edges'][i]);
+      // Calculate the center of the circle relative to the starting point of the edge.
+      point.copy(circlePos).sub(points[i]);
+      
+      // If the distance between the center of the circle and the point
+      // is bigger than the radius, the polygon is definitely not fully in
+      // the circle.
+      if (response && point.len2() > radius2) {
+        response['aInB'] = false;
+      }
+      
+      // Calculate which Voronoi region the center of the circle is in.
+      var region = voronoiRegion(edge, point);
+      // If it's the left region:
+      if (region === LEFT_VORONOI_REGION) {
+        // We need to make sure we're in the RIGHT_VORONOI_REGION of the previous edge.
+        edge.copy(polygon['edges'][prev]);
+        // Calculate the center of the circle relative the starting point of the previous edge
+        var point2 = T_VECTORS.pop().copy(circlePos).sub(points[prev]);
+        region = voronoiRegion(edge, point2);
+        if (region === RIGHT_VORONOI_REGION) {
+          // It's in the region we want.  Check if the circle intersects the point.
+          var dist = point.len();
+          if (dist > radius) {
+            // No intersection
+            T_VECTORS.push(circlePos); 
+            T_VECTORS.push(edge);
+            T_VECTORS.push(point); 
+            T_VECTORS.push(point2);
+            return false;
+          } else if (response) {
+            // It intersects, calculate the overlap.
+            response['bInA'] = false;
+            overlapN = point.normalize();
+            overlap = radius - dist;
+          }
+        }
+        T_VECTORS.push(point2);
+      // If it's the right region:
+      } else if (region === RIGHT_VORONOI_REGION) {
+        // We need to make sure we're in the left region on the next edge
+        edge.copy(polygon['edges'][next]);
+        // Calculate the center of the circle relative to the starting point of the next edge.
+        point.copy(circlePos).sub(points[next]);
+        region = voronoiRegion(edge, point);
+        if (region === LEFT_VORONOI_REGION) {
+          // It's in the region we want.  Check if the circle intersects the point.
+          var dist = point.len();
+          if (dist > radius) {
+            // No intersection
+            T_VECTORS.push(circlePos); 
+            T_VECTORS.push(edge); 
+            T_VECTORS.push(point);
+            return false;              
+          } else if (response) {
+            // It intersects, calculate the overlap.
+            response['bInA'] = false;
+            overlapN = point.normalize();
+            overlap = radius - dist;
+          }
+        }
+      // Otherwise, it's the middle region:
+      } else {
+        // Need to check if the circle is intersecting the edge,
+        // Change the edge into its "edge normal".
+        var normal = edge.perp().normalize();
+        // Find the perpendicular distance between the center of the 
+        // circle and the edge.
+        var dist = point.dot(normal);
+        var distAbs = Math.abs(dist);
+        // If the circle is on the outside of the edge, there is no intersection.
+        if (dist > 0 && distAbs > radius) {
+          // No intersection
+          T_VECTORS.push(circlePos); 
+          T_VECTORS.push(normal); 
+          T_VECTORS.push(point);
+          return false;
+        } else if (response) {
+          // It intersects, calculate the overlap.
+          overlapN = normal;
+          overlap = radius - dist;
+          // If the center of the circle is on the outside of the edge, or part of the
+          // circle is on the outside, the circle is not fully inside the polygon.
+          if (dist >= 0 || overlap < 2 * radius) {
+            response['bInA'] = false;
+          }
+        }
+      }
+      
+      // If this is the smallest overlap we've seen, keep it. 
+      // (overlapN may be null if the circle was in the wrong Voronoi region).
+      if (overlapN && response && Math.abs(overlap) < Math.abs(response['overlap'])) {
+        response['overlap'] = overlap;
+        response['overlapN'].copy(overlapN);
+      }
+    }
+    
+    // Calculate the final overlap vector - based on the smallest overlap.
+    if (response) {
+      response['a'] = polygon;
+      response['b'] = circle;
+      response['overlapV'].copy(response['overlapN']).scale(response['overlap']);
+    }
+    T_VECTORS.push(circlePos); 
+    T_VECTORS.push(edge); 
+    T_VECTORS.push(point);
+    return true;
+  }
+  SAT['testPolygonCircle'] = testPolygonCircle;
+  
+  // Check if a circle and a polygon collide.
+  //
+  // **NOTE:** This is slightly less efficient than polygonCircle as it just
+  // runs polygonCircle and reverses everything at the end.
+  /**
+   * @param {Circle} circle The circle.
+   * @param {Polygon} polygon The polygon.
+   * @param {Response=} response Response object (optional) that will be populated if
+   *   they interset.
+   * @return {boolean} true if they intersect, false if they don't.
+   */
+  function testCirclePolygon(circle, polygon, response) {
+    // Test the polygon against the circle.
+    var result = testPolygonCircle(polygon, circle, response);
+    if (result && response) {
+      // Swap A and B in the response.
+      var a = response['a'];
+      var aInB = response['aInB'];
+      response['overlapN'].reverse();
+      response['overlapV'].reverse();
+      response['a'] = response['b'];
+      response['b'] = a;
+      response['aInB'] = response['bInA'];
+      response['bInA'] = aInB;
+    }
+    return result;
+  }
+  SAT['testCirclePolygon'] = testCirclePolygon;
+  
+  // Checks whether polygons collide.
+  /**
+   * @param {Polygon} a The first polygon.
+   * @param {Polygon} b The second polygon.
+   * @param {Response=} response Response object (optional) that will be populated if
+   *   they interset.
+   * @return {boolean} true if they intersect, false if they don't.
+   */
+  function testPolygonPolygon(a, b, response) {
+    var aPoints = a['calcPoints'];
+    var aLen = aPoints.length;
+    var bPoints = b['calcPoints'];
+    var bLen = bPoints.length;
+    // If any of the edge normals of A is a separating axis, no intersection.
+    for (var i = 0; i < aLen; i++) {
+      if (isSeparatingAxis(a['pos'], b['pos'], aPoints, bPoints, a['normals'][i], response)) {
+        return false;
+      }
+    }
+    // If any of the edge normals of B is a separating axis, no intersection.
+    for (var i = 0;i < bLen; i++) {
+      if (isSeparatingAxis(a['pos'], b['pos'], aPoints, bPoints, b['normals'][i], response)) {
+        return false;
+      }
+    }
+    // Since none of the edge normals of A or B are a separating axis, there is an intersection
+    // and we've already calculated the smallest overlap (in isSeparatingAxis).  Calculate the
+    // final overlap vector.
+    if (response) {
+      response['a'] = a;
+      response['b'] = b;
+      response['overlapV'].copy(response['overlapN']).scale(response['overlap']);
+    }
+    return true;
+  }
+  SAT['testPolygonPolygon'] = testPolygonPolygon;
+
+  return SAT;
+}));
 
 
 /***/ })

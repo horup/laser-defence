@@ -88,7 +88,7 @@ export default class G0 extends Prototype
     initRound()
     {
         let e = this.engine;
-        e.centerText = "";
+        e.state.centerText = "";
         e.clearGrid(0);
         this.timer = 0;
         this.laser.rotation = 0;
@@ -126,9 +126,9 @@ export default class G0 extends Prototype
             case 0:
             {
                 if (iterations % 40 < 20)
-                    e.centerText = "Touch when ready!!";
+                    e.state.centerText = "Touch when ready!!";
                 else
-                    e.centerText = "";
+                    e.state.centerText = "";
                 if (e.input.mouse.button[0])
                 {
                     this.state = 1;
@@ -190,7 +190,7 @@ export default class G0 extends Prototype
 
                         if (m.pos[0] > e.config.grid.width)
                         {
-                            Insights.event.send("G0", "Died", "at " + e.centerTopText, this.timer);
+                            Insights.event.send("G0", "Died", "at " + e.state.centerTopText, this.timer);
                             if (this.maxScore < this.timer)
                             {
                                 this.maxScore = this.timer;
@@ -239,7 +239,7 @@ export default class G0 extends Prototype
                 else if (iterations % (60 * 5))
                 {
                     Insights.metric.set(1, Math.floor(iterations / 60));
-                    Insights.metric.set(5, e.metric.measurements.fps.avg);
+                    Insights.metric.set(5, e.state.fps.avg);
                 }
 
                 this.timer++;
@@ -263,7 +263,7 @@ export default class G0 extends Prototype
                 }
                 
                 e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
-                e.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
+                e.state.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
 
                 break;
             }
@@ -271,7 +271,7 @@ export default class G0 extends Prototype
             {
                 e.clearGrid(-1);
                 e.clearSprites();
-                e.centerText = "BOOM! Try again?";
+                e.state.centerText = "BOOM! Try again?";
                 if (e.input.mouse.button[0])
                 {
                     this.state = 1;
@@ -283,7 +283,7 @@ export default class G0 extends Prototype
 
         if (iterations % 60 * 10 == 0)
         {
-            Insights.metric.set(4, e.metric.measurements.animate.avg);
+            Insights.metric.set(4, e.state.animate.avg);
         }
     }
 }
