@@ -23419,6 +23419,7 @@ var G0 = /** @class */ (function (_super) {
                 }
             case 2:
                 {
+                    this.engine.clearSprites();
                     var spriteIndex_1 = 0;
                     var y = this.engine.input.mouse.pos[1];
                     var x = this.engine.input.mouse.pos[0];

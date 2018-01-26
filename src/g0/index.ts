@@ -143,6 +143,7 @@ export default class G0 extends Prototype
             }
             case 2:
             {
+                this.engine.clearSprites();
                 let spriteIndex = 0;
                 let y = this.engine.input.mouse.pos[1];
                 let x = this.engine.input.mouse.pos[0];
