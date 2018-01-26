@@ -139,15 +139,11 @@ export class Engine
         return this.pixi.textures.length - 1;
     }
 
-    animate(tick:(time:number, delta:number)=>any)
+    animate(time:number, delta:number, tick:(time:number, delta:number)=>any)
     {
         let s = this.state;
-        let now = performance.now();
-        let frameTime = now - s.time;
-        let delta = frameTime / 1000;
-        s.time = now;
-        s.animateCount++;
-        s.fps.measure(1000/frameTime);
+        s.frames++;
+        s.fps.measure(1000/delta/1000);
 
         let canvasWidth = this.pixi.app.view.width;
         let canvasHeight = this.pixi.app.view.height;
@@ -163,7 +159,7 @@ export class Engine
 
         this.pixi.app.stage.alpha = 1.0;
         if (!s.flashing || !s.flashBlocks)
-            tick(s.time, delta);
+            tick(time, delta);
 
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
@@ -187,7 +183,7 @@ export class Engine
             if (Math.sign(old) != Math.sign(s.flashTicks))
             {
                 alpha = 0.0;
-                tick(s.time, delta);
+                tick(time, delta);
             }
             if (s.flashTicks > 1.0)
             {
@@ -195,19 +191,16 @@ export class Engine
             }
         }
 
-        let diff = performance.now() - now;
-       
-        
-        s.animate.measure(diff);
-
         if (s.debug)
         {
-            let debug = "";
-            debug += Math.floor(s.fps.avg) + "\n";
-            debug += Math.floor(s.time) + "\n";
-            debug += frameTime.toFixed(3) + "\n";
-            debug += delta.toFixed(3) + "\n";
-            this.pixi.texts.debug.text = debug;
+            if (s.frames % 10 == 0)
+            {
+                let debug = "";
+                debug += s.fps.avg.toFixed(2) + "\n";
+                debug += Math.floor(time) + "\n";
+                debug += delta.toFixed(5) + "\n";
+                this.pixi.texts.debug.text = debug;
+            }
         }
         else
         {

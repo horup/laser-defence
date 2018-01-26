@@ -11662,14 +11662,10 @@ var Engine = /** @class */ (function () {
         this.pixi.textures.push(texture);
         return this.pixi.textures.length - 1;
     };
-    Engine.prototype.animate = function (tick) {
+    Engine.prototype.animate = function (time, delta, tick) {
         var s = this.state;
-        var now = performance.now();
-        var frameTime = now - s.time;
-        var delta = frameTime / 1000;
-        s.time = now;
-        s.animateCount++;
-        s.fps.measure(1000 / frameTime);
+        s.frames++;
+        s.fps.measure(1000 / delta / 1000);
         var canvasWidth = this.pixi.app.view.width;
         var canvasHeight = this.pixi.app.view.height;
         var gridWidth = this.config.grid.width;
@@ -11683,7 +11679,7 @@ var Engine = /** @class */ (function () {
         this.pixi.stages.grid.setTransform(0, 0, ratio, ratio);
         this.pixi.app.stage.alpha = 1.0;
         if (!s.flashing || !s.flashBlocks)
-            tick(s.time, delta);
+            tick(time, delta);
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
         this.pixi.sprites.forEach(function (s) {
@@ -11699,21 +11695,20 @@ var Engine = /** @class */ (function () {
             s.flashTicks += s.flashTickStep * delta;
             if (Math.sign(old) != Math.sign(s.flashTicks)) {
                 alpha = 0.0;
-                tick(s.time, delta);
+                tick(time, delta);
             }
             if (s.flashTicks > 1.0) {
                 s.flashing = false;
             }
         }
-        var diff = performance.now() - now;
-        s.animate.measure(diff);
         if (s.debug) {
-            var debug = "";
-            debug += Math.floor(s.fps.avg) + "\n";
-            debug += Math.floor(s.time) + "\n";
-            debug += frameTime.toFixed(3) + "\n";
-            debug += delta.toFixed(3) + "\n";
-            this.pixi.texts.debug.text = debug;
+            if (s.frames % 10 == 0) {
+                var debug = "";
+                debug += s.fps.avg.toFixed(2) + "\n";
+                debug += Math.floor(time) + "\n";
+                debug += delta.toFixed(5) + "\n";
+                this.pixi.texts.debug.text = debug;
+            }
         }
         else {
             this.pixi.texts.debug.text = "";
@@ -23488,16 +23483,6 @@ var G0 = /** @class */ (function (_super) {
                             missile.inUse = true;
                         }
                     }
-                    if (Math.floor(time) % 1000 == 0) {
-                        this.spawnTime -= 10;
-                        if (this.spawnTime < 0) {
-                            this.spawnTime = 0;
-                        }
-                    }
-                    else if (Math.floor(time) % (5000)) {
-                        // Insights.metric.set(1, Math.floor(time / 60));
-                        // Insights.metric.set(5, e.state.fps.avg);
-                    }
                     this.timer += delta * 1000;
                     var frames_1 = Math.floor(this.timer) % 1000;
                     var seconds = Math.floor(this.timer / 1000);
@@ -23528,9 +23513,6 @@ var G0 = /** @class */ (function (_super) {
                     }
                     break;
                 }
-        }
-        if (Math.floor(time) % 1000 * 10 == 0) {
-            framework_2.Insights.metric.set(4, e.state.animate.avg);
         }
     };
     return G0;
@@ -49005,14 +48987,11 @@ var State = /** @class */ (function () {
         this.flashTicks = -1.0;
         this.centerText = "";
         this.centerTopText = "";
-        this.animateStart = 0;
-        this.animateCount = 0;
+        this.frames = 0;
         this.animate = new index_1.Measurement();
         this.fps = new index_1.Measurement();
         this.debug = true;
         this.background = "#000000";
-        this.time = 0;
-        this.start = performance.now();
     }
     return State;
 }());
@@ -50032,14 +50011,19 @@ Any prototype instance will hook into the canvas and document.
 var Prototype = /** @class */ (function () {
     function Prototype() {
         var _this = this;
+        this.time = 0;
+        this.animate = function (now) {
+            var tick = function (time, deta) { return _this.tick(time, delta); };
+            var frametime = now - _this.time;
+            _this.time = now;
+            var delta = frametime / 1000;
+            _this.engine.animate(now, delta, tick);
+            console.log(_this.engine.animate);
+            window.requestAnimationFrame(_this.animate);
+        };
         this.engine = new engine_1.Engine();
-        setTimeout(function () { return _this.animate(); });
+        window.requestAnimationFrame(this.animate);
     }
-    Prototype.prototype.animate = function () {
-        var _this = this;
-        window.requestAnimationFrame(function () { return _this.animate(); });
-        this.engine.animate(function (time, delta) { return _this.tick(time, delta); });
-    };
     return Prototype;
 }());
 exports.Prototype = Prototype;

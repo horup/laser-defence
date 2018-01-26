@@ -231,20 +231,6 @@ export default class G0 extends Prototype
                         missile.inUse = true;
                     }
                 }
-              
-                if (Math.floor(time) % 1000 == 0)
-                {
-                    this.spawnTime -= 10;
-                    if (this.spawnTime < 0)
-                    {
-                        this.spawnTime = 0;
-                    }
-                }
-                else if (Math.floor(time) % (5000))
-                {
-                   // Insights.metric.set(1, Math.floor(time / 60));
-                   // Insights.metric.set(5, e.state.fps.avg);
-                }
 
                 this.timer += delta * 1000;
                 let frames = Math.floor(this.timer) % 1000;
@@ -283,11 +269,6 @@ export default class G0 extends Prototype
                 }  
                 break;
             }
-        }
-
-        if (Math.floor(time) % 1000 * 10 == 0)
-        {
-            Insights.metric.set(4, e.state.animate.avg);
         }
     }
 }
