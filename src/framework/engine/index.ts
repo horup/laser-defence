@@ -199,6 +199,20 @@ export class Engine
        
         am.measure(diff);
         s.animateStart = now;
+
+        if (s.debug)
+        {
+            let debug = "";
+            debug += Math.floor(fps.avg) + "\n";
+            debug += Math.floor(s.time);
+            this.pixi.texts.debug.text = debug;
+        }
+        else
+        {
+            this.pixi.texts.debug.text = "";
+        }
+
+        s.time = performance.now() - s.start;
     }
 
 }

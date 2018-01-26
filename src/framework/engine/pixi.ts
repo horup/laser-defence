@@ -64,10 +64,9 @@ export class Pixi
         }
 
         let style = {fontFamily : 'Pixeled', fontSize: 8, fill : 0xFFFFFF};
-        this.texts.middle = new PIXI.Text("hello world", style);
-        this.texts.middle.texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
-        this.texts.top = new PIXI.Text("top dollar", style);
+        this.texts.middle = new PIXI.Text("", style);
         this.texts.debug = new PIXI.Text("", style);
+        this.texts.top = new PIXI.Text("", style);
         
         this.stages.text.addChild(this.texts.middle);
         this.stages.text.addChild(this.texts.top);
@@ -134,7 +133,9 @@ export class Pixi
         setStyle(this.texts.top);
         setStyle(this.texts.debug);
         setStyle(this.texts.middle);
-
+        this.texts.debug.style.fill = 0xFF0000;
+        this.texts.debug.style.fontSize = this.texts.debug.style.fontSize as number / 2;
+      //  console.log(this.texts.debug.style.fontSize);
         this.texts.middle.y = height / 2;
         this.texts.middle.anchor.y = 0.5;
         this.texts.debug.x = cellSize * ratio / 2;

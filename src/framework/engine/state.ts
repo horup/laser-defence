@@ -13,7 +13,10 @@ export class State
 
     animate = new Measurement();
     fps = new Measurement();
-    debug = false;
+    debug = true;
     
     background = "#000000";
+
+    time = 0;
+    start = performance.now();
 }
