@@ -4,7 +4,7 @@ export class State
 {
     flashing = false;
     flashBlocks = false;
-    flashTickStep = 0.075;
+    flashTickStep = 5;
     flashTicks = -1.0;
     centerText = "";
     centerTopText = "";

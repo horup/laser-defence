@@ -25,7 +25,7 @@ export class Engine
         let s = this.state;
         s.flashing = true;
         s.flashBlocks = blocking == true ? true : false;
-        s.flashTickStep = 0.075;
+        s.flashTickStep = 4.5;
         s.flashTicks = -1.0;
     }
 
@@ -139,11 +139,16 @@ export class Engine
         return this.pixi.textures.length - 1;
     }
 
-    animate(tick:(iterations:number)=>any)
+    animate(tick:(time:number, delta:number)=>any)
     {
         let s = this.state;
+        let now = performance.now();
+        let frameTime = now - s.time;
+        let delta = frameTime / 1000;
+        s.time = now;
         s.animateCount++;
-        let start = performance.now();
+        s.fps.measure(1000/frameTime);
+
         let canvasWidth = this.pixi.app.view.width;
         let canvasHeight = this.pixi.app.view.height;
         let gridWidth = this.config.grid.width;
@@ -158,7 +163,7 @@ export class Engine
 
         this.pixi.app.stage.alpha = 1.0;
         if (!s.flashing || !s.flashBlocks)
-            tick(s.animateCount);
+            tick(s.time, delta);
 
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
@@ -178,10 +183,11 @@ export class Engine
             let old = s.flashTicks;
             let alpha =  Math.abs(s.flashTicks);
             this.pixi.app.stage.alpha = alpha;
-            s.flashTicks += s.flashTickStep;
+            s.flashTicks += s.flashTickStep * delta;
             if (Math.sign(old) != Math.sign(s.flashTicks))
             {
-                tick(s.animateCount);
+                alpha = 0.0;
+                tick(s.time, delta);
             }
             if (s.flashTicks > 1.0)
             {
@@ -189,30 +195,24 @@ export class Engine
             }
         }
 
-        let now = performance.now();
-        let diff = performance.now() - start;
-        let am = s.animate;
-        let fps = s.fps;
+        let diff = performance.now() - now;
        
-        let r = now - s.animateStart;
-        fps.measure(1000/r);
-       
-        am.measure(diff);
-        s.animateStart = now;
+        
+        s.animate.measure(diff);
 
         if (s.debug)
         {
             let debug = "";
-            debug += Math.floor(fps.avg) + "\n";
-            debug += Math.floor(s.time);
+            debug += Math.floor(s.fps.avg) + "\n";
+            debug += Math.floor(s.time) + "\n";
+            debug += frameTime.toFixed(3) + "\n";
+            debug += delta.toFixed(3) + "\n";
             this.pixi.texts.debug.text = debug;
         }
         else
         {
             this.pixi.texts.debug.text = "";
         }
-
-        s.time = performance.now() - s.start;
     }
 
 }

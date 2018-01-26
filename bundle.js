@@ -11573,7 +11573,7 @@ var Engine = /** @class */ (function () {
         var s = this.state;
         s.flashing = true;
         s.flashBlocks = blocking == true ? true : false;
-        s.flashTickStep = 0.075;
+        s.flashTickStep = 4.5;
         s.flashTicks = -1.0;
     };
     Engine.prototype.setBackground = function (color) {
@@ -11664,8 +11664,12 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.animate = function (tick) {
         var s = this.state;
+        var now = performance.now();
+        var frameTime = now - s.time;
+        var delta = frameTime / 1000;
+        s.time = now;
         s.animateCount++;
-        var start = performance.now();
+        s.fps.measure(1000 / frameTime);
         var canvasWidth = this.pixi.app.view.width;
         var canvasHeight = this.pixi.app.view.height;
         var gridWidth = this.config.grid.width;
@@ -11679,7 +11683,7 @@ var Engine = /** @class */ (function () {
         this.pixi.stages.grid.setTransform(0, 0, ratio, ratio);
         this.pixi.app.stage.alpha = 1.0;
         if (!s.flashing || !s.flashBlocks)
-            tick(s.animateCount);
+            tick(s.time, delta);
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
         this.pixi.sprites.forEach(function (s) {
@@ -11692,32 +11696,28 @@ var Engine = /** @class */ (function () {
             var old = s.flashTicks;
             var alpha = Math.abs(s.flashTicks);
             this.pixi.app.stage.alpha = alpha;
-            s.flashTicks += s.flashTickStep;
+            s.flashTicks += s.flashTickStep * delta;
             if (Math.sign(old) != Math.sign(s.flashTicks)) {
-                tick(s.animateCount);
+                alpha = 0.0;
+                tick(s.time, delta);
             }
             if (s.flashTicks > 1.0) {
                 s.flashing = false;
             }
         }
-        var now = performance.now();
-        var diff = performance.now() - start;
-        var am = s.animate;
-        var fps = s.fps;
-        var r = now - s.animateStart;
-        fps.measure(1000 / r);
-        am.measure(diff);
-        s.animateStart = now;
+        var diff = performance.now() - now;
+        s.animate.measure(diff);
         if (s.debug) {
             var debug = "";
-            debug += Math.floor(fps.avg) + "\n";
-            debug += Math.floor(s.time);
+            debug += Math.floor(s.fps.avg) + "\n";
+            debug += Math.floor(s.time) + "\n";
+            debug += frameTime.toFixed(3) + "\n";
+            debug += delta.toFixed(3) + "\n";
             this.pixi.texts.debug.text = debug;
         }
         else {
             this.pixi.texts.debug.text = "";
         }
-        s.time = performance.now() - s.start;
     };
     return Engine;
 }());
@@ -23335,7 +23335,7 @@ var G0 = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.rounds = 0;
         _this.maxScore = 0;
-        _this.spawnTime = 60;
+        _this.spawnTime = 1000;
         _this.timer = 0;
         _this.state = 0;
         _this.missiles = [];
@@ -23389,20 +23389,19 @@ var G0 = /** @class */ (function (_super) {
             e.setCell(x, 8, this.img.grass);
         }
         this.playerPos.set([2, 16 / 2]);
-        this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(function (m) { return m.reset(); });
         this.spawnTime = 60;
         framework_2.Insights.event.send("G0", "New Round");
         framework_2.Insights.metric.set(3, this.rounds);
         this.rounds++;
     };
-    G0.prototype.tick = function (iterations) {
+    G0.prototype.tick = function (time, delta) {
         var _this = this;
         var e = this.engine;
         switch (this.state) {
             case 0:
                 {
-                    if (iterations % 40 < 20)
+                    if (time % 1000 < 666)
                         e.state.centerText = "Touch when ready!!";
                     else
                         e.state.centerText = "";
@@ -23416,10 +23415,10 @@ var G0 = /** @class */ (function (_super) {
                 {
                     this.initRound();
                     this.state = 2;
+                    break;
                 }
             case 2:
                 {
-                    this.engine.clearSprites();
                     var spriteIndex_1 = 0;
                     var y = this.engine.input.mouse.pos[1];
                     var x = this.engine.input.mouse.pos[0];
@@ -23438,9 +23437,9 @@ var G0 = /** @class */ (function (_super) {
                     this.missiles.forEach(function (m) {
                         if (m.inUse) {
                             var missileSprite = spriteIndex_1++;
-                            var speed = -0.15;
+                            var speed = -9;
                             _this.engine.setSprite(missileSprite, m.pos, 2);
-                            m.pos[0] -= speed;
+                            m.pos[0] -= speed * delta;
                             if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite_1) {
                                 m.reset();
                                 for (var _i = 0, _a = _this.explosions; _i < _a.length; _i++) {
@@ -23470,13 +23469,17 @@ var G0 = /** @class */ (function (_super) {
                     this.explosions.forEach(function (m) {
                         if (m.inUse) {
                             _this.engine.setSprite(spriteIndex_1++, m.pos, _this.explosionImg, m.alpha);
-                            m.alpha -= 0.1;
+                            m.alpha -= 6 * delta;
                             if (m.alpha < 0) {
                                 m.reset();
                             }
                         }
                     });
-                    if (iterations % this.spawnTime == 0) {
+                    this.spawnTime -= delta * 1000;
+                    if (this.spawnTime <= 0) {
+                        this.spawnTime = 1000 - this.timer / 60;
+                        if (this.spawnTime < 0)
+                            this.spawnTime = 0;
                         var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
                         if (freeMissiles.length > 0) {
                             var missile = freeMissiles[0];
@@ -23484,19 +23487,19 @@ var G0 = /** @class */ (function (_super) {
                             missile.inUse = true;
                         }
                     }
-                    if (iterations % 60 == 0) {
-                        this.spawnTime--;
+                    if (Math.floor(time) % 1000 == 0) {
+                        this.spawnTime -= 10;
                         if (this.spawnTime < 0) {
                             this.spawnTime = 0;
                         }
                     }
-                    else if (iterations % (60 * 5)) {
-                        framework_2.Insights.metric.set(1, Math.floor(iterations / 60));
-                        framework_2.Insights.metric.set(5, e.state.fps.avg);
+                    else if (Math.floor(time) % (5000)) {
+                        // Insights.metric.set(1, Math.floor(time / 60));
+                        // Insights.metric.set(5, e.state.fps.avg);
                     }
-                    this.timer++;
-                    var frames_1 = Math.floor(this.timer % 60);
-                    var seconds = Math.floor(this.timer / 60);
+                    this.timer += delta * 1000;
+                    var frames_1 = Math.floor(this.timer) % 1000;
+                    var seconds = Math.floor(this.timer / 1000);
                     var laserX = e.config.grid.width - 2;
                     this.laser.pos.set([laserX, 8.5]);
                     var v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
@@ -23525,7 +23528,7 @@ var G0 = /** @class */ (function (_super) {
                     break;
                 }
         }
-        if (iterations % 60 * 10 == 0) {
+        if (Math.floor(time) % 1000 * 10 == 0) {
             framework_2.Insights.metric.set(4, e.state.animate.avg);
         }
     };
@@ -48997,7 +49000,7 @@ var State = /** @class */ (function () {
     function State() {
         this.flashing = false;
         this.flashBlocks = false;
-        this.flashTickStep = 0.075;
+        this.flashTickStep = 5;
         this.flashTicks = -1.0;
         this.centerText = "";
         this.centerTopText = "";
@@ -50034,7 +50037,7 @@ var Prototype = /** @class */ (function () {
     Prototype.prototype.animate = function () {
         var _this = this;
         window.requestAnimationFrame(function () { return _this.animate(); });
-        this.engine.animate(function (iterations) { return _this.tick(iterations); });
+        this.engine.animate(function (time, delta) { return _this.tick(time, delta); });
     };
     return Prototype;
 }());

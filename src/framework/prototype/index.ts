@@ -17,8 +17,8 @@ export abstract class Prototype
     private animate()
     {
         window.requestAnimationFrame(()=>this.animate());
-        this.engine.animate((iterations)=>this.tick(iterations));
+        this.engine.animate((time, delta)=>this.tick(time, delta));
     }
 
-    abstract tick(iterations:number);
+    abstract tick(iterations:number, delta:number);
 }

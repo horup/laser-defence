@@ -38,7 +38,7 @@ export default class G0 extends Prototype
 {
     rounds = 0;
     maxScore = 0;
-    spawnTime = 60;
+    spawnTime = 1000;
     timer:number = 0;
     state:number = 0;
     missiles:Missile[] = [];
@@ -110,7 +110,6 @@ export default class G0 extends Prototype
         }
 
         this.playerPos.set([2, 16/2]);
-        this.engine.setSprite(0, this.playerPos, 3);
         this.missiles.forEach(m=>m.reset());
         this.spawnTime = 60;
         Insights.event.send("G0", "New Round");
@@ -118,14 +117,14 @@ export default class G0 extends Prototype
         this.rounds++;
     }
 
-    tick(iterations:number)
+    tick(time:number, delta:number)
     {
         let e = this.engine;
         switch(this.state)
         {
             case 0:
             {
-                if (iterations % 40 < 20)
+                if (time % 1000 < 666)
                     e.state.centerText = "Touch when ready!!";
                 else
                     e.state.centerText = "";
@@ -138,12 +137,12 @@ export default class G0 extends Prototype
             }
             case 1:
             {
-                this.initRound();
-                this.state = 2;
+               this.initRound();
+               this.state = 2;
+               break;
             }
             case 2:
             {
-                this.engine.clearSprites();
                 let spriteIndex = 0;
                 let y = this.engine.input.mouse.pos[1];
                 let x = this.engine.input.mouse.pos[0];
@@ -167,9 +166,9 @@ export default class G0 extends Prototype
                     if (m.inUse)
                     {
                         let missileSprite = spriteIndex++;
-                        let speed = -0.15;
+                        let speed = -9;
                         this.engine.setSprite(missileSprite, m.pos, 2);
-                        m.pos[0] -= speed;
+                        m.pos[0] -= speed * delta;
 
                         if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
                         {
@@ -208,7 +207,7 @@ export default class G0 extends Prototype
                     if (m.inUse)
                     {
                         this.engine.setSprite(spriteIndex++, m.pos, this.explosionImg, m.alpha);
-                        m.alpha -= 0.1;
+                        m.alpha -= 6 * delta;
                         if (m.alpha < 0)
                         {
                             m.reset();
@@ -216,8 +215,13 @@ export default class G0 extends Prototype
                     }
                 });
 
-                if (iterations % this.spawnTime == 0)
+                this.spawnTime -= delta * 1000;
+                if (this.spawnTime <= 0)
                 {
+                    this.spawnTime = 1000 - this.timer/60;
+                    if (this.spawnTime < 0)
+                        this.spawnTime = 0;
+
                     let freeMissiles = this.missiles.filter(m=>!m.inUse);
                     if (freeMissiles.length > 0)
                     {
@@ -226,25 +230,24 @@ export default class G0 extends Prototype
                         missile.inUse = true;
                     }
                 }
-
               
-                if (iterations % 60 == 0)
+                if (Math.floor(time) % 1000 == 0)
                 {
-                    this.spawnTime--;
+                    this.spawnTime -= 10;
                     if (this.spawnTime < 0)
                     {
                         this.spawnTime = 0;
                     }
                 }
-                else if (iterations % (60 * 5))
+                else if (Math.floor(time) % (5000))
                 {
-                    Insights.metric.set(1, Math.floor(iterations / 60));
-                    Insights.metric.set(5, e.state.fps.avg);
+                   // Insights.metric.set(1, Math.floor(time / 60));
+                   // Insights.metric.set(5, e.state.fps.avg);
                 }
 
-                this.timer++;
-                let frames = Math.floor(this.timer % 60);
-                let seconds = Math.floor(this.timer / 60);
+                this.timer += delta * 1000;
+                let frames = Math.floor(this.timer) % 1000;
+                let seconds = Math.floor(this.timer / 1000);
                 
                 let laserX = e.config.grid.width-2;
                 this.laser.pos.set([laserX, 8.5]);
@@ -281,7 +284,7 @@ export default class G0 extends Prototype
             }
         }
 
-        if (iterations % 60 * 10 == 0)
+        if (Math.floor(time) % 1000 * 10 == 0)
         {
             Insights.metric.set(4, e.state.animate.avg);
         }
