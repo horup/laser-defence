@@ -23,7 +23,6 @@ export abstract class Prototype
         let delta = frametime / 1000;
         
         this.engine.animate(now, delta, tick);
-        console.log(this.engine.animate);
         
         window.requestAnimationFrame(this.animate);
     }
