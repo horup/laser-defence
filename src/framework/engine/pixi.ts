@@ -78,6 +78,7 @@ export class Pixi
 
     private resize()
     {
+        let pixelRatio = window.devicePixelRatio;
         let cellSize = this.config.grid.cellSize;
         let gridHeight = this.config.grid.height * cellSize;
         let gridWidth = this.config.grid.width * cellSize;
@@ -89,7 +90,7 @@ export class Pixi
         let width = 0;
         let height = 0;
         //let multiplum = gridHeight;
-        let multiplum = 16;
+        let multiplum = 128 / pixelRatio;
         
         if (screenAspect >= targetAspect)
         {
@@ -112,9 +113,13 @@ export class Pixi
         width = Math.floor(width);
         height = Math.floor(height);
        
-        this.app.renderer.resize(width, height);
-        let marginW =  Math.floor((screenWidth - canvas.width) / 2);
-        let marginH = Math.floor((screenHeight - canvas.height) / 2);
+        this.app.renderer.resize(Math.floor(width * pixelRatio), Math.floor(height * pixelRatio));
+
+        canvas.style.width = width + "px";
+        canvas.style.height = height + "px";
+        let marginW =  Math.floor((screenWidth - width) / 2);
+        let marginH = Math.floor((screenHeight - height) / 2);
+
         canvas.style.left = marginW + "px";
         canvas.style.top = marginH + "px";
      
@@ -124,8 +129,8 @@ export class Pixi
         {
             text.anchor.x = 0.5;
             text.anchor.y = 0;
-            text.x = width /2;
-            let size = Math.floor(cellSize * ratio / 2);
+            text.x = width / 2  * pixelRatio;
+            let size = Math.floor(cellSize * ratio / 2  * pixelRatio);
             size = size > 0 ? size : 1;
             text.style.fontSize = size;
         }
@@ -136,9 +141,9 @@ export class Pixi
         this.texts.debug.style.fill = 0xFF0000;
         this.texts.debug.style.fontSize = this.texts.debug.style.fontSize as number / 2;
       //  console.log(this.texts.debug.style.fontSize);
-        this.texts.middle.y = height / 2;
+        this.texts.middle.y = height / 2  * pixelRatio;
         this.texts.middle.anchor.y = 0.5;
-        this.texts.debug.x = cellSize * ratio / 2;
+        this.texts.debug.x = cellSize * ratio / 2 * pixelRatio;
         this.texts.debug.anchor.x = 0;
     }
 }
