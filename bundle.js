@@ -23457,8 +23457,8 @@ var G0 = /** @class */ (function (_super) {
             this.nextSpawnTime = 1000 / div;
             this.spawnTime = this.nextSpawnTime;
             console.log(this.nextSpawnTime);
-            if (this.spawnTime < 0)
-                this.spawnTime = 0;
+            if (this.spawnTime < 100)
+                this.spawnTime = 100;
             var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
             if (freeMissiles.length > 0) {
                 var missile = freeMissiles[0];

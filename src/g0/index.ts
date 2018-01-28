@@ -200,8 +200,8 @@ export default class G0 extends Prototype
             this.nextSpawnTime = 1000 / div;
             this.spawnTime = this.nextSpawnTime;
             console.log(this.nextSpawnTime);
-            if (this.spawnTime < 0)
-                this.spawnTime = 0;
+            if (this.spawnTime < 100)
+                this.spawnTime = 100;
 
             let freeMissiles = this.missiles.filter(m=>!m.inUse);
             if (freeMissiles.length > 0)
