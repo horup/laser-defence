@@ -199,7 +199,6 @@ export default class G0 extends Prototype
             let div = 1 + this.timer / 1000 / 30;
             this.nextSpawnTime = 1000 / div;
             this.spawnTime = this.nextSpawnTime;
-            console.log(this.nextSpawnTime);
             if (this.spawnTime < 100)
                 this.spawnTime = 100;
 

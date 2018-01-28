@@ -66,6 +66,41 @@ export class Engine
         return -1;
     }
 
+    textureCache:
+    {
+        [image:number]:
+        {
+            [x:number]:
+            {
+                [y:number]:PIXI.Texture
+            }
+        }
+    } = {};
+    
+    private getTexture(image:number, x:number, y:number)
+    {
+        let c = this.textureCache;
+        if (c[image] != null && c[image][x] != null && c[image][y] != null)
+            return c[image][x][y];
+
+        return null;
+    }
+
+    private setTexture(image:number, x:number, y:number)
+    {
+        let c = this.textureCache;
+        if (c[image] == null)
+            c[image] = {};
+
+        if (c[image][x] == null)
+            c[image][x] = {};
+        
+        let tex = this.pixi.textures[image];
+        let cellSize = this.config.grid.cellSize;
+        c[image][x][y] = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(x * cellSize, y * cellSize, cellSize, cellSize));
+        return c[image][x][y];
+    }
+
     setCell(x:number, y:number, image:number, offsetX = 0, offsetY = 0)
     {
         let cell = this.pixi.grid[y][x];
@@ -73,10 +108,13 @@ export class Engine
         {
             let cellSize = this.config.grid.cellSize;
             this.pixi.grid[y][x].sprite.visible = true;
-            let tex = this.pixi.textures[image];
             let sprite = cell.sprite;
-            sprite.texture = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(offsetX * cellSize, offsetY * cellSize, cellSize, cellSize));
-
+            let tex:PIXI.Texture = this.getTexture(image, offsetX, offsetY);
+            if (tex == null)
+                tex = this.setTexture(image, offsetX, offsetY);
+            let c = this.textureCache;
+            
+            sprite.texture = tex;
         }
         else
         {

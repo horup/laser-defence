@@ -11564,6 +11564,7 @@ var SAT = __webpack_require__(210);
 var Engine = /** @class */ (function () {
     function Engine(config) {
         if (config === void 0) { config = new config_1.Config(); }
+        this.textureCache = {};
         this.config = config;
         this.pixi = new pixi_1.Pixi(this.config);
         this.input = new input_1.Input(this.config, this.pixi.app.view);
@@ -11603,6 +11604,23 @@ var Engine = /** @class */ (function () {
         }
         return -1;
     };
+    Engine.prototype.getTexture = function (image, x, y) {
+        var c = this.textureCache;
+        if (c[image] != null && c[image][x] != null && c[image][y] != null)
+            return c[image][x][y];
+        return null;
+    };
+    Engine.prototype.setTexture = function (image, x, y) {
+        var c = this.textureCache;
+        if (c[image] == null)
+            c[image] = {};
+        if (c[image][x] == null)
+            c[image][x] = {};
+        var tex = this.pixi.textures[image];
+        var cellSize = this.config.grid.cellSize;
+        c[image][x][y] = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(x * cellSize, y * cellSize, cellSize, cellSize));
+        return c[image][x][y];
+    };
     Engine.prototype.setCell = function (x, y, image, offsetX, offsetY) {
         if (offsetX === void 0) { offsetX = 0; }
         if (offsetY === void 0) { offsetY = 0; }
@@ -11610,9 +11628,12 @@ var Engine = /** @class */ (function () {
         if (image >= 0) {
             var cellSize = this.config.grid.cellSize;
             this.pixi.grid[y][x].sprite.visible = true;
-            var tex = this.pixi.textures[image];
             var sprite = cell.sprite;
-            sprite.texture = new PIXI.Texture(tex.baseTexture, new PIXI.Rectangle(offsetX * cellSize, offsetY * cellSize, cellSize, cellSize));
+            var tex = this.getTexture(image, offsetX, offsetY);
+            if (tex == null)
+                tex = this.setTexture(image, offsetX, offsetY);
+            var c = this.textureCache;
+            sprite.texture = tex;
         }
         else {
             cell.sprite.visible = false;
@@ -23456,7 +23477,6 @@ var G0 = /** @class */ (function (_super) {
             var div = 1 + this.timer / 1000 / 30;
             this.nextSpawnTime = 1000 / div;
             this.spawnTime = this.nextSpawnTime;
-            console.log(this.nextSpawnTime);
             if (this.spawnTime < 100)
                 this.spawnTime = 100;
             var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
