@@ -7,7 +7,7 @@ class Missile
 {
     inUse = false;
     pos:vec2 = vec2.create();
-
+    speed = 0.1;
     reset()
     {
         this.inUse = false;
@@ -38,6 +38,7 @@ export default class G0 extends Prototype
 {
     rounds = 0;
     maxScore = 0;
+    nextSpawnTime = 1000;
     spawnTime = 1000;
     timer:number = 0;
     state:number = 0;
@@ -46,6 +47,7 @@ export default class G0 extends Prototype
     playerPos:vec2 = vec2.create();
     explosionImg:number;
     shuffle = new Shufflebag(8);
+    shuffle2 = new Shufflebag(8);
     laser = new Laser();
     img = 
     {
@@ -111,10 +113,130 @@ export default class G0 extends Prototype
 
         this.playerPos.set([2, 16/2]);
         this.missiles.forEach(m=>m.reset());
-        this.spawnTime = 60;
         Insights.event.send("G0", "New Round");
         Insights.metric.set(3, this.rounds);
         this.rounds++;
+    }
+
+    mainTick(time:number, delta:number)
+    {
+        let e = this.engine;
+        this.engine.clearSprites();
+        let spriteIndex = 0;
+        let y = this.engine.input.mouse.pos[1];
+        let x = this.engine.input.mouse.pos[0];
+        if (y < 1) 
+            y = 1; 
+        else if (y > 8) 
+            y = 8;
+        
+        let minx = 1;//e.config.grid.width/2;
+        if (x < minx) 
+            x = minx; 
+        else if (x > e.config.grid.width - 1) 
+            x = e.config.grid.width - 1;
+
+        let playerSprite = spriteIndex++;
+        this.playerPos.set([ x, y]);
+        this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
+
+        this.missiles.forEach(m=>
+        {
+            if (m.inUse)
+            {
+                let missileSprite = spriteIndex++;
+                this.engine.setSprite(missileSprite, m.pos, 2);
+                m.pos[0] += m.speed * delta;
+
+                if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
+                {
+                    m.reset();
+                    for (let explosion of this.explosions)
+                    {
+                        if (!explosion.inUse)
+                        {
+                            explosion.inUse = true;
+                            explosion.pos.set(m.pos);
+                            explosion.alpha = 1.0;
+                            this.laser.target.set(m.pos);
+                            this.laser.fire = 3;
+                            break;
+                        }
+                    }
+                }
+
+                if (m.pos[0] > e.config.grid.width)
+                {
+                    Insights.event.send("G0", "Died", "at " + e.state.centerTopText, this.timer);
+                    if (this.maxScore < this.timer)
+                    {
+                        this.maxScore = this.timer;
+                        Insights.metric.set(2, this.maxScore);
+                    }
+                    m.reset();
+                    e.flash(true);
+                    this.state = 3;
+                }
+            }
+        });
+
+        this.explosions.forEach(m =>
+        {
+            if (m.inUse)
+            {
+                this.engine.setSprite(spriteIndex++, m.pos, this.explosionImg, m.alpha);
+                m.alpha -= 6 * delta;
+                if (m.alpha < 0)
+                {
+                    m.reset();
+                }
+            }
+        });
+
+        this.spawnTime -= delta * 1000;
+        if (this.spawnTime <= 0)
+        {
+            let div = 1 + this.timer / 1000 / 30;
+            this.nextSpawnTime = 1000 / div;
+            this.spawnTime = this.nextSpawnTime;
+            console.log(this.nextSpawnTime);
+            if (this.spawnTime < 0)
+                this.spawnTime = 0;
+
+            let freeMissiles = this.missiles.filter(m=>!m.inUse);
+            if (freeMissiles.length > 0)
+            {
+                let missile = freeMissiles[0];
+                missile.pos.set([0, 1 + this.shuffle.next()]);
+                missile.inUse = true;
+                missile.speed = 8;
+            }
+
+           
+        }
+
+        this.timer += delta * 1000;
+        let frames = Math.floor(this.timer) % 1000;
+        let seconds = Math.floor(this.timer / 1000);
+        
+        let laserX = e.config.grid.width-2;
+        this.laser.pos.set([laserX, 8.5]);
+        let v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
+        let v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
+        this.laser.rotation = v;
+
+        e.setSprite(spriteIndex++, this.laser.pos, this.img.laserbase);
+
+        let turret = vec2.clone(this.laser.pos);
+        turret[1] -= 1 / 8;
+        if (this.laser.fire > 0)
+        {
+            e.setSprite(spriteIndex++, turret, this.img.beam, 1.0, v2, vec2.clone([0,0.5]));
+            this.laser.fire--;
+        }
+        
+        e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
+        e.state.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
     }
 
     tick(time:number, delta:number)
@@ -143,117 +265,7 @@ export default class G0 extends Prototype
             }
             case 2:
             {
-                this.engine.clearSprites();
-                let spriteIndex = 0;
-                let y = this.engine.input.mouse.pos[1];
-                let x = this.engine.input.mouse.pos[0];
-                if (y < 1) 
-                    y = 1; 
-                else if (y > 8) 
-                    y = 8;
-               
-                let minx = e.config.grid.width/2;
-                if (x < minx) 
-                    x = minx; 
-                else if (x > e.config.grid.width - 1) 
-                    x = e.config.grid.width - 1;
-
-                let playerSprite = spriteIndex++;
-                this.playerPos.set([ x, y]);
-                this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
-
-                this.missiles.forEach(m=>
-                {
-                    if (m.inUse)
-                    {
-                        let missileSprite = spriteIndex++;
-                        let speed = -9;
-                        this.engine.setSprite(missileSprite, m.pos, 2);
-                        m.pos[0] -= speed * delta;
-
-                        if (this.engine.getIntersectingSprite(missileSprite) == playerSprite)
-                        {
-                            m.reset();
-                            for (let explosion of this.explosions)
-                            {
-                                if (!explosion.inUse)
-                                {
-                                    explosion.inUse = true;
-                                    explosion.pos.set(m.pos);
-                                    explosion.alpha = 1.0;
-                                    this.laser.target.set(m.pos);
-                                    this.laser.fire = 3;
-                                    break;
-                                }
-                            }
-                        }
-
-                        if (m.pos[0] > e.config.grid.width)
-                        {
-                            Insights.event.send("G0", "Died", "at " + e.state.centerTopText, this.timer);
-                            if (this.maxScore < this.timer)
-                            {
-                                this.maxScore = this.timer;
-                                Insights.metric.set(2, this.maxScore);
-                            }
-                            m.reset();
-                            e.flash(true);
-                            this.state = 3;
-                        }
-                    }
-                });
-
-                this.explosions.forEach(m =>
-                {
-                    if (m.inUse)
-                    {
-                        this.engine.setSprite(spriteIndex++, m.pos, this.explosionImg, m.alpha);
-                        m.alpha -= 6 * delta;
-                        if (m.alpha < 0)
-                        {
-                            m.reset();
-                        }
-                    }
-                });
-
-                this.spawnTime -= delta * 1000;
-                if (this.spawnTime <= 0)
-                {
-                    this.spawnTime = 1000 - this.timer/60;
-                    if (this.spawnTime < 0)
-                        this.spawnTime = 0;
-
-                    let freeMissiles = this.missiles.filter(m=>!m.inUse);
-                    if (freeMissiles.length > 0)
-                    {
-                        let missile = freeMissiles[0];
-                        missile.pos.set([0, 1 + this.shuffle.next()]);
-                        missile.inUse = true;
-                    }
-                }
-
-                this.timer += delta * 1000;
-                let frames = Math.floor(this.timer) % 1000;
-                let seconds = Math.floor(this.timer / 1000);
-                
-                let laserX = e.config.grid.width-2;
-                this.laser.pos.set([laserX, 8.5]);
-                let v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
-                let v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
-                this.laser.rotation = v;
-
-                e.setSprite(spriteIndex++, this.laser.pos, this.img.laserbase);
-
-                let turret = vec2.clone(this.laser.pos);
-                turret[1] -= 1 / 8;
-                if (this.laser.fire > 0)
-                {
-                    e.setSprite(spriteIndex++, turret, this.img.beam, 1.0, v2, vec2.clone([0,0.5]));
-                    this.laser.fire--;
-                }
-                
-                e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
-                e.state.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
+                this.mainTick(time, delta);
 
                 break;
             }

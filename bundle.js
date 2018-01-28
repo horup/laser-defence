@@ -23297,6 +23297,7 @@ var Missile = /** @class */ (function () {
     function Missile() {
         this.inUse = false;
         this.pos = gl_matrix_1.vec2.create();
+        this.speed = 0.1;
     }
     Missile.prototype.reset = function () {
         this.inUse = false;
@@ -23330,6 +23331,7 @@ var G0 = /** @class */ (function (_super) {
         var _this = _super.call(this) || this;
         _this.rounds = 0;
         _this.maxScore = 0;
+        _this.nextSpawnTime = 1000;
         _this.spawnTime = 1000;
         _this.timer = 0;
         _this.state = 0;
@@ -23337,6 +23339,7 @@ var G0 = /** @class */ (function (_super) {
         _this.explosions = [];
         _this.playerPos = gl_matrix_1.vec2.create();
         _this.shuffle = new framework_3.Shufflebag(8);
+        _this.shuffle2 = new framework_3.Shufflebag(8);
         _this.laser = new Laser();
         _this.img = {
             beam: 0,
@@ -23385,13 +23388,104 @@ var G0 = /** @class */ (function (_super) {
         }
         this.playerPos.set([2, 16 / 2]);
         this.missiles.forEach(function (m) { return m.reset(); });
-        this.spawnTime = 60;
         framework_2.Insights.event.send("G0", "New Round");
         framework_2.Insights.metric.set(3, this.rounds);
         this.rounds++;
     };
-    G0.prototype.tick = function (time, delta) {
+    G0.prototype.mainTick = function (time, delta) {
         var _this = this;
+        var e = this.engine;
+        this.engine.clearSprites();
+        var spriteIndex = 0;
+        var y = this.engine.input.mouse.pos[1];
+        var x = this.engine.input.mouse.pos[0];
+        if (y < 1)
+            y = 1;
+        else if (y > 8)
+            y = 8;
+        var minx = 1; //e.config.grid.width/2;
+        if (x < minx)
+            x = minx;
+        else if (x > e.config.grid.width - 1)
+            x = e.config.grid.width - 1;
+        var playerSprite = spriteIndex++;
+        this.playerPos.set([x, y]);
+        this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
+        this.missiles.forEach(function (m) {
+            if (m.inUse) {
+                var missileSprite = spriteIndex++;
+                _this.engine.setSprite(missileSprite, m.pos, 2);
+                m.pos[0] += m.speed * delta;
+                if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite) {
+                    m.reset();
+                    for (var _i = 0, _a = _this.explosions; _i < _a.length; _i++) {
+                        var explosion = _a[_i];
+                        if (!explosion.inUse) {
+                            explosion.inUse = true;
+                            explosion.pos.set(m.pos);
+                            explosion.alpha = 1.0;
+                            _this.laser.target.set(m.pos);
+                            _this.laser.fire = 3;
+                            break;
+                        }
+                    }
+                }
+                if (m.pos[0] > e.config.grid.width) {
+                    framework_2.Insights.event.send("G0", "Died", "at " + e.state.centerTopText, _this.timer);
+                    if (_this.maxScore < _this.timer) {
+                        _this.maxScore = _this.timer;
+                        framework_2.Insights.metric.set(2, _this.maxScore);
+                    }
+                    m.reset();
+                    e.flash(true);
+                    _this.state = 3;
+                }
+            }
+        });
+        this.explosions.forEach(function (m) {
+            if (m.inUse) {
+                _this.engine.setSprite(spriteIndex++, m.pos, _this.explosionImg, m.alpha);
+                m.alpha -= 6 * delta;
+                if (m.alpha < 0) {
+                    m.reset();
+                }
+            }
+        });
+        this.spawnTime -= delta * 1000;
+        if (this.spawnTime <= 0) {
+            var div = 1 + this.timer / 1000 / 30;
+            this.nextSpawnTime = 1000 / div;
+            this.spawnTime = this.nextSpawnTime;
+            console.log(this.nextSpawnTime);
+            if (this.spawnTime < 0)
+                this.spawnTime = 0;
+            var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
+            if (freeMissiles.length > 0) {
+                var missile = freeMissiles[0];
+                missile.pos.set([0, 1 + this.shuffle.next()]);
+                missile.inUse = true;
+                missile.speed = 8;
+            }
+        }
+        this.timer += delta * 1000;
+        var frames = Math.floor(this.timer) % 1000;
+        var seconds = Math.floor(this.timer / 1000);
+        var laserX = e.config.grid.width - 2;
+        this.laser.pos.set([laserX, 8.5]);
+        var v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
+        var v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
+        this.laser.rotation = v;
+        e.setSprite(spriteIndex++, this.laser.pos, this.img.laserbase);
+        var turret = gl_matrix_1.vec2.clone(this.laser.pos);
+        turret[1] -= 1 / 8;
+        if (this.laser.fire > 0) {
+            e.setSprite(spriteIndex++, turret, this.img.beam, 1.0, v2, gl_matrix_1.vec2.clone([0, 0.5]));
+            this.laser.fire--;
+        }
+        e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
+        e.state.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
+    };
+    G0.prototype.tick = function (time, delta) {
         var e = this.engine;
         switch (this.state) {
             case 0:
@@ -23414,92 +23508,7 @@ var G0 = /** @class */ (function (_super) {
                 }
             case 2:
                 {
-                    this.engine.clearSprites();
-                    var spriteIndex_1 = 0;
-                    var y = this.engine.input.mouse.pos[1];
-                    var x = this.engine.input.mouse.pos[0];
-                    if (y < 1)
-                        y = 1;
-                    else if (y > 8)
-                        y = 8;
-                    var minx = e.config.grid.width / 2;
-                    if (x < minx)
-                        x = minx;
-                    else if (x > e.config.grid.width - 1)
-                        x = e.config.grid.width - 1;
-                    var playerSprite_1 = spriteIndex_1++;
-                    this.playerPos.set([x, y]);
-                    this.engine.setSprite(playerSprite_1, this.playerPos, 3, 1, Math.PI / 4);
-                    this.missiles.forEach(function (m) {
-                        if (m.inUse) {
-                            var missileSprite = spriteIndex_1++;
-                            var speed = -9;
-                            _this.engine.setSprite(missileSprite, m.pos, 2);
-                            m.pos[0] -= speed * delta;
-                            if (_this.engine.getIntersectingSprite(missileSprite) == playerSprite_1) {
-                                m.reset();
-                                for (var _i = 0, _a = _this.explosions; _i < _a.length; _i++) {
-                                    var explosion = _a[_i];
-                                    if (!explosion.inUse) {
-                                        explosion.inUse = true;
-                                        explosion.pos.set(m.pos);
-                                        explosion.alpha = 1.0;
-                                        _this.laser.target.set(m.pos);
-                                        _this.laser.fire = 3;
-                                        break;
-                                    }
-                                }
-                            }
-                            if (m.pos[0] > e.config.grid.width) {
-                                framework_2.Insights.event.send("G0", "Died", "at " + e.state.centerTopText, _this.timer);
-                                if (_this.maxScore < _this.timer) {
-                                    _this.maxScore = _this.timer;
-                                    framework_2.Insights.metric.set(2, _this.maxScore);
-                                }
-                                m.reset();
-                                e.flash(true);
-                                _this.state = 3;
-                            }
-                        }
-                    });
-                    this.explosions.forEach(function (m) {
-                        if (m.inUse) {
-                            _this.engine.setSprite(spriteIndex_1++, m.pos, _this.explosionImg, m.alpha);
-                            m.alpha -= 6 * delta;
-                            if (m.alpha < 0) {
-                                m.reset();
-                            }
-                        }
-                    });
-                    this.spawnTime -= delta * 1000;
-                    if (this.spawnTime <= 0) {
-                        this.spawnTime = 1000 - this.timer / 60;
-                        if (this.spawnTime < 0)
-                            this.spawnTime = 0;
-                        var freeMissiles = this.missiles.filter(function (m) { return !m.inUse; });
-                        if (freeMissiles.length > 0) {
-                            var missile = freeMissiles[0];
-                            missile.pos.set([0, 1 + this.shuffle.next()]);
-                            missile.inUse = true;
-                        }
-                    }
-                    this.timer += delta * 1000;
-                    var frames_1 = Math.floor(this.timer) % 1000;
-                    var seconds = Math.floor(this.timer / 1000);
-                    var laserX = e.config.grid.width - 2;
-                    this.laser.pos.set([laserX, 8.5]);
-                    var v = Math.atan2(this.playerPos[1] - this.laser.pos[1], this.playerPos[0] - this.laser.pos[0]);
-                    var v2 = Math.atan2(this.laser.target[1] - this.laser.pos[1], this.laser.target[0] - this.laser.pos[0]);
-                    this.laser.rotation = v;
-                    e.setSprite(spriteIndex_1++, this.laser.pos, this.img.laserbase);
-                    var turret = gl_matrix_1.vec2.clone(this.laser.pos);
-                    turret[1] -= 1 / 8;
-                    if (this.laser.fire > 0) {
-                        e.setSprite(spriteIndex_1++, turret, this.img.beam, 1.0, v2, gl_matrix_1.vec2.clone([0, 0.5]));
-                        this.laser.fire--;
-                    }
-                    e.setSprite(spriteIndex_1++, turret, this.img.laser, 1.0, this.laser.rotation);
-                    e.state.centerTopText = seconds + ":" + (frames_1 < 10 ? "0" + frames_1 : frames_1);
+                    this.mainTick(time, delta);
                     break;
                 }
             case 3:
@@ -50177,7 +50186,7 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf
 /* 219 */
 /***/ (function(module, exports) {
 
-module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REZBMEUzMDUwMDdFMTFFODg4NkRFQ0VEREQyMDI1NkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZBMEUzMDYwMDdFMTFFODg4NkRFQ0VEREQyMDI1NkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpERkEwRTMwMzAwN0UxMUU4ODg2REVDRURERDIwMjU2RCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpERkEwRTMwNDAwN0UxMUU4ODg2REVDRURERDIwMjU2RCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pi6PXNQAAAAJUExURf/eNQAAAP///yNeLUIAAAADdFJOU///ANfKDUEAAAA3SURBVHjaYmAAAyYgYGBAsBEAJMDIyAjhgBhgAYQ8DgE0M5jQADkC2BxG0B0YTkc3A837AAEGANewAZXSPrzKAAAAAElFTkSuQmCC"
+module.exports = "data:image/png;base64,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"
 
 /***/ }),
 /* 220 */
