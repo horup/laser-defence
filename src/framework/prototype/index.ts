@@ -19,10 +19,14 @@ export abstract class Prototype
     {
         let tick = (time,deta)=>this.tick(time,delta);
         let frametime = now - this.time;
-        this.time = now;
+        if (frametime > 500)
+            frametime = 500;
+        else if (frametime < 2)
+            frametime = 2;
+        this.time += frametime;
         let delta = frametime / 1000;
         
-        this.engine.animate(now, delta, tick);
+        this.engine.animate(this.time, delta, tick);
         
         window.requestAnimationFrame(this.animate);
     }

@@ -50047,9 +50047,13 @@ var Prototype = /** @class */ (function () {
         this.animate = function (now) {
             var tick = function (time, deta) { return _this.tick(time, delta); };
             var frametime = now - _this.time;
-            _this.time = now;
+            if (frametime > 500)
+                frametime = 500;
+            else if (frametime < 2)
+                frametime = 2;
+            _this.time += frametime;
             var delta = frametime / 1000;
-            _this.engine.animate(now, delta, tick);
+            _this.engine.animate(_this.time, delta, tick);
             window.requestAnimationFrame(_this.animate);
         };
         this.engine = new engine_1.Engine();
