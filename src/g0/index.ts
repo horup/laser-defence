@@ -87,8 +87,15 @@ export default class G0 extends Prototype
         Insights.event.send("G0", "Loaded");
     }
 
-    initRound()
+    initRound(time:number, delta:number)
     {
+        Insights.event.send("G0", "New Round");
+        Insights.metric.set(1, this.timer);
+        Insights.metric.set(2, this.maxScore);
+        Insights.metric.set(3, this.rounds);
+        Insights.metric.set(4, time);
+        Insights.metric.set(5, this.engine.state.frames);
+
         let e = this.engine;
         e.state.centerText = "";
         e.clearGrid(0);
@@ -113,8 +120,7 @@ export default class G0 extends Prototype
 
         this.playerPos.set([2, 16/2]);
         this.missiles.forEach(m=>m.reset());
-        Insights.event.send("G0", "New Round");
-        Insights.metric.set(3, this.rounds);
+       
         this.rounds++;
     }
 
@@ -215,7 +221,7 @@ export default class G0 extends Prototype
         }
 
         this.timer += delta * 1000;
-        let frames = Math.floor(this.timer) % 1000;
+        let ms = Math.floor(this.timer) % 1000;
         let seconds = Math.floor(this.timer / 1000);
         
         let laserX = e.config.grid.width-2;
@@ -235,7 +241,7 @@ export default class G0 extends Prototype
         }
         
         e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
-        e.state.centerTopText = seconds + ":" + (frames < 10 ? "0" + frames : frames);
+        e.state.centerTopText = seconds + ":" + (ms < 10 ? "00" + ms : (ms < 100 ? "0" + ms : ms));
     }
 
     tick(time:number, delta:number)
@@ -258,7 +264,7 @@ export default class G0 extends Prototype
             }
             case 1:
             {
-               this.initRound();
+               this.initRound(time, delta);
                this.state = 2;
                break;
             }

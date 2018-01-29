@@ -133,6 +133,7 @@ export class Pixi
             let size = Math.floor(cellSize * ratio / 2  * pixelRatio);
             size = size > 0 ? size : 1;
             text.style.fontSize = size;
+            text.y = cellSize * ratio / 2 * pixelRatio;
         }
 
         setStyle(this.texts.top);
@@ -144,6 +145,7 @@ export class Pixi
         this.texts.middle.y = height / 2  * pixelRatio;
         this.texts.middle.anchor.y = 0.5;
         this.texts.debug.x = cellSize * ratio / 2 * pixelRatio;
+        
         this.texts.debug.anchor.x = 0;
     }
 }
