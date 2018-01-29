@@ -11,7 +11,7 @@ export class State
     frames = 0;
     animate = new Measurement();
     fps = new Measurement();
-    debug = true;
+    debug = false;
     
     background = "#000000";
 }

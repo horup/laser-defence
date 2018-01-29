@@ -9,6 +9,11 @@ export class Input
         pos:vec2.create(),
         button:[false, false, false]
     }
+    mouseOld = 
+    {
+        pos:vec2.create(),
+        button:[false, false, false]
+    }
 
     constructor(config:Config, canvas:HTMLCanvasElement)
     {

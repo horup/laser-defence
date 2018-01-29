@@ -124,6 +124,22 @@ export default class G0 extends Prototype
         this.rounds++;
     }
 
+    last = false;
+    isClick()
+    {
+        if (this.last == false && this.engine.input.mouse.button[0])
+        {
+            this.last = true;
+        }
+        else if (this.last == true && !this.engine.input.mouse.button[0])
+        {
+            this.last = false;
+            return true;
+        }
+
+        return false;
+    }
+
     mainTick(time:number, delta:number)
     {
         let e = this.engine;
@@ -255,7 +271,7 @@ export default class G0 extends Prototype
                     e.state.centerText = "Touch when ready!!";
                 else
                     e.state.centerText = "";
-                if (e.input.mouse.button[0])
+                if (this.isClick())
                 {
                     this.state = 1;
                     e.flash(true);
@@ -279,7 +295,7 @@ export default class G0 extends Prototype
                 e.clearGrid(-1);
                 e.clearSprites();
                 e.state.centerText = "BOOM! Try again?";
-                if (e.input.mouse.button[0])
+                if (this.isClick())
                 {
                     this.state = 1;
                     e.flash(true);

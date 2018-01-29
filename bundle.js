@@ -23368,6 +23368,7 @@ var G0 = /** @class */ (function (_super) {
             grass: 0,
             laserbase: 0
         };
+        _this.last = false;
         var e = _this.engine;
         e.loadImage(__webpack_require__(216));
         e.loadImage(__webpack_require__(217));
@@ -23416,6 +23417,16 @@ var G0 = /** @class */ (function (_super) {
         this.playerPos.set([2, 16 / 2]);
         this.missiles.forEach(function (m) { return m.reset(); });
         this.rounds++;
+    };
+    G0.prototype.isClick = function () {
+        if (this.last == false && this.engine.input.mouse.button[0]) {
+            this.last = true;
+        }
+        else if (this.last == true && !this.engine.input.mouse.button[0]) {
+            this.last = false;
+            return true;
+        }
+        return false;
     };
     G0.prototype.mainTick = function (time, delta) {
         var _this = this;
@@ -23518,7 +23529,7 @@ var G0 = /** @class */ (function (_super) {
                         e.state.centerText = "Touch when ready!!";
                     else
                         e.state.centerText = "";
-                    if (e.input.mouse.button[0]) {
+                    if (this.isClick()) {
                         this.state = 1;
                         e.flash(true);
                     }
@@ -23540,7 +23551,7 @@ var G0 = /** @class */ (function (_super) {
                     e.clearGrid(-1);
                     e.clearSprites();
                     e.state.centerText = "BOOM! Try again?";
-                    if (e.input.mouse.button[0]) {
+                    if (this.isClick()) {
                         this.state = 1;
                         e.flash(true);
                     }
@@ -48942,6 +48953,10 @@ var Input = /** @class */ (function () {
             pos: gl_matrix_1.vec2.create(),
             button: [false, false, false]
         };
+        this.mouseOld = {
+            pos: gl_matrix_1.vec2.create(),
+            button: [false, false, false]
+        };
         document.onmousemove = function (ev) {
             if (_this.hasFocus) {
                 var bounds = canvas.getBoundingClientRect();
@@ -49027,7 +49042,7 @@ var State = /** @class */ (function () {
         this.frames = 0;
         this.animate = new index_1.Measurement();
         this.fps = new index_1.Measurement();
-        this.debug = true;
+        this.debug = false;
         this.background = "#000000";
     }
     return State;
