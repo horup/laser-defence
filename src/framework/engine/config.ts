@@ -9,8 +9,8 @@ export class Sprite
 export class Grid
 {
     cellSize = 16;
-    width = 16;
-    height = 9;
+    width = 9;
+    height = 16;
 }
 
 export class Flash
