@@ -201,6 +201,7 @@ export class Engine
 
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
+        this.pixi.texts.left.text = this.state.leftTopText;
 
 
         this.pixi.sprites.forEach(s=>

@@ -8,6 +8,7 @@ export class State
     flashTicks = -1.0;
     centerText = "";
     centerTopText = "";
+    leftTopText = "";
     frames = 0;
     animate = new Measurement();
     fps = new Measurement();

@@ -267,7 +267,7 @@ export default class G0 extends Prototype
         }
         
         e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
-        e.state.centerTopText = seconds + ":" + (ms < 10 ? "00" + ms : (ms < 100 ? "0" + ms : ms));
+        e.state.leftTopText = seconds + ":" + (ms < 10 ? "00" + ms : (ms < 100 ? "0" + ms : ms));
     }
 
     tick(time:number, delta:number)

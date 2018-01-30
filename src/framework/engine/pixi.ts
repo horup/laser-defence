@@ -8,6 +8,7 @@ class Texts
     middle = new PIXI.Text();
     top = new PIXI.Text();
     debug = new PIXI.Text();
+    left = new PIXI.Text();
 }
 
 class Stages
@@ -67,10 +68,12 @@ export class Pixi
         this.texts.middle = new PIXI.Text("", style);
         this.texts.debug = new PIXI.Text("", style);
         this.texts.top = new PIXI.Text("", style);
+        this.texts.left = new PIXI.Text("", style); 
         
         this.stages.text.addChild(this.texts.middle);
         this.stages.text.addChild(this.texts.top);
         this.stages.text.addChild(this.texts.debug);
+        this.stages.text.addChild(this.texts.left);
 
         window.onresize = ()=>this.resize();
         this.resize();
@@ -139,13 +142,16 @@ export class Pixi
         setStyle(this.texts.top);
         setStyle(this.texts.debug);
         setStyle(this.texts.middle);
+        setStyle(this.texts.left);
         this.texts.debug.style.fill = 0xFF0000;
         this.texts.debug.style.fontSize = this.texts.debug.style.fontSize as number / 2;
       //  console.log(this.texts.debug.style.fontSize);
         this.texts.middle.y = height / 2  * pixelRatio;
         this.texts.middle.anchor.y = 0.5;
         this.texts.debug.x = cellSize * ratio / 2 * pixelRatio;
-        
         this.texts.debug.anchor.x = 0;
+
+        this.texts.left.x = cellSize * ratio / 2 * pixelRatio;
+        this.texts.left.anchor.x = 0;
     }
 }
