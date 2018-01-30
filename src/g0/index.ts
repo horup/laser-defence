@@ -125,20 +125,18 @@ export default class G0 extends Prototype
     }
 
     last = false;
+
     isClick()
     {
-        if (this.last == false && this.engine.input.mouse.button[0])
+        if (this.last == true && !this.engine.input.mouse.button[0])
         {
-            this.last = true;
-        }
-        else if (this.last == true && !this.engine.input.mouse.button[0])
-        {
-            this.last = false;
             return true;
         }
 
         return false;
     }
+
+    targeted = false;
 
     mainTick(time:number, delta:number)
     {
@@ -158,9 +156,21 @@ export default class G0 extends Prototype
         else if (x > e.config.grid.width - 1) 
             x = e.config.grid.width - 1;
 
-        let playerSprite = spriteIndex++;
-        this.playerPos.set([ x, y]);
-        this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
+        let playerSprite = undefined;
+        if ((this.isClick() || this.engine.input.mouse.button[0]))
+        {
+            if (!this.targeted || this.isClick())
+            {
+                playerSprite = spriteIndex++;
+                this.playerPos.set([ x, y]);
+                this.engine.setSprite(playerSprite, this.playerPos, 3, 1, Math.PI / 4);
+                this.targeted = true;
+            }
+        }
+        else
+        {
+            this.targeted = false;
+        }
 
         this.missiles.forEach(m=>
         {
@@ -303,5 +313,7 @@ export default class G0 extends Prototype
                 break;
             }
         }
+
+        this.last = this.engine.input.mouse.button[0];
     }
 }
