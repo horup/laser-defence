@@ -13,6 +13,8 @@ export class State
     animate = new Measurement();
     fps = new Measurement();
     debug = false;
+    memory = 0;
+    memoryAllocated = 0;
     
     background = "#000000";
 }

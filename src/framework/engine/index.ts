@@ -179,6 +179,14 @@ export class Engine
 
     animate(time:number, delta:number, tick:(time:number, delta:number)=>any)
     {
+        let memorySample = 60;
+        if (this.state.frames % memorySample == 0 && (window.performance as any).memory != null)
+        {
+            let mem = (window.performance as any).memory;
+            this.state.memoryAllocated += mem.usedJSHeapSize - this.state.memory;
+            this.state.memory = mem.usedJSHeapSize;
+        }
+
         let s = this.state;
         s.frames++;
         s.fps.measure(1000/delta/1000);
@@ -244,6 +252,13 @@ export class Engine
         else
         {
             this.pixi.texts.debug.text = "";
+        }
+
+        if (this.state.frames % memorySample == 0 && (window.performance as any).memory != null)
+        {
+            let allocated = Math.floor(this.state.memoryAllocated / 1000);
+            this.state.memoryAllocated = 0;
+            console.log(allocated + "KB");
         }
     }
 

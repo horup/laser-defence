@@ -91,7 +91,7 @@ export default class G0 extends Prototype
     initRound(time:number, delta:number)
     {
         Insights.event.send("G0", "New Round");
-        Insights.metric.set(1, this.timer);
+        Insights.metric.set(1, this.score);
         Insights.metric.set(2, this.maxScore);
         Insights.metric.set(3, this.rounds);
         Insights.metric.set(4, time);

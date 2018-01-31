@@ -11684,6 +11684,12 @@ var Engine = /** @class */ (function () {
         return this.pixi.textures.length - 1;
     };
     Engine.prototype.animate = function (time, delta, tick) {
+        var memorySample = 60;
+        if (this.state.frames % memorySample == 0 && window.performance.memory != null) {
+            var mem = window.performance.memory;
+            this.state.memoryAllocated += mem.usedJSHeapSize - this.state.memory;
+            this.state.memory = mem.usedJSHeapSize;
+        }
         var s = this.state;
         s.frames++;
         s.fps.measure(1000 / delta / 1000);
@@ -11734,6 +11740,11 @@ var Engine = /** @class */ (function () {
         }
         else {
             this.pixi.texts.debug.text = "";
+        }
+        if (this.state.frames % memorySample == 0 && window.performance.memory != null) {
+            var allocated = Math.floor(this.state.memoryAllocated / 1000);
+            this.state.memoryAllocated = 0;
+            console.log(allocated + "KB");
         }
     };
     return Engine;
@@ -23396,7 +23407,7 @@ var G0 = /** @class */ (function (_super) {
     }
     G0.prototype.initRound = function (time, delta) {
         framework_2.Insights.event.send("G0", "New Round");
-        framework_2.Insights.metric.set(1, this.timer);
+        framework_2.Insights.metric.set(1, this.score);
         framework_2.Insights.metric.set(2, this.maxScore);
         framework_2.Insights.metric.set(3, this.rounds);
         framework_2.Insights.metric.set(4, time);
@@ -49057,6 +49068,8 @@ var State = /** @class */ (function () {
         this.animate = new index_1.Measurement();
         this.fps = new index_1.Measurement();
         this.debug = false;
+        this.memory = 0;
+        this.memoryAllocated = 0;
         this.background = "#000000";
     }
     return State;
