@@ -34,10 +34,9 @@ export class Engine
         this.state.background = color;
     }
 
+
     getIntersectingSprite(id:number):number
     {
-        let box1 = new SAT.Box();
-        let box2 = new SAT.Box();
         let sprite = this.pixi.sprites[id];
         for (let i = 0; i < this.pixi.sprites.length; i++)
         {
@@ -45,21 +44,22 @@ export class Engine
             if (i != id && candidate.sprite.visible)
             {
                 let cellSize = this.config.grid.cellSize;
-                box1.pos.x = sprite.position[0];
-                box1.pos.y = sprite.position[1];
-                box1.w  = sprite.sprite.width / cellSize;
-                box1.h = sprite.sprite.height / cellSize;
-               
-                box2.pos.x = candidate.position[0];
-                box2.pos.y = candidate.position[1];
-                box2.w = candidate.sprite.width / cellSize;
-                box2.h = candidate.sprite.height / cellSize;
+                let lx1 = sprite.position[0];
+                let ly1 = sprite.position[1];
+                let rx1 = lx1 + sprite.sprite.width / cellSize;
+                let ry1 = ly1 + sprite.sprite.height / cellSize;
+             
+                let lx2 = candidate.position[0];
+                let ly2 = candidate.position[1];
+                let rx2 = lx2 + candidate.sprite.width / cellSize;
+                let ry2 = ly2 + candidate.sprite.height / cellSize;
+                
+                if (lx1 > rx2 || lx2 > rx1)
+                    continue;
+                if (ly1 > ry2 || ly2 > ry1)
+                    continue;
 
-                let p1 = box1.toPolygon();
-                let p2 = box2.toPolygon();
-
-                if (SAT.testPolygonPolygon(p1, p2))
-                    return i;
+                return i;
             }
         }
 
