@@ -49084,29 +49084,31 @@ exports.State = State;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var engine_1 = __webpack_require__(39);
+var animate = null;
 /*
 Base class for all prototypes.
 Any prototype instance will hook into the canvas and document.
 */
 var Prototype = /** @class */ (function () {
     function Prototype() {
-        var _this = this;
         this.time = 0;
-        this.animate = function (now) {
-            var tick = function (time, deta) { return _this.tick(time, delta); };
-            var frametime = now - _this.time;
-            if (frametime > 500)
-                frametime = 500;
-            else if (frametime < 2)
-                frametime = 2;
-            _this.time += frametime;
-            var delta = frametime / 1000;
-            _this.engine.animate(_this.time, delta, tick);
-            window.requestAnimationFrame(_this.animate);
-        };
+        this.me = this;
         this.engine = new engine_1.Engine();
-        window.requestAnimationFrame(this.animate);
+        animate = this.animate.bind(this);
+        window.requestAnimationFrame(animate);
     }
+    Prototype.prototype.animate = function (now) {
+        var _this = this;
+        var frametime = now - this.time;
+        if (frametime > 500)
+            frametime = 500;
+        else if (frametime < 2)
+            frametime = 2;
+        this.time += frametime;
+        var delta = frametime / 1000;
+        this.engine.animate(this.time, delta, function (tick, delta) { return _this.tick(tick, delta); });
+        window.requestAnimationFrame(animate);
+    };
     return Prototype;
 }());
 exports.Prototype = Prototype;
