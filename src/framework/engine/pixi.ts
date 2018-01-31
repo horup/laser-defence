@@ -93,7 +93,7 @@ export class Pixi
         let width = 0;
         let height = 0;
         //let multiplum = gridHeight;
-        let multiplum = 128 / pixelRatio;
+        let multiplum = (this.config.grid.width * this.config.grid.cellSize) / pixelRatio;
         
         if (screenAspect >= targetAspect)
         {

@@ -27746,7 +27746,7 @@ var Pixi = /** @class */ (function () {
         var width = 0;
         var height = 0;
         //let multiplum = gridHeight;
-        var multiplum = 128 / pixelRatio;
+        var multiplum = (this.config.grid.width * this.config.grid.cellSize) / pixelRatio;
         if (screenAspect >= targetAspect) {
             height = Math.floor(screenHeight / multiplum) * multiplum;
             if (height == 0)
