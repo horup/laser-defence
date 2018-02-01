@@ -16,6 +16,7 @@ export class Sprite
     clear()
     {
         this.sprite.visible = false;
-        this.position.set([0,0]);
+        this.position[0] = 0;
+        this.position[1] = 0;
     }
 }
