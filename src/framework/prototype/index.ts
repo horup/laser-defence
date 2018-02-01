@@ -1,7 +1,7 @@
 import { Engine } from "../engine";
 
 let animate = null;
-
+let tick = null;
 /*
 Base class for all prototypes.
 Any prototype instance will hook into the canvas and document. 
@@ -18,6 +18,7 @@ export abstract class Prototype
         this.engine = new Engine();
         animate = this.animate.bind(this);
         window.requestAnimationFrame(animate);
+        tick = (tick, delta)=>this.tick(tick, delta);
     }
 
     private animate(now:any)
@@ -29,7 +30,7 @@ export abstract class Prototype
             frametime = 2;
         this.time += frametime;
         let delta = frametime / 1000;
-        this.engine.animate(this.time, delta, (tick, delta)=>this.tick(tick, delta));
+        this.engine.animate(this.time, delta, tick);
         
         window.requestAnimationFrame(animate);
     }
