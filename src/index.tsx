@@ -1,8 +1,8 @@
-import G0 from "./g0/index";
+import G from "./g0/index";
 require("./style.css");
 document.title = "Rapid";
 
 document.addEventListener("DOMContentLoaded", ()=>
 {
-    new G0(); 
+    new G(); 
 });

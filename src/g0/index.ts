@@ -50,6 +50,9 @@ export default class G0 extends Prototype
     shuffle = new Shufflebag(9);
     shuffle2 = new Shufflebag(8);
     laser = new Laser();
+
+    houses:number[] = new Array(7);
+
     img = 
     {
         beam:0,
@@ -64,9 +67,19 @@ export default class G0 extends Prototype
         let e = this.engine;
         
         e.loadImage(require("./imgs/space.png"));
-        e.loadImage(require("./imgs/cloud.png"));
+        e.loadImage(require("./imgs/clouds.png"));
         e.loadImage(require("./imgs/missile.png"));
         e.loadImage(require("./imgs/block.png"));
+
+        let h = this.houses;
+        h[0] = e.loadImage(require("./imgs/h1.png"));
+        h[1] = e.loadImage(require("./imgs/h2.png"));
+        h[2] = e.loadImage(require("./imgs/h3.png"));
+        h[3] = e.loadImage(require("./imgs/h4.png"));
+        h[4] = e.loadImage(require("./imgs/h5.png"));
+        h[5] = e.loadImage(require("./imgs/h6.png"));
+        h[6] = e.loadImage(require("./imgs/h7.png"));
+
         this.explosionImg = e.loadImage(require("./imgs/explosion.png"));
 
         this.img.beam = e.loadImage(require("./imgs/beam.png"));
@@ -106,18 +119,29 @@ export default class G0 extends Prototype
 
         let placeCloud = (sx:number, sy:number)=>
         {
-            for (let y = 0; y < 2; y++)
-                for (let x = 0; x < 2; x++)
-                    e.setCell(x+sx, y+sy, 1, x, y);
+         //   for (let y = 0; y < 2; y++)
+           //     for (let x = 0; x < 2; x++)
+                    e.setCell(sx, sy, 1);
         }
 
-//        placeCloud(3,3);
-//        placeCloud(8,4);
-
+        placeCloud(1,4);
+        placeCloud(3,3);
+        placeCloud(7,4);
+        let h = this.houses;
         for (let x = 0; x < e.config.grid.width; x++)
         {
+            let i = x % h.length;
             e.setCell(x, this.engine.config.grid.height - 1, this.img.grass);
         }
+
+        for (let x = 1; x < e.config.grid.width - 1; x++)
+        {
+            let i = x % h.length;
+            e.setCell(x, this.engine.config.grid.height - 1, h[i]);
+            //e.setCell(x, this.engine.config.grid.height - 1, this.img.grass);
+        }
+
+        
 
         this.playerPos.set([2, 16/2]);
         this.missiles.forEach(m=>m.reset());
