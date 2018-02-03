@@ -7,17 +7,22 @@ import * as SAT from "sat";
 
 export class Engine
 {
+    tick:(time, delta)=>any;
     config:Config;
     pixi:Pixi;
     input:Input;
     state:State;
     
-    constructor(config:Config = new Config())
+    constructor(tick:(time, delta)=>any, config:Config = new Config())
     {
+        this.tick = tick;
         this.config = config;
+        PIXI.ticker.shared.autoStart = false;
+        PIXI.ticker.shared.stop();
         this.pixi = new Pixi(this.config);
         this.input = new Input(this.config, this.pixi.app.view);
         this.state = new State();
+        requestAnimationFrame((now)=>this.animate(now));
     }
 
     flash(blocking?:boolean)
@@ -177,16 +182,23 @@ export class Engine
         return this.pixi.textures.length - 1;
     }
 
-    animate(time:number, delta:number, tick:(time:number, delta:number)=>any)
+    time = 0;
+    animate(now:number)
     {
-        let memorySample = 60;
-        if (this.state.frames % memorySample == 0 && (window.performance as any).memory != null)
+        //if (Math.random() < 0.5)
         {
-            let mem = (window.performance as any).memory;
-            this.state.memoryAllocated += mem.usedJSHeapSize - this.state.memory;
-            this.state.memory = mem.usedJSHeapSize;
+            let frametime = Math.floor(now - this.time);
+            this.time = now;
+            let delta = frametime / 1000;
+            this.update(this.time, delta);
+            console.log(delta)
+            this.pixi.app.ticker.update(now);
         }
+        requestAnimationFrame((now)=>this.animate(now));
+    }
 
+    update(time:number, delta:number)
+    {
         let s = this.state;
         s.frames++;
         s.fps.measure(1000/delta/1000);
@@ -205,7 +217,7 @@ export class Engine
 
         this.pixi.app.stage.alpha = 1.0;
         if (!s.flashing || !s.flashBlocks)
-            tick(time, delta);
+            this.tick(time, delta);
 
         this.pixi.texts.top.text = this.state.centerTopText;
         this.pixi.texts.middle.text = this.state.centerText;
@@ -230,7 +242,7 @@ export class Engine
             if (Math.sign(old) != Math.sign(s.flashTicks))
             {
                 alpha = 0.0;
-                tick(time, delta);
+                this.tick(time, delta);
             }
             if (s.flashTicks > 1.0)
             {
@@ -252,13 +264,6 @@ export class Engine
         else
         {
             this.pixi.texts.debug.text = "";
-        }
-
-        if (this.state.frames % memorySample == 0 && (window.performance as any).memory != null)
-        {
-            let allocated = Math.floor(this.state.memoryAllocated / 1000);
-            this.state.memoryAllocated = 0;
-            console.log(allocated + "KB");
         }
     }
 

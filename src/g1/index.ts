@@ -92,7 +92,7 @@ export default class G1 extends Prototype
         for (let missile of this.missiles)
         {
             missile.pos[1] += speed;
-                e.setSprite(index++, missile.pos, Math.floor(Math.random() * 10));
+                e.setSprite(index++, missile.pos, 0);
             
             if (missile.pos[1] > 16)
                 missile.pos[1] = 0;

@@ -30,6 +30,8 @@ export class Pixi
     {
         this.config = config;
         this.app = new PIXI.Application();
+        this.app.ticker.autoStart = false;
+        this.app.ticker.stop();
         this.app.stage.addChild(this.stages.grid);
         this.app.stage.addChild(this.stages.text);
         PIXI.settings.SCALE_MODE = PIXI.SCALE_MODES.NEAREST;

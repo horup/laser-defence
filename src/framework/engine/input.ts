@@ -58,6 +58,7 @@ export class Input
         {
             if (this.hasFocus)
             {
+                
                 let bounds = canvas.getBoundingClientRect();
                 let c = canvas;
                 let clamp = (v, min, max) => v < min ? min : (v > max) ? max : v;
@@ -77,6 +78,7 @@ export class Input
         {
             if (this.hasFocus)
             {
+                document.documentElement.webkitRequestFullscreen();
                 this.mouse.button[0] = false;
             }
         }
