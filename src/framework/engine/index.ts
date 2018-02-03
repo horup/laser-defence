@@ -192,6 +192,8 @@ export class Engine
             let delta = frametime / 1000;
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
+            let r = this.pixi.app.renderer as any;
+            r.gl.flush();
         }
         requestAnimationFrame((now)=>this.animate(now));
     }

@@ -11696,6 +11696,8 @@ var Engine = /** @class */ (function () {
             var delta = frametime / 1000;
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
+            var r = this.pixi.app.renderer;
+            r.gl.flush();
         }
         requestAnimationFrame(function (now) { return _this.animate(now); });
     };
