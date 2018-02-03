@@ -7,7 +7,7 @@ class Missile
 {
     inUse = false;
     pos:vec2 = vec2.create();
-    speed = 0.1;
+    speed = 0.08;
     reset()
     {
         this.inUse = false;
@@ -119,9 +119,7 @@ export default class G0 extends Prototype
 
         let placeCloud = (sx:number, sy:number)=>
         {
-         //   for (let y = 0; y < 2; y++)
-           //     for (let x = 0; x < 2; x++)
-                    e.setCell(sx, sy, 1);
+            e.setCell(sx, sy, 1);
         }
 
         placeCloud(1,4);
@@ -138,7 +136,6 @@ export default class G0 extends Prototype
         {
             let i = x % h.length;
             e.setCell(x, this.engine.config.grid.height - 1, h[i]);
-            //e.setCell(x, this.engine.config.grid.height - 1, this.img.grass);
         }
 
         
@@ -172,12 +169,6 @@ export default class G0 extends Prototype
         let x = this.engine.input.mouse.pos[0];
         if (y < 1) 
             y = 1; 
-        
-        /*let minx = 1;//e.config.grid.width/2;
-        if (x < minx) 
-            x = minx; 
-        else if (x > e.config.grid.width - 1) 
-            x = e.config.grid.width - 1;*/
 
         let playerSprite = undefined;
         if ((this.isClick() || this.engine.input.mouse.button[0]))
@@ -253,7 +244,7 @@ export default class G0 extends Prototype
         this.spawnTime -= delta * 1000;
         if (this.spawnTime <= 0)
         {
-            let div = 1 + this.timer / 1000 / 30;
+            let div = 1 + this.timer / 1000 / 15;
             this.nextSpawnTime = 1000 / div;
             this.spawnTime = this.nextSpawnTime;
             if (this.spawnTime < 100)
