@@ -23502,7 +23502,7 @@ var G0 = /** @class */ (function (_super) {
                 }
                 if (m.pos[1] > e.config.grid.height - 0.5) {
                     framework_2.Insights.event.send("G0", "Died", "at " + e.state.centerTopText, _this.timer);
-                    if (_this.maxScore < _this.timer) {
+                    if (_this.maxScore < _this.score) {
                         _this.maxScore = _this.score;
                         framework_2.Insights.metric.set(2, _this.maxScore);
                     }

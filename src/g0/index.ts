@@ -215,7 +215,7 @@ export default class G0 extends Prototype
                 if (m.pos[1] > e.config.grid.height - 0.5)
                 {
                     Insights.event.send("G0", "Died", "at " + e.state.centerTopText, this.timer);
-                    if (this.maxScore < this.timer)
+                    if (this.maxScore < this.score)
                     {
                         this.maxScore = this.score;
                         Insights.metric.set(2, this.maxScore);
