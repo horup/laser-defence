@@ -1,4 +1,4 @@
-let debug = true;
+let debug = false;
 class Events
 {
     send(category:string, action:string, label?:String, value?:number)
