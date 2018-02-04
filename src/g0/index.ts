@@ -138,11 +138,8 @@ export default class G0 extends Prototype
             e.setCell(x, this.engine.config.grid.height - 1, h[i]);
         }
 
-        
-
         this.playerPos.set([2, 16/2]);
         this.missiles.forEach(m=>m.reset());
-       
         this.rounds++;
     }
 
@@ -280,7 +277,6 @@ export default class G0 extends Prototype
         
         e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
         e.state.centerTopText = this.score + "";
-       // e.state.leftTopText = seconds + ":" + (ms < 10 ? "00" + ms : (ms < 100 ? "0" + ms : ms));
     }
 
     tick(time:number, delta:number)

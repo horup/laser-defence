@@ -23552,7 +23552,6 @@ var G0 = /** @class */ (function (_super) {
         }
         e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
         e.state.centerTopText = this.score + "";
-        // e.state.leftTopText = seconds + ":" + (ms < 10 ? "00" + ms : (ms < 100 ? "0" + ms : ms));
     };
     G0.prototype.tick = function (time, delta) {
         var e = this.engine;
@@ -49216,10 +49215,13 @@ exports.Shufflebag = Shufflebag;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var debug = true;
 var Events = /** @class */ (function () {
     function Events() {
     }
     Events.prototype.send = function (category, action, label, value) {
+        if (debug)
+            console.log("event:" + category + "/" + action + " - " + label + " - " + value);
         if (typeof ga !== 'undefined')
             ga("send", "event", category, action, label, value);
     };
@@ -49229,6 +49231,8 @@ var Metrics = /** @class */ (function () {
     function Metrics() {
     }
     Metrics.prototype.set = function (num, value) {
+        if (debug)
+            console.log("metric:" + num + " value:" + value);
         if (typeof ga !== 'undefined')
             ga('set', 'metric' + num, value);
     };
