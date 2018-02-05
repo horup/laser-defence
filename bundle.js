@@ -11565,7 +11565,9 @@ var Engine = /** @class */ (function () {
         if (config === void 0) { config = new config_1.Config(); }
         var _this = this;
         this.textureCache = {};
+        this.lastNow = 0;
         this.time = 0;
+        this.jitter = 0;
         this.tick = tick;
         this.config = config;
         PIXI.ticker.shared.autoStart = false;
@@ -11689,11 +11691,16 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.animate = function (now) {
         var _this = this;
-        //if (Math.random() < 0.5)
+        //  if (this.jitter++ % 100 != 0)
         {
-            var frametime = Math.floor(now - this.time);
-            this.time = now;
+            var frametime = Math.floor(now - this.lastNow);
+            if (frametime > 250)
+                frametime = 250;
+            else if (frametime < 1)
+                frametime = 1;
+            this.lastNow = now;
             var delta = frametime / 1000;
+            this.time += frametime;
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
             var r = this.pixi.app.renderer;

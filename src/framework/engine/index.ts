@@ -182,19 +182,28 @@ export class Engine
         return this.pixi.textures.length - 1;
     }
 
+    lastNow = 0;
     time = 0;
+    jitter = 0;
     animate(now:number)
     {
-        //if (Math.random() < 0.5)
+      //  if (this.jitter++ % 100 != 0)
         {
-            let frametime = Math.floor(now - this.time);
-            this.time = now;
+            let frametime = Math.floor(now - this.lastNow);
+            if (frametime > 250)
+                frametime = 250;
+            else if (frametime < 1)
+                frametime = 1;
+
+            this.lastNow = now;
             let delta = frametime / 1000;
+            this.time += frametime;
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
             let r = this.pixi.app.renderer as any;
             r.gl.flush();
         }
+
         requestAnimationFrame((now)=>this.animate(now));
     }
 
