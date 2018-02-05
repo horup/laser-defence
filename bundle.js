@@ -11573,10 +11573,16 @@ var Engine = /** @class */ (function () {
         PIXI.ticker.shared.autoStart = false;
         PIXI.ticker.shared.stop();
         this.pixi = new pixi_1.Pixi(this.config);
-        this.input = new input_1.Input(this.config, this.pixi.app.view);
+        this.input = new input_1.Input(this.config, this);
         this.state = new state_1.State();
         requestAnimationFrame(function (now) { return _this.animate(now); });
     }
+    Engine.prototype.isMobile = function () {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+            return true;
+        }
+        return false;
+    };
     Engine.prototype.flash = function (blocking) {
         var s = this.state;
         s.flashing = true;
@@ -11647,6 +11653,18 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.clearSprites = function () {
         this.pixi.sprites.forEach(function (s) { return s.clear(); });
+    };
+    Engine.prototype.requestFullscreen = function () {
+        var docElm = document.documentElement;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
     };
     Engine.prototype.setSprite = function (i, pos, image, alpha, rotation, anchor) {
         if (image === void 0) { image = undefined; }
@@ -48995,7 +49013,7 @@ exports.Sprite = Sprite;
 Object.defineProperty(exports, "__esModule", { value: true });
 var gl_matrix_1 = __webpack_require__(18);
 var Input = /** @class */ (function () {
-    function Input(config, canvas) {
+    function Input(config, engine) {
         var _this = this;
         this.hasFocus = true;
         this.mouse = {
@@ -49006,6 +49024,8 @@ var Input = /** @class */ (function () {
             pos: gl_matrix_1.vec2.create(),
             button: [false, false, false]
         };
+        this.engine = engine;
+        var canvas = this.engine.pixi.app.view;
         document.onmousemove = function (ev) {
             if (_this.hasFocus) {
                 var bounds = canvas.getBoundingClientRect();
@@ -49049,7 +49069,7 @@ var Input = /** @class */ (function () {
         };
         document.ontouchend = function (ev) {
             if (_this.hasFocus) {
-                document.documentElement.webkitRequestFullscreen();
+                _this.engine.requestFullscreen();
                 _this.mouse.button[0] = false;
             }
         };

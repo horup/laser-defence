@@ -20,9 +20,19 @@ export class Engine
         PIXI.ticker.shared.autoStart = false;
         PIXI.ticker.shared.stop();
         this.pixi = new Pixi(this.config);
-        this.input = new Input(this.config, this.pixi.app.view);
+        this.input = new Input(this.config, this);
         this.state = new State();
         requestAnimationFrame((now)=>this.animate(now));
+    }
+
+    isMobile()
+    {
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) 
+        {
+            return true;
+        }
+
+        return false;
     }
 
     flash(blocking?:boolean)
@@ -130,6 +140,20 @@ export class Engine
     clearSprites()
     {
         this.pixi.sprites.forEach(s=>s.clear());
+    }
+
+    requestFullscreen()
+    {
+        var docElm = document.documentElement as any;
+        if (docElm.requestFullscreen) {
+            docElm.requestFullscreen();
+        }
+        else if (docElm.mozRequestFullScreen) {
+            docElm.mozRequestFullScreen();
+        }
+        else if (docElm.webkitRequestFullScreen) {
+            docElm.webkitRequestFullScreen();
+        }
     }
 
     setSprite(i:number, pos:vec2, image:number = undefined, alpha:number = undefined, rotation:number = undefined, anchor:vec2 = this.config.sprite.anchor)
@@ -276,5 +300,4 @@ export class Engine
             this.pixi.texts.debug.text = "";
         }
     }
-
 }

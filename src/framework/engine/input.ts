@@ -1,8 +1,10 @@
 import { Config } from "./config";
 import { vec2 } from "gl-matrix";
+import { Engine } from "./index";
 
 export class Input
 {
+    engine:Engine;
     hasFocus:boolean = true;
     mouse = 
     {
@@ -15,8 +17,10 @@ export class Input
         button:[false, false, false]
     }
 
-    constructor(config:Config, canvas:HTMLCanvasElement)
+    constructor(config:Config, engine:Engine)
     {
+        this.engine = engine;
+        let canvas = this.engine.pixi.app.view;
         document.onmousemove = (ev)=>
         {
             if (this.hasFocus)
@@ -78,7 +82,7 @@ export class Input
         {
             if (this.hasFocus)
             {
-                document.documentElement.webkitRequestFullscreen();
+                this.engine.requestFullscreen();
                 this.mouse.button[0] = false;
             }
         }
