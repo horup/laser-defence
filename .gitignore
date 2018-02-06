@@ -1,3 +1,7 @@
 node_modules
 out
 release
+
+cordova*platforms/*/
+cordova/rapid/platforms/*
+package-lock.json
