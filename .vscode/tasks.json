@@ -8,6 +8,10 @@
         {
             "taskName": "build",
             "args": ["run", "watch"]
+        },
+        {
+            "taskName": "release",
+            "args": ["run", "release"]
         }
     ]
 }
