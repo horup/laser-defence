@@ -2,7 +2,7 @@ node_modules
 out
 release
 
-cordova*platforms/*/
 cordova/rapid/plugins/*
 cordova/rapid/platforms/*
+cordova/rapid/www/*
 package-lock.json

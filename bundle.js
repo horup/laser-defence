@@ -11655,7 +11655,8 @@ var Engine = /** @class */ (function () {
         this.pixi.sprites.forEach(function (s) { return s.clear(); });
     };
     Engine.prototype.requestFullscreen = function () {
-        var docElm = document.documentElement;
+        /*
+        var docElm = document.documentElement as any;
         if (docElm.requestFullscreen) {
             docElm.requestFullscreen();
         }
@@ -11664,7 +11665,7 @@ var Engine = /** @class */ (function () {
         }
         else if (docElm.webkitRequestFullScreen) {
             docElm.webkitRequestFullScreen();
-        }
+        }*/
     };
     Engine.prototype.setSprite = function (i, pos, image, alpha, rotation, anchor) {
         if (image === void 0) { image = undefined; }
@@ -11710,20 +11711,17 @@ var Engine = /** @class */ (function () {
     Engine.prototype.animate = function (now) {
         var _this = this;
         requestAnimationFrame(function (now) { return _this.animate(now); });
-        //  if (this.jitter++ % 100 != 0)
-        {
-            var frametime = Math.floor(now - this.lastNow);
-            if (frametime > 250)
-                frametime = 250;
-            else if (frametime < 1)
-                frametime = 1;
-            this.lastNow = now;
-            var delta = frametime / 1000;
-            this.time += frametime;
-            this.update(this.time, delta);
-            this.pixi.app.ticker.update(now);
-            var r = this.pixi.app.renderer;
-        }
+        var frametime = Math.floor(now - this.lastNow);
+        if (frametime > 250)
+            frametime = 250;
+        else if (frametime < 1)
+            frametime = 1;
+        this.lastNow = now;
+        var delta = frametime / 1000;
+        this.time += frametime;
+        this.update(this.time, delta);
+        this.pixi.app.ticker.update(now);
+        var r = this.pixi.app.renderer;
     };
     Engine.prototype.update = function (time, delta) {
         var s = this.state;

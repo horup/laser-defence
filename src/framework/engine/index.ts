@@ -144,6 +144,7 @@ export class Engine
 
     requestFullscreen()
     {
+        /*
         var docElm = document.documentElement as any;
         if (docElm.requestFullscreen) {
             docElm.requestFullscreen();
@@ -153,7 +154,7 @@ export class Engine
         }
         else if (docElm.webkitRequestFullScreen) {
             docElm.webkitRequestFullScreen();
-        }
+        }*/
     }
 
     setSprite(i:number, pos:vec2, image:number = undefined, alpha:number = undefined, rotation:number = undefined, anchor:vec2 = this.config.sprite.anchor)
@@ -212,22 +213,18 @@ export class Engine
     animate(now:number)
     {
         requestAnimationFrame((now)=>this.animate(now));
-      //  if (this.jitter++ % 100 != 0)
-        {
-            let frametime = Math.floor(now - this.lastNow);
-            if (frametime > 250)
-                frametime = 250;
-            else if (frametime < 1)
-                frametime = 1;
+        let frametime = Math.floor(now - this.lastNow);
+        if (frametime > 250)
+            frametime = 250;
+        else if (frametime < 1)
+            frametime = 1;
 
-            this.lastNow = now;
-            let delta = frametime / 1000;
-            this.time += frametime;
-            this.update(this.time, delta);
-            this.pixi.app.ticker.update(now);
-            let r = this.pixi.app.renderer as any;
-        }
-
+        this.lastNow = now;
+        let delta = frametime / 1000;
+        this.time += frametime;
+        this.update(this.time, delta);
+        this.pixi.app.ticker.update(now);
+        let r = this.pixi.app.renderer as any;
     }
 
     update(time:number, delta:number)
