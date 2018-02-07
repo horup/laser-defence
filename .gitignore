@@ -3,5 +3,6 @@ out
 release
 
 cordova*platforms/*/
+cordova/rapid/plugins/*
 cordova/rapid/platforms/*
 package-lock.json
