@@ -11709,6 +11709,7 @@ var Engine = /** @class */ (function () {
     };
     Engine.prototype.animate = function (now) {
         var _this = this;
+        requestAnimationFrame(function (now) { return _this.animate(now); });
         //  if (this.jitter++ % 100 != 0)
         {
             var frametime = Math.floor(now - this.lastNow);
@@ -11722,9 +11723,7 @@ var Engine = /** @class */ (function () {
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
             var r = this.pixi.app.renderer;
-            r.gl.flush();
         }
-        requestAnimationFrame(function (now) { return _this.animate(now); });
     };
     Engine.prototype.update = function (time, delta) {
         var s = this.state;
@@ -23331,7 +23330,6 @@ exports.default = CountLimiter;
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __webpack_require__(96);
 __webpack_require__(231);
-document.title = "Rapid";
 document.addEventListener("DOMContentLoaded", function () {
     new index_1.default();
 });

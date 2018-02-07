@@ -211,6 +211,7 @@ export class Engine
     jitter = 0;
     animate(now:number)
     {
+        requestAnimationFrame((now)=>this.animate(now));
       //  if (this.jitter++ % 100 != 0)
         {
             let frametime = Math.floor(now - this.lastNow);
@@ -225,10 +226,8 @@ export class Engine
             this.update(this.time, delta);
             this.pixi.app.ticker.update(now);
             let r = this.pixi.app.renderer as any;
-            r.gl.flush();
         }
 
-        requestAnimationFrame((now)=>this.animate(now));
     }
 
     update(time:number, delta:number)
