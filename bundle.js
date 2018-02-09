@@ -23444,7 +23444,6 @@ var G0 = /** @class */ (function (_super) {
     }
     G0.prototype.initRound = function (time, delta) {
         framework_2.Insights.event.send("G0", "New Round");
-        framework_2.Insights.metric.set(1, this.score);
         framework_2.Insights.metric.set(2, this.maxScore);
         framework_2.Insights.metric.set(3, this.rounds);
         framework_2.Insights.metric.set(4, time);
