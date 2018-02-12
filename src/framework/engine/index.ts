@@ -7,6 +7,7 @@ import * as SAT from "sat";
 
 export class Engine
 {
+    paused = false;
     tick:(time, delta)=>any;
     config:Config;
     pixi:Pixi;
@@ -23,6 +24,16 @@ export class Engine
         this.input = new Input(this.config, this);
         this.state = new State();
         requestAnimationFrame((now)=>this.animate(now));
+    }
+
+    pause()
+    {
+        this.paused = true;
+    }
+
+    resume()
+    {
+        this.paused = false;
     }
 
     isMobile()
@@ -222,7 +233,8 @@ export class Engine
         this.lastNow = now;
         let delta = frametime / 1000;
         this.time += frametime;
-        this.update(this.time, delta);
+        if (!this.paused)
+            this.update(this.time, delta);
         this.pixi.app.ticker.update(now);
         let r = this.pixi.app.renderer as any;
     }
