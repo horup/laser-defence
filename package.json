@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "build": "webpack",
+    "watch-cordova": "webpack --watch --config webpack-cordova.config.js",
     "watch": "concurrently --kill-others \"webpack --watch\" \"ws -p 8080 -d ./\"",
     "release": "webpack --config webpack-release.config.js -p"
   },

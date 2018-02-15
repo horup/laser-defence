@@ -1,6 +1,19 @@
 import G from "./g0/index";
 require("./style.css");
-document.addEventListener("DOMContentLoaded", ()=>
+declare var cordova;
+if (typeof(cordova) == "object")
 {
-    new G(); 
-});
+    let onDeviceReady = ()=>
+    {
+        new G();
+    }
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+}
+else
+{
+    document.addEventListener("DOMContentLoaded", ()=>
+    {
+        new G(); 
+    });
+}
