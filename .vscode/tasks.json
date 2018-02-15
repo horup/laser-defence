@@ -10,7 +10,11 @@
             "args": ["run", "watch"]
         },
         {
-            "taskName": "release",
+            "taskName": "build-cordova",
+            "args": ["run", "watch"]
+        },
+        {
+            "taskName": "build-release",
             "args": ["run", "release"]
         }
     ]

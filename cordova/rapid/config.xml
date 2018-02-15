@@ -26,7 +26,7 @@
     <preference name="Fullscreen" value="true" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="^2.4.0" />
     <preference name="xwalkMultipleApk" value="false" />
-    <engine name="android" spec="7.0.0" />
+    <engine name="android" spec="^7.0.0" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="windows" spec="^5.0.0" />
 </widget>

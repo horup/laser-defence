@@ -64,6 +64,7 @@ export default class G0 extends Prototype
     constructor()
     {
         super();
+        this.ads.initAdmob("ca-app-pub-0127781604548087/8276908440", "ca-app-pub-0127781604548087/3366759901");
         let e = this.engine;
         
         e.loadImage(require("./imgs/space.png"));
