@@ -1,27 +1,25 @@
-declare var admob;
-
+declare var AdMob;
 export class Ads
 {
+    admobid;
     initAdmob(bannerad, interad)
     {
-        if (typeof admob != 'undefined')
-            admob.initAdmob(bannerad, interad);
-        this.showBanner();
+        this.admobid = {
+            banner: bannerad,
+            interstitial:  interad
+          };
     }
 
     showBanner()
     {
-        if (typeof admob != 'undefined')
-        {
-            admob.showBanner(admob.BannerSize.BANNER, admob.Position.TOP_APP);
-        }
+        if(AdMob) AdMob.createBanner({
+            adId: this.admobid.banner,
+            position: AdMob.AD_POSITION.TOP_CENTER,
+            autoShow: true });
     }
 
     hideBanner()
     {
-        if (typeof admob != 'undefined')
-        {
-            admob.hideBanner();
-        }
+      
     }
 }

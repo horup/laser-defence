@@ -64,7 +64,7 @@ export default class G0 extends Prototype
     constructor()
     {
         super();
-        this.ads.initAdmob("ca-app-pub-0127781604548087/8276908440", "ca-app-pub-0127781604548087/3366759901");
+       
         let e = this.engine;
         
         e.loadImage(require("./imgs/space.png"));
@@ -97,9 +97,12 @@ export default class G0 extends Prototype
             this.missiles[i] = new Missile();
             this.explosions[i] = new Explosion();
         }
-
+        
+        this.ads.initAdmob("ca-app-pub-0127781604548087/8276908440", "ca-app-pub-0127781604548087/3366759901");
+        this.ads.showBanner();
         Insights.init("UA-74749034-3");
         Insights.event.send("G0", "Loaded");
+        
     }
 
     initRound(time:number, delta:number)
