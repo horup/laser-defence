@@ -8,12 +8,16 @@ export class Ads
             banner: bannerad,
             interstitial:  interad
           };
+
+        this.showBanner();
     }
 
     showBanner()
     {
         if(AdMob) AdMob.createBanner({
             adId: this.admobid.banner,
+            adSize:'SMART_BANNER',
+            overlap:true,
             position: AdMob.AD_POSITION.TOP_CENTER,
             autoShow: true });
     }

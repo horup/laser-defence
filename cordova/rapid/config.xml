@@ -29,7 +29,9 @@
     </platform>
     <preference name="Fullscreen" value="true" />
     <plugin name="cordova-plugin-crosswalk-webview" spec="^2.4.0" />
-    <preference name="xwalkMultipleApk" value="false" />
+    <preference name="xwalkMultipleApk" value="true" />
+    <preference name="xwalkMode" value="embedded" />
+    <preference name="orientation" value="portrait " />
     <plugin name="cordova-plugin-admobpro" spec="^2.31.1" />
     <engine name="android" spec="^7.0.0" />
     <engine name="browser" spec="^5.0.3" />

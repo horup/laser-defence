@@ -99,7 +99,7 @@ export default class G0 extends Prototype
         }
         
         this.ads.initAdmob("ca-app-pub-0127781604548087/8276908440", "ca-app-pub-0127781604548087/3366759901");
-        this.ads.showBanner();
+      //  this.ads.initAdmob("ca-app-pub-3940256099942544/6300978111", "ca-app-pub-0127781604548087/3366759901");
         Insights.init("UA-74749034-3");
         Insights.event.send("G0", "Loaded");
         
@@ -279,7 +279,7 @@ export default class G0 extends Prototype
         }
         
         e.setSprite(spriteIndex++, turret, this.img.laser, 1.0, this.laser.rotation);
-        e.state.centerTopText = this.score + "";
+        e.state.centerTopText = "\n" + this.score + "";
     }
 
     tick(time:number, delta:number)
