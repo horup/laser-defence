@@ -14,7 +14,7 @@ export class Ads
 
     showBanner()
     {
-        if(AdMob) AdMob.createBanner({
+        if(typeof AdMob !== 'undefined') AdMob.createBanner({
             adId: this.admobid.banner,
             adSize:'SMART_BANNER',
             overlap:true,

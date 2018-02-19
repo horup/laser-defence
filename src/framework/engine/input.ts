@@ -78,6 +78,20 @@ export class Input
             }
         }
 
+        document.onkeydown = (ev)=>
+        {
+            if (this.hasFocus)
+            {
+                if (ev.code == 'KeyP')
+                {
+                    if (this.engine.paused)
+                        this.engine.resume();
+                    else
+                        this.engine.pause();
+                }
+            }
+        }
+
         document.ontouchend = (ev)=>
         {
             if (this.hasFocus)
