@@ -148,6 +148,11 @@ export class Engine
         }
     }
 
+    setCenterText(s:string)
+    {
+        this.state.centerText = s;
+    }
+
     clearSprites()
     {
         this.pixi.sprites.forEach(s=>s.clear());
