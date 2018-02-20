@@ -4,6 +4,9 @@ import { Engine } from "./index";
 
 export class Input
 {
+    keys:{[id:string]:boolean} = {
+
+    }
     engine:Engine;
     hasFocus:boolean = true;
     mouse = 
@@ -80,6 +83,24 @@ export class Input
 
         document.onkeydown = (ev)=>
         {
+            this.keys[ev.code] = true;
+            console.log(this.keys);
+            if (this.hasFocus)
+            {
+                if (ev.code == 'KeyP')
+                {
+                    if (this.engine.paused)
+                        this.engine.resume();
+                    else
+                        this.engine.pause();
+                }
+            }
+        }
+
+        document.onkeyup = (ev)=>
+        {
+            delete this.keys[ev.code];
+            console.log(this.keys);
             if (this.hasFocus)
             {
                 if (ev.code == 'KeyP')
