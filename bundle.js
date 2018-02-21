@@ -23413,7 +23413,28 @@ var G1 = /** @class */ (function (_super) {
             g.timer = 0;
         }
     };
+    G1.prototype.think = function (delta) {
+        for (var _i = 0, _a = this.game.things.array; _i < _a.length; _i++) {
+            var thing = _a[_i];
+            if (thing.type == game_1.ThingType.ENEMY) {
+                if (thing.variant == game_1.ThingVariant.SMALLUFO) {
+                    var f = 3;
+                    thing.v[0] = Math.random() * f - f / 2;
+                    if (thing.cooldown == 0 && Math.random() > 0.95) {
+                        var beam = this.game.things.spawn();
+                        beam.type = game_1.ThingType.BEAM;
+                        beam.variant = game_1.ThingVariant.PLAYERBEAM;
+                        beam.p.set(thing.p);
+                        beam.v[1] = 10;
+                        beam.owner = thing.id;
+                        thing.cooldown = 1 / 3;
+                    }
+                }
+            }
+        }
+    };
     G1.prototype.tick = function (time, delta) {
+        this.think(delta);
         var e = this.engine;
         var temp = gl_matrix_1.vec2.create();
         for (var _i = 0, _a = this.game.things.array; _i < _a.length; _i++) {

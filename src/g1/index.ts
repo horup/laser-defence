@@ -39,6 +39,7 @@ export default class G1 extends Prototype
     }
 
     shuffle = new Shufflebag(7);
+
     spawn()
     {
         let g = this.game;
@@ -53,8 +54,36 @@ export default class G1 extends Prototype
         }
     }
 
+    think(delta:number)
+    {
+        for (let thing of this.game.things.array)
+        {
+            if (thing.type == ThingType.ENEMY)
+            {
+                if (thing.variant == ThingVariant.SMALLUFO)
+                {
+                    let f = 3;
+                    thing.v[0] = Math.random() * f - f / 2;
+
+                    if (thing.cooldown == 0 && Math.random() > 0.95)
+                    {
+                        let beam = this.game.things.spawn();
+                        beam.type = ThingType.BEAM;
+                        beam.variant = ThingVariant.PLAYERBEAM;
+                        beam.p.set(thing.p);
+                        beam.v[1] = 10; 
+                        beam.owner = thing.id;
+                        thing.cooldown = 1/3;
+                    }
+
+                }
+            }
+        }
+    }
+
     tick(time:number, delta:number)
     {
+        this.think(delta);
         let e = this.engine;
         let temp = vec2.create();
         for (let thing of this.game.things.array)
