@@ -4,9 +4,22 @@ export enum ThingType
 {
     UNKNOWN,
     PLAYER,
-    SMALLUFO
+    ENEMY,
+    BEAM
 }
 
+export enum ThingVariant
+{
+    UNKNOWN,
+    PLAYER,
+    SMALLUFO,
+    BIGUFO,
+    PLAYERBEAM,
+    UFOBEAM
+}
+
+
+let nextId = 0;
 interface Resetable
 {
     valid:boolean;
@@ -15,34 +28,30 @@ interface Resetable
 
 export class Thing implements Resetable
 {
+    id:number;
+    owner:number;
     type:ThingType = ThingType.UNKNOWN;
+    variant:ThingVariant = ThingVariant.UNKNOWN;
     p:vec2 = vec2.create();
     v:vec2 = vec2.create();
     r:number = 1.0;
     valid = false;
+
+    cooldown = 0;
+
+    constructor()
+    {
+        this.reset();
+    }
     
     reset()
     {
+        this.id = nextId++;
+        this.owner = null;
         this.p.set([0,0]);
         this.v.set([0,0]);
         this.r = 1.0;
         this.valid = false;
-    }
-
-    static spawn(things:Thing[], x:number, y:number, type:ThingType):Thing
-    {
-        for (let i = 0; i < things.length; i++)
-        {
-            let thing = things[i];
-            if (!thing.valid)
-            {
-                thing.valid = true;
-                thing.p.set([x,y]);
-                return thing;
-            }
-        }
-
-        return null;
     }
 }
 
@@ -87,12 +96,5 @@ export class Game
     constructor()
     {
         this.things = new Container<Thing>(this.maxThings, Thing);
-    }
-
-    newGame()
-    {
-        this.things.reset();
-        let t = this.things.spawn();
-        t.p.set([4.5, 14]);
     }
 }

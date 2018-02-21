@@ -84,7 +84,6 @@ export class Input
         document.onkeydown = (ev)=>
         {
             this.keys[ev.code] = true;
-            console.log(this.keys);
             if (this.hasFocus)
             {
                 if (ev.code == 'KeyP')
@@ -100,7 +99,6 @@ export class Input
         document.onkeyup = (ev)=>
         {
             delete this.keys[ev.code];
-            console.log(this.keys);
             if (this.hasFocus)
             {
                 if (ev.code == 'KeyP')
