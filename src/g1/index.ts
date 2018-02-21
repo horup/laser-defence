@@ -28,13 +28,28 @@ export default class G1 extends Prototype
         t.type = ThingType.PLAYER;
         t.variant = ThingVariant.PLAYER;
         t.p.set([4.5, 14]);
-
+/*
         for (let i = 1.5; i < 9; i+=2)
         {
             let t = this.game.things.spawn();
             t.type = ThingType.ENEMY;
             t.variant = ThingVariant.SMALLUFO;
             t.p.set([i, 2]);
+        }*/
+    }
+
+    shuffle = new Shufflebag(7);
+    spawn()
+    {
+        let g = this.game;
+        if (g.timer > 1)
+        {
+            let t = this.game.things.spawn();
+            t.type = ThingType.ENEMY;
+            t.variant = ThingVariant.SMALLUFO;
+            t.p.set([1 + this.shuffle.next(), 0]);
+            t.v[1] = 5;
+            g.timer = 0;
         }
     }
 
@@ -65,7 +80,7 @@ export default class G1 extends Prototype
                             beam.variant = ThingVariant.PLAYERBEAM;
                             beam.p.set(thing.p);
                             beam.v[1] = -15; 
-                           beam.owner = thing.id;
+                            beam.owner = thing.id;
                             thing.cooldown = 1/3;
                         }
                     }
@@ -83,6 +98,11 @@ export default class G1 extends Prototype
                         t.reset();
                         thing.reset();
                     }
+                }
+                else if (thing.type == ThingType.ENEMY)
+                {
+                    if (thing.p[1] > e.config.grid.height)
+                        thing.reset();
                 }
 
                 vec2.set(temp, thing.v[0] * delta, thing.v[1] * delta);
@@ -102,5 +122,8 @@ export default class G1 extends Prototype
                 e.setSprite(spriteIndex++, thing.p, this.images[thing.variant]);
             }
         }
+
+        this.game.timer+=delta;
+        this.spawn();
     }
 }

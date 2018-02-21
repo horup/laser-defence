@@ -91,6 +91,7 @@ export class Container<T extends Resetable>
 
 export class Game
 {
+    timer = 0;
     maxThings = 100;
     things:Container<Thing>;
     constructor()

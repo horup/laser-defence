@@ -23371,12 +23371,14 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var framework_1 = __webpack_require__(38);
 var gl_matrix_1 = __webpack_require__(11);
+var framework_2 = __webpack_require__(38);
 var game_1 = __webpack_require__(217);
 var G1 = /** @class */ (function (_super) {
     __extends(G1, _super);
     function G1() {
         var _this = _super.call(this) || this;
         _this.images = [];
+        _this.shuffle = new framework_2.Shufflebag(7);
         var e = _this.engine;
         _this.game = new game_1.Game();
         _this.images[game_1.ThingVariant.PLAYER] = e.loadImage(__webpack_require__(218));
@@ -23391,11 +23393,24 @@ var G1 = /** @class */ (function (_super) {
         t.type = game_1.ThingType.PLAYER;
         t.variant = game_1.ThingVariant.PLAYER;
         t.p.set([4.5, 14]);
-        for (var i = 1.5; i < 9; i += 2) {
-            var t_1 = this.game.things.spawn();
-            t_1.type = game_1.ThingType.ENEMY;
-            t_1.variant = game_1.ThingVariant.SMALLUFO;
-            t_1.p.set([i, 2]);
+        /*
+                for (let i = 1.5; i < 9; i+=2)
+                {
+                    let t = this.game.things.spawn();
+                    t.type = ThingType.ENEMY;
+                    t.variant = ThingVariant.SMALLUFO;
+                    t.p.set([i, 2]);
+                }*/
+    };
+    G1.prototype.spawn = function () {
+        var g = this.game;
+        if (g.timer > 1) {
+            var t = this.game.things.spawn();
+            t.type = game_1.ThingType.ENEMY;
+            t.variant = game_1.ThingVariant.SMALLUFO;
+            t.p.set([1 + this.shuffle.next(), 0]);
+            t.v[1] = 5;
+            g.timer = 0;
         }
     };
     G1.prototype.tick = function (time, delta) {
@@ -23434,6 +23449,10 @@ var G1 = /** @class */ (function (_super) {
                         thing.reset();
                     }
                 }
+                else if (thing.type == game_1.ThingType.ENEMY) {
+                    if (thing.p[1] > e.config.grid.height)
+                        thing.reset();
+                }
                 gl_matrix_1.vec2.set(temp, thing.v[0] * delta, thing.v[1] * delta);
                 gl_matrix_1.vec2.add(thing.p, thing.p, temp);
                 thing.cooldown -= delta;
@@ -23449,6 +23468,8 @@ var G1 = /** @class */ (function (_super) {
                 e.setSprite(spriteIndex++, thing.p, this.images[thing.variant]);
             }
         }
+        this.game.timer += delta;
+        this.spawn();
     };
     return G1;
 }(framework_1.Prototype));
@@ -49276,6 +49297,7 @@ var Container = /** @class */ (function () {
 exports.Container = Container;
 var Game = /** @class */ (function () {
     function Game() {
+        this.timer = 0;
         this.maxThings = 100;
         this.things = new Container(this.maxThings, Thing);
     }
