@@ -106,7 +106,7 @@ Object.defineProperty(exports, 'glCore', {
   }
 });
 
-var _Bounds = __webpack_require__(28);
+var _Bounds = __webpack_require__(27);
 
 Object.defineProperty(exports, 'Bounds', {
   enumerable: true,
@@ -124,7 +124,7 @@ Object.defineProperty(exports, 'DisplayObject', {
   }
 });
 
-var _Container = __webpack_require__(11);
+var _Container = __webpack_require__(12);
 
 Object.defineProperty(exports, 'Container', {
   enumerable: true,
@@ -151,7 +151,7 @@ Object.defineProperty(exports, 'TransformStatic', {
   }
 });
 
-var _TransformBase = __webpack_require__(30);
+var _TransformBase = __webpack_require__(29);
 
 Object.defineProperty(exports, 'TransformBase', {
   enumerable: true,
@@ -160,7 +160,7 @@ Object.defineProperty(exports, 'TransformBase', {
   }
 });
 
-var _Sprite = __webpack_require__(31);
+var _Sprite = __webpack_require__(30);
 
 Object.defineProperty(exports, 'Sprite', {
   enumerable: true,
@@ -178,7 +178,7 @@ Object.defineProperty(exports, 'CanvasSpriteRenderer', {
   }
 });
 
-var _CanvasTinter = __webpack_require__(35);
+var _CanvasTinter = __webpack_require__(34);
 
 Object.defineProperty(exports, 'CanvasTinter', {
   enumerable: true,
@@ -295,7 +295,7 @@ Object.defineProperty(exports, 'BaseTexture', {
   }
 });
 
-var _RenderTexture = __webpack_require__(34);
+var _RenderTexture = __webpack_require__(33);
 
 Object.defineProperty(exports, 'RenderTexture', {
   enumerable: true,
@@ -340,7 +340,7 @@ Object.defineProperty(exports, 'CanvasRenderTarget', {
   }
 });
 
-var _Shader = __webpack_require__(14);
+var _Shader = __webpack_require__(15);
 
 Object.defineProperty(exports, 'Shader', {
   enumerable: true,
@@ -349,7 +349,7 @@ Object.defineProperty(exports, 'Shader', {
   }
 });
 
-var _WebGLManager = __webpack_require__(13);
+var _WebGLManager = __webpack_require__(14);
 
 Object.defineProperty(exports, 'WebGLManager', {
   enumerable: true,
@@ -358,7 +358,7 @@ Object.defineProperty(exports, 'WebGLManager', {
   }
 });
 
-var _ObjectRenderer = __webpack_require__(19);
+var _ObjectRenderer = __webpack_require__(18);
 
 Object.defineProperty(exports, 'ObjectRenderer', {
   enumerable: true,
@@ -367,7 +367,7 @@ Object.defineProperty(exports, 'ObjectRenderer', {
   }
 });
 
-var _RenderTarget = __webpack_require__(21);
+var _RenderTarget = __webpack_require__(20);
 
 Object.defineProperty(exports, 'RenderTarget', {
   enumerable: true,
@@ -425,7 +425,7 @@ var _utils = __webpack_require__(2);
 
 var utils = _interopRequireWildcard(_utils);
 
-var _ticker = __webpack_require__(33);
+var _ticker = __webpack_require__(32);
 
 var ticker = _interopRequireWildcard(_ticker);
 
@@ -433,11 +433,11 @@ var _settings = __webpack_require__(3);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _CanvasRenderer = __webpack_require__(12);
+var _CanvasRenderer = __webpack_require__(13);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
-var _WebGLRenderer = __webpack_require__(20);
+var _WebGLRenderer = __webpack_require__(19);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -848,7 +848,7 @@ var _mixin = __webpack_require__(123);
 
 var mixins = _interopRequireWildcard(_mixin);
 
-var _ismobilejs = __webpack_require__(29);
+var _ismobilejs = __webpack_require__(28);
 
 var isMobile = _interopRequireWildcard(_ismobilejs);
 
@@ -1543,7 +1543,7 @@ exports.default = {
 
 exports.__esModule = true;
 
-var _Point = __webpack_require__(24);
+var _Point = __webpack_require__(23);
 
 Object.defineProperty(exports, 'Point', {
   enumerable: true,
@@ -1561,7 +1561,7 @@ Object.defineProperty(exports, 'ObservablePoint', {
   }
 });
 
-var _Matrix = __webpack_require__(25);
+var _Matrix = __webpack_require__(24);
 
 Object.defineProperty(exports, 'Matrix', {
   enumerable: true,
@@ -1606,7 +1606,7 @@ Object.defineProperty(exports, 'Polygon', {
   }
 });
 
-var _Rectangle = __webpack_require__(26);
+var _Rectangle = __webpack_require__(25);
 
 Object.defineProperty(exports, 'Rectangle', {
   enumerable: true,
@@ -3005,7 +3005,7 @@ var _determineCrossOrigin = __webpack_require__(57);
 
 var _determineCrossOrigin2 = _interopRequireDefault(_determineCrossOrigin);
 
-var _bitTwiddle = __webpack_require__(32);
+var _bitTwiddle = __webpack_require__(31);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -3835,6 +3835,70 @@ exports.default = BaseTexture;
 
 /***/ }),
 /* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(42);
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "glMatrix", function() { return __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2", function() { return __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2d", function() { return __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat3", function() { return __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat4", function() { return __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "quat", function() { return __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec2", function() { return __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec3", function() { return __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__; });
+/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec4", function() { return __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__; });
+/**
+ * @fileoverview gl-matrix - High performance matrix and vector operations
+ * @author Brandon Jones
+ * @author Colin MacKenzie IV
+ * @version 2.4.0
+ */
+
+/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE. */
+// END HEADER
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4457,7 +4521,7 @@ Container.prototype.containerUpdateTransform = Container.prototype.updateTransfo
 //# sourceMappingURL=Container.js.map
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4827,7 +4891,7 @@ _utils.pluginTarget.mixin(CanvasRenderer);
 //# sourceMappingURL=CanvasRenderer.js.map
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4887,7 +4951,7 @@ exports.default = WebGLManager;
 //# sourceMappingURL=WebGLManager.js.map
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4959,7 +5023,7 @@ exports.default = Shader;
 //# sourceMappingURL=Shader.js.map
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4973,7 +5037,7 @@ exports.default = Shader;
 /* eslint-disable no-undef */
 
 var Loader = __webpack_require__(189).default;
-var Resource = __webpack_require__(37).default;
+var Resource = __webpack_require__(36).default;
 var async = __webpack_require__(89);
 var b64 = __webpack_require__(90);
 
@@ -4988,7 +5052,7 @@ module.exports.default = Loader;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5362,86 +5426,7 @@ Mesh.DRAW_MODES = {
 //# sourceMappingURL=Mesh.js.map
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(39));
-__export(__webpack_require__(210));
-__export(__webpack_require__(212));
-
-
-/***/ }),
 /* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__ = __webpack_require__(42);
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "glMatrix", function() { return __WEBPACK_IMPORTED_MODULE_0__gl_matrix_common__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2", function() { return __WEBPACK_IMPORTED_MODULE_1__gl_matrix_mat2__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat2d", function() { return __WEBPACK_IMPORTED_MODULE_2__gl_matrix_mat2d__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat3", function() { return __WEBPACK_IMPORTED_MODULE_3__gl_matrix_mat3__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "mat4", function() { return __WEBPACK_IMPORTED_MODULE_4__gl_matrix_mat4__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "quat", function() { return __WEBPACK_IMPORTED_MODULE_5__gl_matrix_quat__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec2", function() { return __WEBPACK_IMPORTED_MODULE_6__gl_matrix_vec2__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec3", function() { return __WEBPACK_IMPORTED_MODULE_7__gl_matrix_vec3__; });
-/* harmony reexport (module object) */ __webpack_require__.d(__webpack_exports__, "vec4", function() { return __WEBPACK_IMPORTED_MODULE_8__gl_matrix_vec4__; });
-/**
- * @fileoverview gl-matrix - High performance matrix and vector operations
- * @author Brandon Jones
- * @author Colin MacKenzie IV
- * @version 2.4.0
- */
-
-/* Copyright (c) 2015, Brandon Jones, Colin MacKenzie IV.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE. */
-// END HEADER
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5449,7 +5434,7 @@ THE SOFTWARE. */
 
 exports.__esModule = true;
 
-var _WebGLManager2 = __webpack_require__(13);
+var _WebGLManager2 = __webpack_require__(14);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
@@ -5524,7 +5509,7 @@ exports.default = ObjectRenderer;
 //# sourceMappingURL=ObjectRenderer.js.map
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5548,11 +5533,11 @@ var _FilterManager = __webpack_require__(142);
 
 var _FilterManager2 = _interopRequireDefault(_FilterManager);
 
-var _RenderTarget = __webpack_require__(21);
+var _RenderTarget = __webpack_require__(20);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
-var _ObjectRenderer = __webpack_require__(19);
+var _ObjectRenderer = __webpack_require__(18);
 
 var _ObjectRenderer2 = _interopRequireDefault(_ObjectRenderer);
 
@@ -6346,7 +6331,7 @@ _utils.pluginTarget.mixin(WebGLRenderer);
 //# sourceMappingURL=WebGLRenderer.js.map
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6678,7 +6663,7 @@ exports.default = RenderTarget;
 //# sourceMappingURL=RenderTarget.js.map
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6953,7 +6938,7 @@ function buildNativeLine(graphicsData, webGLData) {
 //# sourceMappingURL=buildLine.js.map
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6980,7 +6965,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7076,7 +7061,7 @@ exports.default = Point;
 //# sourceMappingURL=Point.js.map
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7086,7 +7071,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Point = __webpack_require__(24);
+var _Point = __webpack_require__(23);
 
 var _Point2 = _interopRequireDefault(_Point);
 
@@ -7612,7 +7597,7 @@ exports.default = Matrix;
 //# sourceMappingURL=Matrix.js.map
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7880,7 +7865,7 @@ exports.default = Rectangle;
 //# sourceMappingURL=Rectangle.js.map
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports) {
 
 
@@ -7932,7 +7917,7 @@ module.exports = mapType;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8280,7 +8265,7 @@ exports.default = Bounds;
 //# sourceMappingURL=Bounds.js.map
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -8426,7 +8411,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8518,7 +8503,7 @@ TransformBase.IDENTITY = new TransformBase();
 //# sourceMappingURL=TransformBase.js.map
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8538,7 +8523,7 @@ var _Texture = __webpack_require__(8);
 
 var _Texture2 = _interopRequireDefault(_Texture);
 
-var _Container2 = __webpack_require__(11);
+var _Container2 = __webpack_require__(12);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
@@ -9146,7 +9131,7 @@ exports.default = Sprite;
 //# sourceMappingURL=Sprite.js.map
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9357,7 +9342,7 @@ exports.nextCombination = function(v) {
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9442,7 +9427,7 @@ exports.Ticker = _Ticker2.default;
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9601,7 +9586,7 @@ exports.default = RenderTexture;
 //# sourceMappingURL=RenderTexture.js.map
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9857,7 +9842,7 @@ exports.default = CanvasTinter;
 //# sourceMappingURL=CanvasTinter.js.map
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9896,7 +9881,7 @@ function createIndicesForQuads(size) {
 //# sourceMappingURL=createIndicesForQuads.js.map
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11057,7 +11042,7 @@ function reqType(xhr) {
 //# sourceMappingURL=Resource.js.map
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11548,6 +11533,21 @@ function findTextStyle(item, queue) {
     return false;
 }
 //# sourceMappingURL=BasePrepare.js.map
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(39));
+__export(__webpack_require__(210));
+__export(__webpack_require__(212));
+
 
 /***/ }),
 /* 39 */
@@ -14233,7 +14233,7 @@ exports.default = ObservablePoint;
 
 exports.__esModule = true;
 
-var _Matrix = __webpack_require__(25);
+var _Matrix = __webpack_require__(24);
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -14913,7 +14913,7 @@ module.exports = compileProgram;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var mapType = __webpack_require__(27);
+var mapType = __webpack_require__(26);
 var mapSize = __webpack_require__(49);
 
 /**
@@ -15001,7 +15001,7 @@ module.exports = mapSize;
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var mapType = __webpack_require__(27);
+var mapType = __webpack_require__(26);
 var defaultValue = __webpack_require__(51);
 
 /**
@@ -15302,7 +15302,7 @@ var _Transform = __webpack_require__(56);
 
 var _Transform2 = _interopRequireDefault(_Transform);
 
-var _Bounds = __webpack_require__(28);
+var _Bounds = __webpack_require__(27);
 
 var _Bounds2 = _interopRequireDefault(_Bounds);
 
@@ -15985,7 +15985,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _math = __webpack_require__(4);
 
-var _TransformBase2 = __webpack_require__(30);
+var _TransformBase2 = __webpack_require__(29);
 
 var _TransformBase3 = _interopRequireDefault(_TransformBase2);
 
@@ -16200,7 +16200,7 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _math = __webpack_require__(4);
 
-var _TransformBase2 = __webpack_require__(30);
+var _TransformBase2 = __webpack_require__(29);
 
 var _TransformBase3 = _interopRequireDefault(_TransformBase2);
 
@@ -17190,7 +17190,7 @@ var _BaseTexture3 = _interopRequireDefault(_BaseTexture2);
 
 var _utils = __webpack_require__(2);
 
-var _ticker = __webpack_require__(33);
+var _ticker = __webpack_require__(32);
 
 var _const = __webpack_require__(1);
 
@@ -17651,11 +17651,11 @@ var _settings = __webpack_require__(3);
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _Container = __webpack_require__(11);
+var _Container = __webpack_require__(12);
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _RenderTexture = __webpack_require__(34);
+var _RenderTexture = __webpack_require__(33);
 
 var _RenderTexture2 = _interopRequireDefault(_RenderTexture);
 
@@ -18667,7 +18667,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Matrix = __webpack_require__(25);
+var _Matrix = __webpack_require__(24);
 
 var _Matrix2 = _interopRequireDefault(_Matrix);
 
@@ -18838,7 +18838,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _createIndicesForQuads = __webpack_require__(36);
+var _createIndicesForQuads = __webpack_require__(35);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -20937,11 +20937,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _autoDetectRenderer = __webpack_require__(74);
 
-var _Container = __webpack_require__(11);
+var _Container = __webpack_require__(12);
 
 var _Container2 = _interopRequireDefault(_Container);
 
-var _ticker = __webpack_require__(33);
+var _ticker = __webpack_require__(32);
 
 var _settings = __webpack_require__(3);
 
@@ -21166,11 +21166,11 @@ var _utils = __webpack_require__(2);
 
 var utils = _interopRequireWildcard(_utils);
 
-var _CanvasRenderer = __webpack_require__(12);
+var _CanvasRenderer = __webpack_require__(13);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
-var _WebGLRenderer = __webpack_require__(20);
+var _WebGLRenderer = __webpack_require__(19);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -22509,7 +22509,7 @@ var path = _interopRequireWildcard(_path);
 
 var _core = __webpack_require__(0);
 
-var _resourceLoader = __webpack_require__(15);
+var _resourceLoader = __webpack_require__(16);
 
 var _extras = __webpack_require__(76);
 
@@ -23073,7 +23073,7 @@ exports.default = function () {
 
 exports.getResourcePath = getResourcePath;
 
-var _resourceLoader = __webpack_require__(15);
+var _resourceLoader = __webpack_require__(16);
 
 var _url = __webpack_require__(58);
 
@@ -23112,7 +23112,7 @@ exports.default = function () {
     };
 };
 
-var _resourceLoader = __webpack_require__(15);
+var _resourceLoader = __webpack_require__(16);
 
 var _Texture = __webpack_require__(8);
 
@@ -23130,7 +23130,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.__esModule = true;
 
-var _Mesh2 = __webpack_require__(16);
+var _Mesh2 = __webpack_require__(17);
 
 var _Mesh3 = _interopRequireDefault(_Mesh2);
 
@@ -23337,8 +23337,8 @@ exports.default = CountLimiter;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(239);
-__webpack_require__(232);
+var index_1 = __webpack_require__(96);
+__webpack_require__(221);
 if (typeof (cordova) == "object") {
     var onDeviceReady = function () {
         new index_1.default();
@@ -23353,14 +23353,116 @@ else {
 
 
 /***/ }),
-/* 96 */,
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var framework_1 = __webpack_require__(38);
+var gl_matrix_1 = __webpack_require__(11);
+var game_1 = __webpack_require__(217);
+var G1 = /** @class */ (function (_super) {
+    __extends(G1, _super);
+    function G1() {
+        var _this = _super.call(this) || this;
+        _this.images = [];
+        var e = _this.engine;
+        _this.game = new game_1.Game();
+        _this.images[game_1.ThingVariant.PLAYER] = e.loadImage(__webpack_require__(218));
+        _this.images[game_1.ThingVariant.PLAYERBEAM] = e.loadImage(__webpack_require__(219));
+        _this.images[game_1.ThingVariant.SMALLUFO] = e.loadImage(__webpack_require__(220));
+        _this.newGame();
+        return _this;
+    }
+    G1.prototype.newGame = function () {
+        this.game.things.reset();
+        var t = this.game.things.spawn();
+        t.type = game_1.ThingType.PLAYER;
+        t.variant = game_1.ThingVariant.PLAYER;
+        t.p.set([4.5, 14]);
+        for (var i = 1.5; i < 9; i += 2) {
+            var t_1 = this.game.things.spawn();
+            t_1.type = game_1.ThingType.ENEMY;
+            t_1.variant = game_1.ThingVariant.SMALLUFO;
+            t_1.p.set([i, 2]);
+        }
+    };
+    G1.prototype.tick = function (time, delta) {
+        var e = this.engine;
+        var temp = gl_matrix_1.vec2.create();
+        for (var _i = 0, _a = this.game.things.array; _i < _a.length; _i++) {
+            var thing = _a[_i];
+            if (thing.valid) {
+                if (thing.type == game_1.ThingType.PLAYER) {
+                    var speed = 7;
+                    if (e.input.keys["KeyA"])
+                        thing.v[0] = -speed;
+                    else if (e.input.keys["KeyD"])
+                        thing.v[0] = speed;
+                    else
+                        thing.v[0] = 0;
+                    if (e.input.keys["Space"]) {
+                        if (thing.cooldown == 0) {
+                            var beam = this.game.things.spawn();
+                            beam.type = game_1.ThingType.BEAM;
+                            beam.variant = game_1.ThingVariant.PLAYERBEAM;
+                            beam.p.set(thing.p);
+                            beam.v[1] = -15;
+                            beam.owner = thing.id;
+                            thing.cooldown = 1 / 3;
+                        }
+                    }
+                }
+                else if (thing.type == game_1.ThingType.BEAM) {
+                    if (thing.p[1] < 0 || thing.p[1] > e.config.grid.height)
+                        thing.reset();
+                    var i = framework_1.Collision.getCollision(thing, this.game.things.array);
+                    if (i != null && thing.owner != this.game.things.array[i].id) {
+                        var t = this.game.things.array[i];
+                        t.reset();
+                        thing.reset();
+                    }
+                }
+                gl_matrix_1.vec2.set(temp, thing.v[0] * delta, thing.v[1] * delta);
+                gl_matrix_1.vec2.add(thing.p, thing.p, temp);
+                thing.cooldown -= delta;
+                if (thing.cooldown < 0)
+                    thing.cooldown = 0;
+            }
+        }
+        e.clearSprites();
+        var spriteIndex = 0;
+        for (var _b = 0, _c = this.game.things.array; _b < _c.length; _b++) {
+            var thing = _c[_b];
+            if (thing.valid) {
+                e.setSprite(spriteIndex++, thing.p, this.images[thing.variant]);
+            }
+        }
+    };
+    return G1;
+}(framework_1.Prototype));
+exports.default = G1;
+
+
+/***/ }),
 /* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(18);
+var gl_matrix_1 = __webpack_require__(11);
 var Sprite = /** @class */ (function () {
     function Sprite() {
         this.max = 255;
@@ -27699,7 +27801,7 @@ if (typeof _deprecation2.default === 'function') {
 // Always export PixiJS globally.
 global.PIXI = exports; // eslint-disable-line
 //# sourceMappingURL=index.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
 /* 105 */
@@ -27927,7 +28029,7 @@ if (!global.cancelAnimationFrame) {
     };
 }
 //# sourceMappingURL=requestAnimationFrame.js.map
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)))
 
 /***/ }),
 /* 109 */
@@ -27961,7 +28063,7 @@ if (!Math.sign) {
 
 exports.__esModule = true;
 
-var _Rectangle = __webpack_require__(26);
+var _Rectangle = __webpack_require__(25);
 
 var _Rectangle2 = _interopRequireDefault(_Rectangle);
 
@@ -28080,7 +28182,7 @@ exports.default = Circle;
 
 exports.__esModule = true;
 
-var _Rectangle = __webpack_require__(26);
+var _Rectangle = __webpack_require__(25);
 
 var _Rectangle2 = _interopRequireDefault(_Rectangle);
 
@@ -28207,7 +28309,7 @@ exports.default = Ellipse;
 
 exports.__esModule = true;
 
-var _Point = __webpack_require__(24);
+var _Point = __webpack_require__(23);
 
 var _Point2 = _interopRequireDefault(_Point);
 
@@ -29245,7 +29347,7 @@ module.exports = {
     generateUniformAccessObject: __webpack_require__(53),
     setPrecision: __webpack_require__(52),
     mapSize: __webpack_require__(49),
-    mapType: __webpack_require__(27)
+    mapType: __webpack_require__(26)
 };
 
 /***/ }),
@@ -29258,7 +29360,7 @@ module.exports = {
 exports.__esModule = true;
 exports.default = maxRecommendedTextures;
 
-var _ismobilejs = __webpack_require__(29);
+var _ismobilejs = __webpack_require__(28);
 
 var _ismobilejs2 = _interopRequireDefault(_ismobilejs);
 
@@ -30052,7 +30154,7 @@ function mapPremultipliedBlendModes() {
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module), __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(127)(module), __webpack_require__(22)))
 
 /***/ }),
 /* 127 */
@@ -30965,7 +31067,7 @@ exports.default = TickerListener;
 
 exports.__esModule = true;
 
-var _CanvasRenderer = __webpack_require__(12);
+var _CanvasRenderer = __webpack_require__(13);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
@@ -30973,7 +31075,7 @@ var _const = __webpack_require__(1);
 
 var _math = __webpack_require__(4);
 
-var _CanvasTinter = __webpack_require__(35);
+var _CanvasTinter = __webpack_require__(34);
 
 var _CanvasTinter2 = _interopRequireDefault(_CanvasTinter);
 
@@ -31374,15 +31476,15 @@ function mapCanvasBlendModesToPixi() {
 
 exports.__esModule = true;
 
-var _ObjectRenderer2 = __webpack_require__(19);
+var _ObjectRenderer2 = __webpack_require__(18);
 
 var _ObjectRenderer3 = _interopRequireDefault(_ObjectRenderer2);
 
-var _WebGLRenderer = __webpack_require__(20);
+var _WebGLRenderer = __webpack_require__(19);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
-var _createIndicesForQuads = __webpack_require__(36);
+var _createIndicesForQuads = __webpack_require__(35);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -31408,7 +31510,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _bitTwiddle = __webpack_require__(32);
+var _bitTwiddle = __webpack_require__(31);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -31930,7 +32032,7 @@ _WebGLRenderer2.default.registerPlugin('sprite', SpriteRenderer);
 
 exports.__esModule = true;
 
-var _WebGLManager2 = __webpack_require__(13);
+var _WebGLManager2 = __webpack_require__(14);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
@@ -32402,7 +32504,7 @@ process.umask = function() { return 0; };
 
 exports.__esModule = true;
 
-var _WebGLManager2 = __webpack_require__(13);
+var _WebGLManager2 = __webpack_require__(14);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
@@ -32560,11 +32662,11 @@ exports.default = StencilManager;
 
 exports.__esModule = true;
 
-var _WebGLManager2 = __webpack_require__(13);
+var _WebGLManager2 = __webpack_require__(14);
 
 var _WebGLManager3 = _interopRequireDefault(_WebGLManager2);
 
-var _RenderTarget = __webpack_require__(21);
+var _RenderTarget = __webpack_require__(20);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
@@ -32574,7 +32676,7 @@ var _Quad2 = _interopRequireDefault(_Quad);
 
 var _math = __webpack_require__(4);
 
-var _Shader = __webpack_require__(14);
+var _Shader = __webpack_require__(15);
 
 var _Shader2 = _interopRequireDefault(_Shader);
 
@@ -32582,7 +32684,7 @@ var _filterTransforms = __webpack_require__(143);
 
 var filterTransforms = _interopRequireWildcard(_filterTransforms);
 
-var _bitTwiddle = __webpack_require__(32);
+var _bitTwiddle = __webpack_require__(31);
 
 var _bitTwiddle2 = _interopRequireDefault(_bitTwiddle);
 
@@ -33228,7 +33330,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _const = __webpack_require__(1);
 
-var _RenderTarget = __webpack_require__(21);
+var _RenderTarget = __webpack_require__(20);
 
 var _RenderTarget2 = _interopRequireDefault(_RenderTarget);
 
@@ -34008,7 +34110,7 @@ function validateContext(gl) {
 exports.__esModule = true;
 exports.default = generateMultiTextureShader;
 
-var _Shader = __webpack_require__(14);
+var _Shader = __webpack_require__(15);
 
 var _Shader2 = _interopRequireDefault(_Shader);
 
@@ -34215,7 +34317,7 @@ exports.__esModule = true;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _Sprite2 = __webpack_require__(31);
+var _Sprite2 = __webpack_require__(30);
 
 var _Sprite3 = _interopRequireDefault(_Sprite2);
 
@@ -34954,11 +35056,11 @@ function trimCanvas(canvas) {
 
 exports.__esModule = true;
 
-var _Container2 = __webpack_require__(11);
+var _Container2 = __webpack_require__(12);
 
 var _Container3 = _interopRequireDefault(_Container2);
 
-var _RenderTexture = __webpack_require__(34);
+var _RenderTexture = __webpack_require__(33);
 
 var _RenderTexture2 = _interopRequireDefault(_RenderTexture);
 
@@ -34970,7 +35072,7 @@ var _GraphicsData = __webpack_require__(71);
 
 var _GraphicsData2 = _interopRequireDefault(_GraphicsData);
 
-var _Sprite = __webpack_require__(31);
+var _Sprite = __webpack_require__(30);
 
 var _Sprite2 = _interopRequireDefault(_Sprite);
 
@@ -34980,7 +35082,7 @@ var _utils = __webpack_require__(2);
 
 var _const = __webpack_require__(1);
 
-var _Bounds = __webpack_require__(28);
+var _Bounds = __webpack_require__(27);
 
 var _Bounds2 = _interopRequireDefault(_Bounds);
 
@@ -34988,7 +35090,7 @@ var _bezierCurveTo2 = __webpack_require__(156);
 
 var _bezierCurveTo3 = _interopRequireDefault(_bezierCurveTo2);
 
-var _CanvasRenderer = __webpack_require__(12);
+var _CanvasRenderer = __webpack_require__(13);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
@@ -36223,11 +36325,11 @@ var _utils = __webpack_require__(2);
 
 var _const = __webpack_require__(1);
 
-var _ObjectRenderer2 = __webpack_require__(19);
+var _ObjectRenderer2 = __webpack_require__(18);
 
 var _ObjectRenderer3 = _interopRequireDefault(_ObjectRenderer2);
 
-var _WebGLRenderer = __webpack_require__(20);
+var _WebGLRenderer = __webpack_require__(19);
 
 var _WebGLRenderer2 = _interopRequireDefault(_WebGLRenderer);
 
@@ -36637,7 +36739,7 @@ exports.default = WebGLGraphicsData;
 
 exports.__esModule = true;
 
-var _Shader2 = __webpack_require__(14);
+var _Shader2 = __webpack_require__(15);
 
 var _Shader3 = _interopRequireDefault(_Shader2);
 
@@ -36688,7 +36790,7 @@ exports.default = PrimitiveShader;
 exports.__esModule = true;
 exports.default = buildPoly;
 
-var _buildLine = __webpack_require__(22);
+var _buildLine = __webpack_require__(21);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -36779,7 +36881,7 @@ function buildPoly(graphicsData, webGLData, webGLDataNativeLines) {
 exports.__esModule = true;
 exports.default = buildRectangle;
 
-var _buildLine = __webpack_require__(22);
+var _buildLine = __webpack_require__(21);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -36864,7 +36966,7 @@ var _earcut = __webpack_require__(72);
 
 var _earcut2 = _interopRequireDefault(_earcut);
 
-var _buildLine = __webpack_require__(22);
+var _buildLine = __webpack_require__(21);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -37021,7 +37123,7 @@ function quadraticBezierCurve(fromX, fromY, cpX, cpY, toX, toY) {
 exports.__esModule = true;
 exports.default = buildCircle;
 
-var _buildLine = __webpack_require__(22);
+var _buildLine = __webpack_require__(21);
 
 var _buildLine2 = _interopRequireDefault(_buildLine);
 
@@ -37118,7 +37220,7 @@ function buildCircle(graphicsData, webGLData, webGLDataNativeLines) {
 
 exports.__esModule = true;
 
-var _CanvasRenderer = __webpack_require__(12);
+var _CanvasRenderer = __webpack_require__(13);
 
 var _CanvasRenderer2 = _interopRequireDefault(_CanvasRenderer);
 
@@ -38845,7 +38947,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _ismobilejs = __webpack_require__(29);
+var _ismobilejs = __webpack_require__(28);
 
 var _ismobilejs2 = _interopRequireDefault(_ismobilejs);
 
@@ -40215,7 +40317,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _CanvasTinter = __webpack_require__(35);
+var _CanvasTinter = __webpack_require__(34);
 
 var _CanvasTinter2 = _interopRequireDefault(_CanvasTinter);
 
@@ -44966,7 +45068,7 @@ Object.defineProperty(exports, 'textureParser', {
     }
 });
 
-var _resourceLoader = __webpack_require__(15);
+var _resourceLoader = __webpack_require__(16);
 
 Object.defineProperty(exports, 'Resource', {
     enumerable: true,
@@ -45075,7 +45177,7 @@ var _async = __webpack_require__(89);
 
 var async = _interopRequireWildcard(_async);
 
-var _Resource = __webpack_require__(37);
+var _Resource = __webpack_require__(36);
 
 var _Resource2 = _interopRequireDefault(_Resource);
 
@@ -45717,7 +45819,7 @@ exports.default = Loader;
 
 exports.__esModule = true;
 
-var _resourceLoader = __webpack_require__(15);
+var _resourceLoader = __webpack_require__(16);
 
 var _resourceLoader2 = _interopRequireDefault(_resourceLoader);
 
@@ -45897,7 +45999,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 exports.blobMiddlewareFactory = blobMiddlewareFactory;
 
-var _Resource = __webpack_require__(37);
+var _Resource = __webpack_require__(36);
 
 var _Resource2 = _interopRequireDefault(_Resource);
 
@@ -45986,7 +46088,7 @@ function blobMiddlewareFactory() {
 
 exports.__esModule = true;
 
-var _Mesh = __webpack_require__(16);
+var _Mesh = __webpack_require__(17);
 
 Object.defineProperty(exports, 'Mesh', {
   enumerable: true,
@@ -46060,7 +46162,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _Mesh = __webpack_require__(16);
+var _Mesh = __webpack_require__(17);
 
 var _Mesh2 = _interopRequireDefault(_Mesh);
 
@@ -46212,7 +46314,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _Mesh = __webpack_require__(16);
+var _Mesh = __webpack_require__(17);
 
 var _Mesh2 = _interopRequireDefault(_Mesh);
 
@@ -46891,7 +46993,7 @@ exports.default = NineSlicePlane;
 
 exports.__esModule = true;
 
-var _Mesh2 = __webpack_require__(16);
+var _Mesh2 = __webpack_require__(17);
 
 var _Mesh3 = _interopRequireDefault(_Mesh2);
 
@@ -48028,7 +48130,7 @@ core.WebGLRenderer.registerPlugin('particle', ParticleRenderer);
 
 exports.__esModule = true;
 
-var _Shader2 = __webpack_require__(14);
+var _Shader2 = __webpack_require__(15);
 
 var _Shader3 = _interopRequireDefault(_Shader2);
 
@@ -48080,7 +48182,7 @@ var _pixiGlCore = __webpack_require__(5);
 
 var _pixiGlCore2 = _interopRequireDefault(_pixiGlCore);
 
-var _createIndicesForQuads = __webpack_require__(36);
+var _createIndicesForQuads = __webpack_require__(35);
 
 var _createIndicesForQuads2 = _interopRequireDefault(_createIndicesForQuads);
 
@@ -48346,7 +48448,7 @@ Object.defineProperty(exports, 'canvas', {
   }
 });
 
-var _BasePrepare = __webpack_require__(38);
+var _BasePrepare = __webpack_require__(37);
 
 Object.defineProperty(exports, 'BasePrepare', {
   enumerable: true,
@@ -48389,7 +48491,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _BasePrepare2 = __webpack_require__(38);
+var _BasePrepare2 = __webpack_require__(37);
 
 var _BasePrepare3 = _interopRequireDefault(_BasePrepare2);
 
@@ -48516,7 +48618,7 @@ var _core = __webpack_require__(0);
 
 var core = _interopRequireWildcard(_core);
 
-var _BasePrepare2 = __webpack_require__(38);
+var _BasePrepare2 = __webpack_require__(37);
 
 var _BasePrepare3 = _interopRequireDefault(_BasePrepare2);
 
@@ -48717,7 +48819,7 @@ exports.Cell = Cell;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(18);
+var gl_matrix_1 = __webpack_require__(11);
 var Sprite = /** @class */ (function () {
     function Sprite(id, sprite) {
         this.position = gl_matrix_1.vec2.create();
@@ -48742,10 +48844,11 @@ exports.Sprite = Sprite;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(18);
+var gl_matrix_1 = __webpack_require__(11);
 var Input = /** @class */ (function () {
     function Input(config, engine) {
         var _this = this;
+        this.keys = {};
         this.hasFocus = true;
         this.mouse = {
             pos: gl_matrix_1.vec2.create(),
@@ -48799,6 +48902,18 @@ var Input = /** @class */ (function () {
             }
         };
         document.onkeydown = function (ev) {
+            _this.keys[ev.code] = true;
+            if (_this.hasFocus) {
+                if (ev.code == 'KeyP') {
+                    if (_this.engine.paused)
+                        _this.engine.resume();
+                    else
+                        _this.engine.pause();
+                }
+            }
+        };
+        document.onkeyup = function (ev) {
+            delete _this.keys[ev.code];
             if (_this.hasFocus) {
                 if (ev.code == 'KeyP') {
                     if (_this.engine.paused)
@@ -48841,7 +48956,7 @@ exports.Input = Input;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(17);
+var index_1 = __webpack_require__(38);
 var State = /** @class */ (function () {
     function State() {
         this.flashing = false;
@@ -48937,6 +49052,8 @@ var shufflebag_1 = __webpack_require__(214);
 exports.Shufflebag = shufflebag_1.Shufflebag;
 var insights_1 = __webpack_require__(215);
 exports.Insights = insights_1.Insights;
+var collision_1 = __webpack_require__(216);
+exports.Collision = collision_1.Collision;
 
 
 /***/ }),
@@ -49054,29 +49171,145 @@ var Insights;
 
 
 /***/ }),
-/* 216 */,
-/* 217 */,
-/* 218 */,
-/* 219 */,
-/* 220 */,
-/* 221 */,
-/* 222 */,
-/* 223 */,
-/* 224 */,
-/* 225 */,
-/* 226 */,
-/* 227 */,
-/* 228 */,
-/* 229 */,
-/* 230 */,
-/* 231 */,
-/* 232 */
+/* 216 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var Collision;
+(function (Collision) {
+    function getCollision(thing, things) {
+        for (var i = 0; i < things.length; i++) {
+            if (thing == things[i])
+                continue;
+            var lx1 = thing.p[0] - thing.r / 2;
+            var ly1 = thing.p[1] - thing.r / 2;
+            var rx1 = lx1 + thing.r;
+            var ry1 = ly1 + thing.r;
+            var lx2 = things[i].p[0] - things[i].r / 2;
+            var ly2 = things[i].p[1] - things[i].r / 2;
+            var rx2 = lx2 + things[i].r;
+            var ry2 = ly2 + things[i].r;
+            if (lx1 > rx2 || lx2 > rx1)
+                continue;
+            if (ly1 > ry2 || ly2 > ry1)
+                continue;
+            return i;
+        }
+        return null;
+    }
+    Collision.getCollision = getCollision;
+})(Collision = exports.Collision || (exports.Collision = {}));
+
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var gl_matrix_1 = __webpack_require__(11);
+var ThingType;
+(function (ThingType) {
+    ThingType[ThingType["UNKNOWN"] = 0] = "UNKNOWN";
+    ThingType[ThingType["PLAYER"] = 1] = "PLAYER";
+    ThingType[ThingType["ENEMY"] = 2] = "ENEMY";
+    ThingType[ThingType["BEAM"] = 3] = "BEAM";
+})(ThingType = exports.ThingType || (exports.ThingType = {}));
+var ThingVariant;
+(function (ThingVariant) {
+    ThingVariant[ThingVariant["UNKNOWN"] = 0] = "UNKNOWN";
+    ThingVariant[ThingVariant["PLAYER"] = 1] = "PLAYER";
+    ThingVariant[ThingVariant["SMALLUFO"] = 2] = "SMALLUFO";
+    ThingVariant[ThingVariant["BIGUFO"] = 3] = "BIGUFO";
+    ThingVariant[ThingVariant["PLAYERBEAM"] = 4] = "PLAYERBEAM";
+    ThingVariant[ThingVariant["UFOBEAM"] = 5] = "UFOBEAM";
+})(ThingVariant = exports.ThingVariant || (exports.ThingVariant = {}));
+var nextId = 0;
+var Thing = /** @class */ (function () {
+    function Thing() {
+        this.type = ThingType.UNKNOWN;
+        this.variant = ThingVariant.UNKNOWN;
+        this.p = gl_matrix_1.vec2.create();
+        this.v = gl_matrix_1.vec2.create();
+        this.r = 1.0;
+        this.valid = false;
+        this.cooldown = 0;
+        this.reset();
+    }
+    Thing.prototype.reset = function () {
+        this.id = nextId++;
+        this.owner = null;
+        this.p.set([0, 0]);
+        this.v.set([0, 0]);
+        this.r = 1.0;
+        this.valid = false;
+    };
+    return Thing;
+}());
+exports.Thing = Thing;
+var Container = /** @class */ (function () {
+    function Container(count, f) {
+        this.array = new Array(count);
+        for (var i = 0; i < this.array.length; i++)
+            this.array[i] = new f;
+    }
+    Container.prototype.spawn = function () {
+        for (var i = 0; i < this.array.length; i++) {
+            var thing = this.array[i];
+            if (!thing.valid) {
+                thing.valid = true;
+                return thing;
+            }
+        }
+        return null;
+    };
+    Container.prototype.reset = function () {
+        for (var i = 0; i < this.array.length; i++) {
+            this.array[i].reset();
+        }
+    };
+    return Container;
+}());
+exports.Container = Container;
+var Game = /** @class */ (function () {
+    function Game() {
+        this.maxThings = 100;
+        this.things = new Container(this.maxThings, Thing);
+    }
+    return Game;
+}());
+exports.Game = Game;
+
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUE2RDhFQTYxNkU5MTFFODg5NjZCNjZBOTlERkVENDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUE2RDhFQTcxNkU5MTFFODg5NjZCNjZBOTlERkVENDIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1QTZEOEVBNDE2RTkxMUU4ODk2NkI2NkE5OURGRUQ0MiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1QTZEOEVBNTE2RTkxMUU4ODk2NkI2NkE5OURGRUQ0MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pkszn5kAAAAZSURBVHjaYvz//z8DEIAIRiYGJEAOByDAACtJBAnql7s+AAAAAElFTkSuQmCC"
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/png;base64,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"
+
+/***/ }),
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(233);
+var content = __webpack_require__(222);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -49084,7 +49317,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(237)(content, options);
+var update = __webpack_require__(226)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -49101,22 +49334,22 @@ if(false) {
 }
 
 /***/ }),
-/* 233 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var escape = __webpack_require__(234);
-exports = module.exports = __webpack_require__(235)(false);
+var escape = __webpack_require__(223);
+exports = module.exports = __webpack_require__(224)(false);
 // imports
 
 
 // module
-exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(236)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: #101010;\r\n    font-family: Pixeled;\r\n    color: white;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n    cursor: crosshair;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
+exports.push([module.i, "\r\n@font-face {\r\n    font-family: \"Pixeled\";\r\n    src: url(" + escape(__webpack_require__(225)) + ") format('truetype');;\r\n}\r\n\r\nhtml, body\r\n{\r\n    background-color: #101010;\r\n    font-family: Pixeled;\r\n    color: white;\r\n    margin:0px;\r\n    overflow: hidden;\r\n    display: block;\r\n    cursor: crosshair;\r\n}\r\ncanvas\r\n{\r\n    position: absolute;\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    image-rendering:pixelated;\r\n    display: block;\r\n    background-color: black;\r\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 234 */
+/* 223 */
 /***/ (function(module, exports) {
 
 module.exports = function escape(url) {
@@ -49135,7 +49368,7 @@ module.exports = function escape(url) {
 
 
 /***/ }),
-/* 235 */
+/* 224 */
 /***/ (function(module, exports) {
 
 /*
@@ -49217,13 +49450,13 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 236 */
+/* 225 */
 /***/ (function(module, exports) {
 
 module.exports = "data:font/ttf;base64,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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAACDLjygXw889QAAEAAAAAAA1YnCKAAAAADVicIoAAD2ZxzMIzMAAAAIAAIAAQAAAAAAAQAAIzP2ZwAAH/8AAAMzHMwAAQAAAAAAAAAAAAAAAAAAAToMzAAAAAAAAAZmAAAGZgAABmYAAAzMAAATMwAAEzMAAAZmAAAJmQAADMwDMwzMAAAGZgAADMwAAAZmAAAMzAAAEAAAAAZmAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAGZgAADMwAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAZmAAAQAAAAEAAAABAAAAATMwAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAATMwAAEAAAAAzMAAAMzAAADMwAAAzMAAAQAAAADMwDMxAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAABmYAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAATMwAAEzMAABAAAAAQAAAABmYAABAAAAAGZgAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAAEAAAABAAAAAJmQAACZkAAAzMAAAMzAAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAZmQAAEAAAABAAAAAQAAAACZkAAAmZAAAMzAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAABmYAABAAAAAMzAAADMwAABAAAAATMwAAEzMAABZmAAAQAAAAH/8AAB//AAAf/wAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAABmYAABAAAAATMwAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAWZgAAEAAAABAAAAAQAAAABmYAAAzMAAAQAAAAHMwAABmZAAAWZgAAEAAAABAAAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEAAAABMzAAAQAAAAEAAAABAAAAAQAAAAEzMAABMzAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABMzAAATMwAAEAAAABMzAAAWZgAAEzMAABZmAAAQAAAAEAAAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABMzAAAQAAAAEzMAABAAAAAQAAAAEAAAABAAAAATMwAAEzMAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEzMAABMzAAAQAAAAEzMAABZmAAATMwAAFmYAABAAAAAQAAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAGZgAADMwAABAAAAAczAAAGZkAABAAAAAQAAAAEAAAABAAAAAQAAAAFmYAABZmAAAWZgAAFmYAABZmAAAWZgAAH/8AAB//AAATMwAAEzMAABAAAAAQAAAAEzMAABMzAAATMwAAEzMAABMzAAATMwAAGZkAABmZAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEzMAABAAAAATMwAAEAAAABMzAAAQAAAAEzMAABAAAAAJmQAACZkAABMzAAATMwAAEzMAABzMAAAWZgAAFmYAAAABAAABOgAmAAkAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAHgFuAAEAAAAAAAAAGQAAAAEAAAAAAAEABwAZAAEAAAAAAAIABwAgAAEAAAAAAAMAEgAnAAEAAAAAAAQADwA5AAEAAAAAAAUACwBIAAEAAAAAAAYABwBTAAEAAAAAAAcAPABaAAEAAAAAAAgAFgCWAAEAAAAAAAkACgCsAAEAAAAAAAoAjwC2AAEAAAAAAAwAOwFFAAEAAAAAAA0AIQGAAAEAAAAAABMAKQGhAAEAAAAAAQAADAHKAAMAAQQJAAAAMgHWAAMAAQQJAAEADgIIAAMAAQQJAAIADgIWAAMAAQQJAAMAJAIkAAMAAQQJAAQAHgJIAAMAAQQJAAUAFgJmAAMAAQQJAAYADgJ8AAMAAQQJAAcAeAKKAAMAAQQJAAgALAMCAAMAAQQJAAkAFAMuAAMAAQQJAAoBHgNCAAMAAQQJAAwAdgRgAAMAAQQJAA0AQgTWAAMAAQQJABMAUgUYAAMAAQQJAQAAGAVqQ29weXJpZ2h0IE9tZWdhUEM3NzcgMjAxNlBpeGVsZWRSZWd1bGFyRm9udFN0cnVjdCBQaXhlbGVkUGl4ZWxlZCBSZWd1bGFyVmVyc2lvbiAxLjBQaXhlbGVkRm9udFN0cnVjdCBpcyBhIHRyYWRlbWFyayBvZiBGU0kgRm9udFNob3AgSW50ZXJuYXRpb25hbCBHbWJIaHR0cDovL2ZvbnRzdHJ1Y3QuY29tL09tZWdhUEM3NzfSUGl4ZWxlZNMgd2FzIGJ1aWx0IHdpdGggRm9udFN0cnVjdApEZXNpZ25lciBkZXNjcmlwdGlvbjogPHA+VGhpcyBmb250IGlzIGluZmx1ZW5jZWQgYnkgdmFyaW91cyA4LWJpdCByZXRybyBzeXRsZSBmb250cyB3aXRoIGEgcmV0cm8gZmVlbC48L3A+Cmh0dHA6Ly9mb250c3RydWN0LmNvbS9mb250c3RydWN0aW9ucy9zaG93LzEyOTg0MjEvcGl4ZWxlZC01Rm9udFN0cnVjdCBOb24tQ29tbWVyY2lhbCBMaWNlbnNlRml2ZSBiaWcgcXVhY2tpbmcgemVwaHlycyBqb2x0IG15IHdheCBiZWRBd3NCZlYxbVh3PT0AQwBvAHAAeQByAGkAZwBoAHQAIABPAG0AZQBnAGEAUABDADcANwA3ACAAMgAwADEANgBQAGkAeABlAGwAZQBkAFIAZQBnAHUAbABhAHIARgBvAG4AdABTAHQAcgB1AGMAdAAgAFAAaQB4AGUAbABlAGQAUABpAHgAZQBsAGUAZAAgAFIAZQBnAHUAbABhAHIAVgBlAHIAcwBpAG8AbgAgADEALgAwAFAAaQB4AGUAbABlAGQARgBvAG4AdABTAHQAcgB1AGMAdAAgAGkAcwAgAGEAIAB0AHIAYQBkAGUAbQBhAHIAawAgAG8AZgAgAEYAUwBJACAARgBvAG4AdABTAGgAbwBwACAASQBuAHQAZQByAG4AYQB0AGkAbwBuAGEAbAAgAEcAbQBiAEgAaAB0AHQAcAA6AC8ALwBmAG8AbgB0AHMAdAByAHUAYwB0AC4AYwBvAG0ALwBPAG0AZQBnAGEAUABDADcANwA3IBwAUABpAHgAZQBsAGUAZCAdACAAdwBhAHMAIABiAHUAaQBsAHQAIAB3AGkAdABoACAARgBvAG4AdABTAHQAcgB1AGMAdAAKAEQAZQBzAGkAZwBuAGUAcgAgAGQAZQBzAGMAcgBpAHAAdABpAG8AbgA6ACAAPABwAD4AVABoAGkAcwAgAGYAbwBuAHQAIABpAHMAIABpAG4AZgBsAHUAZQBuAGMAZQBkACAAYgB5ACAAdgBhAHIAaQBvAHUAcwAgADgALQBiAGkAdAAgAHIAZQB0AHIAbwAgAHMAeQB0AGwAZQAgAGYAbwBuAHQAcwAgAHcAaQB0AGgAIABhACAAcgBlAHQAcgBvACAAZgBlAGUAbAAuADwALwBwAD4ACgBoAHQAdABwADoALwAvAGYAbwBuAHQAcwB0AHIAdQBjAHQALgBjAG8AbQAvAGYAbwBuAHQAcwB0AHIAdQBjAHQAaQBvAG4AcwAvAHMAaABvAHcALwAxADIAOQA4ADQAMgAxAC8AcABpAHgAZQBsAGUAZAAtADUARgBvAG4AdABTAHQAcgB1AGMAdAAgAE4AbwBuAC0AQwBvAG0AbQBlAHIAYwBpAGEAbAAgAEwAaQBjAGUAbgBzAGUARgBpAHYAZQAgAGIAaQBnACAAcQB1AGEAYwBrAGkAbgBnACAAegBlAHAAaAB5AHIAcwAgAGoAbwBsAHQAIABtAHkAIAB3AGEAeAAgAGIAZQBkAEEAdwBzAEIAZgBWADEAbQBYAHcAPQA9AAIMbgGQAAUABAgACAAAAAAACAAIAAAACAAAzAMzAAAAAAQAAAAAAAAAoAAAj0AAAAgAAAAAAAAAAEZTVFIAQAAg+wIQAAAAAAAjMwmZAAABFQAAAAAQABMzAAAAIAAAAAMAAAAAAAABmQDMAAAAAAAAAAAAAAAAAAAAAAAAAAAABQAAAAAQABAAAAMABwALABIAFgAAAQEBAQEBAQEBAQEBAQEBAAEAAQEBAQEIAAAA/XQAAAUXAAD66QAAAowAAP10AAAFFwAA/XX+8f9E/z8AAPqMAAAQAAAAAkUCiwAA/XUC+gKLAAD9dQL2AosAAP11AvoChwAAAAD/Q/9A/vb00RAAAADwAAAAAAACAAAAAAMzEzMAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQZmDM0AAPMzAAIAAAzMCZkTMwADAAcAAAEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAzMBmcAAPmZAAAGZwAA+ZkAAgAAAAAQABAAAAMAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPzNAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAADMwAAAzQAAPzMAAADNAAA/MwAAPzNAAD8zQAABmYDMwAA/M35mgMzAAADMwAAAzMAAAMzAAADNAAA/MwAAAM0AAD8zAAA/M0AAPzNAAD8zQAA/M0AAAMzAAD8zQADAAAAABAAFmYAAwAHABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPzNAAD8zQAAAzMAAPmaAAAGZgAA+ZoAAAZmAAADMwAABmcAAPmZAAAGZwAA+ZkAAAZmAzMAAPzNBmYDNAAA/MzzNAMzAAADMwAAAzMAAAmaAAADMwAA/M0AAPzNAAD8zAAA9mcAAPzNAAAAAQAADMwDMxMzAAMAAAEBAQEAAAAAAzMAAAzMBmcAAPmZAAAAAwAAAAAGZhMzAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAAAAAAMzAAAAAAMzAAD8zQMzDM0AAPMzDM0DMwAA/M0AAAADAzMAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAAAAAAAAMzAAD5mgAAAzMAAAAAAzMAAPzNAzMMzQAA8zMMzQMzAAD8zQAAAAEAAAZmCZkQAAALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAGZgMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAAABAAD8zQMzAzMAAwAAAQEBAQAAAAADMwAA/M0GZgAA+ZoAAAABAAAJmQmZDMwAAwAAAQEBAQAAAAAJmQAACZkDMwAA/M0AAAABAAAAAAMzAzMAAwAAAQEBAQAAAAADMwAAAAADMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAIAAAAADMwTMwADAAcAAAEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAAMzDM0AAPMz/M0TMwAA7M0AAQAAAAADMxMzAAMAAAEBAQEAAAAAAzMAAAAAEzMAAOzNAAAABQAAAAAMzBMzAAUACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAAMzAAAAAAAAAzMAAPM0AAAJmQAAAAAGZgAA/M0AAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAzQDMwAA/M0ABQAAAAAMzBMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAD5mgZmAzMAAPzNAzMDNAAA/MwDNAMzAAD8zQAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQADAAAAAAzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAACZkAAAAAAAADMwAA8zQAAAzMAAD2ZwAABmYAAAAAAzMAAPzNAzMGZgAA+ZoGZgmaAAD8zQAA/MwAAPzNAAAABAAAAAAMzBMzAAMABwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAA+ZoAAAzNAAD8zAAA/M0AAPmaDM0DMwAA/M0ABAAAAAAMzBMzAAMABwALABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAAAAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzBmcAAAMzAAD2ZgAAAAcAAAAADMwTMwADAAcACwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQAAAAIAAAAADMwTMwADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD2ZwAADMwAAAzMAzQAAPzM8zQDMwAABmYAAAmaAADszQACAAADMwMzDMwAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAADMwMzAAD8zQZmAzMAAPzNAAIAAAAAAzMMzAADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAABmYAAPmaCZkDMwAA/M0AAgAABmYJmRAAAAMABwAAAQEBAQEBAQEAAAAACZkAAPZnAAAJmQAABmYDMwAA/M0GZgM0AAD8zAAGAAAAABAAEzMAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAAMzAAAAAAAAAzMAAPM0AAADMwAACZkAAAM0AADzMwAACZkAAAAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQMzAzQAAPzMAAADNAAA/MwDNAMzAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAMACwAAAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAAAzMMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAAAAABMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAATMwAA/M0AAPzMAAD8zQAA9mcABAAAAAAMzBMzAAMACQANABEAAAEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAPzNAAAGZgAA8zQAAAMzAAAAAAAACZkAAAAAAzMAAPzNAzMGZgAAAzMAAPZnAAAMzQAA8zMMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAABMzAAD5mQAABmcAAOzNAAAJmQAA9mcAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAzMEzMAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAD2ZwAADMwAAAAAAzMAAPzNAzMDMwAA/M0AAAzNAAADMwAA8AAABQAAAAAMzBMzAAMABwALABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAAAAAGZgAA+ZoGZgMzAAD8zQZmAzQAAPzM8zQTMwAA+ZkAAPzNAAD2ZxAAAzMAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAADMwAACZkAAAAAEzMAAPAAAAD8zQADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQAEAAAAAAzMEzMAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAAHAAAAABAAEzMAAwAHAAsADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAzMAAAM0AAD5mQAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAPMzAAAJmQAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M38zQzNAADzMwMzCZoAAPZmCZoDMwAA/M0AAAADAAAAAAzMEzMAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAAACZkAAPZnDMwDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD2ZwABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAABmYAAAmaAAD8zQAA/MwAAPM0AAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAADAAAAAAzMEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAAAAAzMAAPzNAzMQAAAA8AAAABAAAADwAAAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMGZgAA+ZoAABAAAADwAAAAEAAAAPAAAAAACQAAAAAQABMzAAMABwALAA8AEwAXABsAHwAjAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAADNAAA8zMAAAMzAAADMwAAAzMAAPmaAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQMzBmcAAPmZAAAGZwAA+ZkAAAAFAAAAABAAEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAADMwAAAzMAAPM0AAADMwAACZkAAAM0AAAAAAmZAAD2ZwmZAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAJmRMzAAcAAAEBAQEBAQEBAAAAAAmZAAD5mgAABmYAAAAAEzMAAPzNAADzMwAA/M0AAAADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAAABmYAAPmaBmYGZgAA+ZoGZgZnAAD5mQAAAAEAAAAACZkTMwAHAAABAQEBAQEBAQAAAAAGZgAA+ZoAAAmZAAAAAAMzAAAMzQAAAzMAAOzNAAAAAwAADMwJmRMzAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAAAAzQAAPzMAzQDMwAA/M0AAAABAAAAAAzMAzMAAwAAAQEBAQAAAAAMzAAAAAADMwAA/M0AAAACAzMMzAmZEzMAAwAHAAABAQEBAQEBAQZmAAADMwAA+ZoAAAMzAAAMzAM0AAD8zAM0AzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAAMzAAADMwMzAAD8zfzNCZkAAAZnAADwAAAAAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQABAAAAAAzMEAAACQAAAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAAAAAQAAAA/MwAAPzNAAD8zQAA+ZoAAQAAAAAMzBAAAAsAAAEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAZmAAD8zQAABmYAAAAAEAAAAPzMAAD2ZwAAAzMAAAMzAAD2ZwAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBAAAAAAMzAAAJmQAA/M0AAPmaAAAAABAAAAD5mQAA9mcAAAZmAAD5mgACAAAAAAMzEAAAAwAHAAABAQEBAQEBAQAAAAADMwAA/M0AAAMzAAAAAAmZAAD2ZwzMAzQAAPzMAAIAAAAACZkQAAAFAAkAAAEBAQEBAQEBAQEAAAAABmYAAAMzAAD8zQAAAzMAAAAAAzMAAAZmAAD2ZwzMAzQAAPzMAAAAAwAAAAAMzBAAAAMABwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAADMwAABmYAAPmaAAAAAAMzAAD8zQZmAzMAAPzN+ZoQAAAA9mYAAPzNAAD8zQAAAAEAAAAAAzMQAAADAAABAQEBAAAAAAMzAAAAABAAAADwAAAAAAMAAAAAEAAQAAADAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPZnAAADMwAAAzMAAPzNAAAJmQAA/M0AAAMzAAADNAAAAAAJmQAA9mcAABAAAAD8zAAA/M0AAPZnAAAJmQAAAzMAAAM0AADwAAAAAAIAAAAADMwQAAAHAA8AAAEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAAAAEAAAAPzMAAD8zQAA9mcAAAZmAAADMwAABmcAAPAAAAQAAAAADMwQAAADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzCZkAAPZnAAAJmQAA9mcJmQM0AAD8zAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQMzAAD8zfZnEAAAAPZmAAD5mgAAAAIAAAAADMwQAAADAAkAAAEBAQEBAQEBAQEJmQAA+ZoAAAZmAAD2ZwAADMwAAAmZAzMAAPzN9mcGZgAACZoAAPAAAAAAAQAAAAAMzBAAAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEAAAAPzMAADzNAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAQAAAAAMzBAAAAkAAAEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAAAAEAAAAPmZAAD8zQAA/M0AAPzNAAMAAAAADMwQAAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzAAAABQAAAAAQABAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEGZgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMJmgAA9mYAAAmaAAD2ZgAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPmaAAADMwAA9mcAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwZmAAD5mgAADM0AAPMzAAAMzQAA8zMAAAAJAAAAABAAEAAAAwAHAAsADwATABcAGwAfACMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADzMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD5mgAAAzMAAAMzAAADMwAA8zQAAAMzAAAJmQAAAzQAAAAAAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQAAAzMAAPzNAzMDNAAA/MwAAAM0AAD8zAAAAAEAAAAADMwQAAALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAACZoAAPmZAAAGZwAA8AAAAAADAAAAAAzMEAAABQAJABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPZnAAADMwAAAAAAAPmaAAAMzAAA/M0AAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAAAzQAAPzMAAD8zQABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAAEAAAJmQzMEAAAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAACZkDMwAA/M0AAAMzAAD8zQMzAzQAAPzMAAADNAAA/MwAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQACAAD5mgzMEAAABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAABmYAAAMzAAD5mhZmAADzMwAA/M0AAPmaCZkMzQAA8zMABgAAAAAMzBMzAAMABwALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAAAzMAAAAAAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNBmcDMwAA/M0ABAAAAAAMzBzMAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAD2ZwAABmYAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0GZgMzAAD8zQMzAzMAAPzNAAUAAAAADMwczAALAA8AEwAXABsAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPmZAAAGZwAA8AAAAAZmAAD5mhAAAzMAAPzNBmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAAABgAAAAAMzBzMAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA9mcAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNAAQAAAAADMwZmQALAA8AEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAADMwAA/M0AAPmaAAAAAAAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAAADMwAA/M0ABgAAAAAMzCMzAAsADwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQZmAzMAAPzNAzMGZwAA+ZkAAAZnAAD5mQZnAzMAAPzNAAEAAAAAFmYTMwAVAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAA+ZoAABMzAAD2ZgAACZoAAPZmAAAJmgAA8zMAAPmaAAAAABAAAAD5mQAABmcAAAMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAZmAAD5mgAGAAD5mgzMEzMAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAzNAADzMwmZAzQAAPzMAzQDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAZmAAAAAAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAMAAAAADMwZmQALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAADMwAAPZnAAAJmQAA9mcAAAmZAADzNAAAAzMAAAZmAAADMwAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAABmYczAADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAMzAAD8zQAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAAAAwAAAAAGZhzMAAMABwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAAAAMzAAAAABMzAADszRZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAmZHMwAAwAHAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAPmaAAADMwAAAAATMwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAwAAAAAJmRmZAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABMzAADszRZmAzMAAPzNAAADMwAA/M0AAAACAAAAABAAEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQzMAAADNAAA8zMAAPzNAAADMwAACZkAAPmaAAADMwAA/M0AAAZmAAADMwzNAADzM/zNCZkAAAMzAAAGZwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAYAAAAADMwczAAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAATMwAA/M0AAPzMAADzNAAACZkAAAMzAAAGZwAA7M0WZgMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA/M0AAAZmAADzNAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAGAAAAAAzMHMwAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAAAAAzMAAPzNAzMMzQAA8zMAAAzNAADzMwzNAzMAAPzNBmYDMwAA/M0DMwMzAAD8zQACAAAAAAzMEzMAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAJmQMzAAD8zfZnEzMAAPzNAAD2ZgAA+ZoABQAAAAAMzBMzAAMACwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAA/M0AAAMzAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAAAAADMwAA/M0DMwMzAAAGZgAA/M0AAPma/M0QAAAA8AAMzAM0AAD8zAM0AzMAAPzNAAAABQAAAAAMzBZmAAMACQANABEAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAZnAzMAAPzNAAADMwAA/M0ABwAAAAAMzCAAAAMACQANABEAFQAZAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwGZwMzAAD8zQMzBmYAAPmaAAAGZgAA+ZoGZgM0AAD8zAADAAAAABZmEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAAQAAAA+ZkAAPM0AAAJmQAA9mcAABZmAAD2ZgAACZoAAAMzAzMAAPzNBmYDMwAA/M32ZwmZAAADMwAAAzQAAPZmAAD8zQAA/M0AAAAGAAD5mgzMEAAAAwAJAA0AEQAVABkAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwAAAAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAAD5mgAABmYAAPM0AAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQAEAAAAAAzMGZkAAwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAMzAAA9mcAAAmZAADzNAAABmYAAAAAAAAGZgAACZkDMwAA/M32ZxAAAAD2ZgAA/M0AAPzNEzMDMwAA/M0DMwMzAAD8zQADAAAAAAZmGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA/M0AAAMzAAD5mgAAAzMAAAAAEAAAAPAAEzMDMwAA/M0DMwMzAAD8zQAAAAMAAAAABmYZmQADAAcACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAAAADMwAAAAAQAAAA8AATMwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAJmRZmAAMABwALAAABAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAAAzMAAAMzAAAAABAAAADwABMzAzMAAPzNAAADMwAA/M0AAAACAAAAAAzMFmYAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAmZAAD8zQAA/M0AAPzNAAADMwAAAzMAAAZmAAADMwMzAAD8zfzNCZkAAAZnAAD8zAAAAzQAAAMzAAADMwAA/M0AAOzNAAYAAAAADMwZmQAHAA8AEwAXABsAHwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAMzAAD8zQAABmYAAPzNAAADMwAAAzMAAPM0AAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAAAAAQAAAA/MwAAPzNAAD2ZwAABmYAAAMzAAAGZwAA8AATMwMzAAD8zQAAAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQACAAAAAAzMEAAAAwALAAABAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPZnAAAGZgMzAAD8zfmaEAAAAPzMAAD2ZwAA/M0AAgAAAAAMzBmZAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAAmZAAD2ZwAACZkAAPM0AAAMzAAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNFmYDMwAA/M0AAwAAAAAMzBZmAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAADMwAAPZnAAAJmQAA8zQAAAzMAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAAIAAAAAAzMZmQADAAcAAAEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAQAAAAADMwmZAAMAAAEBAQEAAAAAAzMAAAAACZkAAPZnAAAABQAAAAAMzBAAAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAACZkAAPM0AAADMwAAAAAAAAmZAADzNAAAAzMAAAAAAAAJmQAAAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDMwAA/M0DMwM0AAD8zAAAAAEAAAAACZkTMwALAAABAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAAAzMAAPzNAAAAAAmZAAADMwAABmcAAPmZAAD8zQAA9mcAAAABAAAAAAmZEAAACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAAAGZgAAAzMAAAZnAAD5mQAA/M0AAPmaAAAAAwAAAAAMzBMzAAMADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAA9mcAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAAAMzAAD8zQMzDM0AAPzMAAADNAAA8zMAAAZmAAD5mgzNAzMAAPzNAAAABQAAAAAQABMzAAMABwALAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAMzAAADNAAAAAADMwAA/M0DMwzNAADzMwAADM0AAPMzDM0DMwAA/M0AAAMzAAD8zQAAAAUAAAAAEAAQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAADMwAAAzQAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAADNAAA/MwAAAACAAAAABMzEzMAAwANAAABAQEBAQEBAQEBAQEBARAAAAD5mQAA/M0AAPzNAAD8zQAAEzMAAPZmAAAMzAM0AAD8zPM0EAAAAPzMAAAGZwAA9mYAAPZnAAAAAgAAAAAMzBAAAAMACwAAAQEBAQEBAQEBAQEBCZkAAPmaAAD8zQAACZkAAPZnAAAMzAAAAzMDMwAA/M38zQmZAAADMwAAAzQAAPAAAAUAAAAAHMwTMwAFAAkADQAVAB0AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBARAAAAADMwAACZkAAPZnAAADMwAA8zMAAAMzAADzNAAACZkAAPmaAAAGZgAADM0AAPmaAAAMzAAA/M0AAAAACZkAAPmaAAD8zQmZAzMAAPzN+ZoMzQAA8zP8zRMzAAD8zQAA8zMAAPzNDMwDNAAAAzMAAPzNAAD8zAAFAAAAABzMEzMABQAJAA0AFQAdAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEQAAAAAzMAAAmZAAD2ZwAAAzMAAPMzAAADMwAACZoAAPmaAAAMzAAA/M0AAOZnAAAJmQAA+ZoAAAZmAAAAAAZmAAD8zQAA/M0GZgMzAAD8zfzNDM0AAPMzBmYDMwAAAzQAAPzMAAD8zfZnEzMAAPzNAADzMwAA/M0ABQAAAAAczBAAAAMACQANABMAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAADM0AAAMzAAAJmQAA9mcAAAMzAADpmgAACZkAAAMzAAAJmgAA+ZoAAAzMAAD8zQAAAzMDMwAA/M38zQZmAAD8zQAA/M0GZgMzAAD8zfmaCZkAAAZnAADwAAmZAzMAAAM0AAD8zAAA/M0AAAABAAAAABAAEzMADQAAAQEBAQEBAQEBAQEBAQEDMwAA/M0AAAMzAAADMwAABmYAAPmaAAAJmgAAAAAJmQAAAzMAAAZnAAD5mQAA/M0AAPmaAAD8zQACAAAAAAzMEzMACwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAAAAZmAAAAABAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQADAAAAAAzMEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzBmYAAPmaCZkDNAAA/MzzNBMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAAABAAAAAAzMEzMABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAATMwAA/M0AAPAAAAIAAAAADMwTMwAHAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAEAAAAPMzAAAMzQAA8AAQAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABAAAAAAMzBMzAAUACQANABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAA9mcAAAMzAAAAAAAAAzMAAAAAAAD2ZwAADMwAAAAABmYAAPzNAAD8zQZmAzMAAPzNAzMDMwAA/M0DMwM0AAADMwAA+ZkAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAMAAAAADMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAADMwAA/M0DMwzNAAD8zAAAAzQAAPMzAAAGZgAA+ZoMzQMzAAD8zQAAAAEAAAAAAzMTMwADAAABAQEBAAAAAAMzAAAAABMzAADszQAAAAUAAAAADMwTMwADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQAAAAUAAAAAEAATMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAACZkAAPZnAAAJmQAA9mcJmQZnAAD5mQAABmcAAPmZBmcDMwAA/M0AAAADAAAAABAAEzMAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAmZAzMAAPzN9mcTMwAA/M0AAPzMAADzNAAADMwAAAM0AAADMwAA7M0AAAACAAAAAAzMEzMABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABMzAAD8zQAA/MwAAPM0AAAJmQAAAzMAAAZnAADszQADAAAAABAAEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQAAAAAQAAAA8zMAAAmZAADzNAAAEAAAAAAAAzMAAPzNCZkDMwAA/M0GZwMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAzMAAPzNAAAQAAAA/MwAAPzNAAD8zQAAAAAQAAAAAzMAAPzNAADwAAAAEAAAAPAAAAAAAgAAAAAMzBMzAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAADMwDNAAA/MzzNBMzAAD2ZgAA9mcAAAADAAAAAAzMHMwACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA+ZoAAAZmAADzNAAABmYAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAzMDMwAA/M0AAAADAAAAAAzMGZkACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAA8zQAAAMzAAAGZgAAAzMAAAAAEzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAADMwAA/M0AAAADAAAAABMzEzMAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAM0AAAAAAAAAzMAAPMzAAD5mgAAEAAAAPmZAAAGZwAA+ZkAAAAAAzMAAPzNAzMGZgAA+Zr8zRAAAAADMwAA/M0AAPzMAAD8zQAA9mcAAAADAAAAAAzMHMwABQAJAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAA/M0AAAZmAAAAAAAABmYAAAAAEzMAAPzNAADwABZmAzMAAPzNAzMDMwAA/M0AAwAAAAAMzBMzAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAmZAADzNAAAAzMAAAmZAAD2ZwAAAAAAAAmZAAAAAAMzAAD8zQMzDM0AAPzMAAD8zQAA+ZoMzQMzAAD8zQAAAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAAMzAAA9mcAAAmZAAAAAAMzAAAGZgAACZoAAPzNAAD8zAAA8zQAAAABAAAAAAMzEzMAAwAAAQEBAQAAAAADMwAAAAATMwAA7M0AAAADAAAAAAmZGZkAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAAEzMAAOzNFmYDMwAA/M0AAAMzAAD8zQAAAAMAAAAADMwTMwADAAcACwAAAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAAEAAAAPAAAAAAAwAAAAAZmRMzAAMABwARAAABAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAABMzAAD5mgAA/MwAAPmaAAD8zQAADM0AAAmZAAAAAAMzAAD8zQMzAzMAAPzN/M0QAAAA8zMAABAAAAD2ZgAA9mcAAgAAAAAWZhMzAAMAEQAAAQEBAQEBAQEBAQEBAQEBAQEBEzMAAPmZAADzNAAAAzMAAAZmAAADMwAACZoAAPMzAAD5mgAAAzMDMwAA/M38zRMzAAD5mQAABmcAAPZmAAD2ZwAACZkAAPZnAAAAAgAAAAATMxMzAAMADwAAAQEBAQEBAQEBAQEBAQEBARAAAAADMwAA8zMAAPmaAAAQAAAA+ZkAAAZnAAD5mQAAAAAJmQAA9mcAABAAAAADMwAA/M0AAPzMAAD8zQAA9mcABwAAAAAMzBzMAAMABwALABMAFwAbAB8AAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD5mgAAAzMAAPzNAAADMwAA9mcAAAMzAAADMwAA/M0AAAZmAAADMwAA8zQAAAZmAAAAAAAABmYAAAAABmYAAPmaBmYDMwAA/M0GZgM0AAD8zPM0EzMAAPmZAAD8zQAA9mcQAAMzAAD8zQZmAzMAAPzNAzMDMwAA/M0AAAAEAAAAAAzMHMwABwAPABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD5mgAABmYAAPM0AAAGZgAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAEAAAAADMwTMwALAAABAQEBAQEBAQEBAQEAAAAACZkAAPZnAAADMwAABmYAAAMzAAAAAAMzAAADMwAADM0AAPZmAAAJmgAA7M0AAAABAAD8zRAAEzMACwAAAQEBAQEBAQEBAQEBBmYAAPmaAAADMwAACZkAAAM0AAD5mQAA/M0DMwAAEzMAAPAAAAAQAAAA7M0AAPzNAAAAAgAAAAAMzBMzAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaEAADMwAA/M0AAgAAAAAMzBMzAAMADwAAAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA8zQAAAzMAAD2ZwAABmYAAPmaAAAGZgAAAzMGZgAA+Zr8zRMzAAD8zQAA/MwAAPzNAAD5mgAA/M0AAwAAAAAMzBMzAAMABwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA/M0AAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAZmAAADMwZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAAAQAAAAAMzBMzAAUAAAEBAQEBAQAAAAAMzAAA9mcAAAAAEzMAAPzNAADwAAACAAD8zRAAEzMAAwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAPzNAAD5mgAAAzMAAAmZAAADNAAA/MwAAPZnAAADMwzNAADzM/maBmYAABAAAADwAAAA+ZoAAAMzAAD8zQABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAzMAAD2ZwAACZkAAPZnAAAJmQAAAAATMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAAABQAAAAAQABMzAAMABwALABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAACZkAAAM0AADwAAAAAzMAAAMzAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAADNAAAAAAGZgAA+ZoAAAZmAAD5mgzMBmcAAPmZ8zQGZgAABmYAAAZnAAD5mQAA+ZoAAPmaDMwGZwAA+ZkAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAAADMwAA8zQAAAmZAAAAAAMzAAD8zQMzBmYAAPmaBmYDMwAA/M0DMwM0AAD8zAM0AzMAAPzNAAAAAgAAAAAMzBMzAAcADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0ABQAAAAAMzBzMAAcADwATABcAGwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAPzNAAAGZgAA/M0AAAMzAAADMwAA9mcAAAZmAAD2ZwAAAzMAAAZmAAADMwAAAAATMwAA+ZkAAPzNAAD2ZwAADMwAAAM0AAADMwAA7M0WZgMzAAD8zQMzAzMAAPzNAAADMwAA/M0AAAAFAAAAAAzMEzMAAwAHAAsAEwAXAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAAAzMAAPmaAAADMwAA/M0AAAMzAAD2ZwAAAzMAAAMzAAD8zQAABmYAAAMzAAAAAAZmAAD5mgZmAzMAAPzNBmYDNAAA/MzzNBMzAAD5mQAA/M0AAPZnEAADMwAA/M0AAAACAAAAABAAEzMAAwALAAABAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD5mgAA/M0AAAzNAAAAAAMzAAD8zQAAEAAAAPMzAAAQAAAA7M0AAwAAAAAQABMzAAMACwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAADMwAA/M0AAAmZAAD8zQAAAzMAAAM0AAAJmQMzAAD8zfZnEzMAAPzNAAD8zAAA8zQAAAzMAAADNAAAAzMAAOzNAAAAAQAAAAAMzBMzAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA7M0AAAmZAAD2ZwAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzDM0AAPMzAAAMzQAA8zMMzQMzAAD8zQABAAAAAAzMEzMABwAAAQEBAQEBAQEAAAAADMwAAPzNAAD5mgAAAAATMwAA7M0AABAAAADwAAAAAAIAAAAADMwTMwADAA0AAAEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAzMAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA9mcAAAAFAAAAAAzMEzMAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNAAAAAQAAAAAQABMzAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAAEAAAAAMzAAD8zQAA8AAAAAABAAAAAAzMEzMACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAABmYAAAmaAAD5mQAABmcAAOzNAAAAAwAAAAAQABMzAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgZmAAD5mgAABmYAAPma+ZoDMwAAAzMAAAZmAAADNAAAAzMAAPzNAAD8zAAA+ZoAAPzNAAD8zQAAAAkAAAAAEAATMwADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwZnAAD5mQAABmcAAPmZAAAAAQAA/M0QABMzAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABMzAADwAAAAEAAAAPAAAAD5mgAAAAEAAAAADMwTMwAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAmZAAAJmgAA+ZkAAAZnAADszQABAAAAABAAEzMACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAATMwAA8AAAABAAAADwAAAAEAAAAOzNAAAAAQAA/M0TMxMzAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABMzAADwAAAAEAAAAPAAAAAQAAAA8AAAAPmaAAAAAgAAAAAQABMzAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zRAAAAADMwAA9mYAAPZnAAMAAAAAEzMTMwADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRMzAAD2ZgAA9mcAABMzAADszQACAAAAAAzMEzMAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEzMAAPZmAAD2ZwAAAAMAAAAADMwTMwADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwZmAAADMwAAAzQAAPMzDM0DMwAA/M0AAAAEAAAAABZmEzMAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwzNAADzM/zNEzMAAPmZAAADNAAA8zMAAAZmAAD2ZxAAAzMAAPzNAAMAAAAADMwTMwADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAJmQAA9mcMzAM0AAD8zPM0CZkAAAMzAAADNAAAAzMAAOzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAAJmQAAAzMAAPM0AAAJmQAAAzMDMwAA/M38zQmZAAADMwAA8zQMzAM0AAD8zAAEAAAAAAzMEzMAAwAHAA8AFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAD5mgAAAAAAAAZmAAADMwAAAAADMwAA/M0DMwMzAAD8zQAACZkAAPzNAAD8zQAA/M0JmQM0AAADMwAA+ZkAAAADAAAAAAzMEAAAAwAHABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAAMzAzMAAPzNBmYDMwAA/M32ZxAAAAD8zAAA/M0AAPzNAAD8zQAA/M0AAAABAAAAAAzMEAAABQAAAQEBAQEBAAAAAAzMAAD2ZwAAAAAQAAAA/MwAAPM0AAIAAPzNEAAQAAADAA8AAAEBAQEBAQEBAQEBAQEBAQEJmQAA/M0AAPmaAAADMwAACZkAAAM0AAD8zAAA9mcAAAMzCZkAAPZn+ZoGZgAADM0AAPMzAAD5mgAAAzMAAPzNAAIAAAAADMwQAAADAAsAAAEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAAmZAzMAAPzN9mcQAAAA9mYAAPzNAAD8zQAFAAAAABAAEAAAAwAHAAsAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPAAAAADMwAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAAM0AAAAAAZmAAD5mgAABmYAAPmaDMwDNAAA/MzzNAZmAAAGZgAAAzQAAPzMAAD5mgAA+ZoMzAM0AAD8zAAAAAUAAAAADMwQAAADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAmZAAAAAAAAAzMAAPM0AAAJmQAAAAAAAAMzAADzNAAACZkAAAAAAzMAAPzNAzMDMwAA/M0DMwMzAAD8zQMzAzMAAPzNAzMDNAAA/MwAAAACAAAAAAzMEAAABwAPAAABAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwAAAFAAAAAAzMGZkABwAPABMAFwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAA/M0AAAZmAAD8zQAAAzMAAAMzAAD2ZwAABmYAAPZnAAADMwAABmYAAAMzAAAAABAAAAD5mQAA/M0AAPmaAAAJmQAAAzMAAAM0AADwABMzAzMAAPzNAzMDMwAA/M0AAAMzAAD8zQAAAAUAAAAADMwQAAADAAcACwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAAAAAzMAAPzNAzMDMwAA/M0GZgMzAAD8zfZnEAAAAPmZAAD8zQAA+ZoMzAM0AAD8zAAAAAIAAAAAEAAQAAADAAsAAAEBAQEBAQEBAQEBAQAAAAADMwAACZkAAPmaAAD8zQAADM0AAAAAAzMAAPzNAAAMzAAA9mcAAAzNAADwAAADAAAAABAAEAAAAwALABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAD2ZwAAAzMAAAMzAAD8zQAACZkAAPzNAAADMwAAAzQAAAZmAzMAAPzN+ZoQAAAA/MwAAPzNAAD2ZwAACZkAAAMzAAADNAAA8AAAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAAAzMAAPzNAAD5mgAAAAAQAAAA+ZkAAAZnAADwAAAABmYAAPmaAAAABAAAAAAMzBAAAAMABwALAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAABmYAAPZnAAADMwAABmYAAAMzAAD2ZwAABmYAAAAAAzMAAPzNAzMJmQAA9mcAAAmZAAD2ZwmZAzQAAPzMAAEAAAAADMwQAAAHAAABAQEBAQEBAQAAAAAMzAAA/M0AAPmaAAAAABAAAADwAAAADMwAAPM0AAAAAgAAAAAMzBAAAAMACQAAAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkDMwAA/M32ZxAAAAD2ZgAA+ZoAAAAFAAAAAAzMEAAAAwAHAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAAAzMAAAZmAAADMwAA9mcAAAZmAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcGZgMzAAD8zQMzAzQAAPzMAAAAAQAAAAAQABAAAAcAAAEBAQEBAQEBBmYAAPmaAAAQAAAA+ZkAAAAADMwAAAM0AAD8zAAA8zQAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAAAzMAAAZmAAADMwAAAAADMwAAAzMAAAmaAAD5mQAABmcAAPAAAAAAAwAAAAAQABAAAAMABwAbAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPZmAAD8zQAAAzMAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAGZgMzAAD8zQAAAzMAAPzN+ZoDMwAAAzMAAAMzAAADMwAAAzQAAPzMAAD8zQAA/M0AAPzNAAD8zQAAAAkAAAAAEAAQAAADAAcACwAPABMAFwAbAB8AIwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAAJmQAAAzQAAPMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPmaAAADMwAAAzMAAAMzAADzNAAAAzMAAAmZAAADNAAAAAADMwAA/M0AAAMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwMzAAD8zQMzAzMAAPzNAAADMwAA/M0DMwM0AAD8zAAAAzQAAPzMAAAAAQAA/M0QABAAAAsAAAEBAQEBAQEBAQEBAQzMAADzNAAAAzMAAAZmAAADMwAAAzQAAPzNAzMAABAAAADzMwAADM0AAPMzAAD5mgAAAAEAAAAADMwQAAAJAAABAQEBAQEBAQEBCZkAAPZnAAADMwAABmYAAAMzAAAAAAZmAAAJmgAA+ZkAAAZnAADwAAABAAAAABAAEAAACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAAAAAQAAAA8zMAAAzNAADzMwAADM0AAPAAAAAAAQAA/M0TMxAAAA8AAAEBAQEBAQEBAQEBAQEBAQEQAAAA8AAAAAMzAAADMwAAAzMAAAMzAAADNAAAAzMAAPzNAzMAABAAAADzMwAADM0AAPMzAAAMzQAA8zMAAPmaAAAAAgAAAAAQABAAAAMACwAAAQEBAQEBAQEBAQEBDMwAAPmaAAD8zQAA/M0AAAZmAAAJmgAAAzMDMwAA/M38zQzMAAADNAAA+ZkAAPZnAAMAAAAAEzMQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAAM0AAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcAABAAAADwAAACAAAAAAzMEAAAAwAJAAABAQEBAQEBAQEBCZkAAPmaAAD8zQAAAzMAAAmZAAADMwMzAAD8zfzNEAAAAPmZAAD2ZwAAAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQAAAAAJmQAAAAAAAPZnAAAJmQAAAzMAAPM0AAAJmQAAAAADMwAA/M0DMwMzAAADMwAAAzMAAPZnCZkDNAAA/MwAAAAEAAAAABZmEAAAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBDMwAAAZnAAAAAAAAAzMAAOmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAmZAAAGZwAAAAADMwAA/M0DMwmZAAD2Z/zNEAAAAPmZAAADMwAA9mcAAAMzAAD5mgzMAzQAAPzMAAMAAAAADMwQAAADAAcAEQAAAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAD8zQAAAzMAAAZmAAD5mgAABmYAAPmaAAAJmQAAAAAGZgAA+ZoJmQMzAAD8zfZnBmYAAAMzAAADMwAAAzQAAPAAAAQAAAAADMwZmQADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPmaAAAGZgAA8zQAAAZmAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQMzAzMAAPzNAAQAAAAADMwWZgADAAsADwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAD5mgAA/M0AAAzMAAD2ZwAACZkAAPM0AAADMwAABmYAAAMzAAAJmQMzAAD8zfZnEAAAAPZmAAD8zQAA/M0TMwMzAAD8zQAAAzMAAPzNAAMAAPmaDMwTMwADAAcAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBmYAAAMzAAAAAAAAAzMAAPZnAAD8zQAAAzMAAAMzAAADMwAA/M0AAAMzAAD8zQAA+ZoDMwAA/M0DMwmZAAD2ZwMzDMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAAAAwAAAAAMzBmZAAUACQANAAABAQEBAQEBAQEBAQEBAQAAAAAMzAAA9mcAAPzNAAAGZgAAAAAAAAZmAAAAABAAAAD8zAAA8zQTMwMzAAD8zQMzAzMAAPzNAAMAAAAADMwQAAADAAsADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAJmQAA8zQAAAMzAAAJmQAA9mcAAAAAAAAJmQAAAAADMwAA/M0DMwmZAAD8zQAA/M0AAPzNCZkDNAAA/MwAAAABAAAAAAzMEAAACwAAAQEBAQEBAQEBAQEBAAAAAAmZAAD2ZwAADMwAAPZnAAAJmQAAAAADMwAAAzMAAAmaAAD8zAAA/M0AAPZnAAAAAgAAAAADMxMzAAMABwAAAQEBAQEBAQEAAAAAAzMAAPzNAAADMwAAAAAMzAAA8zQQAAMzAAD8zQADAAAAAAmZEzMAAwAHAAsAAAEBAQEBAQEBAQEBAQMzAAADMwAA+ZoAAAMzAAADMwAAAzMAAAAADMwAAPM0EAADMwAA/M0AAAMzAAD8zQAAAAQAAAAADMwTMwADAAcACwAPAAABAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAZmAAADMwAA/M0AAAMzAAAAAAMzAAD8zQMzAzMAAPzNAAAJmQAA9mcMzQMzAAD8zQADAAAAABmZEAAAAwAHABEAAAEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAEzMAAPmaAAD8zAAA+ZoAAPzNAAAMzQAACZkAAAAAAzMAAPzNAzMDMwAA/M38zQzMAAD2ZwAADM0AAPmZAAD2ZwACAAAAABZmEAAAAwARAAABAQEBAQEBAQEBAQEBAQEBAQETMwAA+ZkAAPM0AAADMwAABmYAAAMzAAAJmgAA8zMAAPmaAAADMwMzAAD8zfzNEAAAAPmZAAAGZwAA+ZkAAPZnAAAGZgAA+ZoAAAACAAAAAAzMEzMAAwATAAABAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA9mcAAPzNAAADMwAAAzMAAAMzAAD8zQAAAzMAAPzNAAAAAAZmAAD5mgAADMwAAAM0AAADMwAA/M0AAPzMAAD8zQAA/M0AAPmaAAcAAAAADMwZmQADAAcACwATABcAGwAfAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQmZAAADMwAA+ZoAAAMzAAD8zQAAAzMAAPZnAAADMwAAAzMAAPzNAAAGZgAAAzMAAPM0AAAGZgAAAAAAAAZmAAAAAAMzAAD8zQMzAzMAAPzNBmYDMwAA/M32ZxAAAAD5mQAA/M0AAPmaDMwDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAABAAAAAAMzBmZAAcADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEB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AQEAAAAACZkAAAMzAAD2ZwAAAAATMwAAAzMAAPmaAADwAAAAAAEAAAAADMwTMwAHAAABAQEBAQEBAQAAAAAJmQAAAzMAAPZnAAAAABAAAAADMwAA+ZkAAPM0AAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAJmgAA/M0AAPmZAAD8zQAA+ZoAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAzMAAPzNAAADMwAADM0AAPZmAAADMwAA/M0AAAAABmYAAAMzAAAGZwAA/MwAAPzNAAD8zQAA+ZoAAQAA/M0QABMzAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAmZAAD2ZwAAEzMAAPmZAAAGZwAA8AAAAPmaAAAAAQAA/M0QABAAAA8AAAEBAQEBAQEBAQEBAQEBAQEMzAAA/M0AAPmaAAD8zQAAAzMAAAZmAAADMwAAAzQAAPzNAzMAAAZmAAD5mgAAEAAAAPmZAAAGZwAA8zMAAPmaAAAAAQAAAAAQABMzAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEzMAAPmZAAAGZwAA/M0AAPAAAAAJmQAA9mcAAQAAAAAQABAAAA0AAAEBAQEBAQEBAQEBAQEBAAAAAAMzAAAGZgAABmcAAPzMAAD8zQAA+ZoAAAAAEAAAAPmZAAAGZwAA/MwAAPM0AAAGZgAA+ZoAAQAAAAAWZhMzABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAZmAAD5mgAAEzMAAPZmAAAJmgAA9mYAAAmaAADzMwAA+ZoAAAAAEAAAAPmZAAAGZwAAAzMAAPzNAAD8zAAA/M0AAPmaAAD8zQAABmYAAPmaAAMAAAAAFmYQAAADAAcAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEJmQAA+ZoAABAAAAD5mQAA8zQAAAmZAAD2ZwAAFmYAAPZmAAAJmgAAAzMDMwAA/M0GZgMzAAD8zfZnCZkAAAMzAAADNAAA9mYAAPzNAAD8zQAAAAMAAPmaDMwTMwADAA8AEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAPmaAAADMwAABmYAAAMzAAD8zQAA+ZoAAAAAAAAGZgAA+ZoDMwAA/M0GZhAAAAD5mQAABmcAAPAAAAAGZgAA+ZoQAAMzAAD8zQAAAAQAAPmaDMwQAAADAAcADQARAAABAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAmZAAADMwAA8zQAAAmZAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAAAzMAAPM0DMwDNAAA/MwAAAAEAAAAAAzMGZkAAwAHABMAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBCZkAAAMzAAD8zQAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD5mgAABmYAAPmaAAADMwAAAzMGZgAA+ZoJmQM0AAD8zPM0EzMAAPzNAAD8zAAA/M0AAPmaAAD8zRZmAzMAAPzNAAMAAAAADMwQAAADAAkADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAPzNAAADMwAACZkAAPmaAAADMwAAAzMDMwAA/M38zRAAAAD5mQAA9mcMzAM0AAD8zAAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAADMwAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAEAAD5mgzMEzMAAwAHAAsAFwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAAAzMAAPzNAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAAAGZgAA+ZoDMwAA/M0JmQZmAAD5mgmZAzQAAPzM8zQTMwAA/M0AAPzMAAD8zQAA+ZoAAPzNAAMAAPmaDMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEDMwAABmYAAAAAAAD5mgAA/M0AAAMzAAAJmQAA+ZoDMwAA/M0JmQMzAAD8zfzNEAAAAPmZAAD2ZwAIAAD5mgzMHMwAAwAJAA0AEQAVABkAHQAhAAABAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAzMAAAMzAAAAAAAA/M0AAAZmAAAAAAAAAzMAAPM0AAADMwAABmYAAAMzAAD2ZwAABmYAAPZnAAAGZgAAAAAAAAZmAAD5mgMzAAD8zQMzAzMAAAMzAAD5mgZmAzMAAPzNAAAMzQAA8zMJmQM0AAD8zAM0AzMAAPzNBmYDMwAA/M0DMwMzAAD8zQAAAAgAAPmaDMwZmQADAAkADQARABUAGQAdACEAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAAAAAD8zQAABmYAAAAAAAADMwAA8zQAAAMzAAAGZgAAAzMAAPZnAAAGZgAA9mcAAAZmAAAAAAAABmYAAPmaAzMAAPzNAzMDMwAAAzMAAPmaBmYDMwAA/M0AAAmZAAD2ZwZmAzMAAPzNAzMDNAAA/MwGZwMzAAD8zQMzAzMAAPzNAAAAAwAAAAAMzBmZAAMACwAPAAABAQEBAQEBAQEBAQEBAQEBCZkAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoAAAMzAAADMwzNAADzM/zNEzMAAPzNAADzMwAA/M0WZgMzAAD8zQAAAAMAAAAADMwQAAADAAcADQAAAQEBAQEBAQEBAQEBAQEJmQAA+ZoAAAAAAAADMwAA+ZoAAAmZAAADMwAAAzMDMwAA/M0JmQM0AAD8zPM0CZkAAAZnAADwAAADAAD5mgzMEzMAAwAHAA8AAAEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA8zQAAAmZAAD5mgAABmYAAPmaAzMAAPzNCZkMzQAA8zP8zRMzAAD8zQAA8zMAAPzNAAAAAwAA+ZoMzBAAAAMABwANAAABAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAPmaAAD8zQAACZkAAAMzAAD5mgMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAMAAPmaDMwTMwADAAcADwAAAQEBAQEBAQEBAQEBAQEBAQMzAAAGZgAAAAAAAAMzAADzNAAACZkAAPmaAAAGZgAA+ZoDMwAA/M0JmQzNAADzM/zNEzMAAPzNAADzMwAA/M0AAAADAAD5mgzMEAAAAwAHAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPmaAzMAAPzNCZkDMwAA/M38zQmZAAAGZwAA8AAAAwAA9mcMzBMzAAUACQARAAABAQEBAQEBAQEBAQEBAQEBAQEGZgAA/M0AAAZmAAAAAAAAAzMAAPM0AAAJmQAA+ZoAAAZmAAD2ZwMzAAADMwAA+ZoMzAzNAADzM/zNEzMAAPzNAADzMwAA/M0AAwAA9mcMzBAAAAUACQAPAAABAQEBAQEBAQEBAQEBAQEBBmYAAPzNAAAGZgAAAAAAAPmaAAD8zQAACZkAAAMzAAD2ZwMzAAADMwAA+ZoMzAMzAAD8zfzNCZkAAAZnAADwAAAAAAUAAPZnDMwTMwADAAcACwAPABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAAAAAAADMwAA8zQAAAmZAAD5mgAABmYAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZDM0AAPMz/M0TMwAA/M0AAPMzAAD8zQAAAAUAAPZnDMwQAAADAAcACwAPABUAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAAAAAAA+ZoAAPzNAAAJmQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQmZAzMAAPzN/M0JmQAABmcAAPAAAAUAAPZnDMwTMwADAAcACwAPABMAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAPmaAAADMwAAAzMAAAMzAAD2ZwAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYTMwAA7M0AAAAGAAD2ZwzMEAAAAwAHAAsADwATABcAAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQAAAAADMwAAAzMAAAMzAAD5mgAAAzMAAAMzAAADMwAA9mcAAAMzAAD8zQAAAzMAAPZnAzMAAPzNAAADMwAA/M0DMwMzAAD8zQAAAzMAAPzNBmYJmQAA9mcMzAM0AAD8zAACAAAAABAAGZkABwALAAABAQEBAQEBAQEBAQEGZgAA+ZoAABAAAAD5mQAA/M0AAAMzAAAAABAAAAADMwAA/M0AAPAAFmYDMwAA/M0AAgAAAAAMzBZmAAkADQAAAQEBAQEBAQEBAQEBAQEAAAAAAzMAAAmZAAD2ZwAACZkAAPM0AAADMwAAAAAQAAAA+ZkAAPzNAAD8zQAA/M0TMwMzAAD8zQAAAAIAAPmaEAATMwADAAsAAAEBAQEBAQEBAQEBAQZmAAADMwAA/M0AAPmaAAAQAAAA+ZkAAPmaAzMAAPzNBmYQAAAAAzMAAPzNAADwAAACAAD5mgzMEAAAAwANAAABAQEBAQEBAQEBAQEBAQZmAAADMwAA9mcAAAMzAAAJmQAA9mcAAAmZAAD5mgMzAAD8zQZmEAAAAPmZAAD8zQAA/M0AAPzNAAAAAgAA+ZoQABMzAAMACwAAAQEBAQEBAQEBAQEBAzMAAAmZAAD5mgAA+ZoAABAAAAD5mQAA+ZoDMwAA/M0GZhAAAAADMwAA/M0AAPAAAAIAAPmaDMwQAAADAA0AAAEBAQEBAQEBAQEBAQEBAzMAAAZmAAD2ZwAAAzMAAAmZAAD2ZwAACZkAAPmaAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAAEAAD2ZxAAEzMAAwAHAAsAEwAAAQEBAQEBAQEBAQEBAQEBAQEBAQEDMwAAAzMAAAMzAAADMwAA+ZoAAAMzAAD8zQAA+ZoAABAAAAD5mQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAAAzMAAPzNAADwAAAEAAD2ZwzMEAAAAwAHAAsAFQAAAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQMzAAADMwAAAzMAAAMzAAD5mgAAAzMAAPZnAAADMwAACZkAAPZnAAAJmQAA9mcDMwAA/M0AAAMzAAD8zQMzAzMAAPzNBmYQAAAA+ZkAAPzNAAD8zQAA/M0AAAABAAAMzAZmEzMABQAAAQEBAQEBAAAAAAMzAAADMwAADMwGZwAA/M0AAPzMAAEAAAzMBmYTMwAFAAABAQEBAQEDMwAA/M0AAAZmAAAMzAM0AAADMwAA+ZkAAgAADMwQABMzAAUACwAAAQEBAQEBAQEBAQEBAAAAAAMzAAADMwAAAzMAAAMzAAADNAAADMwGZwAA/M0AAPzMAAAGZwAA/M0AAPzMAAIAAAzMEAATMwAFAAsAAAEBAQEBAQEBAQEBAQMzAAD8zQAABmYAAAZmAAD8zQAABmcAAAzMAzQAAAMzAAD5mQAAAzQAAAMzAAD5mQADAAAAABAAAzMAAwAHAAsAAAEB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"
 
 /***/ }),
-/* 237 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -49279,7 +49512,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(238);
+var	fixUrls = __webpack_require__(227);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -49595,7 +49828,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 238 */
+/* 227 */
 /***/ (function(module, exports) {
 
 
@@ -49688,163 +49921,6 @@ module.exports = function (css) {
 	return fixedCss;
 };
 
-
-/***/ }),
-/* 239 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-Object.defineProperty(exports, "__esModule", { value: true });
-var framework_1 = __webpack_require__(17);
-var game_1 = __webpack_require__(250);
-var G1 = /** @class */ (function (_super) {
-    __extends(G1, _super);
-    function G1() {
-        var _this = _super.call(this) || this;
-        var e = _this.engine;
-        _this.game = new game_1.Game();
-        e.loadImage(__webpack_require__(251));
-        e.loadImage(__webpack_require__(252));
-        /*  e.setSprite(0, vec2.clone([3,3]), 1);
-          e.setSprite(1, vec2.clone([6,4]), 1);
-          e.setSprite(2, vec2.clone([8,3]), 1);
-  
-  
-          e.setSprite(3, vec2.clone([5,15]), 0);
-  
-          e.setCenterText("READY");*/
-        _this.game.newGame();
-        return _this;
-    }
-    G1.prototype.tick = function (time, delta) {
-        var e = this.engine;
-        e.clearSprites();
-        var spriteIndex = 0;
-        for (var _i = 0, _a = this.game.things.array; _i < _a.length; _i++) {
-            var thing = _a[_i];
-            if (thing.valid) {
-                e.setSprite(spriteIndex++, thing.p, 0);
-            }
-        }
-    };
-    return G1;
-}(framework_1.Prototype));
-exports.default = G1;
-
-
-/***/ }),
-/* 240 */,
-/* 241 */,
-/* 242 */,
-/* 243 */,
-/* 244 */,
-/* 245 */,
-/* 246 */,
-/* 247 */,
-/* 248 */,
-/* 249 */,
-/* 250 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var gl_matrix_1 = __webpack_require__(18);
-var ThingType;
-(function (ThingType) {
-    ThingType[ThingType["UNKNOWN"] = 0] = "UNKNOWN";
-    ThingType[ThingType["PLAYER"] = 1] = "PLAYER";
-    ThingType[ThingType["SMALLUFO"] = 2] = "SMALLUFO";
-})(ThingType = exports.ThingType || (exports.ThingType = {}));
-var Thing = /** @class */ (function () {
-    function Thing() {
-        this.type = ThingType.UNKNOWN;
-        this.p = gl_matrix_1.vec2.create();
-        this.v = gl_matrix_1.vec2.create();
-        this.r = 1.0;
-        this.valid = false;
-    }
-    Thing.prototype.reset = function () {
-        this.p.set([0, 0]);
-        this.v.set([0, 0]);
-        this.r = 1.0;
-        this.valid = false;
-    };
-    Thing.spawn = function (things, x, y, type) {
-        for (var i = 0; i < things.length; i++) {
-            var thing = things[i];
-            if (!thing.valid) {
-                thing.valid = true;
-                thing.p.set([x, y]);
-                return thing;
-            }
-        }
-        return null;
-    };
-    return Thing;
-}());
-exports.Thing = Thing;
-var Container = /** @class */ (function () {
-    function Container(count, f) {
-        this.array = new Array(count);
-        for (var i = 0; i < this.array.length; i++)
-            this.array[i] = new f;
-    }
-    Container.prototype.spawn = function () {
-        for (var i = 0; i < this.array.length; i++) {
-            var thing = this.array[i];
-            if (!thing.valid) {
-                thing.valid = true;
-                return thing;
-            }
-        }
-        return null;
-    };
-    Container.prototype.reset = function () {
-        for (var i = 0; i < this.array.length; i++) {
-            this.array[i].reset();
-        }
-    };
-    return Container;
-}());
-exports.Container = Container;
-var Game = /** @class */ (function () {
-    function Game() {
-        this.maxThings = 100;
-        this.things = new Container(this.maxThings, Thing);
-    }
-    Game.prototype.newGame = function () {
-        this.things.reset();
-        var t = this.things.spawn();
-        t.p.set([4.5, 14]);
-    };
-    return Game;
-}());
-exports.Game = Game;
-
-
-/***/ }),
-/* 251 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
-
-/***/ }),
-/* 252 */
-/***/ (function(module, exports) {
-
-module.exports = "data:image/png;base64,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"
 
 /***/ })
 /******/ ]);

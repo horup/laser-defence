@@ -1,4 +1,4 @@
-import { Prototype } from "../framework";
+import { Prototype, Collision } from "../framework";
 import { Insights } from "../framework";
 import { vec2 } from 'gl-matrix';
 import { Shufflebag } from "../framework";
@@ -65,7 +65,7 @@ export default class G1 extends Prototype
                             beam.variant = ThingVariant.PLAYERBEAM;
                             beam.p.set(thing.p);
                             beam.v[1] = -15; 
-                         //  beam.owner = thing.id;
+                           beam.owner = thing.id;
                             thing.cooldown = 1/3;
                         }
                     }
@@ -75,6 +75,14 @@ export default class G1 extends Prototype
                 {
                     if (thing.p[1] < 0 || thing.p[1] > e.config.grid.height)
                         thing.reset();
+
+                    let i = Collision.getCollision(thing, this.game.things.array);
+                    if (i != null && thing.owner != this.game.things.array[i].id)
+                    {
+                        let t = this.game.things.array[i];
+                        t.reset();
+                        thing.reset();
+                    }
                 }
 
                 vec2.set(temp, thing.v[0] * delta, thing.v[1] * delta);
