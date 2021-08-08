@@ -6,3 +6,4 @@ cordova/rapid/plugins/*
 cordova/rapid/platforms/*
 cordova/rapid/www/*
 package-lock.json
+.parcel-cache

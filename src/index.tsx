@@ -1,4 +1,4 @@
-import G from "./g1/index";
+import G from "./g0/index";
 import { Ads } from "./framework/ads/index";
 require("./style.css");
 declare var cordova;
